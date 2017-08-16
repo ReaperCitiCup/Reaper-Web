@@ -1,0 +1,14 @@
+@import "../assets/scss/variables";
+@import "../assets/scss/base";
+
+.footDiv {
+  background-color: $pageFootColor;
+  height: 94px;
+  width: 100px;
+  text-align: center;
+}
+
+.footContent {
+  color: $white-color;
+  font-size: 12px;
+}

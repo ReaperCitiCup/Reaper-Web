@@ -5,17 +5,23 @@ html, body, h1, h2, h3, h4, h5, h6, hr, li, ul, p, a, img, button {
   font-family: "Pingfang SC-Regular", "Open Sans", "Lantinghei SC", "Microsoft Yahei Light", "Microsoft Yahei", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   list-style: none; }
 
+html {
+  height: 100%; }
+
 * {
   position: relative; }
 
 .footDiv {
   background-color: #474457;
   height: 94px;
-  width: 100px;
-  text-align: center; }
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  bottom: 0; }
 
 .footContent {
   color: #fff;
-  font-size: 12px; }
+  font-size: 12px;
+  margin-top: 40px; }
 
-/*# sourceMappingURL=pageFoot.css.map */
+/*# sourceMappingURL=PageFoot.css.map */

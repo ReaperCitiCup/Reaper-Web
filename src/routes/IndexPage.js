@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'dva';
 import styles from './IndexPage.css';
-import pageFoot from '../components/pageFoot';
+import PageFoot from '../components/PageFoot';
 import logo from './cancel.png';
 
 function IndexPage() {
@@ -40,7 +40,8 @@ function IndexPage() {
             </div>
           </div>
         </div>
-        <pageFoot/>
+
+        <PageFoot/>
       </div>
 
   );

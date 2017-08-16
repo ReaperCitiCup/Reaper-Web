@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AAAA,iEAAkE;EAChE,MAAM,EAAE,CAAC;EACT,OAAO,EAAE,CAAC;EACV,MAAM,EAAE,CAAC;EACT,WAAW,ECDM,gKAAgK;EDGjL,UAAU,EAAE,IAAI;;AAGlB,CAAE;EACA,QAAQ,EAAE,QAAQ;;AEPpB,QAAS;EACP,gBAAgB,EDGF,OAAO;ECFrB,MAAM,EAAE,IAAI;EACZ,KAAK,EAAE,KAAK;EACZ,UAAU,EAAE,MAAM;;AAGpB,YAAa;EACX,KAAK,EDXO,IAAI;ECYhB,SAAS,EAAE,IAAI",
-"sources": ["../assets/scss/_base.scss","../assets/scss/_variables.scss","pageFoot.scss"],
-"names": [],
-"file": "pageFoot.css"
-}

@@ -4,11 +4,14 @@
 .footDiv {
   background-color: $pageFootColor;
   height: 94px;
-  width: 100px;
+  width: 100%;
   text-align: center;
+  position: absolute;
+  bottom: 0;
 }
 
 .footContent {
   color: $white-color;
   font-size: 12px;
+  margin-top: 40px;
 }

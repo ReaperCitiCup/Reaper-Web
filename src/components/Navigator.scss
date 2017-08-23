@@ -1,0 +1,72 @@
+@import "../assets/scss/variables";
+@import "../assets/scss/base";
+
+.navBar {
+  height: auto;
+  width: 100%;
+  //text-align: center;
+  padding-top: 16px;
+}
+
+.loginDiv {
+  width: 100%;
+  height: auto;
+  display: inline-block;
+}
+
+#loginButton {
+  font-size: 18px;
+  background: none;
+  color: $nav-font-color;
+  outline: none;
+  cursor: pointer;
+  float: right;
+}
+
+.navDiv {
+  width: 100%;
+  display: inline-block;
+}
+
+.leftDiv {
+  margin-top: 15px;
+  display: inline-block;
+}
+
+.imgDiv {
+  display: inline-block;
+}
+
+.labelDiv {
+  display: inline-block;
+}
+
+.rightDiv {
+  float: right;
+  margin-top: 28px;
+  display: inline-block;
+}
+
+.iconImage {
+  width: 78px;
+  height: 50px;
+  vertical-align: middle;
+}
+
+.logoLabel {
+  color: $nav-font-color;
+  font-size: 24px;
+  margin-left: 10px;
+  width: auto;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.navButton {
+  color: $nav-font-color;
+  font-size: 20px;
+  background: none;
+  outline: none;
+  cursor: pointer;
+  margin-left: 20px;
+}

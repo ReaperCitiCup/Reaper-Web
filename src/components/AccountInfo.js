@@ -2,25 +2,24 @@
  * Created by st on 2017/8/23.
  */
 import React, {Component} from 'react';
+import icon from '../assets/user.png';
 import styles from './AccountInfo.css';
-import PageFoot from '../components/PageFoot';
-import Nav from '../components/Navigator';
-import Breadcrumb from '../components/Breadcrumb';
-import Content from '../components/Content';
 
 class AccountInfo extends Component {
   render() {
     return(
-      <div className={styles.baseBody}>
-        <div className={styles.normal}>
-          <Nav/>
-          <Breadcrumb/>
-          <div className={styles.mainDiv}>
-            <Content/>
-          </div>
+      <div className={styles.contentBodyDiv}>
+        <p className={styles.contentName}>账户信息</p>
+
+        <div className={styles.avatar}>
+          <button className={styles.modifyAvatar}>点击修改头像</button>
         </div>
 
-        <PageFoot/>
+        <div className={styles.accountInfo}>
+          <img src={icon} alt={"icon"} className={styles.iconImage}></img>
+          <input className={styles.textInfo}></input>
+        </div>
+
       </div>
     )
   }

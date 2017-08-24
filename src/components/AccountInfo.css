@@ -12,17 +12,57 @@ html {
   position: relative;
   box-sizing: border-box; }
 
-.normal {
-  width: 960px;
-  margin-left: auto;
-  margin-right: auto; }
-
-.baseBody {
-  background: #F9FAFB;
+.contentBodyDiv {
   width: 100%;
-  min-height: 100%; }
+  height: 385px;
+  margin-top: 43px;
+  padding: 28px;
+  background-color: rgba(255, 255, 255, 0.95);
+  display: inline-block; }
 
-.mainDiv {
-  width: 100%; }
+.contentName {
+  color: #3D5673;
+  font-size: 16px;
+  letter-spacing: 1.6px;
+  line-height: 22px;
+  font-weight: 500; }
+
+.avatar {
+  margin-top: 20px;
+  width: 120px;
+  height: 120px;
+  background-color: rgba(216, 216, 216, 0.95);
+  display: inline-block;
+  vertical-align: top; }
+
+.modifyAvatar {
+  width: 100%;
+  height: 17px;
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: #3D5673;
+  background: rgba(194, 194, 194, 0.95) none;
+  opacity: 0.48;
+  cursor: pointer;
+  margin-top: 103px;
+  outline: none; }
+
+.accountInfo {
+  display: inline-block;
+  margin-top: 20px;
+  margin-left: 60px;
+  width: auto;
+  height: auto;
+  vertical-align: top; }
+
+.iconImage {
+  width: 16px;
+  height: 16px; }
+
+.textInfo {
+  width: 244px;
+  height: 25px;
+  margin-left: 12px;
+  border-bottom: 4px #3D5673; }
 
 /*# sourceMappingURL=AccountInfo.css.map */

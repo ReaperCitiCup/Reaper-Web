@@ -1,13 +1,14 @@
 import React from 'react';
 import {connect} from 'dva';
-import styles from './IndexPage.css';
-import MainLayout from '../components/MainLayout'
+import styles from './AccountPage.css';
+import AccountInfo from '../components/AccountInfo'
+import MainLayout from "../components/MainLayout";
 
 function IndexPage() {
   return (
     <div className={styles.baseBody}>
       <MainLayout>
-        <p>我是首页</p>
+        <AccountInfo/>
       </MainLayout>
     </div>
 

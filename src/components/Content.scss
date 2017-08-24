@@ -4,6 +4,61 @@
 .contentBodyDiv {
   width: 100%;
   height: 385px;
+  margin-top: 43px;
+  padding: 28px;
   background-color: $card-background;
   display: inline-block;
+}
+
+.contentName {
+  color: $nav-font-color;
+  font-size: 16px;
+  letter-spacing: 1.6px;
+  line-height: 22px;
+  font-weight: 500;
+}
+
+.avatar {
+  margin-top: 20px;
+  width: 120px;
+  height: 120px;
+  background-color: rgba(216,216,216,0.95);
+  display: inline-block;
+  vertical-align: top;
+  //opacity: 0.3;
+}
+
+.modifyAvatar {
+  width: 100%;
+  height: 17px;
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: $nav-font-color;
+  background: rgba(194, 194, 194, 0.95) none;
+  opacity: 0.48;
+  cursor: pointer;
+  margin-top: 103px;
+  outline: none;
+}
+
+.accountInfo {
+  display: inline-block;
+  margin-top: 20px;
+  margin-left: 60px;
+  width: auto;
+  height: auto;
+  vertical-align: top;
+}
+
+.iconImage {
+  width: 16px;
+  height: 16px;
+}
+
+.textInfo {
+  width: 244px;
+  height: 25px;
+  margin-left: 12px;
+  //border: none;
+  border-bottom: 4px $nav-font-color;
 }

@@ -5,6 +5,7 @@ import React, {Component} from 'react';
 import styles from './AccountInfo.css';
 import PageFoot from '../components/PageFoot';
 import Nav from '../components/Navigator';
+import Breadcrumb from '../components/Breadcrumb';
 import Content from '../components/Content';
 
 class AccountInfo extends Component {
@@ -13,6 +14,7 @@ class AccountInfo extends Component {
       <div className={styles.baseBody}>
         <div className={styles.normal}>
           <Nav/>
+          <Breadcrumb/>
           <div className={styles.mainDiv}>
             <Content/>
           </div>

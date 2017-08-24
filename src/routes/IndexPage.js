@@ -3,7 +3,6 @@ import {connect} from 'dva';
 import styles from './IndexPage.css';
 import AccountInfo from '../components/AccountInfo'
 
-
 function IndexPage() {
   return (
     <div className={styles.baseBody}>

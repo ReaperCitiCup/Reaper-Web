@@ -2,9 +2,9 @@
  * Created by st on 2017/8/15.
  */
 import React, {Component} from 'react'
-import styles from './PageFoot.css';
+import styles from './Footer.css';
 
-class PageFoot extends Component {
+class Footer extends Component {
   render() {
     return (
       <div className={styles.footDiv}>
@@ -14,6 +14,6 @@ class PageFoot extends Component {
   }
 }
 
-PageFoot.propTypes = {};
+Footer.propTypes = {};
 
-export default PageFoot;
+export default Footer;

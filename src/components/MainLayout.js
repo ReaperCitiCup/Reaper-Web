@@ -3,7 +3,7 @@
  */
 import React, {Component} from 'react';
 import styles from './MainLayout.css';
-import PageFoot from '../components/PageFoot';
+import Footer from './Footer';
 import Nav from '../components/Navigator';
 // import Breadcrumb from '../components/Breadcrumb';
 // import Content from '../components/Content';
@@ -21,7 +21,7 @@ class MainLayout extends Component {
           </div>
         </div>
 
-        <PageFoot/>
+        <Footer/>
       </div>
     )
   }

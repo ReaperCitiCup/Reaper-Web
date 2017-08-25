@@ -1,11 +1,13 @@
 @import "../assets/scss/variables";
 @import "../assets/scss/base";
+@import "../assets/scss/mixin";
 
 .navBar {
   height: auto;
   width: 100%;
   //text-align: center;
   padding-top: 16px;
+  @include clear-fix();
 }
 
 .loginDiv {
@@ -28,8 +30,8 @@
   display: inline-block;
 }
 
-.leftDiv {
-  margin-top: 15px;
+.logoDiv {
+  margin-top: 23px;
   display: inline-block;
 }
 
@@ -41,10 +43,19 @@
   display: inline-block;
 }
 
-.rightDiv {
+.menuDiv {
   float: right;
   margin-top: 28px;
   display: inline-block;
+  background: none;
+  height: 50px;
+  border: none;
+  font-size: 20px;
+  color: $nav-font-color;
+}
+
+.clearDiv {
+
 }
 
 .iconImage {
@@ -69,4 +80,41 @@
   outline: none;
   cursor: pointer;
   margin-left: 20px;
+}
+
+.menuDiv {
+  :global {
+    .ant-menu-item {
+      a {
+        color: $nav-font-color;
+      }
+      border-bottom: none;
+      //height: 70px;
+      //line-height: 70px;
+      //a {
+      //  color: $theme-green-color;
+      //  font-size: 14px;
+      //  font-family: $theme-font-family;
+      //  font-weight: $font-weight-semi-bold;
+
+      //}
+
+      &.ant-menu-item-active {
+        a {
+          color: $nav-font-color-hover;
+        }
+        border-bottom: none;
+        //padding: 0;
+        //background-color: lighten($green-color-light, 10%);
+      }
+      &.ant-menu-item-selected {
+        border-bottom: none;
+        //background-color: lighten($green-color-light, 3%);
+      }
+
+      //&:hover {
+      //  color: red
+      //}
+    }
+  }
 }

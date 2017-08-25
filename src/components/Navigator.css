@@ -12,10 +12,17 @@ html {
   position: relative;
   box-sizing: border-box; }
 
+/*
+ * grid
+ */
 .navBar {
   height: auto;
   width: 100%;
   padding-top: 16px; }
+  .navBar:after {
+    content: '';
+    display: block;
+    clear: both; }
 
 .loginDiv {
   width: 100%;
@@ -34,8 +41,8 @@ html {
   width: 100%;
   display: inline-block; }
 
-.leftDiv {
-  margin-top: 15px;
+.logoDiv {
+  margin-top: 23px;
   display: inline-block; }
 
 .imgDiv {
@@ -44,10 +51,15 @@ html {
 .labelDiv {
   display: inline-block; }
 
-.rightDiv {
+.menuDiv {
   float: right;
   margin-top: 28px;
-  display: inline-block; }
+  display: inline-block;
+  background: none;
+  height: 50px;
+  border: none;
+  font-size: 20px;
+  color: #3D5673; }
 
 .iconImage {
   width: 78px;
@@ -69,5 +81,16 @@ html {
   outline: none;
   cursor: pointer;
   margin-left: 20px; }
+
+.menuDiv :global .ant-menu-item {
+  border-bottom: none; }
+  .menuDiv :global .ant-menu-item a {
+    color: #3D5673; }
+  .menuDiv :global .ant-menu-item.ant-menu-item-active {
+    border-bottom: none; }
+    .menuDiv :global .ant-menu-item.ant-menu-item-active a {
+      color: #8DC6FF; }
+  .menuDiv :global .ant-menu-item.ant-menu-item-selected {
+    border-bottom: none; }
 
 /*# sourceMappingURL=Navigator.css.map */

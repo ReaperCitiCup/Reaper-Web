@@ -19,7 +19,7 @@
 #loginButton {
   font-size: 18px;
   background: none;
-  color: $nav-font-color;
+  color: $main-font-color;
   outline: none;
   cursor: pointer;
   float: right;
@@ -51,7 +51,7 @@
   height: 50px;
   border: none;
   font-size: 20px;
-  color: $nav-font-color;
+  color: $main-font-color;
 }
 
 .clearDiv {
@@ -65,7 +65,7 @@
 }
 
 .logoLabel {
-  color: $nav-font-color;
+  color: $main-font-color;
   font-size: 24px;
   margin-left: 10px;
   width: auto;
@@ -74,7 +74,7 @@
 }
 
 .navButton {
-  color: $nav-font-color;
+  color: $main-font-color;
   font-size: 20px;
   background: none;
   outline: none;
@@ -86,7 +86,7 @@
   :global {
     .ant-menu-item {
       a {
-        color: $nav-font-color;
+        color: $main-font-color;
       }
       border-bottom: none;
       //height: 70px;
@@ -101,7 +101,7 @@
 
       &.ant-menu-item-active {
         a {
-          color: $nav-font-color-hover;
+          color: $sub-font-color;
         }
         border-bottom: none;
         //padding: 0;

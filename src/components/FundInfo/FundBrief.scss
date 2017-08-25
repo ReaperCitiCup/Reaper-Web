@@ -1,0 +1,128 @@
+@import "../../assets/scss/variables";
+@import "../../assets/scss/base";
+
+
+
+.title {
+  h1, h2 {
+    display: inline-block;
+    color: $title-black-color;
+    font-weight: 500;
+  }
+
+  h1 {
+    font-size: 48px;
+  }
+
+  h2 {
+    margin-left: 25px;
+    font-size: 36px;
+  }
+}
+.card {
+  background-color: $card-background;
+  padding: 10px 35px;
+  margin-bottom: 15px;
+}
+
+.section {
+  display: inline-block;
+  vertical-align: top;
+  > div {
+    display: inline-block;
+    vertical-align: top;
+
+    h3 {
+      display: inline-block;
+      vertical-align: top;
+      color: $main-font-color;
+      font-size: 36px;
+    }
+  }
+}
+.sectionNormal {
+  p {
+    margin-top: 10px;
+    color: $main-font-color;
+    font-size: 14px;
+    a {
+      color: $sub-font-color;
+    }
+  }
+}
+.section_1 {
+  >div {
+    width: 260px;
+  }
+  &:after {
+    content: "";
+    display: inline-block;
+    width: 1px;
+    height: 76px;
+    margin: 0 33px;
+    background-color: $blue-grey-color;
+  }
+  .sectionSide {
+    display: inline-block;
+    padding: 4px 0;
+    margin-left: 40px;
+    p {
+      font-size: 14px;
+    }
+  }
+}
+.section_2 {
+  >div {
+    width: 240px;
+  }
+  &:after {
+    content: "";
+    display: inline-block;
+    width: 1px;
+    height: 76px;
+    margin: 0 33px;
+    background-color: $blue-grey-color;
+  }
+}
+.section_3 {
+  width: 240px;
+}
+
+
+.section_4 {
+  > div {
+    width: 260px;
+  }
+  &:after {
+    content: "";
+    display: inline-block;
+    width: 1px;
+    margin: 0 33px;
+  }
+}
+.section_5{
+  > div {
+    width: 240px;
+  }
+  &:after {
+    content: "";
+    display: inline-block;
+    width: 1px;
+    margin: 0 33px;
+  }
+}
+.section_6 {
+  > div {
+    width: 240px;
+  }
+}
+
+.row {
+  margin-bottom: 10px;
+}
+.sectionTitle {
+  margin-bottom: 10px;
+  color: $blue-grey-color;
+  font-size: 12px;
+  font-weight: 200;
+}

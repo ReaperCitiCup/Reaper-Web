@@ -1,0 +1,107 @@
+html, body, h1, h2, h3, h4, h5, h6, hr, li, ul, p, a, img, button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-family: "Pingfang SC", "Open Sans", "Lantinghei SC", "Microsoft Yahei Light", "Microsoft Yahei", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: 300;
+  list-style: none; }
+
+html {
+  height: 100%; }
+
+* {
+  position: relative;
+  box-sizing: border-box; }
+
+.title h1, .title h2 {
+  display: inline-block;
+  color: #4A4A4A;
+  font-weight: 500; }
+.title h1 {
+  font-size: 48px; }
+.title h2 {
+  margin-left: 25px;
+  font-size: 36px; }
+
+.card {
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 10px 35px;
+  margin-bottom: 15px; }
+
+.section {
+  display: inline-block;
+  vertical-align: top; }
+  .section > div {
+    display: inline-block;
+    vertical-align: top; }
+    .section > div h3 {
+      display: inline-block;
+      vertical-align: top;
+      color: #3D5673;
+      font-size: 36px; }
+
+.sectionNormal p {
+  margin-top: 10px;
+  color: #3D5673;
+  font-size: 14px; }
+  .sectionNormal p a {
+    color: #81B6F5; }
+
+.section_1 > div {
+  width: 260px; }
+.section_1:after {
+  content: "";
+  display: inline-block;
+  width: 1px;
+  height: 76px;
+  margin: 0 33px;
+  background-color: #9FAEC0; }
+.section_1 .sectionSide {
+  display: inline-block;
+  padding: 4px 0;
+  margin-left: 40px; }
+  .section_1 .sectionSide p {
+    font-size: 14px; }
+
+.section_2 > div {
+  width: 240px; }
+.section_2:after {
+  content: "";
+  display: inline-block;
+  width: 1px;
+  height: 76px;
+  margin: 0 33px;
+  background-color: #9FAEC0; }
+
+.section_3 {
+  width: 240px; }
+
+.section_4 > div {
+  width: 260px; }
+.section_4:after {
+  content: "";
+  display: inline-block;
+  width: 1px;
+  margin: 0 33px; }
+
+.section_5 > div {
+  width: 240px; }
+.section_5:after {
+  content: "";
+  display: inline-block;
+  width: 1px;
+  margin: 0 33px; }
+
+.section_6 > div {
+  width: 240px; }
+
+.row {
+  margin-bottom: 10px; }
+
+.sectionTitle {
+  margin-bottom: 10px;
+  color: #9FAEC0;
+  font-size: 12px;
+  font-weight: 200; }
+
+/*# sourceMappingURL=FundBrief.css.map */

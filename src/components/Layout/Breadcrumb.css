@@ -12,17 +12,13 @@ html {
   position: relative;
   box-sizing: border-box; }
 
-.footDiv {
-  background-color: #474457;
-  height: 94px;
+.breadcrumbBody {
   width: 100%;
-  text-align: center;
-  position: absolute;
-  bottom: 0; }
+  height: auto;
+  margin-top: 42px; }
 
-.footContent {
-  color: #fff;
+.breadcrumb {
   font-size: 12px;
-  margin-top: 40px; }
+  color: #3D5673; }
 
-/*# sourceMappingURL=Footer.css.map */
+/*# sourceMappingURL=Breadcrumb.css.map */

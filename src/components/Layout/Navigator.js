@@ -3,7 +3,7 @@
  */
 import React, {Component} from 'react';
 import styles from './Navigator.css';
-import logo from '../assets/icon.png';
+import logo from '../../assets/icon.png';
 
 import {Menu, Icon} from 'antd';
 import {Link} from 'dva/router';
@@ -37,8 +37,8 @@ class Navigator extends Component {
           <Menu.Item key="app">
             <Link to="/">行情概览</Link>
           </Menu.Item>
-          <Menu.Item key="fund">
-            <Link to="/">基金浏览</Link>
+          <Menu.Item key="/funds">
+            <Link to="/funds">基金浏览</Link>
           </Menu.Item>
           <Menu.Item key="/account">
             <Link to="/account">个人中心</Link>

@@ -16,7 +16,7 @@ html {
  * grid
  */
 .navBar {
-  height: auto;
+  height: 100px;
   width: 100%;
   padding-top: 16px; }
   .navBar:after {

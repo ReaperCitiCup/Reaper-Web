@@ -1,20 +1,19 @@
 import React from 'react';
 import {connect} from 'dva';
-import styles from './IndexPage.css';
-import MainLayout from '../components/Layout/MainLayout'
+// import styles from './AccountPage.css';
+import MainLayout from "../components/Layout/MainLayout";
 
-function IndexPage() {
+function FundInfoPage() {
   return (
     <div className="baseBody">
       <MainLayout>
-        <p>我是首页</p>
       </MainLayout>
     </div>
 
   );
 }
 
-IndexPage.propTypes = {};
+FundInfoPage.propTypes = {};
 
 function mapStateToProps(state) {
   return {
@@ -22,4 +21,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(IndexPage);
+export default connect(mapStateToProps)(FundInfoPage);

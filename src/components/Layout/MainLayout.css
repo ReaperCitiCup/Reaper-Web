@@ -12,4 +12,13 @@ html {
   position: relative;
   box-sizing: border-box; }
 
-/*# sourceMappingURL=AccountPage.css.map */
+.baseBody {
+  background: #F9FAFB;
+  width: 100%;
+  min-height: 100%; }
+
+.mainDiv {
+  width: 100%;
+  min-height: 600px; }
+
+/*# sourceMappingURL=MainLayout.css.map */

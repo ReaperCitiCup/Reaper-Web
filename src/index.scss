@@ -1,0 +1,20 @@
+@import "./assets/scss/variables";
+@import "./assets/scss/base";
+@import "./assets/scss/mixin";
+
+html {
+  :global {
+    .baseBody {
+      background: $background-color;
+      width: 100%;
+      min-height: 100%;
+      height: 100%;
+    }
+
+    .container {
+      width: 960px;
+      margin:  0 auto;
+    }
+
+  }
+}

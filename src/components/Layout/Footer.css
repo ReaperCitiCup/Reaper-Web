@@ -12,17 +12,14 @@ html {
   position: relative;
   box-sizing: border-box; }
 
-.normal {
-  width: 960px;
-  margin-left: auto;
-  margin-right: auto; }
-
-.baseBody {
-  background: #F9FAFB;
+.footDiv {
+  background-color: #474457;
   width: 100%;
-  min-height: 100%; }
+  text-align: center;
+  padding: 40px; }
 
-.mainDiv {
-  width: 100%; }
+.footContent {
+  color: #fff;
+  font-size: 12px; }
 
-/*# sourceMappingURL=MainLayout.css.map */
+/*# sourceMappingURL=Footer.css.map */

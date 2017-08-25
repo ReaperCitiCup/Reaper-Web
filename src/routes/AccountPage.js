@@ -1,12 +1,12 @@
 import React from 'react';
 import {connect} from 'dva';
 import styles from './AccountPage.css';
-import AccountInfo from '../components/AccountInfo'
-import MainLayout from "../components/MainLayout";
+import AccountInfo from '../components/Auth/AccountInfo'
+import MainLayout from "../components/Layout/MainLayout";
 
 function IndexPage() {
   return (
-    <div className={styles.baseBody}>
+    <div className="baseBody">
       <MainLayout>
         <AccountInfo/>
       </MainLayout>

@@ -2,7 +2,7 @@
  * Created by st on 2017/8/23.
  */
 import React, {Component} from 'react';
-import icon from '../assets/user.png';
+import icon from '../../assets/user.png';
 import styles from './AccountInfo.css';
 
 class AccountInfo extends Component {

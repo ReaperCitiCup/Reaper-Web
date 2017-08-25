@@ -1,7 +1,7 @@
 {
 "version": 3,
-"mappings": "AAAA,iEAAkE;EAChE,MAAM,EAAE,CAAC;EACT,OAAO,EAAE,CAAC;EACV,MAAM,EAAE,CAAC;EACT,WAAW,ECDM,gKAAgK;EDGjL,UAAU,EAAE,IAAI;;AAGlB,IAAK;EACH,MAAM,EAAE,IAAI;;AAGd,CAAE;EACA,QAAQ,EAAE,QAAQ;EAClB,UAAU,EAAE,UAAU;;AEZxB,SAAU;EACR,UAAU,EDMO,OAAO;ECLxB,KAAK,EAAE,IAAI;EACX,UAAU,EAAE,IAAI;EAChB,MAAM,EAAE,IAAI",
-"sources": ["../assets/scss/_base.scss","../assets/scss/_variables.scss","AccountPage.scss"],
+"mappings": "AAAA,iEAAkE;EAChE,MAAM,EAAE,CAAC;EACT,OAAO,EAAE,CAAC;EACV,MAAM,EAAE,CAAC;EACT,WAAW,ECDM,gKAAgK;EDGjL,UAAU,EAAE,IAAI;;AAGlB,IAAK;EACH,MAAM,EAAE,IAAI;;AAGd,CAAE;EACA,QAAQ,EAAE,QAAQ;EAClB,UAAU,EAAE,UAAU",
+"sources": ["../assets/scss/_base.scss","../assets/scss/_variables.scss"],
 "names": [],
 "file": "AccountPage.css"
 }

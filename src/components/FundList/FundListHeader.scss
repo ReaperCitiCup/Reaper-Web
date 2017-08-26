@@ -1,0 +1,46 @@
+@import "../../assets/scss/variables";
+@import "../../assets/scss/base";
+@import "../../assets/scss/mixin";
+
+.headerDiv {
+  margin-top: 52px;
+  margin-bottom: 48px;
+  //height: 80px;
+  @include clear-fix();
+}
+
+.leftDiv {
+  display: inline-block;
+  float: left;
+}
+
+.listHeader {
+  color: $main-font-color;
+  font-size: 36px;
+  font-weight: 400;
+}
+
+.listNumSpan {
+  font-size: 14px;
+  color: #9FAEC0;
+  margin-left: 20px;
+}
+
+.listSortSpan {
+  font-size: 14px;
+  color: #9FAEC0;
+  margin-left: 50px;
+}
+
+.searchDiv {
+  display: inline-block;
+  vertical-align: bottom;
+  float: right;
+  padding-top: 20px;
+}
+
+.searchInput {
+  //float: right;
+  margin-left: 150px;
+  //@include vertical-align();
+}

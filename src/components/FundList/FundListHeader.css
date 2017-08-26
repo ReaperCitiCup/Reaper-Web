@@ -1,0 +1,55 @@
+html, body, h1, h2, h3, h4, h5, h6, hr, li, ul, p, a, img, button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-family: "Pingfang SC", "Open Sans", "Lantinghei SC", "Microsoft Yahei Light", "Microsoft Yahei", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: 300;
+  list-style: none; }
+
+html {
+  height: 100%; }
+
+* {
+  position: relative;
+  box-sizing: border-box; }
+
+/*
+ * grid
+ */
+.headerDiv {
+  margin-top: 52px;
+  margin-bottom: 48px; }
+  .headerDiv:after {
+    content: '';
+    display: block;
+    clear: both; }
+
+.leftDiv {
+  display: inline-block;
+  float: left; }
+
+.listHeader {
+  color: #3D5673;
+  font-size: 36px;
+  font-weight: 400; }
+
+.listNumSpan {
+  font-size: 14px;
+  color: #9FAEC0;
+  margin-left: 20px; }
+
+.listSortSpan {
+  font-size: 14px;
+  color: #9FAEC0;
+  margin-left: 50px; }
+
+.searchDiv {
+  display: inline-block;
+  vertical-align: bottom;
+  float: right;
+  padding-top: 20px; }
+
+.searchInput {
+  margin-left: 150px; }
+
+/*# sourceMappingURL=FundListHeader.css.map */

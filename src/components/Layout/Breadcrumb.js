@@ -3,17 +3,25 @@
  */
 import React, {Component} from 'react';
 import styles from './Breadcrumb.css';
+import {Breadcrumb} from 'antd';
 
-class Breadcrumb extends Component {
+class MyBreadcrumb extends Component {
   render() {
+    const {items} = this.props
     return (
-      <div className={styles.breadcrumbBody}>
-        <label className={styles.breadcrumb}>xxxx >> xxxxx</label>
+      <div className="container">
+        <div className={styles.breadcrumbBody}>
+          <Breadcrumb separator=">">
+            {items.map(item =>
+              <Breadcrumb.Item key={item}>{item}</Breadcrumb.Item>
+            )}
+          </Breadcrumb>
+        </div>
       </div>
     )
   }
 }
 
-Breadcrumb.propTypes = {};
+MyBreadcrumb.propTypes = {};
 
-export default Breadcrumb;
+export default MyBreadcrumb;

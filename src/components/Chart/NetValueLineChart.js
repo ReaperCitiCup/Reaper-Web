@@ -37,6 +37,11 @@ class NetValueLineChart extends Component {
       //   left: 'center',
       //   text: '大数据量面积图',
       // },
+      grid: {
+        left: 30,
+        right: 30
+
+      },
       toolbox: {
         feature: {
           dataZoom: {
@@ -74,25 +79,27 @@ class NetValueLineChart extends Component {
       }],
       series: [
         {
-          name:'模拟数据',
-          type:'line',
-          smooth:true,
+          name: '模拟数据',
+          type: 'line',
+          smooth: true,
           symbol: 'none',
           sampling: 'average',
           itemStyle: {
             normal: {
-              color: 'rgb(255, 70, 131)'
+              color: '#81B6F5'
             }
           },
           areaStyle: {
             normal: {
-              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                offset: 0,
-                color: 'rgb(255, 158, 68)'
-              }, {
-                offset: 1,
-                color: 'rgb(255, 70, 131)'
-              }])
+              color: "#81B6F5",
+              opacity: 0.5
+              //   new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+              //   offset: 0,
+              //   color: 'rgb(255, 158, 68)'
+              // }, {
+              //   offset: 1,
+              //   color: 'rgb(255, 70, 131)'
+              // }])
             }
           },
           data: data

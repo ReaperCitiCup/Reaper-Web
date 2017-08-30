@@ -5,6 +5,7 @@ const TabPane = Tabs.TabPane;
 import NetValueLineChart from "../Chart/NetValueLineChart";
 import RateLineChart from "../Chart/RateLineChart";
 import AssetPieChart from "../Chart/AssetPieChart";
+import AssertBarChart from "../Chart/AssertBarChart";
 
 import styles from './FundCharts.css';
 
@@ -35,8 +36,8 @@ function FundCharts() {
             <AssetPieChart/>
           </div>
           <div className={styles.section}>
-            <h4 className={styles.sectionTitle}>当前资产配置</h4>
-            <AssetPieChart/>
+            <h4 className={styles.sectionTitle}>历史资产配置</h4>
+            <AssertBarChart/>
           </div>
         </div>
       </div>

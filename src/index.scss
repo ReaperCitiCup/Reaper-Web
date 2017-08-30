@@ -20,7 +20,33 @@ html {
     .card {
       background-color: $card-background;
       padding: 10px 30px;
+
+      > h3 {
+        display: inline-block;
+        vertical-align: top;
+        margin-bottom: 20px;
+        color: $main-font-color;
+        font-size: 16px;
+
+        &:before {
+          content: '';
+          display: inline-block;
+          vertical-align: top;
+          width: 4px;
+          height: 24px;
+          margin-right: 8px;
+          background-color: $sub-font-color;
+        }
+      }
     }
+
+    // ant design
+    .ant-tabs-tab {
+      color: $main-font-color;
+      font-size: 16px;
+    }
+
+
     @media (max-width:960px) {
       .container {
         width: 100%;

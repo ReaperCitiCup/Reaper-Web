@@ -7,9 +7,9 @@ import {Breadcrumb} from 'antd';
 
 class MyBreadcrumb extends Component {
   render() {
-    const {items} = this.props
+    const {items} = this.props;
     return (
-      <div className="container">
+      //<div className="container">
         <div className={styles.breadcrumbBody}>
           <Breadcrumb separator=">">
             {items.map(item =>
@@ -17,7 +17,7 @@ class MyBreadcrumb extends Component {
             )}
           </Breadcrumb>
         </div>
-      </div>
+      //</div>
     )
   }
 }

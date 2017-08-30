@@ -2,10 +2,12 @@
 @import "../../assets/scss/base";
 
 .breadcrumbBody {
-  width: 100%;
+  //width: 100%;
   height: auto;
-  margin-top: 42px;
-  margin-bottom: 42px;
+  //margin-top: 42px;
+  //margin-bottom: 42px;
+  padding-top: 20px;
+  display: inline-block;
 }
 
 .breadcrumb {

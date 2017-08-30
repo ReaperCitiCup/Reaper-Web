@@ -38,19 +38,20 @@ class NetValueLineChart extends Component {
       //   text: '大数据量面积图',
       // },
       grid: {
+        top: 20,
+        bottom: 70,
         left: 30,
-        right: 30
-
+        right: 30,
       },
-      toolbox: {
-        feature: {
-          dataZoom: {
-            yAxisIndex: 'none'
-          },
-          restore: {},
-          saveAsImage: {}
-        }
-      },
+      // toolbox: {
+      //   feature: {
+      //     dataZoom: {
+      //       yAxisIndex: 'none'
+      //     },
+      //     restore: {},
+      //     saveAsImage: {}
+      //   }
+      // },
       xAxis: {
         type: 'category',
         boundaryGap: false,
@@ -79,7 +80,7 @@ class NetValueLineChart extends Component {
       }],
       series: [
         {
-          name: '模拟数据',
+          // name: '单位净值',
           type: 'line',
           smooth: true,
           symbol: 'none',

@@ -4,9 +4,7 @@
 import React, {Component} from 'react';
 import styles from './FundListHeader.css';
 import {Menu, Dropdown, Icon} from 'antd';
-import {Input} from 'antd';
-
-const Search = Input.Search;
+import FundSearchInput from './FundSearchInput';
 
 const menu = (
   <Menu>
@@ -45,14 +43,7 @@ class FundListHeader extends Component {
               </a>
             </Dropdown>
           </div>
-          <div className={styles.searchDiv}>
-            <Search
-              placeholder="搜索基金名称、代码..."
-              style={{width: 350}}
-              onSearch={value => console.log(value)}
-              className={styles.searchInput}
-            />
-          </div>
+          <FundSearchInput/>
         </div>
 
       </div>

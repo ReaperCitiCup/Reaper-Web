@@ -1,0 +1,16 @@
+@import "../../assets/scss/variables";
+@import "../../assets/scss/base";
+@import "../../assets/scss/mixin";
+
+.searchDiv {
+  display: inline-block;
+  vertical-align: bottom;
+  float: right;
+  padding-top: 20px;
+}
+
+.searchInput {
+  //float: right;
+  margin-left: 150px;
+  //@include vertical-align();
+}

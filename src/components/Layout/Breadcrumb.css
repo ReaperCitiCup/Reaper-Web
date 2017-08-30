@@ -14,9 +14,9 @@ html {
   box-sizing: border-box; }
 
 .breadcrumbBody {
-  width: 100%;
   height: auto;
-  margin-bottom: 42px; }
+  padding-top: 20px;
+  display: inline-block; }
 
 .breadcrumb {
   font-size: 12px;

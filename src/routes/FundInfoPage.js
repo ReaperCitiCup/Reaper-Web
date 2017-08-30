@@ -4,6 +4,7 @@ import {connect} from 'dva';
 import MainLayout from "../components/Layout/MainLayout";
 import Breadcrumb from "../components/Layout/Breadcrumb";
 import FundBrief from "../components/FundInfo/FundBrief";
+import FundCharts from "../components/FundInfo/FundCharts";
 
 function FundInfoPage() {
   return (
@@ -11,6 +12,7 @@ function FundInfoPage() {
       <MainLayout>
         <Breadcrumb items={[1, 2, 3]}/>
         <FundBrief/>
+        <FundCharts/>
       </MainLayout>
     </div>
 

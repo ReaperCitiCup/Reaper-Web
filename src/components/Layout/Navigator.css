@@ -58,7 +58,7 @@ html {
   display: inline-block;
   background: none;
   height: 50px;
-  border: none;
+  border-bottom: none;
   font-size: 20px;
   color: #3D5673; }
 
@@ -92,6 +92,8 @@ html {
     .menuDiv :global .ant-menu-item.ant-menu-item-active a {
       color: #81B6F5; }
   .menuDiv :global .ant-menu-item.ant-menu-item-selected {
+    border-bottom: none; }
+  .menuDiv :global .ant-menu-item:hover {
     border-bottom: none; }
 
 /*# sourceMappingURL=Navigator.css.map */

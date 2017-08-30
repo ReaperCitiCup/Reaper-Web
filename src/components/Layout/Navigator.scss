@@ -49,7 +49,7 @@
   display: inline-block;
   background: none;
   height: 50px;
-  border: none;
+  border-bottom: none;
   font-size: 20px;
   color: $main-font-color;
 }
@@ -112,9 +112,9 @@
         //background-color: lighten($green-color-light, 3%);
       }
 
-      //&:hover {
-      //  color: red
-      //}
+      &:hover {
+        border-bottom: none;
+      }
     }
   }
 }

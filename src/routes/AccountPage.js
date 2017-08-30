@@ -9,7 +9,9 @@ function IndexPage() {
   return (
     <div className="baseBody">
       <MainLayout>
-        <Breadcrumb items={[1, 2, 3]}/>
+        <div className="container">
+          <Breadcrumb items={[1, 2, 3]}/>
+        </div>
         <AccountInfo/>
       </MainLayout>
     </div>

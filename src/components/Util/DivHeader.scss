@@ -1,0 +1,9 @@
+@import "../../assets/scss/variables";
+@import "../../assets/scss/base";
+
+.divHeader {
+  font-size: 16px;
+  color: $main-font-color;
+  border-left: solid 2px $button-background;
+  padding-left: 10px;
+}

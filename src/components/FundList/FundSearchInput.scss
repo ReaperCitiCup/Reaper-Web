@@ -7,6 +7,7 @@
   vertical-align: bottom;
   float: right;
   padding-top: 20px;
+  @include clear-fix();
 }
 
 .searchInput {

@@ -5,4 +5,5 @@
 .leftDiv {
   display: inline-block;
   float: left;
+  @include clear-fix();
 }

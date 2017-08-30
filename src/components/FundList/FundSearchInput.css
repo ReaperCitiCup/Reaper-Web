@@ -21,6 +21,10 @@ html {
   vertical-align: bottom;
   float: right;
   padding-top: 20px; }
+  .searchDiv:after {
+    content: '';
+    display: block;
+    clear: both; }
 
 .searchInput {
   margin-left: 150px; }

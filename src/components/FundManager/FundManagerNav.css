@@ -13,15 +13,19 @@ html {
   position: relative;
   box-sizing: border-box; }
 
-/*
- * grid
- */
-.leftDiv {
-  display: inline-block;
-  float: left; }
-  .leftDiv:after {
-    content: '';
-    display: block;
-    clear: both; }
+.managerNameButton {
+  width: 140px;
+  height: 35px;
+  padding: 8px 45px;
+  margin-right: 15px;
+  color: #3D5673;
+  background: #fff none;
+  font-size: 14px;
+  cursor: pointer;
+  outline: none; }
 
-/*# sourceMappingURL=FundManagerHeader.css.map */
+.managerNameButton:hover {
+  background: #8DC6FF none;
+  color: #fff; }
+
+/*# sourceMappingURL=FundManagerNav.css.map */

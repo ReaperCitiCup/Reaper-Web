@@ -13,15 +13,10 @@ html {
   position: relative;
   box-sizing: border-box; }
 
-/*
- * grid
- */
-.leftDiv {
-  display: inline-block;
-  float: left; }
-  .leftDiv:after {
-    content: '';
-    display: block;
-    clear: both; }
+.divHeader {
+  font-size: 16px;
+  color: #3D5673;
+  border-left: solid 2px #8DC6FF;
+  padding-left: 10px; }
 
-/*# sourceMappingURL=FundManagerHeader.css.map */
+/*# sourceMappingURL=DivHeader.css.map */

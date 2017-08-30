@@ -1,0 +1,108 @@
+@import "../../assets/scss/variables";
+@import "../../assets/scss/base";
+
+.totalInfoDiv {
+  height: 150px;
+}
+
+.managerNameDiv {
+  width: 479px;
+  height: 150px;
+  display: inline-block;
+  background-color: $card-background;
+  margin-right: 15px;
+  padding: 12.5px;
+  vertical-align: top;
+}
+
+.managerPhoto {
+  width: 120px;
+  height: 125px;
+  background-color: $grey-light;
+  display: inline-block;
+}
+
+.managerInfo {
+  padding-left: 23px;
+  width: 250px;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.managerName {
+  font-size: 18px;
+  font-weight: 500;
+  color: $main-font-color;
+  padding-bottom: 10px;
+}
+
+.managerOtherInfo {
+  font-size: 12px;
+  color: $main-font-color;
+  padding-bottom: 8px;
+}
+
+.fundScaleDiv {
+  width: 217px;
+  height: 150px;
+  display: inline-block;
+  background-color: $card-background;
+  margin-right: 15px;
+  padding: 20px;
+  vertical-align: top;
+}
+
+.divTitle {
+  color: $main-font-color;
+  font-size: 16px;
+  padding-bottom: 12px;
+}
+
+.fundNumber {
+  color: $main-font-color;
+  font-size: 48px;
+  font-weight: 400;
+}
+
+.numberUnit {
+  color: $main-font-color;
+  font-size: 12px;
+}
+
+.fundReturnDiv {
+  width: 234px;
+  height: 150px;
+  display: inline-block;
+  background-color: $card-background;
+  padding: 20px;
+  vertical-align: top;
+}
+
+.introductionDiv {
+  height: 250px;
+  margin-top: 15px;
+}
+
+.infoChartDiv {
+  width: 320px;
+  height: 250px;
+  display: inline-block;
+  background-color: $card-background;
+  margin-right: 15px;
+}
+
+.managerIntroDiv {
+  width: 625px;
+  height: 250px;
+  display: inline-block;
+  background-color: $card-background;
+  padding: 20px;
+  vertical-align: top;
+}
+
+.managerIntro {
+  padding-top: 20px;
+  padding-left: 12px;
+  font-size: 14px;
+  color: $main-font-color;
+}

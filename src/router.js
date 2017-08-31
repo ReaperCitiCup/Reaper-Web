@@ -5,6 +5,8 @@ import FundListPage from './routes/FundListPage';
 import FundInfoPage from './routes/FundInfoPage';
 import FundManagerPage from './routes/FundManagerPage';
 import AccountPage from './routes/AccountPage';
+import FundCompanyPage from './routes/FundCompanyPage';
+
 
 function RouterConfig({ history }) {
   return (
@@ -14,6 +16,7 @@ function RouterConfig({ history }) {
       <Route path="/fund/:id" component={FundInfoPage} />
       <Route path="/fund/:id/manager/:managerId" component={FundManagerPage} />
       <Route path="/account" component={AccountPage} />
+      <Route path="/fund/:id/company/:companyId" component={FundCompanyPage} />
     </Router>
   );
 }

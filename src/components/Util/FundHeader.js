@@ -2,7 +2,7 @@
  * Created by st on 2017/8/25.
  */
 import React, {Component} from 'react';
-import styles from './FundManagerHeader.css';
+import styles from './FundHeader.css';
 import MyBreadcrumb from '../Layout/Breadcrumb';
 import FundSearchInput from '../FundList/FundSearchInput'
 

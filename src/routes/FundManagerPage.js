@@ -5,7 +5,7 @@ import React from 'react';
 import {connect} from 'dva';
 import styles from "./FundManagerPage.css";
 import MainLayout from "../components/Layout/MainLayout";
-import FundManagerHeader from "../components/FundManager/FundManagerHeader";
+import FundManagerHeader from "../components/Util/FundHeader";
 import FundManagerNav from "../components/FundManager/FundManagerNav";
 import FundManagerInfo from "../components/FundManager/FundManagerInfo";
 

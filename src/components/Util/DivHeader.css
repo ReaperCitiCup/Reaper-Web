@@ -15,6 +15,7 @@ html {
 
 .divHeader {
   font-size: 16px;
+  font-weight: 400;
   color: #3D5673;
   border-left: solid 2px #8DC6FF;
   padding-left: 10px; }

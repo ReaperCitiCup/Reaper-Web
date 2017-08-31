@@ -2,11 +2,28 @@
  * Created by st on 2017/8/23.
  */
 import React, {Component} from 'react';
-import icon from '../../assets/user.png';
 import styles from './AccountInfo.css';
+import { Input, Icon, Button } from 'antd';
 
 class AccountInfo extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      userName: '',
+    };
+  }
+  emitEmpty = () => {
+    this.userNameInput.focus();
+    this.setState({ userName: '' });
+  };
+  onChangeUserName = (e) => {
+    this.setState({ userName: e.target.value });
+  };
+
   render() {
+    const { userName } = this.state;
+    const suffix = userName ? <Icon type="close-circle" onClick={this.emitEmpty} /> : null;
     return (
       <div className="container">
         <div className={styles.contentBodyDiv}>
@@ -17,8 +34,58 @@ class AccountInfo extends Component {
           </div>
 
           <div className={styles.accountInfo}>
-            <img src={icon} alt={"icon"} className={styles.iconImage}></img>
-            <input className={styles.textInfo}></input>
+            <Input
+              placeholder="Enter your userName"
+              prefix={<Icon type="user" />}
+              suffix={suffix}
+              value={userName}
+              onChange={this.onChangeUserName}
+              ref={node => this.userNameInput = node}
+              className={styles.myInput}
+            />
+            <br/>
+            <Input
+              placeholder="Enter your userName"
+              prefix={<Icon type="mail" />}
+              suffix={suffix}
+              value={userName}
+              onChange={this.onChangeUserName}
+              ref={node => this.userNameInput = node}
+              className={styles.myInput}
+            />
+            <Input
+              placeholder="Enter your userName"
+              prefix={<Icon type="mobile" />}
+              suffix={suffix}
+              value={userName}
+              onChange={this.onChangeUserName}
+              ref={node => this.userNameInput = node}
+              className={styles.myInput}
+            />
+
+            <Input placeholder="输入验证码" className={styles.verificationCode}/>
+
+            <Input
+              placeholder="原密码"
+              prefix={<Icon type="unlock" />}
+              suffix={suffix}
+              value={userName}
+              onChange={this.onChangeUserName}
+              ref={node => this.userNameInput = node}
+              className={styles.myInput}
+            />
+
+            <Input
+              placeholder="新密码"
+              prefix={<Icon type="lock" />}
+              suffix={suffix}
+              value={userName}
+              onChange={this.onChangeUserName}
+              ref={node => this.userNameInput = node}
+              className={styles.myInput}
+            />
+            <Button icon="close-circle-o" className={styles.accountButton}>取消</Button>
+            <Button icon="save" type="primary" className={styles.accountButton}>保存</Button>
           </div>
         </div>
 

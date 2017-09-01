@@ -4,8 +4,9 @@
 import React, {Component} from 'react';
 import styles from './FundManagerInfo.css';
 import DivHeader from '../Util/DivHeader';
-import {Table, Button} from 'antd';
-import {Tabs} from 'antd';
+import {Table, Button, Tabs} from 'antd';
+
+import ManagerCharts from "./ManagerCharts";
 
 const TabPane = Tabs.TabPane;
 
@@ -32,50 +33,39 @@ const columns = [{
   dataIndex: 'workReturn',
 }];
 
-const data = [];
-for (let i = 0; i < 5; i++) {
-  data.push({
-    key: i,
-    fundID: `1111 ${i}`,
-    fundName: `基金${i}`,
-    fundType: `London, Park Lane no. ${i}`,
-    scale: `0.03`,
-    workDate: `111`,
-    workTime: `111`,
-    workReturn: `111`
-  });
-}
+const data = [{
+  key: '1',
+  fundID: 'John Brown',
+  fundName: 32,
+  fundType: 'New York No. 1 Lake Park',
+  scale: 1,
+  workDate: 1,
+  workTime: 1,
+  workReturn: 1
+}, {
+  key: '2',
+  fundID: 'Jim Green',
+  fundName: 42,
+  fundType: 'London No. 1 Lake Park',
+  scale: 1,
+  workDate: 1,
+  workTime: 1,
+  workReturn: 1
+}, {
+  key: '3',
+  fundID: 'Joe Black',
+  fundName: 32,
+  fundType: 'Sidney No. 1 Lake Park',
+  scale: 1,
+  workDate: 1,
+  workTime: 1,
+  workReturn: 1
+}];
+
 
 class FundManagerInfo extends Component {
 
-  state = {
-    selectedRowKeys: [],  // Check here to configure the default column
-    loading: false,
-  };
-  start = () => {
-    this.setState({loading: true});
-    // ajax request after empty completing
-    setTimeout(() => {
-      this.setState({
-        selectedRowKeys: [],
-        loading: false,
-      });
-    }, 1000);
-  };
-  onSelectChange = (selectedRowKeys) => {
-    console.log('selectedRowKeys changed: ', selectedRowKeys);
-    this.setState({selectedRowKeys});
-  };
-
   render() {
-
-    const {loading, selectedRowKeys} = this.state;
-    const rowSelection = {
-      selectedRowKeys,
-      onChange: this.onSelectChange,
-    };
-    const hasSelected = selectedRowKeys.length > 0;
-
     return (
       <div className="container">
         <div className={styles.totalInfoDiv}>
@@ -114,7 +104,7 @@ class FundManagerInfo extends Component {
 
           </div>
           <div className={styles.managerIntroDiv}>
-            <DivHeader value={'基金经理简介'}/>
+            <DivHeader>基金经理简介</DivHeader>
             <p className={styles.managerIntro}>
               董阳阳先生,美国波士顿学院金融学硕士、工商管理学硕士。曾任中国国际金融有限公司投行业务部经理。2009年8月加入华夏基金管理有限公司,曾任研究员、基金经理助理、投资经理等,现任股票投资部总监,华夏蓝筹核心混合型证券投资基金(LOF)基金经理(2013年3月11日起任职)、华夏成长证券投资基金基金经理(2015年1月7日起任职)。
             </p>
@@ -122,73 +112,15 @@ class FundManagerInfo extends Component {
         </div>
 
         <div className={styles.fundHistoryDiv}>
-          <DivHeader value={'历史管理基金'}/>
-
-          <div style={{marginBottom: 16}}>
-            {/*<Button*/}
-              {/*type="primary"*/}
-              {/*onClick={this.start}*/}
-              {/*disabled={!hasSelected}*/}
-              {/*loading={loading}*/}
-            {/*>*/}
-              {/*清空*/}
-            {/*</Button>*/}
-            <span style={{marginLeft: 8}}>
-            {hasSelected ? `Selected ${selectedRowKeys.length} items` : ''}
-          </span>
-          </div>
-          <div className={styles.tableDiv}>
-            <Table rowSelection={rowSelection} columns={columns} dataSource={data}
-                   pagination={false}/>
+          <DivHeader>历史管理基金</DivHeader>
+          <div>
+            <Table columns={columns} dataSource={data} size="middle" pagination={false}/>
           </div>
 
         </div>
 
-        <div className={styles.fundPerformance}>
-          <div className={styles.performanceLeft}>
-              <div className="card">
-                <Tabs defaultActiveKey="1">
-                  <TabPane tab="现任基金业绩" key="1">
-                  </TabPane>
-                  <TabPane tab="现任基金排名" key="2">
-                  </TabPane>
-                </Tabs>
-              </div>
+        <ManagerCharts/>
 
-          </div>
-
-          <div className={styles.performanceRight}>
-
-          </div>
-        </div>
-
-        <div className={styles.fundYieldTrend}>
-          <div className="card">
-            <Tabs defaultActiveKey="1">
-              <TabPane tab="现任基金收益率走势" key="1">
-              </TabPane>
-              <TabPane tab="现任基金排名走势" key="2">
-              </TabPane>
-            </Tabs>
-          </div>
-        </div>
-
-        <div className={styles.previousFundManagerDiv}>
-          <DivHeader value={"历任基金经理"}/>
-        </div>
-
-        <div className={styles.managerPerformanceDiv}>
-          <div className={styles.previousPerformance}>
-            <DivHeader value={"当前基金经理历任基金表现"}/>
-          </div>
-          <div className={styles.integratedPerformance}>
-            <DivHeader value={"当前基金经理综合表现"}/>
-          </div>
-        </div>
-
-        <div className={styles.networkChart}>
-          <DivHeader value={"基金经理社会网络关系图"}/>
-        </div>
 
       </div>
     )

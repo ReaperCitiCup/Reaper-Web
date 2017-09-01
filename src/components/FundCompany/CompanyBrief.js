@@ -14,22 +14,22 @@ class CompanyBrief extends Component {
         </div>
         <div className={styles.card}>
           <div className={styles.section_a}>
-            <DivHeader value={'公司旗下基金表现'}/>
+            <DivHeader>公司旗下基金表现</DivHeader>
           </div>
           <div className={styles.section_b}>
-            <DivHeader value={'公司旗下基金经理表现'}/>
+            <DivHeader>公司旗下基金经理表现</DivHeader>
           </div>
           <div className={styles.section_a}>
-            <DivHeader value={'产品策略分布'}/>
+            <DivHeader>产品策略分布</DivHeader>
           </div>
           <div className={styles.section_b}>
-            <DivHeader value={'资产配置行业占比'}/>
+            <DivHeader>资产配置行业占比</DivHeader>
           </div>
           <div className={styles.section_c}>
-            <DivHeader value={'风格归因'}/>
+            <DivHeader>风格归因</DivHeader>
           </div>
           <div className={styles.section_c}>
-            <DivHeader value={'行业归因'}/>
+            <DivHeader>行业归因</DivHeader>
           </div>
         </div>
       </div>

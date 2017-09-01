@@ -6,10 +6,10 @@ import styles from './DivHeader.css';
 
 class DivHeader extends Component{
   render() {
-    const {value} = this.props;
+    const {children} = this.props;
     return (
       <div>
-        <p className={styles.divHeader}>{value}</p>
+        <p className={styles.divHeader}>{children}</p>
       </div>
     )
   }

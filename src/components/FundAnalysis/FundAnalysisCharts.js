@@ -100,7 +100,7 @@ function FundAnalysisCharts() {
 
       <div className="card" id="7">
         <DivHeader>行业归因</DivHeader>
-        
+
         <div className={styles.section}>
           <h4 className={styles.section_title}>主动收益</h4>
           <AttributionBarChart/>
@@ -114,37 +114,36 @@ function FundAnalysisCharts() {
 
       <div className="card" id="8">
         <DivHeader>风格稳定性</DivHeader>
-        <div>
 
-        </div>
       </div>
 
       <div className="card" id="9">
         <DivHeader>Brison 归因</DivHeader>
-        <div>
 
-        </div>
       </div>
 
       <div className="card" id="10">
         <DivHeader>利率曲线归因</DivHeader>
-        <div>
 
+        <div className={styles.section}>
+          <h4 className={styles.section_title}>品种归因</h4>
+          <AttributionBarChart/>
         </div>
+        <div className={styles.section}>
+          <h4 className={styles.section_title}>能力归因</h4>
+          <AttributionBarChart/>
+        </div>
+
       </div>
 
       <div className="card" id="11">
         <DivHeader>择时 | 择股能力</DivHeader>
-        <div>
 
-        </div>
       </div>
 
       <div className="card" id="12">
         <DivHeader>基金经理表现</DivHeader>
-        <div>
-
-        </div>
+      
       </div>
     </div>
   )

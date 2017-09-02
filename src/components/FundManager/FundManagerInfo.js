@@ -7,6 +7,7 @@ import DivHeader from '../Util/DivHeader';
 import {Table, Button, Tabs} from 'antd';
 
 import ManagerCharts from "./ManagerCharts";
+import FundManagerRadarChart from "../Chart/FundManagerRadarChart";
 
 const TabPane = Tabs.TabPane;
 
@@ -101,7 +102,7 @@ class FundManagerInfo extends Component {
 
         <div className={styles.introductionDiv}>
           <div className={styles.infoChartDiv}>
-
+            <FundManagerRadarChart/>
           </div>
           <div className={styles.managerIntroDiv}>
             <DivHeader>基金经理简介</DivHeader>

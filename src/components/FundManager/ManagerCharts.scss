@@ -2,26 +2,26 @@
 @import "../../assets/scss/base";
 
 .fundPerformance {
-  height: 300px;
+  height: auto;
   margin-top: 15px;
 }
 
 .performanceLeft {
   width: 621px;
-  height: 300px;
+  height: auto;
   display: inline-block;
   background-color: $card-background;
-  //padding: 20px;
+  padding: 20px;
   vertical-align: top;
   margin-right: 18px;
 }
 
 .performanceRight {
   width: 319px;
-  height: 300px;
+  height: auto;
   display: inline-block;
   background-color: $card-background;
-  //padding: 20px;
+  padding: 20px;
   vertical-align: top;
 }
 

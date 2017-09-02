@@ -8,6 +8,8 @@ import DivHeader from "../Util/DivHeader";
 
 import ScatterChart from "../Chart/ScatterChart";
 import NetworkChart from "../Chart/NetworkChart";
+import FundRankingBarChart from "../Chart/FundRankingBarChart";
+import FundProfitBarChart from "../Chart/FundProfitBarChart";
 
 const TabPane = Tabs.TabPane;
 
@@ -17,19 +19,13 @@ class ManagerCharts extends Component {
       <div>
         <div className={styles.fundPerformance}>
           <div className={styles.performanceLeft}>
-            <div className="card">
-              <Tabs defaultActiveKey="1">
-                <TabPane tab="现任基金业绩" key="1">
-                </TabPane>
-                <TabPane tab="现任基金排名" key="2">
-                </TabPane>
-              </Tabs>
-            </div>
-
+            <DivHeader>现任基金排名</DivHeader>
+            <FundRankingBarChart/>
           </div>
 
           <div className={styles.performanceRight}>
-
+            <DivHeader>现任基金收益</DivHeader>
+            <FundProfitBarChart/>
           </div>
         </div>
 

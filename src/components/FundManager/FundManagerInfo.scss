@@ -79,13 +79,13 @@
 }
 
 .introductionDiv {
-  height: 250px;
+  height: auto;
   margin-top: 15px;
 }
 
 .infoChartDiv {
   width: 320px;
-  height: 250px;
+  height: 320px;
   display: inline-block;
   background-color: $card-background;
   margin-right: 15px;
@@ -93,7 +93,7 @@
 
 .managerIntroDiv {
   width: 625px;
-  height: 250px;
+  height: 320px;
   display: inline-block;
   background-color: $card-background;
   padding: 20px;

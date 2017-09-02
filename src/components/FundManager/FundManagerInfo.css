@@ -80,19 +80,19 @@ html {
   vertical-align: top; }
 
 .introductionDiv {
-  height: 250px;
+  height: auto;
   margin-top: 15px; }
 
 .infoChartDiv {
   width: 320px;
-  height: 250px;
+  height: 320px;
   display: inline-block;
   background-color: rgba(255, 255, 255, 0.95);
   margin-right: 15px; }
 
 .managerIntroDiv {
   width: 625px;
-  height: 250px;
+  height: 320px;
   display: inline-block;
   background-color: rgba(255, 255, 255, 0.95);
   padding: 20px;

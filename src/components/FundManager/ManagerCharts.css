@@ -14,22 +14,24 @@ html {
   box-sizing: border-box; }
 
 .fundPerformance {
-  height: 300px;
+  height: auto;
   margin-top: 15px; }
 
 .performanceLeft {
   width: 621px;
-  height: 300px;
+  height: auto;
   display: inline-block;
   background-color: rgba(255, 255, 255, 0.95);
+  padding: 20px;
   vertical-align: top;
   margin-right: 18px; }
 
 .performanceRight {
   width: 319px;
-  height: 300px;
+  height: auto;
   display: inline-block;
   background-color: rgba(255, 255, 255, 0.95);
+  padding: 20px;
   vertical-align: top; }
 
 .fundYieldTrend {

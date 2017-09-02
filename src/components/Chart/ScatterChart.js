@@ -10,9 +10,10 @@ class ScatterChart extends Component {
   render() {
     let option = {
       grid: {
+        top: '10%',
         left: '3%',
         right: '7%',
-        bottom: '3%',
+        bottom: '10%',
         containLabel: true
       },
       tooltip: {
@@ -50,7 +51,8 @@ class ScatterChart extends Component {
       brush: {},
       legend: {
         data: ['女性', '男性'],
-        left: 'center'
+        left: 'center',
+        bottom: '0%'
       },
       xAxis: [
         {

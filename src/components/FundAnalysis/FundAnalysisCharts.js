@@ -75,11 +75,11 @@ function FundAnalysisCharts() {
 
         <div className={styles.section}>
           <h4 className={styles.section_title}>配置收益</h4>
-          <AttributionBarChart/>
+          <AttributionBarChart color="#81B6F5"/>
         </div>
         <div className={styles.section}>
           <h4 className={styles.section_title}>管理收益</h4>
-          <AttributionBarChart/>
+          <AttributionBarChart color="#F9D471"/>
         </div>
 
       </div>
@@ -89,11 +89,11 @@ function FundAnalysisCharts() {
 
         <div className={styles.section}>
           <h4 className={styles.section_title}>主动收益</h4>
-          <AttributionBarChart/>
+          <AttributionBarChart color="#81B6F5"/>
         </div>
         <div className={styles.section}>
           <h4 className={styles.section_title}>主动风险</h4>
-          <AttributionBarChart/>
+          <AttributionBarChart color="#F9D471"/>
         </div>
 
       </div>
@@ -103,11 +103,11 @@ function FundAnalysisCharts() {
 
         <div className={styles.section}>
           <h4 className={styles.section_title}>主动收益</h4>
-          <AttributionBarChart/>
+          <AttributionBarChart color="#81B6F5"/>
         </div>
         <div className={styles.section}>
           <h4 className={styles.section_title}>主动风险</h4>
-          <AttributionBarChart/>
+          <AttributionBarChart color="#F9D471"/>
         </div>
 
       </div>
@@ -127,11 +127,11 @@ function FundAnalysisCharts() {
 
         <div className={styles.section}>
           <h4 className={styles.section_title}>品种归因</h4>
-          <AttributionBarChart/>
+          <AttributionBarChart color="#E2827E"/>
         </div>
         <div className={styles.section}>
           <h4 className={styles.section_title}>能力归因</h4>
-          <AttributionBarChart/>
+          <AttributionBarChart color="#E2827E"/>
         </div>
 
       </div>
@@ -143,7 +143,7 @@ function FundAnalysisCharts() {
 
       <div className="card" id="12">
         <DivHeader>基金经理表现</DivHeader>
-      
+
       </div>
     </div>
   )

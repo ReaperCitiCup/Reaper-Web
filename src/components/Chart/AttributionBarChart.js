@@ -9,17 +9,12 @@ class AttributionBarChart extends Component {
 
   render() {
 
-    let labelRight = {
-      normal: {
-        position: 'right'
-      }
-    };
+    let {color} = this.props;
+
+    color = color ? color : '#81B6F5';
+
     let option = {
-      // title: {
-      //   text: '交错正负轴标签',
-      //   subtext: 'From ExcelHome',
-      //   sublink: 'http://e.weibo.com/1341556070/AjwF2AgQm'
-      // },
+
       tooltip: {
         trigger: 'axis',
         axisPointer: {            // 坐标轴指示器，坐标轴触发有效
@@ -55,19 +50,10 @@ class AttributionBarChart extends Component {
           // }
           // },
           data: [-8, 2, 4, 10, 4, 0, 9, 3, 1, 7]
-          //   {value: -0.07, label: labelRight},
-          //   {value: -0.09, label: labelRight},
-          //   0.2, 0.44,
-          //   {value: -0.23, label: labelRight},
-          //   0.08,
-          //   {value: -0.17, label: labelRight},
-          //   0.47,
-          //   {value: -0.36, label: labelRight},
-          //   0.18
-          // ]
+
         }
       ],
-      color: ['#81B6F5']
+      color: [color]
     };
 
     return (

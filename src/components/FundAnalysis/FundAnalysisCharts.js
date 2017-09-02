@@ -3,6 +3,7 @@ import {Tabs} from 'antd';
 const TabPane = Tabs.TabPane;
 
 import DivHeader from '../Util/DivHeader';
+import AttributionBarChart from'../Chart/AttributionBarChart';
 
 import styles from './FundAnalysisCharts.css';
 
@@ -71,23 +72,44 @@ function FundAnalysisCharts() {
 
       <div className="card" id="5">
         <DivHeader>业绩归因</DivHeader>
-        <div>
 
+        <div className={styles.section}>
+          <h4 className={styles.section_title}>配置收益</h4>
+          <AttributionBarChart/>
         </div>
+        <div className={styles.section}>
+          <h4 className={styles.section_title}>管理收益</h4>
+          <AttributionBarChart/>
+        </div>
+
       </div>
 
       <div className="card" id="6">
         <DivHeader>风格归因</DivHeader>
-        <div>
 
+        <div className={styles.section}>
+          <h4 className={styles.section_title}>主动收益</h4>
+          <AttributionBarChart/>
         </div>
+        <div className={styles.section}>
+          <h4 className={styles.section_title}>主动风险</h4>
+          <AttributionBarChart/>
+        </div>
+
       </div>
 
       <div className="card" id="7">
         <DivHeader>行业归因</DivHeader>
-        <div>
-
+        
+        <div className={styles.section}>
+          <h4 className={styles.section_title}>主动收益</h4>
+          <AttributionBarChart/>
         </div>
+        <div className={styles.section}>
+          <h4 className={styles.section_title}>主动风险</h4>
+          <AttributionBarChart/>
+        </div>
+
       </div>
 
       <div className="card" id="8">

@@ -30,21 +30,13 @@ html :global .container {
     clear: both; }
 html :global .card {
   background-color: rgba(255, 255, 255, 0.95);
-  padding: 10px 30px; }
+  padding: 20px; }
   html :global .card > h3 {
     display: inline-block;
     vertical-align: top;
     margin-bottom: 20px;
     color: #3D5673;
     font-size: 16px; }
-    html :global .card > h3:before {
-      content: '';
-      display: inline-block;
-      vertical-align: top;
-      width: 4px;
-      height: 24px;
-      margin-right: 8px;
-      background-color: #81B6F5; }
 html :global .ant-tabs-tab {
   color: #3D5673;
   font-size: 16px; }

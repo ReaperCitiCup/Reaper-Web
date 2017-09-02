@@ -39,14 +39,14 @@ class ScatterChart extends Component {
           }
         }
       },
-      toolbox: {
-        feature: {
-          dataZoom: {},
-          brush: {
-            type: ['rect', 'polygon', 'clear']
-          }
-        }
-      },
+      // toolbox: {
+      //   feature: {
+      //     dataZoom: {},
+      //     brush: {
+      //       type: ['rect', 'polygon', 'clear']
+      //     }
+      //   }
+      // },
       brush: {},
       legend: {
         data: ['女性', '男性'],

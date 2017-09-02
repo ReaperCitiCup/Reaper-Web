@@ -5,14 +5,14 @@ import React from 'react';
 import {connect} from 'dva';
 import styles from "./FundManagerPage.css";
 import MainLayout from "../components/Layout/MainLayout";
-import FundManagerHeader from "../components/Util/FundHeader";
+import FundHeader from "../components/Util/FundHeader";
 import CompanyBrief from "../components/FundCompany/CompanyBrief";
 
 function FundCompanyPage() {
   return (
     <div className="baseBody">
       <MainLayout>
-        <FundManagerHeader/>
+        <FundHeader/>
         <CompanyBrief/>
       </MainLayout>
     </div>

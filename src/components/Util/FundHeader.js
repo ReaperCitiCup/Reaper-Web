@@ -6,7 +6,7 @@ import styles from './FundHeader.css';
 import MyBreadcrumb from '../Layout/Breadcrumb';
 import FundSearchInput from '../FundList/FundSearchInput'
 
-class FundManagerHeader extends Component {
+class FundHeader extends Component {
   render() {
     return (
       <div className="container">
@@ -19,4 +19,4 @@ class FundManagerHeader extends Component {
   }
 }
 
-export default FundManagerHeader;
+export default FundHeader;

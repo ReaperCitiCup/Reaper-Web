@@ -19,7 +19,7 @@ html {
 
     .card {
       background-color: $card-background;
-      padding: 10px 30px;
+      padding: 20px;
 
       > h3 {
         display: inline-block;
@@ -28,15 +28,15 @@ html {
         color: $main-font-color;
         font-size: 16px;
 
-        &:before {
-          content: '';
-          display: inline-block;
-          vertical-align: top;
-          width: 4px;
-          height: 24px;
-          margin-right: 8px;
-          background-color: $sub-font-color;
-        }
+        //&:before {
+        //  content: '';
+        //  display: inline-block;
+        //  vertical-align: top;
+        //  width: 4px;
+        //  height: 24px;
+        //  margin-right: 8px;
+        //  background-color: $sub-font-color;
+        //}
       }
     }
 

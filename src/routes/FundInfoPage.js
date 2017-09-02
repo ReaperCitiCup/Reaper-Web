@@ -1,17 +1,21 @@
 import React from 'react';
 import {connect} from 'dva';
-// import styles from './AccountPage.css';
+
 import MainLayout from "../components/Layout/MainLayout";
-import Breadcrumb from "../components/Layout/Breadcrumb";
+import FundHeader from "../components/Util/FundHeader";
 import FundBrief from "../components/FundInfo/FundBrief";
 import FundCharts from "../components/FundInfo/FundCharts";
+
+import styles from './FundInfoPage.css';
 
 function FundInfoPage() {
   return (
     <div className="baseBody">
       <MainLayout>
-        <Breadcrumb items={[1, 2, 3]}/>
-        <FundBrief/>
+        <FundHeader/>
+        <div className={styles.fund_brief}>
+          <FundBrief/>
+        </div>
         <FundCharts/>
       </MainLayout>
     </div>

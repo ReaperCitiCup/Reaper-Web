@@ -6,6 +6,7 @@ import NetValueLineChart from "../Chart/NetValueLineChart";
 import RateLineChart from "../Chart/RateLineChart";
 import AssetPieChart from "../Chart/AssetPieChart";
 import AssertBarChart from "../Chart/AssertBarChart";
+import DivHeader from '../Util/DivHeader';
 
 import styles from './FundCharts.css';
 
@@ -13,6 +14,7 @@ function FundCharts() {
   return (
     <div className={"container " + styles.container}>
       <div className="card">
+        <DivHeader>净值走势</DivHeader>
         <Tabs defaultActiveKey="1">
           <TabPane tab="单位净值走势" key="1">
             <NetValueLineChart/>
@@ -24,12 +26,12 @@ function FundCharts() {
       </div>
 
       <div className="card">
-        <h3>累积收益率走势</h3>
+        <DivHeader>累积收益率走势</DivHeader>
         <RateLineChart/>
       </div>
 
       <div className="card">
-        <h3>资产配置</h3>
+        <DivHeader>资产配置</DivHeader>
         <div>
           <div className={styles.section}>
             <h4 className={styles.sectionTitle}>当前资产配置</h4>

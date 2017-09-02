@@ -24,3 +24,16 @@
     font-size: 36px;
   }
 }
+
+.section {
+  display: inline-block;
+  width: 50%;
+  padding: 0 20px;
+  font-size: 0;
+  .section_title {
+    margin-bottom: 10px;
+    color: $blue-grey-color;
+    font-size: 12px;
+    font-weight: 200;
+  }
+}

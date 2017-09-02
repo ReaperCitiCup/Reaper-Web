@@ -3,6 +3,8 @@ import {Tabs} from 'antd';
 const TabPane = Tabs.TabPane;
 
 import DivHeader from '../Util/DivHeader';
+import AttributionBarChart from'../Chart/AttributionBarChart';
+import AbilityBarChart from'../Chart/AbilityBarChart';
 
 import styles from './FundAnalysisCharts.css';
 
@@ -71,58 +73,87 @@ function FundAnalysisCharts() {
 
       <div className="card" id="5">
         <DivHeader>业绩归因</DivHeader>
-        <div>
 
+        <div className={styles.section}>
+          <h4 className={styles.section_title}>配置收益</h4>
+          <AttributionBarChart color="#81B6F5"/>
         </div>
+        <div className={styles.section}>
+          <h4 className={styles.section_title}>管理收益</h4>
+          <AttributionBarChart color="#F9D471"/>
+        </div>
+
       </div>
 
       <div className="card" id="6">
         <DivHeader>风格归因</DivHeader>
-        <div>
 
+        <div className={styles.section}>
+          <h4 className={styles.section_title}>主动收益</h4>
+          <AttributionBarChart color="#81B6F5"/>
         </div>
+        <div className={styles.section}>
+          <h4 className={styles.section_title}>主动风险</h4>
+          <AttributionBarChart color="#F9D471"/>
+        </div>
+
       </div>
 
       <div className="card" id="7">
         <DivHeader>行业归因</DivHeader>
-        <div>
 
+        <div className={styles.section}>
+          <h4 className={styles.section_title}>主动收益</h4>
+          <AttributionBarChart color="#81B6F5"/>
         </div>
+        <div className={styles.section}>
+          <h4 className={styles.section_title}>主动风险</h4>
+          <AttributionBarChart color="#F9D471"/>
+        </div>
+
       </div>
 
       <div className="card" id="8">
         <DivHeader>风格稳定性</DivHeader>
-        <div>
 
-        </div>
       </div>
 
       <div className="card" id="9">
         <DivHeader>Brison 归因</DivHeader>
-        <div>
 
-        </div>
       </div>
 
       <div className="card" id="10">
         <DivHeader>利率曲线归因</DivHeader>
-        <div>
 
+        <div className={styles.section}>
+          <h4 className={styles.section_title}>品种归因</h4>
+          <AttributionBarChart color="#E2827E"/>
         </div>
+        <div className={styles.section}>
+          <h4 className={styles.section_title}>能力归因</h4>
+          <AttributionBarChart color="#E2827E"/>
+        </div>
+
       </div>
 
       <div className="card" id="11">
         <DivHeader>择时 | 择股能力</DivHeader>
-        <div>
 
+        <div className={styles.section}>
+          <h4 className={styles.section_title}>品种归因</h4>
+          <AbilityBarChart color="#E2827E"/>
         </div>
+        <div className={styles.section}>
+          <h4 className={styles.section_title}>能力归因</h4>
+          <AbilityBarChart color="#E2827E"/>
+        </div>
+
       </div>
 
       <div className="card" id="12">
         <DivHeader>基金经理表现</DivHeader>
-        <div>
 
-        </div>
       </div>
     </div>
   )

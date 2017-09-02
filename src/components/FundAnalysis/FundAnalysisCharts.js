@@ -4,6 +4,7 @@ const TabPane = Tabs.TabPane;
 
 import DivHeader from '../Util/DivHeader';
 import AttributionBarChart from'../Chart/AttributionBarChart';
+import AbilityBarChart from'../Chart/AbilityBarChart';
 
 import styles from './FundAnalysisCharts.css';
 
@@ -138,6 +139,15 @@ function FundAnalysisCharts() {
 
       <div className="card" id="11">
         <DivHeader>择时 | 择股能力</DivHeader>
+
+        <div className={styles.section}>
+          <h4 className={styles.section_title}>品种归因</h4>
+          <AbilityBarChart color="#E2827E"/>
+        </div>
+        <div className={styles.section}>
+          <h4 className={styles.section_title}>能力归因</h4>
+          <AbilityBarChart color="#E2827E"/>
+        </div>
 
       </div>
 

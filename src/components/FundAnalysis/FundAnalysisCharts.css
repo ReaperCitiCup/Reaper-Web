@@ -13,12 +13,17 @@ html {
   position: relative;
   box-sizing: border-box; }
 
-.divHeader {
-  margin-bottom: 20px;
-  font-size: 16px;
-  font-weight: 300;
-  color: #3D5673;
-  border-left: solid 2px #8DC6FF;
-  padding-left: 10px; }
+.fund_analysis_chart :global .card {
+  margin-bottom: 15px; }
 
-/*# sourceMappingURL=DivHeader.css.map */
+.title h1, .title h2 {
+  display: inline-block;
+  color: #4A4A4A;
+  font-weight: 500; }
+.title h1 {
+  font-size: 48px; }
+.title h2 {
+  margin-left: 25px;
+  font-size: 36px; }
+
+/*# sourceMappingURL=FundAnalysisCharts.css.map */

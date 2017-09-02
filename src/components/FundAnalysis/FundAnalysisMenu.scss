@@ -1,0 +1,15 @@
+@import "../../assets/scss/variables";
+@import "../../assets/scss/base";
+
+.menu {
+  border-right: none;
+
+
+  :global {
+    .ant-menu-item, .ant-menu-submenu-title {
+      //height: 48px;
+      //line-height: 48px;
+      font-size: 14px;
+    }
+  }
+}

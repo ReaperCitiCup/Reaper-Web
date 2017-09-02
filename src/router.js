@@ -4,9 +4,10 @@ import IndexPage from './routes/IndexPage';
 import FundListPage from './routes/FundListPage';
 import FundInfoPage from './routes/FundInfoPage';
 import FundManagerPage from './routes/FundManagerPage';
-import AccountPage from './routes/AccountPage';
 import FundCompanyPage from './routes/FundCompanyPage';
+import FundAnalysisPage from './routes/FundAnalysisPage';
 
+import AccountPage from './routes/AccountPage';
 
 function RouterConfig({ history }) {
   return (
@@ -15,8 +16,11 @@ function RouterConfig({ history }) {
       <Route path="/funds" component={FundListPage} />
       <Route path="/fund/:id" component={FundInfoPage} />
       <Route path="/fund/:id/manager/:managerId" component={FundManagerPage} />
-      <Route path="/account" component={AccountPage} />
       <Route path="/fund/:id/company/:companyId" component={FundCompanyPage} />
+      <Route path="/fund/:id/company" component={FundCompanyPage} />
+      <Route path="/fund/:id/analysis" component={FundAnalysisPage} />
+
+      <Route path="/account" component={AccountPage} />
     </Router>
   );
 }

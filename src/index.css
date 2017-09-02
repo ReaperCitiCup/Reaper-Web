@@ -37,9 +37,11 @@ html :global .card {
     margin-bottom: 20px;
     color: #3D5673;
     font-size: 16px; }
+html :global .ant-tabs-bar {
+  border-bottom: none; }
 html :global .ant-tabs-tab {
   color: #3D5673;
-  font-size: 16px; }
+  font-size: 14px; }
 @media (max-width: 960px) {
   html :global .container {
     width: 100%; } }

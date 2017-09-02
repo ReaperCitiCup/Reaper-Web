@@ -13,12 +13,18 @@ html {
   position: relative;
   box-sizing: border-box; }
 
-.divHeader {
-  margin-bottom: 20px;
-  font-size: 16px;
-  font-weight: 300;
-  color: #3D5673;
-  border-left: solid 2px #8DC6FF;
-  padding-left: 10px; }
+.fund_analysis {
+  margin-top: 40px; }
 
-/*# sourceMappingURL=DivHeader.css.map */
+.left_wrapper {
+  display: inline-block;
+  vertical-align: top;
+  width: 190px; }
+
+.right_wrapper {
+  display: inline-block;
+  vertical-align: top;
+  width: 750px;
+  margin-left: 20px; }
+
+/*# sourceMappingURL=FundAnalysisPage.css.map */

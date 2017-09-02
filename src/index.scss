@@ -41,9 +41,12 @@ html {
     }
 
     // ant design
+    .ant-tabs-bar {
+      border-bottom: none;
+    }
     .ant-tabs-tab {
       color: $main-font-color;
-      font-size: 16px;
+      font-size: 14px;
     }
 
 

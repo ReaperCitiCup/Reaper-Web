@@ -1,0 +1,23 @@
+@import "../assets/scss/variables";
+@import "../assets/scss/base";
+
+.fund_analysis {
+  margin-top: 40px;
+}
+
+.left_wrapper {
+  display: inline-block;
+  vertical-align: top;
+  width: 190px;
+  //min-height: 100px;
+  //background-color: $white-color;
+}
+
+.right_wrapper {
+  display: inline-block;
+  vertical-align: top;
+  width: 750px;
+  margin-left: 20px;
+  //min-height: 200px;
+  //background-color: $white-color;
+}

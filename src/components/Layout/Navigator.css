@@ -59,7 +59,7 @@ html {
   background: none;
   height: 50px;
   border-bottom: none;
-  font-size: 20px;
+  font-size: 16px;
   color: #3D5673; }
 
 .iconImage {
@@ -77,7 +77,6 @@ html {
 
 .navButton {
   color: #3D5673;
-  font-size: 20px;
   background: none;
   outline: none;
   cursor: pointer;

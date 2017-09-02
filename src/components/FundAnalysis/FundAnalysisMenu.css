@@ -13,12 +13,9 @@ html {
   position: relative;
   box-sizing: border-box; }
 
-.divHeader {
-  margin-bottom: 20px;
-  font-size: 16px;
-  font-weight: 300;
-  color: #3D5673;
-  border-left: solid 2px #8DC6FF;
-  padding-left: 10px; }
+.menu {
+  border-right: none; }
+  .menu :global .ant-menu-item, .menu :global .ant-menu-submenu-title {
+    font-size: 14px; }
 
-/*# sourceMappingURL=DivHeader.css.map */
+/*# sourceMappingURL=FundAnalysisMenu.css.map */

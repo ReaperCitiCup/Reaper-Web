@@ -5,13 +5,15 @@ import React from 'react';
 import {connect} from 'dva';
 import styles from "./FundManagerPage.css";
 import MainLayout from "../components/Layout/MainLayout";
-import FundHeader from "../components/Util/FundHeader";
+import BreadcrumbSearch from "../components/Util/BreadcrumbSearch";
+import FundHeader from "../components/FundInfo/FundHeader";
 import CompanyBrief from "../components/FundCompany/CompanyBrief";
 
 function FundCompanyPage() {
   return (
     <div className="baseBody">
       <MainLayout>
+        <BreadcrumbSearch/>
         <FundHeader/>
         <CompanyBrief/>
       </MainLayout>

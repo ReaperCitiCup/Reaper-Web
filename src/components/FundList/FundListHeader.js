@@ -3,9 +3,14 @@
  */
 import React, {Component} from 'react';
 import styles from './FundListHeader.css';
-import {Menu, Dropdown, Icon} from 'antd';
+import {Menu, Select, Icon} from 'antd';
 import FundSearchInput from './FundSearchInput';
 
+const select = (
+  <div>
+
+  </div>
+)
 const menu = (
   <Menu>
     <Menu.Item>
@@ -21,6 +26,11 @@ const menu = (
 );
 
 class FundListHeader extends Component {
+
+  handleOrderChange = () => {
+
+  };
+
   render() {
     return (
       <div className="container">
@@ -37,11 +47,15 @@ class FundListHeader extends Component {
             <span className={styles.listSortSpan}>
             排序：
           </span>
-            <Dropdown overlay={menu}>
-              <a className="ant-dropdown-link" href="#">
-                基金代码 <Icon type="down"/>
-              </a>
-            </Dropdown>
+
+            <Select defaultValue="code"
+                    className={styles.select}
+                    // style={{width: 120}}
+                    onChange={this.handleOrderChange}>
+              <Option value="code">基金代码</Option>
+              <Option value="name">基金名称</Option>
+            </Select>
+
           </div>
           <FundSearchInput/>
         </div>

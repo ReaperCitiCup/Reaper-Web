@@ -1,9 +1,11 @@
 import React from 'react';
 import {connect} from 'dva';
-import styles from './AccountPage.css';
+
 import AccountInfo from '../components/Auth/AccountInfo'
 import MainLayout from "../components/Layout/MainLayout";
 import Breadcrumb from '../components/Layout/Breadcrumb';
+
+import styles from './AccountPage.css';
 
 function IndexPage() {
   return (

@@ -10,20 +10,23 @@ import CombinationPage from './routes/CombinationPage';
 
 import AccountPage from './routes/AccountPage';
 
+import AuthPage from './routes/AuthPage';
+
 function RouterConfig({ history }) {
   return (
     <Router history={history}>
       <Route path="/" component={IndexPage} />
       <Route path="/funds" component={FundListPage} />
       <Route path="/fund/:id" component={FundInfoPage} />
-      <Route path="/fund/:id/manager/:managerId" component={FundManagerPage} />
-      <Route path="/fund/:id/company/:companyId" component={FundCompanyPage} />
+      <Route path="/fund/:id/manager" component={FundManagerPage} />
       <Route path="/fund/:id/company" component={FundCompanyPage} />
       <Route path="/fund/:id/analysis" component={FundAnalysisPage} />
       <Route path="/combination" component={CombinationPage} />
 
 
       <Route path="/account" component={AccountPage} />
+
+      <Route path="/auth" component={AuthPage} />
     </Router>
   );
 }

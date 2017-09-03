@@ -13,18 +13,11 @@ html {
   position: relative;
   box-sizing: border-box; }
 
+button {
+  outline: none; }
+
 .fund_analysis_chart :global .card {
   margin-bottom: 15px; }
-
-.title h1, .title h2 {
-  display: inline-block;
-  color: #4A4A4A;
-  font-weight: 500; }
-.title h1 {
-  font-size: 48px; }
-.title h2 {
-  margin-left: 25px;
-  font-size: 36px; }
 
 .section {
   display: inline-block;

@@ -1,0 +1,45 @@
+@import "../../assets/scss/variables";
+@import "../../assets/scss/base";
+@import "../../assets/scss/mixin";
+
+.header {
+  margin: 20px 0 40px;
+  @include clear-fix();
+}
+
+.title {
+  float: left;
+  h1, h2 {
+    display: inline-block;
+    color: $title-black-color;
+    font-weight: 500;
+  }
+
+  h1 {
+    font-size: 48px;
+  }
+
+  h2 {
+    margin-left: 25px;
+    font-size: 36px;
+  }
+}
+
+.button_wrapper {
+  float: right;
+  margin-top: 36px;
+
+  a {
+    margin-left: 6px;
+    padding: 2px 10px;
+    background-color: $white-color;
+    color: $main-font-color;
+    font-size: 14px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: $sub-font-color;
+      color: $white-color;
+    }
+  }
+}

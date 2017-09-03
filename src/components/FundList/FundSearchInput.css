@@ -13,6 +13,9 @@ html {
   position: relative;
   box-sizing: border-box; }
 
+button {
+  outline: none; }
+
 /*
  * grid
  */
@@ -20,7 +23,7 @@ html {
   display: inline-block;
   vertical-align: bottom;
   float: right;
-  padding-top: 10px; }
+  padding-top: 20px; }
   .searchDiv:after {
     content: '';
     display: block;

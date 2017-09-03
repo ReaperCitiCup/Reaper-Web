@@ -7,13 +7,13 @@ import {Table, Button} from 'antd';
 
 const columns = [{
   title: '基金代码',
-  dataIndex: 'fundID',
+  dataIndex: 'code',
 }, {
   title: '基金名称',
-  dataIndex: 'fundName',
+  dataIndex: 'name',
 }, {
   title: '基金经理',
-  dataIndex: 'fundManager',
+  dataIndex: 'manager',
 }, {
   title: '年化收益',
   dataIndex: 'annualProfit',
@@ -22,17 +22,17 @@ const columns = [{
   dataIndex: 'volatility',
 }];
 
-const data = [];
-for (let i = 0; i < 10; i++) {
-  data.push({
-    key: i,
-    fundID: `1111 ${i}`,
-    fundName: `基金${i}`,
-    fundManager: `London, Park Lane no. ${i}`,
-    annualProfit: `0.03`,
-    volatility: `111`
-  });
-}
+// const data = [];
+// for (let i = 0; i < 10; i++) {
+//   data.push({
+//     key: i,
+//     code: `1111 ${i}`,
+//     name: `基金${i}`,
+//     manager: `London, Park Lane no. ${i}`,
+//     annualProfit: `0.03`,
+//     volatility: `111`
+//   });
+// }
 
 class FundListTable extends Component {
   state = {
@@ -54,7 +54,11 @@ class FundListTable extends Component {
     this.setState({selectedRowKeys});
   };
 
+
   render() {
+    const {data} = this.props;
+
+
     const {loading, selectedRowKeys} = this.state;
     const rowSelection = {
       selectedRowKeys,

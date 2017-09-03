@@ -13,6 +13,9 @@ html {
   position: relative;
   box-sizing: border-box; }
 
+button {
+  outline: none; }
+
 .tableDiv {
   padding-bottom: 50px; }
 

@@ -2,9 +2,8 @@
   "entry": "src/index.js",
   "proxy": {
     "/api": {
-      "target": "http://jsonplaceholder.typicode.com/",
-      "changeOrigin": true,
-      "pathRewrite": { "^/api" : "" }
+      "target": "http://106.15.203.173:8080/",
+      "changeOrigin": true
     }
   },
   "env": {

@@ -13,15 +13,8 @@ html {
   position: relative;
   box-sizing: border-box; }
 
-.title h1, .title h2 {
-  display: inline-block;
-  color: #4A4A4A;
-  font-weight: 500; }
-.title h1 {
-  font-size: 48px; }
-.title h2 {
-  margin-left: 25px;
-  font-size: 36px; }
+button {
+  outline: none; }
 
 .card {
   background-color: rgba(255, 255, 255, 0.95);

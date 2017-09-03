@@ -13,16 +13,17 @@ html {
   position: relative;
   box-sizing: border-box; }
 
-.title {
-  margin-top: 40px; }
-  .title h1 {
-    display: inline-block;
-    color: #4A4A4A;
-    font-weight: 500;
-    font-size: 48px; }
+button {
+  outline: none; }
+
+.title h1 {
+  display: inline-block;
+  color: #3D5673;
+  font-weight: 500;
+  font-size: 24px; }
 
 .card {
-  margin-top: 30px; }
+  margin-top: 20px; }
 
 .section_a {
   width: 473px;

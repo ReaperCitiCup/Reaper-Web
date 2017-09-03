@@ -11,15 +11,14 @@ import FundManagerNav from "../components/FundManager/FundManagerNav";
 import FundManagerInfo from "../components/FundManager/FundManagerInfo";
 
 
-function FundManagerPage() {
+function FundManagerPage({fund}) {
   return (
     <div className="baseBody">
       <MainLayout>
         <BreadcrumbSearch/>
-        <FundHeader/>
-        <div className={styles.navDiv}>
-          <FundManagerNav/>
-        </div>
+        <FundHeader fund={fund}/>
+        <FundManagerNav/>
+
         <div className={styles.infoDiv}>
           <FundManagerInfo/>
         </div>
@@ -32,7 +31,7 @@ FundManagerPage.propTypes = {};
 
 function mapStateToProps(state) {
   return {
-    // todos: state.sidebars.items
+    fund: state.fund.fund
   };
 }
 

@@ -3,24 +3,25 @@ import {Link} from 'dva/router';
 
 import styles from './FundHeader.css';
 
-function FundHeader() {
+function FundHeader({fund}) {
 
   return (
     <div className="container ">
       <div className={styles.header}>
 
         <div className={styles.title}>
-          <h1>华夏成长</h1>
-          <h2>000001</h2>
+          <h1>{fund ? fund.name : null}</h1>
+          <h2>{fund ? fund.code : null}</h2>
         </div>
 
-        <div className={styles.button_wrapper}>
-          <Link to="/fund/1">基金详情</Link>
-          <Link to="/fund/1/manager">基金经理</Link>
-          <Link to="/fund/1/company">基金公司</Link>
-          <Link to="/fund/1/analysis">深度分析</Link>
-        </div>
-
+        {fund ?
+          <div className={styles.button_wrapper}>
+            <Link to={`/fund/${fund.code}`}>基金详情</Link>
+            <Link to={`/fund/${fund.code}/manager`}>基金经理</Link>
+            <Link to={`/fund/${fund.code}/company`}>基金公司</Link>
+            <Link to={`/fund/${fund.code}/analysis`}>深度分析</Link>
+          </div>
+          : null}
       </div>
     </div>
   )

@@ -39,11 +39,17 @@ function Navigator({dispatch, user}) {
         <Menu.Item key="/">
           <Link to="/">首页</Link>
         </Menu.Item>
-        <Menu.Item key="app">
-          <Link to="/">行情概览</Link>
-        </Menu.Item>
+
         <Menu.Item key="/funds">
           <Link to="/funds">基金浏览</Link>
+        </Menu.Item>
+
+        <Menu.Item key="/assert">
+          <Link to="/assert">资产配置</Link>
+        </Menu.Item>
+
+        <Menu.Item key="/combination">
+          <Link to="/combination">我的组合</Link>
         </Menu.Item>
 
         { user ?

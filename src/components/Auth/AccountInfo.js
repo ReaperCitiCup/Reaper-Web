@@ -2,8 +2,10 @@
  * Created by st on 2017/8/23.
  */
 import React, {Component} from 'react';
-import styles from './AccountInfo.css';
+
 import { Input, Icon, Button } from 'antd';
+
+import styles from './AccountInfo.css';
 
 class AccountInfo extends Component {
 
@@ -44,26 +46,26 @@ class AccountInfo extends Component {
               className={styles.myInput}
             />
             <br/>
-            <Input
-              placeholder="Enter your userName"
-              prefix={<Icon type="mail" />}
-              suffix={suffix}
-              value={userName}
-              onChange={this.onChangeUserName}
-              ref={node => this.userNameInput = node}
-              className={styles.myInput}
-            />
-            <Input
-              placeholder="Enter your userName"
-              prefix={<Icon type="mobile" />}
-              suffix={suffix}
-              value={userName}
-              onChange={this.onChangeUserName}
-              ref={node => this.userNameInput = node}
-              className={styles.myInput}
-            />
+            {/*<Input*/}
+              {/*placeholder="Enter your userName"*/}
+              {/*prefix={<Icon type="mail" />}*/}
+              {/*suffix={suffix}*/}
+              {/*value={userName}*/}
+              {/*onChange={this.onChangeUserName}*/}
+              {/*ref={node => this.userNameInput = node}*/}
+              {/*className={styles.myInput}*/}
+            {/*/>*/}
+            {/*<Input*/}
+              {/*placeholder="Enter your userName"*/}
+              {/*prefix={<Icon type="mobile" />}*/}
+              {/*suffix={suffix}*/}
+              {/*value={userName}*/}
+              {/*onChange={this.onChangeUserName}*/}
+              {/*ref={node => this.userNameInput = node}*/}
+              {/*className={styles.myInput}*/}
+            {/*/>*/}
 
-            <Input placeholder="输入验证码" className={styles.verificationCode}/>
+            {/*<Input placeholder="输入验证码" className={styles.verificationCode}/>*/}
 
             <Input
               placeholder="原密码"

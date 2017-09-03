@@ -1,27 +1,24 @@
 import React from 'react';
 import {connect} from 'dva';
 
-import AccountInfo from '../components/Auth/AccountInfo'
+import AuthForm from '../components/Auth/AuthForm'
 import MainLayout from "../components/Layout/MainLayout";
 import Breadcrumb from '../components/Layout/Breadcrumb';
 
-import styles from './AccountPage.css';
+import styles from './AuthPage.css';
 
-function IndexPage() {
+function AuthPage() {
   return (
     <div className="baseBody">
       <MainLayout>
-        <div className="container">
-          <Breadcrumb items={[1, 2, 3]}/>
-        </div>
-        <AccountInfo/>
+        <AuthForm className={styles.form}/>
       </MainLayout>
     </div>
 
   );
 }
 
-IndexPage.propTypes = {};
+AuthPage.propTypes = {};
 
 function mapStateToProps(state) {
   return {
@@ -29,4 +26,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(IndexPage);
+export default connect(mapStateToProps)(AuthPage);

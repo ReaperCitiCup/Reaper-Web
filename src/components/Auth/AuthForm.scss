@@ -1,0 +1,26 @@
+@import "../../assets/scss/variables";
+@import "../../assets/scss/base";
+
+.tabs {
+  width: 320px;
+  
+
+  //:global {
+  //  .ant-tabs-content {
+  //    padding: 20px;
+  //  }
+  //}
+}
+//.form {
+//  width: 320px;
+//}
+
+.forgot {
+  float: right;
+}
+
+.button {
+  display: block;
+  width: 100%;
+}
+

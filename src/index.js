@@ -7,6 +7,7 @@ import './index.css';
 const app = dva({
   history: browserHistory,
 });
+app.model(require("./models/user"));
 // 2. Plugins
 // app.use({});
 

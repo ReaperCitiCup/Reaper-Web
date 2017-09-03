@@ -9,6 +9,8 @@ import FundAnalysisPage from './routes/FundAnalysisPage';
 
 import AccountPage from './routes/AccountPage';
 
+import AuthPage from './routes/AuthPage';
+
 function RouterConfig({ history }) {
   return (
     <Router history={history}>
@@ -21,6 +23,8 @@ function RouterConfig({ history }) {
       <Route path="/fund/:id/analysis" component={FundAnalysisPage} />
 
       <Route path="/account" component={AccountPage} />
+
+      <Route path="/auth" component={AuthPage} />
     </Router>
   );
 }

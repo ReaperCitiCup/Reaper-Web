@@ -8,10 +8,10 @@ class FundBrief extends Component {
   render() {
     return (
       <div className={"container " + styles.brief}>
-        <div className={styles.title}>
-          <h1>华夏成长</h1>
-          <h2>000001</h2>
-        </div>
+        {/*<div className={styles.title}>*/}
+          {/*<h1>华夏成长</h1>*/}
+          {/*<h2>000001</h2>*/}
+        {/*</div>*/}
         <div className={styles.card}>
           <div className={styles.row}>
             <div className={`${styles.section} ${styles.section_1}`}>

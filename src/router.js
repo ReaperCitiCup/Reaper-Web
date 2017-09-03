@@ -17,8 +17,7 @@ function RouterConfig({ history }) {
       <Route path="/" component={IndexPage} />
       <Route path="/funds" component={FundListPage} />
       <Route path="/fund/:id" component={FundInfoPage} />
-      <Route path="/fund/:id/manager/:managerId" component={FundManagerPage} />
-      <Route path="/fund/:id/company/:companyId" component={FundCompanyPage} />
+      <Route path="/fund/:id/manager" component={FundManagerPage} />
       <Route path="/fund/:id/company" component={FundCompanyPage} />
       <Route path="/fund/:id/analysis" component={FundAnalysisPage} />
 

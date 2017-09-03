@@ -13,8 +13,8 @@ html {
   position: relative;
   box-sizing: border-box; }
 
-.navDiv {
-  margin-top: 40px; }
+button {
+  outline: none; }
 
 .infoDiv {
   margin-top: 15px; }

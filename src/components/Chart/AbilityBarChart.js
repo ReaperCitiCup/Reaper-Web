@@ -39,20 +39,20 @@ class AbilityBarChart extends Component {
       ],
       series : [
         {
-          name:'邮件营销',
+          name:'选股收益',
           type:'bar',
           stack: '广告',
           barWidth : 20,
           data:[10, -12, 11, 14]
         },
         {
-          name:'联盟广告',
+          name:'行业选择收益',
           type:'bar',
           stack: '广告',
           data:[20, -82, 11, 24]
         },
         {
-          name:'视频广告',
+          name:'其他收益',
           type:'bar',
           stack: '广告',
           data:[-50, 32, 21, -24]

@@ -2,11 +2,11 @@
  * Created by st on 2017/8/25.
  */
 import React, {Component} from 'react';
-import styles from './FundHeader.css';
+import styles from './BreadcrumbSearch.css';
 import MyBreadcrumb from '../Layout/Breadcrumb';
 import FundSearchInput from '../FundList/FundSearchInput'
 
-class FundHeader extends Component {
+class BreadcrumbSearch extends Component {
   render() {
     return (
       <div className="container">
@@ -19,4 +19,4 @@ class FundHeader extends Component {
   }
 }
 
-export default FundHeader;
+export default BreadcrumbSearch;

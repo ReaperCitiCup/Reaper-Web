@@ -13,4 +13,7 @@ html {
   position: relative;
   box-sizing: border-box; }
 
+button {
+  outline: none; }
+
 /*# sourceMappingURL=AccountPage.css.map */

@@ -11,10 +11,6 @@ import styles from './FundAnalysisCharts.css';
 function FundAnalysisCharts() {
   return (
     <div className={ styles.fund_analysis_chart}>
-      <div className={styles.title}>
-        <h1>华夏成长</h1>
-        <h2>000001</h2>
-      </div>
 
       <div className="card" id="1">
         <DivHeader>收益 | 风险走势</DivHeader>

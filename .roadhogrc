@@ -2,7 +2,7 @@
   "entry": "src/index.js",
   "proxy": {
     "/api": {
-      "target": "http://localhost:8080/",
+      "target": "http://106.15.203.173:8080/",
       "changeOrigin": true
     }
   },

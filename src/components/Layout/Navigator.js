@@ -1,7 +1,7 @@
 /**
  * Created by st on 2017/8/23.
  */
-import React, {Component} from 'react';
+import React from 'react';
 import {connect} from 'dva';
 
 import {Menu, message} from 'antd';

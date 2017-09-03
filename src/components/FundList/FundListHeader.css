@@ -46,4 +46,13 @@ button {
   color: #9FAEC0;
   margin-left: 50px; }
 
+.select {
+  width: 120px; }
+  .select :global .ant-select-selection {
+    border: none;
+    background: none;
+    color: #81B6F5;
+    font-size: 14px;
+    outline: none; }
+
 /*# sourceMappingURL=FundListHeader.css.map */

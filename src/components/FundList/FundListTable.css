@@ -17,6 +17,10 @@ button {
   outline: none; }
 
 .tableDiv {
-  padding-bottom: 50px; }
+  padding-bottom: 30px; }
+
+.pagination {
+  display: table;
+  margin: 0 auto; }
 
 /*# sourceMappingURL=FundListTable.css.map */

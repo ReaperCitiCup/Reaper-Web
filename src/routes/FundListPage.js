@@ -5,12 +5,12 @@ import MainLayout from "../components/Layout/MainLayout";
 import FundListTable from '../components/FundList/FundListTable';
 import FundListHeader from '../components/FundList/FundListHeader';
 
-function FundListPage({result}) {
+function FundListPage() {
   return (
     <div className="baseBody">
       <MainLayout>
         <FundListHeader/>
-        <FundListTable data={result}/>
+        <FundListTable/>
       </MainLayout>
     </div>
 
@@ -21,7 +21,7 @@ FundListPage.propTypes = {};
 
 function mapStateToProps(state) {
   return {
-    result: state.search.result
+
   };
 }
 

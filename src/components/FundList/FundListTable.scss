@@ -2,5 +2,10 @@
 @import "../../assets/scss/base";
 
 .tableDiv {
-  padding-bottom: 50px;
+  padding-bottom: 30px;
+}
+
+.pagination {
+  display: table;
+  margin: 0 auto;
 }

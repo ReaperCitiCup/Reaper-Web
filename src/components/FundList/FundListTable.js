@@ -2,8 +2,12 @@
  * Created by st on 2017/8/25.
  */
 import React, {Component} from 'react';
+import {connect} from 'dva';
+import {routerRedux} from 'dva/router';
+
+import {Table, Button, Pagination} from 'antd';
+
 import styles from './FundListTable.css';
-import {Table, Button} from 'antd';
 
 const columns = [{
   title: '基金代码',
@@ -54,10 +58,21 @@ class FundListTable extends Component {
     this.setState({selectedRowKeys});
   };
 
+  onClickRow = (record, index, event) => {
+    const {dispatch} = this.props;
+    dispatch(routerRedux.push(`/fund/${record.code}`))
+  };
+
+  onPageChange = (page) => {
+    const {dispatch} = this.props;
+    dispatch({
+      type: 'search/changePage',
+      payload: page
+    })
+  };
 
   render() {
-    const {data} = this.props;
-
+    const {data, page, totalCount} = this.props;
 
     const {loading, selectedRowKeys} = this.state;
     const rowSelection = {
@@ -81,9 +96,19 @@ class FundListTable extends Component {
           </span>
         </div>
         <div className={styles.tableDiv}>
-          <Table rowSelection={rowSelection} columns={columns} dataSource={data}
-                 pagination={false}/>
+          <Table rowSelection={rowSelection}
+                 columns={columns}
+                 dataSource={data}
+                 pagination={false}
+                 onRowClick={this.onClickRow}
+          />
         </div>
+        <Pagination className={styles.pagination}
+                    defaultCurrent={1}
+                    current={page}
+                    total={totalCount}
+                    onChange={this.onPageChange}
+        />
       </div>
     );
   }
@@ -91,4 +116,12 @@ class FundListTable extends Component {
 
 FundListTable.propTypes = {};
 
-export default FundListTable;
+function mapStateToProps(state) {
+  return {
+    data: state.search.result,
+    totalCount: state.search.totalCount,
+    page: state.search.page
+  };
+}
+
+export default connect(mapStateToProps)(FundListTable);

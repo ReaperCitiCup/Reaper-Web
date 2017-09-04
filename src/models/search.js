@@ -5,8 +5,9 @@ export default {
   namespace: 'search',
   state: {
     keyword: null,
-    order: 'name',
+    order: 'code',
     page: 1,
+    totalCount: 0,
     result: []
   },
   reducers: {
@@ -28,6 +29,12 @@ export default {
         page,
       }
     },
+    saveTotalCount(state, {payload: totalCount}) {
+      return {
+        ...state,
+        totalCount,
+      }
+    },
     saveResult(state, {payload: result}) {
 
       result.forEach(fund => {
@@ -44,6 +51,26 @@ export default {
     },
   },
   effects: {
+    *changeOrder({payload: order}, {put}) {
+      yield put({
+        type: 'saveOrder',
+        payload: order
+      });
+
+      yield put({
+        type: 'fetchFundsByKeyword'
+      })
+    },
+    *changePage({payload: page}, {put}) {
+      yield put({
+        type: 'savePage',
+        payload: page
+      });
+
+      yield put({
+        type: 'fetchFundsByKeyword'
+      })
+    },
     fetchFundsByKeyword: [
       function*(action, {call, put, select}) {
 
@@ -56,6 +83,11 @@ export default {
         yield put({
           type: 'saveResult',
           payload: data.result
+        });
+
+        yield put({
+          type: 'saveTotalCount',
+          payload: data.totalCount
         });
       },
       {type: 'takeLatest'}

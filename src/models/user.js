@@ -60,7 +60,6 @@ export default {
       const {data} = yield call(userService.signIn, user);
 
       if (data.result !== undefined) {
-        console.log('sign in !!!')
         localStorage.setItem('token', data.result);
         yield put({
           type: 'fetchUser'

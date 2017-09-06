@@ -3,12 +3,14 @@
  */
 import React, {Component} from 'react';
 import {connect} from 'dva';
+import {routerRedux} from 'dva/router';
+
 import {Input} from 'antd';
 import styles from './FundSearchInput.css';
 
 const Search = Input.Search;
 
-function FundSearchInput({dispatch}) {
+function FundSearchInput({dispatch, keyword}) {
 
   function onChange(event) {
     const keyword = event.target.value;
@@ -19,6 +21,7 @@ function FundSearchInput({dispatch}) {
   }
 
   function onSearch() {
+    dispatch(routerRedux.push(`/funds`))
     dispatch({
       type: 'search/fetchFundsByKeyword'
     })
@@ -31,6 +34,7 @@ function FundSearchInput({dispatch}) {
         style={{width: 350}}
         onChange={onChange}
         onSearch={onSearch}
+        value={keyword}
         className={styles.searchInput}
       />
     </div>
@@ -38,4 +42,10 @@ function FundSearchInput({dispatch}) {
 
 }
 
-export default connect()(FundSearchInput);
+function mapStateToProps(state) {
+  return {
+    keyword: state.search.keyword,
+  };
+}
+
+export default connect(mapStateToProps)(FundSearchInput);

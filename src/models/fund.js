@@ -15,13 +15,14 @@ export default {
   effects: {
     *fetchFund({payload: code}, {call, put, select}) {
       yield put({
-        type: 'saveMovie',
+        type: 'saveFund',
         payload: null,
       });
 
       const {data} = yield call(fundService.fetchFund, code);
 
       console.log(data);
+
       yield put({
         type: 'saveFund',
         payload: data,
@@ -32,7 +33,7 @@ export default {
   subscriptions: {
     setup({dispatch, history}) {
       return history.listen(({pathname, query}) => {
-        // console.log(pathname.split('/'))
+        console.log(pathname.split('/'))
         if (pathname.indexOf('/fund/') === 0 && pathname.split('/').length === 3) {
           let id = pathname.split('/fund/')[1];
           window.scrollTo(0, 0);

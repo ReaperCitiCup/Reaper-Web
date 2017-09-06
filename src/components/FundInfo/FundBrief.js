@@ -18,10 +18,10 @@ class FundBrief extends Component {
                   <div>
                     <h4 className={styles.sectionTitle}>净值估算</h4>
                     <div>
-                      <h3>1.1183</h3>
+                      <h3>----</h3>
                       <div className={styles.sectionSide}>
-                        <p>-0.0057</p>
-                        <p>-0.51%</p>
+                        <p>-0.0057（假）</p>
+                        <p>-0.51%（假）</p>
                       </div>
                     </div>
                   </div>
@@ -35,27 +35,27 @@ class FundBrief extends Component {
                 <div className={`${styles.section} ${styles.section_3}`}>
                   <div>
                     <h4 className={styles.sectionTitle}>累计净值</h4>
-                    <h3>3.4480</h3>
+                    <h3>{fund.cumulativeNetValue}</h3>
                   </div>
                 </div>
               </div>
               <div className={styles.row}>
                 <div className={`${styles.section} ${styles.sectionNormal} ${styles.section_4}`}>
                   <div>
-                    <p>近1月：-2.02%</p>
-                    <p>近1年：2.70%</p>
+                    <p>近1月：{fund.rate.oneMonth}%</p>
+                    <p>近1年：{fund.rate.oneYear}%</p>
                   </div>
                 </div>
                 <div className={`${styles.section} ${styles.sectionNormal} ${styles.section_5}`}>
                   <div>
-                    <p>近3月：0.99%</p>
-                    <p>近3年：21.18%</p>
+                    <p>近3月：{fund.rate.threeMonths}%</p>
+                    <p>近3年：{fund.rate.oneYear}%</p>
                   </div>
                 </div>
                 <div className={`${styles.section} ${styles.sectionNormal} ${styles.section_6}`}>
                   <div>
-                    <p>近6月：7.40%</p>
-                    <p>成立来：2.70%</p>
+                    <p>近6月：{fund.rate.sixMonths}%</p>
+                    <p>成立来：{fund.rate.sinceFounded}%</p>
                   </div>
                 </div>
               </div>
@@ -64,20 +64,20 @@ class FundBrief extends Component {
               <div className={styles.row}>
                 <div className={`${styles.section} ${styles.sectionNormal} ${styles.section_4}`}>
                   <div>
-                    <p>基金类型：混合型 / 高风险</p>
-                    <p>基金规模：51.09 亿元</p>
+                    <p>基金类型：{fund.type[0]} / {fund.type[1]}</p>
+                    <p>基金规模：{fund.scope} 亿元</p>
                   </div>
                 </div>
                 <div className={`${styles.section} ${styles.sectionNormal} ${styles.section_5}`}>
                   <div>
-                    <p>基金经理：<a>董阳阳</a></p>
-                    <p>管理人：<a>华夏基金</a></p>
+                    <p>基金经理：<a>{fund.manager[0].name}</a></p>
+                    <p>管理人：<a>{fund.company.name}</a></p>
                   </div>
                 </div>
                 <div className={`${styles.section} ${styles.sectionNormal} ${styles.section_6}`}>
                   <div>
                     <p>基金评级：暂无评级</p>
-                    <p>成立日：2011-12-18</p>
+                    <p>成立日：{fund.establishmentDate}</p>
                   </div>
                 </div>
               </div>

@@ -1,0 +1,84 @@
+@import "../../assets/scss/variables";
+@import "../../assets/scss/base";
+
+.report_body {
+  height: auto;
+  padding: 50px;
+  background-color: $white-color;
+  text-align: center;
+  //border: solid 1px $card-border-color;
+
+  h1 {
+    color: $main-font-color;
+    font-size: 30px;
+    font-weight: 400;
+  }
+
+  h3 {
+    padding-top: 15px;
+    color: $main-font-color;
+    font-size: 12px;
+  }
+}
+
+#grade_row {
+  padding-top: 30px;
+  text-align: center;
+  color: $blue-grey-color;
+}
+
+.numberStyle {
+  font-size: 30px;
+  color: $sub-font-color;
+}
+
+.section_1 {
+  width: 100%;
+  padding-top: 24px;
+  text-align: left;
+
+  .left {
+    display: inline-block;
+    margin-right: 118px;
+    width: 339px;
+  }
+
+  .right {
+    display: inline-block;
+    vertical-align: top;
+    padding-top: 50px;
+    width: 400px;
+  }
+}
+
+.section_2 {
+  width: 100%;
+  padding-top: 24px;
+  text-align: left;
+
+  p {
+    padding-left: 12px;
+    font-size: 16px;
+    color: $main-font-color;
+  }
+}
+
+.section_3 {
+  width: 100%;
+  padding-top: 24px;
+  text-align: left;
+
+  table {
+    width: 100%;
+    text-align: center;
+    .tr_num {
+      font-size: 30px;
+      font-weight: 400;
+      color: $main-font-color;
+    }
+    .tr_name {
+      font-size: 12px;
+      color: $main-font-color;
+    }
+  }
+}

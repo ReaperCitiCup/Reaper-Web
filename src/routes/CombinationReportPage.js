@@ -1,22 +1,22 @@
 /**
- * Created by st on 2017/9/2.
+ * Created by st on 2017/9/6.
  */
 import React from 'react';
 import {connect} from 'dva';
 import MainLayout from "../components/Layout/MainLayout";
-import CombinationList from "../components/Combination/CombinationList";
+import CombinationReport from "../components/Combination/CombinationReport";
 
-function CombinationPage() {
+function CombinationReportPage() {
   return (
     <div className="baseBody">
       <MainLayout>
-        <CombinationList/>
+        <CombinationReport/>
       </MainLayout>
     </div>
   )
 }
 
-CombinationPage.propTypes = {};
+CombinationReportPage.propTypes = {};
 
 function mapStateToProps(state) {
   return {
@@ -24,4 +24,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(CombinationPage);
+export default connect(mapStateToProps)(CombinationReportPage);

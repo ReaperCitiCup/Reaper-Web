@@ -1,0 +1,12 @@
+@import "../../assets/scss/variables";
+@import "../../assets/scss/base";
+
+.title {
+    color: $main-font-color;
+    font-size: 48px;
+    font-weight: 500;
+}
+
+.list_div {
+  margin-top: 30px;
+}

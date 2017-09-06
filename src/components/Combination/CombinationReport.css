@@ -1,0 +1,80 @@
+html, body, h1, h2, h3, h4, h5, h6, hr, li, ul, p, a, img, button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-family: "Pingfang SC", "Open Sans", "Lantinghei SC", "Microsoft Yahei Light", "Microsoft Yahei", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: 300;
+  list-style: none; }
+
+html {
+  height: 100%; }
+
+* {
+  position: relative;
+  box-sizing: border-box; }
+
+button {
+  outline: none; }
+
+.report_body {
+  height: auto;
+  padding: 50px;
+  background-color: #fff;
+  text-align: center; }
+  .report_body h1 {
+    color: #3D5673;
+    font-size: 30px;
+    font-weight: 400; }
+  .report_body h3 {
+    padding-top: 15px;
+    color: #3D5673;
+    font-size: 12px; }
+
+#grade_row {
+  padding-top: 30px;
+  text-align: center;
+  color: #9FAEC0; }
+
+.numberStyle {
+  font-size: 30px;
+  color: #81B6F5; }
+
+.section_1 {
+  width: 100%;
+  padding-top: 24px;
+  text-align: left; }
+  .section_1 .left {
+    display: inline-block;
+    margin-right: 118px;
+    width: 339px; }
+  .section_1 .right {
+    display: inline-block;
+    vertical-align: top;
+    padding-top: 50px;
+    width: 400px; }
+
+.section_2 {
+  width: 100%;
+  padding-top: 24px;
+  text-align: left; }
+  .section_2 p {
+    padding-left: 12px;
+    font-size: 16px;
+    color: #3D5673; }
+
+.section_3 {
+  width: 100%;
+  padding-top: 24px;
+  text-align: left; }
+  .section_3 table {
+    width: 100%;
+    text-align: center; }
+    .section_3 table .tr_num {
+      font-size: 30px;
+      font-weight: 400;
+      color: #3D5673; }
+    .section_3 table .tr_name {
+      font-size: 12px;
+      color: #3D5673; }
+
+/*# sourceMappingURL=CombinationReport.css.map */

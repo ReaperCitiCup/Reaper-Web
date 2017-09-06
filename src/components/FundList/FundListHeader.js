@@ -38,8 +38,8 @@ function FundListHeader({dispatch}) {
                   className={styles.select}
             // style={{width: 120}}
                   onChange={handleOrderChange}>
-            <Option value="code">基金代码</Option>
-            <Option value="name">基金名称</Option>
+            <Select.Option value="code">基金代码</Select.Option>
+            <Select.Option value="name">基金名称</Select.Option>
           </Select>
 
         </div>

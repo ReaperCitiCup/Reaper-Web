@@ -25,6 +25,8 @@ class NetValueLineChart extends Component {
       data.push(Math.round((Math.random() - 0.5) * 20 + data[i - 1]));
     }
 
+    console.log(data)
+
 
     let option = {
       tooltip: {

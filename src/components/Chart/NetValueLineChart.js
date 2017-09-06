@@ -13,6 +13,8 @@ class NetValueLineChart extends Component {
 
   render() {
 
+    const {chartData} = this.props;
+
     let base = +new Date(1968, 9, 3);
     let oneDay = 24 * 3600 * 1000;
     let date = [];
@@ -25,8 +27,7 @@ class NetValueLineChart extends Component {
       data.push(Math.round((Math.random() - 0.5) * 20 + data[i - 1]));
     }
 
-    console.log(data)
-
+    console.log(data);
 
     let option = {
       tooltip: {

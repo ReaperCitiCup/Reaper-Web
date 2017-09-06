@@ -33,7 +33,7 @@ export default {
   subscriptions: {
     setup({dispatch, history}) {
       return history.listen(({pathname, query}) => {
-        console.log(pathname.split('/'))
+        // console.log(pathname.split('/'))
         if (pathname.indexOf('/fund/') === 0 && pathname.split('/').length === 3) {
           let id = pathname.split('/fund/')[1];
           window.scrollTo(0, 0);

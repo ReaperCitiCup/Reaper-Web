@@ -2,15 +2,17 @@
  * Created by st on 2017/8/23.
  */
 import React, {Component} from 'react';
+import {connect} from 'dva';
 import styles from './FundBrief.css';
 
 class FundBrief extends Component {
   render() {
     const {fund} = this.props;
+
+    console.log({fund});
+
     return (
       <div className={"container " + styles.brief}>
-
-        {fund ?
           <div>
             <div className={styles.card}>
               <div className={styles.row}>
@@ -82,12 +84,18 @@ class FundBrief extends Component {
                 </div>
               </div>
             </div>
-          </div> : null }
+          </div>
       </div>
     )
   }
 }
 
 FundBrief.propTypes = {};
+
+function mapStateToProps(state) {
+  return {
+    // fundChart: state.fundChart.fundChart
+  };
+}
 
 export default FundBrief;

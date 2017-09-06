@@ -10,14 +10,15 @@ import DivHeader from '../Util/DivHeader';
 
 import styles from './FundCharts.css';
 
-function FundCharts() {
+function FundCharts({fundChart}) {
+  // console.log(fundChart);
   return (
     <div className={"container " + styles.container}>
       <div className="card">
         <DivHeader>净值走势</DivHeader>
         <Tabs defaultActiveKey="1">
           <TabPane tab="单位净值走势" key="1">
-            <NetValueLineChart/>
+            <NetValueLineChart chartData={fundChart}/>
           </TabPane>
           <TabPane tab="累计净值走势" key="2">
             <NetValueLineChart/>

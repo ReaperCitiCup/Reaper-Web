@@ -44,8 +44,8 @@ function Navigator({dispatch, user}) {
           <Link to="/funds">基金浏览</Link>
         </Menu.Item>
 
-        <Menu.Item key="/assert">
-          <Link to="/assert">资产配置</Link>
+        <Menu.Item key="/asset">
+          <Link to="/asset">资产配置</Link>
         </Menu.Item>
 
         <Menu.Item key="/combination">

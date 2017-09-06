@@ -11,6 +11,7 @@ import CombinationPage from './routes/CombinationPage';
 import AccountPage from './routes/AccountPage';
 
 import AuthPage from './routes/AuthPage';
+import AssetAllocationPage from './routes/AssetAllocationPage';
 
 function RouterConfig({ history }) {
   return (
@@ -27,6 +28,7 @@ function RouterConfig({ history }) {
       <Route path="/account" component={AccountPage} />
 
       <Route path="/auth" component={AuthPage} />
+      <Route path="/asset" component={AssetAllocationPage} />
     </Router>
   );
 }

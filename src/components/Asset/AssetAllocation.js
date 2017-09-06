@@ -2,32 +2,24 @@
  * Created by wyj on 2017/9/2.
  */
 import React, { Component } from 'react';
-import { Steps, Button, message, Slider, Radio, InputNumber, Checkbox } from 'antd';
+import { Steps, Button, message, Slider, Radio, InputNumber, Checkbox, Modal, Input } from 'antd';
+import FreeScrollBar from 'react-free-scrollbar';
 import asset from '../../assets/assetAllocation/asset.png';
 import strategy from '../../assets/assetAllocation/strategy.png';
 import factor from '../../assets/assetAllocation/factor.png';
-import pie from '../../assets/assetAllocation/pie.png';
+import staticScale from '../../assets/assetAllocation/staticScale.png';
 import meanVariance from '../../assets/assetAllocation/meanVariance.png';
 import minVariance from '../../assets/assetAllocation/minVariance.png';
 import volatility from '../../assets/assetAllocation/volatility.png';
 import maxDispersion from '../../assets/assetAllocation/maxDispersion.png';
 import riskAssessment from '../../assets/assetAllocation/riskAssessment.png';
 import BLmodel from '../../assets/assetAllocation/BLmodel.png';
+import styles from './AssetAllocation.less';
 
 const Step = Steps.Step;
 const RadioGroup = Radio.Group;
 const RadioButton = Radio.Button;
 const CheckboxGroup = Checkbox.Group;
-
-// function formatter(value) {
-//   if (value === 0) {
-//     return '低';
-//   } else if (value === 50) {
-//     return '中';
-//   } else if (value === 100) {
-//     return '高';
-//   }
-// }
 
 const marks = {
   0: '低',
@@ -68,11 +60,17 @@ class AssetAllocation extends Component {
       earnTarget: 100,
       riskTarget: 100,
       percent: '',
-      implementationPath: 'pro0perty',
+      implementationPath: '',
       classify: [],
+      modalVisible: false,
     };
   }
 
+  onChangeRouteSelect = (e) => {
+    this.setState({
+      implementationPath: e.target.value,
+    });
+  };
   onChangeRecommendPer = (value) => {
     this.setState({
       percent: value,
@@ -84,6 +82,7 @@ class AssetAllocation extends Component {
     });
   };
   earnChange = (value) => {
+    console.log(value);
     this.setState({
       earnTarget: value,
     });
@@ -91,6 +90,21 @@ class AssetAllocation extends Component {
   riskChange = (value) => {
     this.setState({
       riskTarget: value,
+    });
+  };
+  finishChoice = () => {
+    this.setState({
+      modalVisible: true,
+    });
+  };
+  handleOK = () => {
+    this.setState({
+      modalVisible: false,
+    });
+  };
+  handleCancel = () => {
+    this.setState({
+      modalVisible: false,
     });
   };
   next = () => {
@@ -116,7 +130,7 @@ class AssetAllocation extends Component {
             value={this.state.percent}
           />
           <div>自定义权重</div>
-          <Radio><InputNumber />% 股票型基金 + <InputNumber />% 债券型基金</Radio>
+          <Radio><InputNumber /> % 股票型基金 + <InputNumber /> % 债券型基金</Radio>
           <div>不定义权重</div>
           <Radio>暂不选择权重</Radio>
         </div>
@@ -150,62 +164,113 @@ class AssetAllocation extends Component {
         <div>
           <div>1.设置投资目标</div>
           <div>
-            <div>收益目标</div>
-            <Slider
-              marks={marks}
-              defaultValue={100}
-              step={50}
-              tipFormatter={null}
-              onAfterChange={this.earnChange}
-            />
-          </div>
-          <div>
-            <div>风险目标</div>
-            <Slider
-              marks={marks}
-              defaultValue={100}
-              step={50}
-              tipFormatter={null}
-              onAfterChange={this.riskChange}
-            />
+            <div style={{ width: '30%', float: 'left', margin: '0 10%' }}>
+              <div>收益目标</div>
+              <Slider
+                marks={marks}
+                defaultValue={100}
+                // value={this.state.earnTarget}
+                step={50}
+                tipFormatter={null}
+                onAfterChange={this.earnChange}
+              />
+            </div>
+            <div style={{ width: '30%', float: 'left', margin: '0 10%' }}>
+              <div>风险目标</div>
+              <Slider
+                marks={marks}
+                defaultValue={100}
+                // value={this.state.riskTarget}
+                step={50}
+                tipFormatter={null}
+                onAfterChange={this.riskChange}
+              />
+            </div>
           </div>
         </div>
       ),
     }, {
       stepNum: '2',
       content: (
-        <div>
+        <div className={styles.routeSelect}>
           <div>2.选择实施路径</div>
-          <RadioGroup>
-            <RadioButton><img width={40} role="presentation" src={asset} /></RadioButton>
-            <RadioButton><img width={40} role="presentation" src={strategy} /></RadioButton>
-            <RadioButton><img width={40} role="presentation" src={factor} /></RadioButton>
+          <RadioGroup onChange={this.onChangeRouteSelect} value={this.state.implementationPath}>
+            <RadioButton value="asset"><img role="presentation" src={asset} /><div>资产间分散</div></RadioButton>
+            <RadioButton value="strategy"><img role="presentation" src={strategy} /><div>策略间分散</div></RadioButton>
+            <RadioButton value="factor"><img role="presentation" src={factor} /><div>因子间分散</div></RadioButton>
           </RadioGroup>
         </div>
       ),
     }, {
       stepNum: '3',
-      content: this.state.implementationPath === 'property' ? stepThreeContent[0] : stepThreeContent[1],
+      content: this.state.implementationPath === 'asset' ? stepThreeContent[0] : stepThreeContent[1],
     }, {
       stepNum: '4',
       content: (
         <div>
           <div>4.选择基金</div>
+          <div>
+            <FreeScrollBar
+              style={{ width: '32%', height: '100px', float: 'left', marginRight: '2%' }}
+            >
+              <ul>
+                <li><Checkbox>555</Checkbox></li>
+                <li><Checkbox>555</Checkbox></li>
+                <li><Checkbox>555</Checkbox></li>
+                <li><Checkbox>555</Checkbox></li>
+                <li><Checkbox>555</Checkbox></li>
+                <li><Checkbox>555</Checkbox></li>
+                <li><Checkbox>555</Checkbox></li>
+                <li><Checkbox>555</Checkbox></li>
+                <li><Checkbox>555</Checkbox></li>
+                <li><Checkbox>555</Checkbox></li>
+              </ul>
+            </FreeScrollBar>
+            <FreeScrollBar
+              style={{ width: '32%', height: '100px', float: 'left', marginRight: '2%' }}
+            >
+              <ul>
+                <li><Checkbox>555</Checkbox></li>
+                <li><Checkbox>555</Checkbox></li>
+                <li><Checkbox>555</Checkbox></li>
+                <li><Checkbox>555</Checkbox></li>
+                <li><Checkbox>555</Checkbox></li>
+                <li><Checkbox>555</Checkbox></li>
+                <li><Checkbox>555</Checkbox></li>
+                <li><Checkbox>555</Checkbox></li>
+                <li><Checkbox>555</Checkbox></li>
+              </ul>
+            </FreeScrollBar>
+            <FreeScrollBar
+              style={{ width: '32%', height: '100px', float: 'left' }}
+            >
+              <ul>
+                <li><Checkbox>555</Checkbox></li>
+                <li><Checkbox>555</Checkbox></li>
+                <li><Checkbox>555</Checkbox></li>
+                <li><Checkbox>555</Checkbox></li>
+                <li><Checkbox>555</Checkbox></li>
+                <li><Checkbox>555</Checkbox></li>
+                <li><Checkbox>555</Checkbox></li>
+                <li><Checkbox>555</Checkbox></li>
+              </ul>
+            </FreeScrollBar>
+          </div>
         </div>
       ),
     }, {
       stepNum: '5',
       content: (
-        <div>
+        <div className={styles.decentralization}>
           <div>5.选择分散化方法</div>
           <RadioGroup>
-            <RadioButton><img width={40} role="presentation" src={pie} /></RadioButton>
-            <RadioButton><img width={40} role="presentation" src={meanVariance} /></RadioButton>
-            <RadioButton><img width={40} role="presentation" src={minVariance} /></RadioButton>
-            <RadioButton><img width={40} role="presentation" src={volatility} /></RadioButton>
-            <RadioButton><img width={40} role="presentation" src={maxDispersion} /></RadioButton>
-            <RadioButton><img width={40} role="presentation" src={riskAssessment} /></RadioButton>
-            <RadioButton><img width={40} role="presentation" src={BLmodel} /></RadioButton>
+            <RadioButton value="staticScale"><img width={70} role="presentation" src={staticScale} /><div>静态比例配置</div></RadioButton>
+            <RadioButton value="meanVariance"><img width={70} role="presentation" src={meanVariance} /><div>均值方差</div></RadioButton>
+            <RadioButton value="minVariance"><img width={70} role="presentation" src={minVariance} /><div>最小方差组合配置</div></RadioButton>
+            <RadioButton value="volatility"><img width={70} role="presentation" src={volatility} /><div>波动率倒数</div></RadioButton>
+            <RadioButton value="maxDispersion"><img width={70} role="presentation" src={maxDispersion} /><div>最大分散化</div></RadioButton>
+            <RadioButton value="riskAssessment"><img width={70} role="presentation" src={riskAssessment} /><div>风险评价</div></RadioButton>
+            <RadioButton value="BLmodel"><img width={70} role="presentation" src={BLmodel} /><div>B-L模型</div></RadioButton>
           </RadioGroup>
         </div>
       ),
@@ -221,21 +286,32 @@ class AssetAllocation extends Component {
           {
             this.state.current < steps.length - 1
             &&
-            <Button type="primary" onClick={() => this.next()}>Next</Button>
+            <Button style={{ float: 'right' }} disabled={this.state.current === 1 && this.state.implementationPath === ''} onClick={() => this.next()}>Next</Button>
           }
           {
             this.state.current === steps.length - 1
             &&
-            <Button type="primary" onClick={() => message.success('Processing complete!')}>Done</Button>
+            <Button type="primary" style={{ float: 'right' }} onClick={() => this.finishChoice()}>创建我的组合</Button>
           }
           {
             this.state.current > 0
             &&
-            <Button style={{ marginLeft: 8 }} onClick={() => this.prev()}>
+            <Button style={{ marginRight: 8, float: 'right' }} onClick={() => this.prev()}>
               Previous
             </Button>
           }
         </div>
+        <Modal
+          visible={this.state.modalVisible}
+          title="创建组合"
+          onOk={this.handleOK}
+          onCancel={this.handleCancel}
+          footer={[
+            <Button onClick={this.handleOK}>保存</Button>,
+          ]}
+        >
+          <Input placeholder="请输入组合名称..." />
+        </Modal>
       </div>
     );
   }

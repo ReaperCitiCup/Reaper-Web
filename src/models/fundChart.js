@@ -6,33 +6,127 @@ import * as fundChartService from '../services/fundChart';
 export default  {
   namespace: 'fundChart',
   state: {
-    fundChart: null,
+    unitNetValueData: null,
+    cumulativeNetValueData: null,
+    cumulativeProfitData: null,
+    currentAssetData: null
   },
   reducers: {
-    drawFundChart(state, {payload: fundChart}) {
+    drawUnitNetValueChart(state, {payload: unitNetValueData}) {
       return {
         ...state,
-        fundChart,
+        unitNetValueData,
+      }
+    },
+
+    drawCumulativeNetValueChart(state, {payload: cumulativeNetValueData}) {
+      return {
+        ...state,
+        cumulativeNetValueData,
+      }
+    },
+
+    drawCumulativeProfitChart(state, {payload: cumulativeProfitData}) {
+      return {
+        ...state,
+        cumulativeProfitData,
+      }
+    },
+
+    drawCurrentAssetChart(state, {payload: currentAssetData}) {
+      return {
+        ...state,
+        currentAssetData,
       }
     },
   },
   effects: {
-    *fetchFundChartData({payload: code}, {call, put, select}) {
-
+    /**
+     * 获取基金单位净值走势图的数据
+     * @param code 基金代码
+     * @param call
+     * @param put
+     * @param select
+     */
+    *fetchUnitNetValueData({payload: code}, {call, put, select}) {
       yield put({
-        type: 'drawFundChart',
+        type: 'drawUnitNetValueChart',
         payload: null,
       });
 
-      const {data} = yield call(fundChartService.fetchFundChartData, code);
+      const {data} = yield call(fundChartService.fetchUnitNetValueData, code);
 
       // console.log(data);
 
       yield put({
-        type: 'drawFundChart',
+        type: 'drawUnitNetValueChart',
         payload: data,
       });
     },
+
+    /**
+     * 获取基金累计净值走势图的数据
+     * @param code 基金代码
+     * @param call
+     * @param put
+     * @param select
+     */
+    *fetchCumulativeNetValueData({payload: code}, {call, put, select}) {
+      yield put({
+        type: 'drawCumulativeNetValueChart',
+        payload: null,
+      });
+
+      const {data} = yield call(fundChartService.fetchCumulativeNetValueData, code);
+
+      // console.log(data);
+
+      yield put({
+        type: 'drawCumulativeNetValueChart',
+        payload: data,
+      });
+    },
+
+    /**
+     * 获取基金累计收益率走势图的数据
+     * @param code 基金代码
+     * @param month 月份
+     * @param call
+     * @param put
+     * @param select
+     */
+    *fetchCumulativeProfitData({payload: info}, {call, put, select}) {
+      yield put({
+        type: 'drawCumulativeProfitChart',
+        payload: null,
+      });
+
+      const {data} = yield call(fundChartService.fetchCumulativeProfitData, info.fundId, info.fundMonth);
+
+      // console.log(data);
+
+      yield put({
+        type: 'drawCumulativeProfitChart',
+        payload: data
+      });
+    },
+
+    *fetchCurrentAssetData({payload: code}, {call, put, select}) {
+      yield put({
+        type: 'drawCurrentAssetChart',
+        payload: null,
+      });
+
+      const {data} = yield call(fundChartService.fetchCurrentAssetData, code);
+
+      console.log(data);
+
+      yield put({
+        type: 'drawCurrentAssetChart',
+        payload: data
+      });
+    },
+
   },
   subscriptions: {
     setup({dispatch, history}) {
@@ -41,7 +135,10 @@ export default  {
         if (pathname.indexOf('/fund/') === 0 && pathname.split('/').length === 3) {
           let id = pathname.split('/fund/')[1];
           window.scrollTo(0, 0);
-          dispatch({type: 'fetchFundChartData', payload: id});
+          dispatch({type: 'fetchUnitNetValueData', payload: id});
+          dispatch({type: 'fetchCumulativeNetValueData', payload: id});
+          dispatch({type: 'fetchCumulativeProfitData', payload: {fundId: id, fundMonth: 1}});
+          dispatch({type: 'fetchCurrentAssetData', payload: id});
         }
       });
     },

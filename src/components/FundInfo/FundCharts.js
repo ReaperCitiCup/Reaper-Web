@@ -1,4 +1,5 @@
 import React from 'react';
+import {connect} from 'dva';
 import {Tabs} from 'antd';
 const TabPane = Tabs.TabPane;
 
@@ -10,42 +11,63 @@ import DivHeader from '../Util/DivHeader';
 
 import styles from './FundCharts.css';
 
-function FundCharts({fundChart}) {
-  // console.log(fundChart);
+function FundCharts({fund, unitNetValueData, cumulativeNetValueData, cumulativeProfitData, currentAssetData}) {
+  // console.log({unitNetValueData});
   return (
+
     <div className={"container " + styles.container}>
       <div className="card">
         <DivHeader>净值走势</DivHeader>
         <Tabs defaultActiveKey="1">
           <TabPane tab="单位净值走势" key="1">
-            <NetValueLineChart chartData={fundChart}/>
+            {unitNetValueData ?
+              <NetValueLineChart chartData={unitNetValueData}/> : null}
           </TabPane>
           <TabPane tab="累计净值走势" key="2">
-            <NetValueLineChart/>
+            {cumulativeNetValueData ?
+              <NetValueLineChart chartData={cumulativeNetValueData}/> : null}
           </TabPane>
         </Tabs>
       </div>
 
       <div className="card">
         <DivHeader>累积收益率走势</DivHeader>
-        <RateLineChart/>
+        {cumulativeProfitData ?
+          <div>
+            <RateLineChart fund={fund} chartData={cumulativeProfitData}/>
+          </div> : null}
       </div>
 
       <div className="card">
         <DivHeader>资产配置</DivHeader>
-        <div>
+        <div className={styles.pie_chart}>
           <div className={styles.section}>
             <h4 className={styles.sectionTitle}>当前资产配置</h4>
-            <AssetPieChart/>
+            {currentAssetData ?
+              <div>
+                <AssetPieChart chartData={currentAssetData}/>
+              </div> : null}
           </div>
-          <div className={styles.section}>
-            <h4 className={styles.sectionTitle}>历史资产配置</h4>
-            <AssertBarChart/>
-          </div>
+          {/*<div className={styles.section}>*/}
+          {/*<h4 className={styles.sectionTitle}>历史资产配置</h4>*/}
+          {/*<AssertBarChart/>*/}
+          {/*</div>*/}
         </div>
       </div>
     </div>
   )
 }
 
-export default FundCharts;
+FundCharts.propTypes = {};
+
+function mapStateToProps(state) {
+  return {
+    fund: state.fund.fund,
+    unitNetValueData: state.fundChart.unitNetValueData,
+    cumulativeNetValueData: state.fundChart.cumulativeNetValueData,
+    cumulativeProfitData: state.fundChart.cumulativeProfitData,
+    currentAssetData: state.fundChart.currentAssetData
+  };
+}
+
+export default connect(mapStateToProps)(FundCharts);

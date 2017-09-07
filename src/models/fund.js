@@ -21,7 +21,7 @@ export default {
 
       const {data} = yield call(fundService.fetchFund, code);
 
-      console.log(data);
+      // console.log(data);
 
       yield put({
         type: 'saveFund',

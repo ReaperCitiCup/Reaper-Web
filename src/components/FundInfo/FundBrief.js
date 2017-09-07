@@ -9,7 +9,7 @@ class FundBrief extends Component {
   render() {
     const {fund} = this.props;
 
-    console.log({fund});
+    // console.log({fund});
 
     return (
       <div className={"container " + styles.brief}>

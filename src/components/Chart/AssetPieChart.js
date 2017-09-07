@@ -6,6 +6,15 @@ class AssetPieChart extends Component {
 
   render() {
 
+    const {chartData} = this.props;
+
+    let data = [];
+    data.push({value: chartData.bank, name: '银行'});
+    data.push({value: chartData.stock, name: '股票'});
+    data.push({value: chartData.bond, name: '债券'});
+    data.push({value: chartData.other, name: '其他'});
+
+    console.log(data);
     let option = {
       // title : {
       //   text: '某站点用户访问来源',
@@ -19,7 +28,7 @@ class AssetPieChart extends Component {
       legend: {
         orient: 'vertical',
         bottom: 'bottom',
-        data: ['现金', '股票', '债券']
+        data: ['银行', '股票', '债券', '其他']
       },
       series: [
         {
@@ -27,11 +36,7 @@ class AssetPieChart extends Component {
           type: 'pie',
           radius: '55%',
           center: ['50%', '40%'],
-          data: [
-            {value: 335, name: '现金'},
-            {value: 310, name: '股票'},
-            {value: 234, name: '债券'}
-          ],
+          data: data,
           itemStyle: {
             emphasis: {
               shadowBlur: 10,
@@ -41,7 +46,7 @@ class AssetPieChart extends Component {
           }
         }
       ],
-     color:  ['#81B6F5','#E2827E', '#F9D471']
+      color: ['#81B6F5', '#E2827E', '#F9D471', '#B6F997']
     };
 
     return (

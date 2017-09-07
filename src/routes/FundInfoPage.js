@@ -8,7 +8,7 @@ import FundBrief from "../components/FundInfo/FundBrief";
 import FundCharts from "../components/FundInfo/FundCharts";
 
 
-function FundInfoPage({fund, fundChartData}) {
+function FundInfoPage({fund}) {
   // console.log({fund});
   return (
     <div className="baseBody">
@@ -19,10 +19,9 @@ function FundInfoPage({fund, fundChartData}) {
             <FundHeader fund={fund}/>
             <FundBrief fund={fund}/>
           </div> : null}
-        {fundChartData ?
-          <div>
-            <FundCharts fundChart={fundChartData}/>
-          </div> : null}
+        <div>
+          <FundCharts/>
+        </div>
       </MainLayout>
     </div>
 
@@ -34,7 +33,6 @@ FundInfoPage.propTypes = {};
 function mapStateToProps(state) {
   return {
     fund: state.fund.fund,
-    fundChartData: state.fundChart.fundChart
   };
 }
 

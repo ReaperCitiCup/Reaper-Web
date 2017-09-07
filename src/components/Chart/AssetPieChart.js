@@ -9,12 +9,14 @@ class AssetPieChart extends Component {
     const {chartData} = this.props;
 
     let data = [];
-    data.push({value: chartData.bank, name: '银行'});
-    data.push({value: chartData.stock, name: '股票'});
-    data.push({value: chartData.bond, name: '债券'});
-    data.push({value: chartData.other, name: '其他'});
+    if (chartData != null && chartData != undefined) {
+      data.push({value: chartData.bank, name: '银行'});
+      data.push({value: chartData.stock, name: '股票'});
+      data.push({value: chartData.bond, name: '债券'});
+      data.push({value: chartData.other, name: '其他'});
+    }
 
-    console.log(data);
+    // console.log(data);
     let option = {
       // title : {
       //   text: '某站点用户访问来源',

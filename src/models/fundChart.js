@@ -96,10 +96,10 @@ export default  {
      * @param select
      */
     *fetchCumulativeProfitData({payload: info}, {call, put, select}) {
-      yield put({
-        type: 'drawCumulativeProfitChart',
-        payload: null,
-      });
+      // yield put({
+      //   type: 'drawCumulativeProfitChart',
+      //   payload: null,
+      // });
 
       const {data} = yield call(fundChartService.fetchCumulativeProfitData, info.fundId, info.fundMonth);
 

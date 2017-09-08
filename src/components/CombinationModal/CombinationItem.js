@@ -4,7 +4,7 @@ import {Slider, InputNumber} from 'antd';
 import styles from './CombinationItem.css';
 import trash from '../../assets/delete.png';
 
-function CombinationItem({item, onRatioChange}) {
+function CombinationItem({item, onRatioChange, onClickDelete}) {
 
 
   // state = {
@@ -44,7 +44,9 @@ function CombinationItem({item, onRatioChange}) {
           </span>
         </div>
         <div className={styles.delete_wrapper}>
-          <img width={16} src={trash}/>
+          <img width={16}
+               src={trash}
+               onClick={onClickDelete}/>
         </div>
       </div>
     )

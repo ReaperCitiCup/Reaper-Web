@@ -61,5 +61,7 @@ button {
   vertical-align: top;
   width: 10%;
   padding: 10px 6px; }
+  .delete_wrapper img {
+    cursor: pointer; }
 
 /*# sourceMappingURL=CombinationItem.css.map */

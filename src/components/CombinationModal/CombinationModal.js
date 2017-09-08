@@ -29,6 +29,13 @@ function CombinationModal({dispatch, className, show, items}) {
     })
   }
 
+  function onClickItemDelete(code) {
+    dispatch({
+      type: "createCombination/deleteItem",
+      payload: code,
+    })
+  }
+
   return (
     <div className={styles.modal + ' ' + className}>
       <div className={styles.title_wrapper}>
@@ -53,9 +60,9 @@ function CombinationModal({dispatch, className, show, items}) {
                 key={item.code}
                 item={item}
                 onRatioChange={ratio => onItemRatioChange(item.code, ratio)}
+                onClickDelete={() => onClickItemDelete(item.code)}
               />
             )}
-
           </div>
           <Button
             className={styles.button}

@@ -42,6 +42,12 @@ export default {
         ]
       }
     },
+    deleteItem(state, {payload: code}) {
+      return {
+        ...state,
+        items: state.items.filter(item => item.code !== code),
+      }
+    },
   },
   effects: {},
   subscriptions: {},

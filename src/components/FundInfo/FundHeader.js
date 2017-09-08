@@ -1,25 +1,26 @@
 import React from 'react';
 import {Link} from 'dva/router';
+import {connect} from 'dva';
 
 import styles from './FundHeader.css';
 
-function FundHeader({fund}) {
+function FundHeader({fundBrief}) {
 
   return (
     <div className="container ">
       <div className={styles.header}>
 
         <div className={styles.title}>
-          <h1>{fund ? fund.name : null}</h1>
-          <h2>{fund ? fund.code : null}</h2>
+          <h1>{fundBrief.name ? fundBrief.name : null}</h1>
+          <h2>{fundBrief.code ? fundBrief.code : null}</h2>
         </div>
 
-        {fund ?
+        {fundBrief ?
           <div className={styles.button_wrapper}>
-            <Link to={`/fund/${fund.code}`}>基金详情</Link>
-            <Link to={`/fund/${fund.code}/manager`}>基金经理</Link>
-            <Link to={`/fund/${fund.code}/company`}>基金公司</Link>
-            <Link to={`/fund/${fund.code}/analysis`}>深度分析</Link>
+            <Link to={`/fund/${fundBrief.code}`}>基金详情</Link>
+            <Link to={`/fund/${fundBrief.code}/manager`}>基金经理</Link>
+            <Link to={`/fund/${fundBrief.code}/company`}>基金公司</Link>
+            <Link to={`/fund/${fundBrief.code}/analysis`}>深度分析</Link>
           </div>
           : null}
       </div>
@@ -28,5 +29,12 @@ function FundHeader({fund}) {
 
 }
 
+FundHeader.propTypes = {};
 
-export default FundHeader;
+function mapStateToProps(state) {
+  return {
+    fundBrief: state.fund.fundBrief,
+  };
+}
+
+export default connect(mapStateToProps)(FundHeader);

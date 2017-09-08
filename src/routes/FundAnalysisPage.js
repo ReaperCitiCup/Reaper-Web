@@ -9,12 +9,12 @@ import FundAnalysisCharts from "../components/FundAnalysis/FundAnalysisCharts";
 
 import styles from './FundAnalysisPage.css';
 
-function FundAnalysisPage({fund}) {
+function FundAnalysisPage() {
   return (
     <div className="baseBody">
       <MainLayout>
         <BreadcrumbSearch/>
-        <FundHeader fund={fund}/>
+        <FundHeader/>
         <div className="container">
           <div className={styles.fund_analysis}>
             <div className={styles.left_wrapper}>
@@ -35,7 +35,6 @@ FundAnalysisPage.propTypes = {};
 
 function mapStateToProps(state) {
   return {
-    fund: state.fund.fund
   };
 }
 

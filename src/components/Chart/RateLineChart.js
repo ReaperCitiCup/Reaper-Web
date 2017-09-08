@@ -9,7 +9,7 @@ class RateLineChart extends Component {
 
   render() {
 
-    const {fund, chartData, dispatch} = this.props;
+    const {chartData, dispatch} = this.props;
 
     let dateList = [];
     let valueList = [];
@@ -73,10 +73,7 @@ class RateLineChart extends Component {
       console.log(event.target.value);
       dispatch({
         type: 'fundChart/fetchCumulativeProfitData',
-        payload: {
-          fundId: fund.code,
-          fundMonth: event.target.value,
-        }
+        payload: event.target.value,
       })
     }
 

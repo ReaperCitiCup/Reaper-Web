@@ -9,12 +9,12 @@ import BreadcrumbSearch from "../components/Util/BreadcrumbSearch";
 import FundHeader from "../components/FundInfo/FundHeader";
 import CompanyBrief from "../components/FundCompany/CompanyBrief";
 
-function FundCompanyPage({fund}) {
+function FundCompanyPage() {
   return (
     <div className="baseBody">
       <MainLayout>
         <BreadcrumbSearch/>
-        <FundHeader fund={fund}/>
+        <FundHeader/>
         <CompanyBrief/>
       </MainLayout>
     </div>
@@ -25,7 +25,7 @@ FundCompanyPage.propTypes = {};
 
 function mapStateToProps(state) {
   return {
-    fund: state.fund.fund
+
   };
 }
 

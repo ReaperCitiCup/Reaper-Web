@@ -91,15 +91,28 @@
   table {
     width: 100%;
     font-size: 14px;
-    .tr_title {
-      text-align: right;
-      color: $main-font-color;
+
+    tr {
+      td:first-child {
+        text-align: right;
+        color: $main-font-color;
+      }
+
+      td:last-child {
+        padding-left: 30px;
+        text-align: left;
+        color: $blue-grey-color;
+      }
     }
-    .tr_content {
-      padding-left: 30px;
-      text-align: left;
-      color: $blue-grey-color;
-    }
+    //.tr_title {
+    //     text-align: right;
+    //     color: $main-font-color;
+    //   }
+    //   .tr_content {
+    //     padding-left: 30px;
+    //     text-align: left;
+    //     color: $blue-grey-color;
+    //   }
   }
 }
 
@@ -126,6 +139,24 @@
     display: inline-block;
     vertical-align: top;
     width: 356px;
+
+    table {
+      width: 100%;
+      font-size: 12px;
+
+      tr {
+        td:first-child {
+          text-align: right;
+          color: $main-font-color;
+        }
+
+        td:last-child {
+          padding-left: 30px;
+          text-align: left;
+          color: $blue-grey-color;
+        }
+      }
+    }
   }
 
 }

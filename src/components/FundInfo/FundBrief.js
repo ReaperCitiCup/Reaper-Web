@@ -20,10 +20,10 @@ class FundBrief extends Component {
                   <div>
                     <h4 className={styles.sectionTitle}>净值估算</h4>
                     <div>
-                      <h3>----</h3>
+                      <h3>{fund.assessNetValue}</h3>
                       <div className={styles.sectionSide}>
-                        <p>-0.0057（假）</p>
-                        <p>-0.51%（假）</p>
+                        <p>{fund.assessIncrease}%</p>
+                        <p>{fund.assessDailyRate}%</p>
                       </div>
                     </div>
                   </div>

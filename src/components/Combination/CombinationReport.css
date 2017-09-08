@@ -84,10 +84,10 @@ button {
   .section_4 table {
     width: 100%;
     font-size: 14px; }
-    .section_4 table .tr_title {
+    .section_4 table tr td:first-child {
       text-align: right;
       color: #3D5673; }
-    .section_4 table .tr_content {
+    .section_4 table tr td:last-child {
       padding-left: 30px;
       text-align: left;
       color: #9FAEC0; }
@@ -111,6 +111,16 @@ button {
     display: inline-block;
     vertical-align: top;
     width: 356px; }
+    .section_6 .table table {
+      width: 100%;
+      font-size: 12px; }
+      .section_6 .table table tr td:first-child {
+        text-align: right;
+        color: #3D5673; }
+      .section_6 .table table tr td:last-child {
+        padding-left: 30px;
+        text-align: left;
+        color: #9FAEC0; }
 
 .section_7 {
   width: 100%;

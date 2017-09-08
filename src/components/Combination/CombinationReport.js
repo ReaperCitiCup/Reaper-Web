@@ -119,24 +119,24 @@ class CombinationReport extends Component {
             <table>
               <tbody>
               <tr>
-                <td className={styles.tr_title}>业绩表现</td>
-                <td className={styles.tr_content}>该基金组合报告区间的年化收益为66.6%，排名66</td>
+                <td>业绩表现</td>
+                <td>该基金组合报告区间的年化收益为66.6%，排名66</td>
               </tr>
               <tr>
-                <td className={styles.tr_title}>风险表现</td>
-                <td className={styles.tr_content}>该基金组合报告区间的最大回撤为6.61%，波动率为23.3%，排名233</td>
+                <td>风险表现</td>
+                <td>该基金组合报告区间的最大回撤为6.61%，波动率为23.3%，排名233</td>
               </tr>
               <tr>
-                <td className={styles.tr_title}>收益风险分析</td>
-                <td className={styles.tr_content}>该基金组合属于高风险，低收益，风险收益比0.97</td>
+                <td>收益风险分析</td>
+                <td>该基金组合属于高风险，低收益，风险收益比0.97</td>
               </tr>
               <tr>
-                <td className={styles.tr_title}>风格分析</td>
-                <td className={styles.tr_content}></td>
+                <td>风格分析</td>
+                <td> </td>
               </tr>
               <tr>
-                <td className={styles.tr_title}>业绩归因</td>
-                <td className={styles.tr_content}></td>
+                <td>业绩归因</td>
+                <td> </td>
               </tr>
               </tbody>
             </table>
@@ -173,7 +173,30 @@ class CombinationReport extends Component {
             </div>
 
             <div className={styles.table}>
-              <Table columns={columns} dataSource={data} size="small" pagination={false}/>
+              <table>
+                <tbody>
+                <tr>
+                  <td>业绩表现</td>
+                  <td>该基金组合报告区间的年化收益为66.6%，排名66</td>
+                </tr>
+                <tr>
+                  <td>风险表现</td>
+                  <td>该基金组合报告区间的最大回撤为6.61%，波动率为23.3%，排名233</td>
+                </tr>
+                <tr>
+                  <td>收益风险分析</td>
+                  <td>该基金组合属于高风险，低收益，风险收益比0.97</td>
+                </tr>
+                <tr>
+                  <td>风格分析</td>
+                  <td> </td>
+                </tr>
+                <tr>
+                  <td>业绩归因</td>
+                  <td> </td>
+                </tr>
+                </tbody>
+              </table>
             </div>
           </div>
 

@@ -1,0 +1,65 @@
+html, body, h1, h2, h3, h4, h5, h6, hr, li, ul, p, a, img, button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-family: "Pingfang SC", "Open Sans", "Lantinghei SC", "Microsoft Yahei Light", "Microsoft Yahei", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: 300;
+  list-style: none; }
+
+html {
+  height: 100%; }
+
+* {
+  position: relative;
+  box-sizing: border-box; }
+
+button {
+  outline: none; }
+
+.item {
+  font-size: 0; }
+
+.name {
+  display: inline-block;
+  vertical-align: top;
+  width: 40%;
+  padding: 0 6px;
+  font-size: 14px;
+  line-height: 36px;
+  color: #3D5673; }
+
+.slider_wrapper {
+  display: inline-block;
+  vertical-align: top;
+  width: 30%;
+  padding: 2px 6px; }
+  .slider_wrapper :global .ant-slider .ant-slider-track {
+    background-color: #9FAEC0; }
+  .slider_wrapper :global .ant-slider:hover .ant-slider-track {
+    background-color: #9FAEC0; }
+  .slider_wrapper :global .ant-slider .ant-slider-handle {
+    border-color: #9FAEC0; }
+
+.ratio_wrapper {
+  display: inline-block;
+  vertical-align: top;
+  width: 20%;
+  padding: 4px 0;
+  font-size: 12px; }
+  .ratio_wrapper .input {
+    width: 60px;
+    color: #3D5673;
+    border-radius: 0;
+    border-color: #9FAEC0; }
+    .ratio_wrapper .input :global .ant-input-number-handler-wrap, .ratio_wrapper .input :global .ant-input-number-handler-up, .ratio_wrapper .input :global .ant-input-number-handler-down {
+      border-color: #9FAEC0; }
+  .ratio_wrapper > span {
+    padding-left: 4px; }
+
+.delete_wrapper {
+  display: inline-block;
+  vertical-align: top;
+  width: 10%;
+  padding: 10px 6px; }
+
+/*# sourceMappingURL=CombinationItem.css.map */

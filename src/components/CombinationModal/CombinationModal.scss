@@ -3,16 +3,50 @@
 
 .modal {
   width: 460px;
-  height: 380px;
+  //height: 380px;
   padding: 20px;
   background-color: $background-color;
   border: solid 1px $blue-grey-color;
+}
 
+.title_wrapper {
+  height: 24px;
   h5 {
-    margin-bottom: 20px;
+    display: inline-block;
+    vertical-align: top;
     color: $main-font-color;
     font-size: 16px;
     font-weight: 500;
   }
+
+  img {
+    float: right;
+    margin-top: 5px;
+    cursor: pointer;
+  }
 }
 
+.input {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  border-color: $blue-grey-color;
+  border-radius: 0;
+  font-size: 14px;
+}
+
+.item_list {
+  height: 220px;
+  border: solid 1px $blue-grey-color;
+  background-color: $white-color;
+  overflow: scroll;
+}
+
+.button {
+  float: right;
+  font-weight: 400;
+  margin-top: 10px;
+  border-radius: 0;
+  color: $main-font-color;
+  background-color: $background-color;
+  border-color: $blue-grey-color;
+}

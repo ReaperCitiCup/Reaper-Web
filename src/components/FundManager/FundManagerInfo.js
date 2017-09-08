@@ -2,6 +2,7 @@
  * Created by st on 2017/8/30.
  */
 import React, {Component} from 'react';
+import {connect} from 'dva';
 import styles from './FundManagerInfo.css';
 import DivHeader from '../Util/DivHeader';
 import {Table, Button, Tabs} from 'antd';
@@ -67,6 +68,7 @@ const data = [{
 class FundManagerInfo extends Component {
 
   render() {
+    const {allManagers, activeManager} = this.props;
     return (
       <div className="container">
         <div className={styles.totalInfoDiv}>
@@ -128,4 +130,13 @@ class FundManagerInfo extends Component {
   }
 }
 
-export default FundManagerInfo;
+FundManagerInfo.propTypes = {};
+
+function mapStateToProps(state) {
+  return {
+    allManagers: state.fundManager.allManagers,
+    activeManager: state.fundManager.activeManager,
+  };
+}
+
+export default connect(mapStateToProps)(FundManagerInfo);

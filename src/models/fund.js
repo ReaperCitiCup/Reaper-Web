@@ -2,9 +2,16 @@ import * as fundService from '../services/fund';
 export default {
   namespace: 'fund',
   state: {
+    fundBrief: null,
     fund: null,
   },
   reducers: {
+    saveFundBrief(state, {payload: fundBrief}) {
+      return {
+        ...state,
+        fundBrief,
+      }
+    },
     saveFund(state, {payload: fund}) {
       return {
         ...state,
@@ -13,6 +20,18 @@ export default {
     },
   },
   effects: {
+
+    *fetchFundBrief({payload: code}, {call, put, select}) {
+      const {data} = yield call(fundService.fetchFundBrief, code);
+
+      console.log(data);
+
+      yield put({
+        type: 'saveFundBrief',
+        payload: data,
+      });
+    },
+
     *fetchFund({payload: code}, {call, put, select}) {
       yield put({
         type: 'saveFund',
@@ -29,6 +48,8 @@ export default {
       });
 
     },
+
+
   },
   subscriptions: {
     setup({dispatch, history}) {
@@ -37,6 +58,7 @@ export default {
         if (pathname.indexOf('/fund/') === 0 && pathname.split('/').length === 3) {
           let id = pathname.split('/fund/')[1];
           window.scrollTo(0, 0);
+          dispatch({type: 'fetchFundBrief', payload: id});
           dispatch({type: 'fetchFund', payload: id});
         }
       });

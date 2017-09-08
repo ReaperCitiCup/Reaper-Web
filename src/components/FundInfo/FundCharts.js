@@ -11,7 +11,7 @@ import DivHeader from '../Util/DivHeader';
 
 import styles from './FundCharts.css';
 
-function FundCharts({fund, unitNetValueData, cumulativeNetValueData, cumulativeProfitData, currentAssetData}) {
+function FundCharts({unitNetValueData, cumulativeNetValueData, cumulativeProfitData, currentAssetData}) {
   // console.log({unitNetValueData});
   return (
 
@@ -34,7 +34,7 @@ function FundCharts({fund, unitNetValueData, cumulativeNetValueData, cumulativeP
         <DivHeader>累积收益率走势</DivHeader>
         {cumulativeProfitData ?
           <div>
-            <RateLineChart fund={fund} chartData={cumulativeProfitData}/>
+            <RateLineChart chartData={cumulativeProfitData}/>
           </div> : null}
       </div>
 
@@ -62,7 +62,6 @@ FundCharts.propTypes = {};
 
 function mapStateToProps(state) {
   return {
-    fund: state.fund.fund,
     unitNetValueData: state.fundChart.unitNetValueData,
     cumulativeNetValueData: state.fundChart.cumulativeNetValueData,
     cumulativeProfitData: state.fundChart.cumulativeProfitData,

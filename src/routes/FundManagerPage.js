@@ -11,12 +11,12 @@ import FundManagerNav from "../components/FundManager/FundManagerNav";
 import FundManagerInfo from "../components/FundManager/FundManagerInfo";
 
 
-function FundManagerPage({fund}) {
+function FundManagerPage() {
   return (
     <div className="baseBody">
       <MainLayout>
         <BreadcrumbSearch/>
-        <FundHeader fund={fund}/>
+        <FundHeader/>
         <FundManagerNav/>
 
         <div className={styles.infoDiv}>
@@ -31,7 +31,7 @@ FundManagerPage.propTypes = {};
 
 function mapStateToProps(state) {
   return {
-    fund: state.fund.fund
+
   };
 }
 

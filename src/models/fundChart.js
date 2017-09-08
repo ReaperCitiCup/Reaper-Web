@@ -48,7 +48,7 @@ export default  {
      * @param put
      * @param select
      */
-    *fetchUnitNetValueData({payload: code}, {call, put, select}) {
+      *fetchUnitNetValueData({payload: code}, {call, put, select}) {
       yield put({
         type: 'drawUnitNetValueChart',
         payload: null,
@@ -71,7 +71,7 @@ export default  {
      * @param put
      * @param select
      */
-    *fetchCumulativeNetValueData({payload: code}, {call, put, select}) {
+      *fetchCumulativeNetValueData({payload: code}, {call, put, select}) {
       yield put({
         type: 'drawCumulativeNetValueChart',
         payload: null,
@@ -95,13 +95,14 @@ export default  {
      * @param put
      * @param select
      */
-    *fetchCumulativeProfitData({payload: info}, {call, put, select}) {
+      *fetchCumulativeProfitData({payload: month}, {call, put, select}) {
       // yield put({
       //   type: 'drawCumulativeProfitChart',
       //   payload: null,
       // });
+      const code = yield  select(state => state.fund.fundCode);
 
-      const {data} = yield call(fundChartService.fetchCumulativeProfitData, info.fundId, info.fundMonth);
+      const {data} = yield call(fundChartService.fetchCumulativeProfitData, code, month);
 
       // console.log(data);
 
@@ -119,7 +120,7 @@ export default  {
 
       const {data} = yield call(fundChartService.fetchCurrentAssetData, code);
 
-      console.log(data);
+      // console.log(data);
 
       yield put({
         type: 'drawCurrentAssetChart',
@@ -137,7 +138,7 @@ export default  {
           window.scrollTo(0, 0);
           dispatch({type: 'fetchUnitNetValueData', payload: id});
           dispatch({type: 'fetchCumulativeNetValueData', payload: id});
-          dispatch({type: 'fetchCumulativeProfitData', payload: {fundId: id, fundMonth: 1}});
+          dispatch({type: 'fetchCumulativeProfitData', payload: 1});
           dispatch({type: 'fetchCurrentAssetData', payload: id});
         }
       });

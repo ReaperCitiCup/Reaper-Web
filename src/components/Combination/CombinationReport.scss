@@ -82,3 +82,57 @@
     }
   }
 }
+
+.section_4 {
+  width: 100%;
+  padding-top: 24px;
+  text-align: left;
+
+  table {
+    width: 100%;
+    font-size: 14px;
+    .tr_title {
+      text-align: right;
+      color: $main-font-color;
+    }
+    .tr_content {
+      padding-left: 30px;
+      text-align: left;
+      color: $blue-grey-color;
+    }
+  }
+}
+
+.section_5 {
+  width: 100%;
+  padding-top: 24px;
+  padding-left: 12px;
+  text-align: left;
+}
+
+.section_6 {
+  width: 100%;
+  padding-top: 24px;
+  padding-left: 12px;
+  text-align: left;
+
+  .chart {
+    display: inline-block;
+    width: 455px;
+    margin-right: 37px;
+  }
+
+  .table {
+    display: inline-block;
+    vertical-align: top;
+    width: 356px;
+  }
+
+}
+
+.section_7 {
+  width: 100%;
+  padding-top: 24px;
+  padding-left: 12px;
+  text-align: left;
+}

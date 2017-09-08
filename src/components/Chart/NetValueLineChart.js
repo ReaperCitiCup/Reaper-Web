@@ -20,9 +20,11 @@ class NetValueLineChart extends Component {
     let data = [];
     let date = [];
 
-    for (let i = 0; i < chartData.length; i++) {
-      date.push(chartData[i].date);
-      data.push(chartData[i].value);
+    if (chartData != null && chartData != undefined) {
+      for (let i = 0; i < chartData.length; i++) {
+        date.push(chartData[i].date);
+        data.push(chartData[i].value);
+      }
     }
 
     let option = {

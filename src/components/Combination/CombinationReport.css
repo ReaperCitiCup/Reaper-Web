@@ -77,4 +77,45 @@ button {
       font-size: 12px;
       color: #3D5673; }
 
+.section_4 {
+  width: 100%;
+  padding-top: 24px;
+  text-align: left; }
+  .section_4 table {
+    width: 100%;
+    font-size: 14px; }
+    .section_4 table .tr_title {
+      text-align: right;
+      color: #3D5673; }
+    .section_4 table .tr_content {
+      padding-left: 30px;
+      text-align: left;
+      color: #9FAEC0; }
+
+.section_5 {
+  width: 100%;
+  padding-top: 24px;
+  padding-left: 12px;
+  text-align: left; }
+
+.section_6 {
+  width: 100%;
+  padding-top: 24px;
+  padding-left: 12px;
+  text-align: left; }
+  .section_6 .chart {
+    display: inline-block;
+    width: 455px;
+    margin-right: 37px; }
+  .section_6 .table {
+    display: inline-block;
+    vertical-align: top;
+    width: 356px; }
+
+.section_7 {
+  width: 100%;
+  padding-top: 24px;
+  padding-left: 12px;
+  text-align: left; }
+
 /*# sourceMappingURL=CombinationReport.css.map */

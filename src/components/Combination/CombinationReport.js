@@ -3,11 +3,13 @@
  */
 import React, {Component} from 'react';
 import styles from "./CombinationReport.css";
-import {Row, Col, Table} from 'antd';
+import {Row, Col, Table, Tabs} from 'antd';
 
 
 import DivHeader from "../Util/DivHeader";
 import AssetPieChart from "../Chart/AssetPieChart";
+import NetValueLineChart from "../Chart/NetValueLineChart";
+const TabPane = Tabs.TabPane;
 
 const columns = [{
   title: 'Name',
@@ -111,6 +113,75 @@ class CombinationReport extends Component {
               </tbody>
             </table>
           </div>
+
+          <div className={styles.section_4}>
+            <DivHeader>总体评价</DivHeader>
+            <table>
+              <tbody>
+              <tr>
+                <td className={styles.tr_title}>业绩表现</td>
+                <td className={styles.tr_content}>该基金组合报告区间的年化收益为66.6%，排名66</td>
+              </tr>
+              <tr>
+                <td className={styles.tr_title}>风险表现</td>
+                <td className={styles.tr_content}>该基金组合报告区间的最大回撤为6.61%，波动率为23.3%，排名233</td>
+              </tr>
+              <tr>
+                <td className={styles.tr_title}>收益风险分析</td>
+                <td className={styles.tr_content}>该基金组合属于高风险，低收益，风险收益比0.97</td>
+              </tr>
+              <tr>
+                <td className={styles.tr_title}>风格分析</td>
+                <td className={styles.tr_content}></td>
+              </tr>
+              <tr>
+                <td className={styles.tr_title}>业绩归因</td>
+                <td className={styles.tr_content}></td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div className={styles.section_5}>
+            <DivHeader>收益情况</DivHeader>
+
+            <Tabs defaultActiveKey="1">
+              <TabPane tab="累计净值" key="1">
+                <NetValueLineChart/>
+              </TabPane>
+              <TabPane tab="收益率" key="2">
+                <NetValueLineChart/>
+              </TabPane>
+            </Tabs>
+          </div>
+
+          <div className={styles.section_6}>
+            <DivHeader>风险情况</DivHeader>
+
+            <div className={styles.chart}>
+              <Tabs defaultActiveKey="1">
+                <TabPane tab="每日回撤走线图" key="1">
+                  <NetValueLineChart/>
+                </TabPane>
+                <TabPane tab="波动率" key="2">
+                  <NetValueLineChart/>
+                </TabPane>
+                <TabPane tab="相关系数" key="3">
+                  <NetValueLineChart/>
+                </TabPane>
+              </Tabs>
+            </div>
+
+            <div className={styles.table}>
+              <Table columns={columns} dataSource={data} size="small" pagination={false}/>
+            </div>
+          </div>
+
+          <div className={styles.section_7}>
+            <DivHeader>组合详情</DivHeader>
+          </div>
+
+
 
         </div>
       </div>

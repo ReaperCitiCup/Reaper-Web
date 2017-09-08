@@ -1,0 +1,18 @@
+@import "../../assets/scss/variables";
+@import "../../assets/scss/base";
+
+.modal {
+  width: 460px;
+  height: 380px;
+  padding: 20px;
+  background-color: $background-color;
+  border: solid 1px $blue-grey-color;
+
+  h5 {
+    margin-bottom: 20px;
+    color: $main-font-color;
+    font-size: 16px;
+    font-weight: 500;
+  }
+}
+

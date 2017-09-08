@@ -1,9 +1,13 @@
 import React from 'react';
 import {connect} from 'dva';
-// import styles from './AccountPage.css';
+
 import MainLayout from "../components/Layout/MainLayout";
 import FundListTable from '../components/FundList/FundListTable';
 import FundListHeader from '../components/FundList/FundListHeader';
+
+import CombinationModal from '../components/CombinationModal/CombinationModal';
+
+import styles from './FundListPage.css';
 
 function FundListPage() {
   return (
@@ -12,6 +16,7 @@ function FundListPage() {
         <FundListHeader/>
         <FundListTable/>
       </MainLayout>
+      <CombinationModal className={styles.combination_modal}/>
     </div>
 
   );

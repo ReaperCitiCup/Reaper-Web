@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import {connect} from 'dva';
+
 import {Input, Button} from 'antd';
 
 import CombinationItem from './CombinationItem';
@@ -8,35 +10,52 @@ import down from '../../assets/caretdown.png';
 
 import styles from './CombinationModal.css';
 
-class CombinationModal extends Component {
+function CombinationModal({dispatch, className, show, items}) {
 
-  state = {
-    show: true,
-  };
+  function onClickArrow() {
+    dispatch({
+      type: "createCombination/saveShow",
+      payload: !show,
+    })
+  }
 
-  onChange = (value) => {
-    this.setState({
-      inputValue: value,
-    });
-  };
+  function onItemRatioChange(code, ratio) {
+    dispatch({
+      type: "createCombination/saveRatio",
+      payload: {
+        code,
+        ratio
+      },
+    })
+  }
 
-  render() {
-    const {className} = this.props;
-    return (
-      <div className={styles.modal + ' ' + className}>
-        <div className={styles.title_wrapper}>
-          <h5>创建组合</h5>
-          <img width={20} src={up}/>
-        </div>
+  return (
+    <div className={styles.modal + ' ' + className}>
+      <div className={styles.title_wrapper}>
+        <h5>创建组合</h5>
+        <img
+          width={20}
+          src={show ? down : up}
+          onClick={onClickArrow}
+        />
+      </div>
 
+      {show ?
         <div>
           <Input className={styles.input}
                  size="large"
                  placeholder="输入组合名称"/>
-          <div className={styles.item_list}>
-            <CombinationItem/>
-            <CombinationItem/>
-            <CombinationItem/>
+          <div
+            className={styles.item_list}
+          >
+            {items.map(item =>
+              <CombinationItem
+                key={item.code}
+                item={item}
+                onRatioChange={ratio => onItemRatioChange(item.code, ratio)}
+              />
+            )}
+
           </div>
           <Button
             className={styles.button}
@@ -44,10 +63,16 @@ class CombinationModal extends Component {
             size="large"
           >保存</Button>
         </div>
-
-      </div>
-    )
-  }
+        : null}
+    </div>
+  )
 }
 
-export default CombinationModal
+function mapStateToProps(state) {
+  return {
+    show: state.createCombination.show,
+    items: state.createCombination.items,
+  };
+}
+
+export default connect(mapStateToProps)(CombinationModal)

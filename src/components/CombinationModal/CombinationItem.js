@@ -4,30 +4,31 @@ import {Slider, InputNumber} from 'antd';
 import styles from './CombinationItem.css';
 import trash from '../../assets/delete.png';
 
-class CombinationItem extends Component {
+function CombinationItem({item, onRatioChange}) {
 
-  state = {
-    inputValue: 1,
-  };
 
-  onChange = (value) => {
-    this.setState({
-      inputValue: value,
-    });
-  };
+  // state = {
+  //   inputValue: 1,
+  // };
+  //
+  // onChange = (value) => {
+  //   this.setState({
+  //     inputValue: value,
+  //   });
+  // };
 
-  render() {
+  // render() {
     return (
       <div className={styles.item}>
-        <div className={styles.name}>111</div>
+        <div className={styles.name}>{item.name}</div>
 
         <div className={styles.slider_wrapper}>
         <Slider
           className={styles.slider}
           min={1}
           max={100}
-          onChange={this.onChange}
-          value={this.state.inputValue}
+          onChange={onRatioChange}
+          value={item.ratio}
         />
         </div>
         <div className={styles.ratio_wrapper}>
@@ -35,8 +36,8 @@ class CombinationItem extends Component {
             className={styles.input}
             min={1}
             max={100}
-            value={this.state.inputValue}
-            onChange={this.onChange}
+            value={item.ratio}
+            onChange={onRatioChange}
           />
           <span>
             %
@@ -48,6 +49,6 @@ class CombinationItem extends Component {
       </div>
     )
   }
-}
+// }
 
 export default CombinationItem;

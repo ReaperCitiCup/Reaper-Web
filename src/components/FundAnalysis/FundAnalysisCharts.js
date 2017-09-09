@@ -7,6 +7,7 @@ import RateLineChart from "../Chart/RateLineChart";
 import NetValueLineChart from "../Chart/NetValueLineChart";
 import AttributionBarChart from'../Chart/AttributionBarChart';
 import AbilityBarChart from'../Chart/AbilityBarChart';
+import StabilityRadarChart from'../Chart/StabilityRadarChart';
 import BrisonTable from'../Chart/BrisonTable';
 
 
@@ -95,7 +96,14 @@ function FundAnalysisCharts() {
 
       <div className="card" id="8">
         <DivHeader>风格稳定性</DivHeader>
-
+        <div className={styles.section}>
+          <h4 className={styles.section_title}>主动收益</h4>
+          <StabilityRadarChart/>
+        </div>
+        <div className={styles.section}>
+          <h4 className={styles.section_title}>主动风险</h4>
+          <StabilityRadarChart/>
+        </div>
       </div>
 
       <div className="card" id="9">

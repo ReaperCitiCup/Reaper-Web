@@ -12,15 +12,19 @@ const columns = [{
 }];
 
 const data = [{
+  key: 1,
   field: '资产配置效益',
   value: '12'
 }, {
+  key: 2,
   field: '债券配置效益',
   value: '12'
 }, {
+  key: 3,
   field: '交叉效益',
   value: '12'
 },{
+  key: 4,
   field: '总超额效益',
   value: '12'
 }];

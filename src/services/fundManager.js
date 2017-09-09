@@ -20,3 +20,21 @@ export function fetchFundManagerFunds(managerId) {
     method: 'GET',
   });
 }
+
+export function fetchFundManagerFundRank(managerId) {
+  return request(`/api/manager/${managerId}/fund-rank`, {
+    method: 'GET',
+  });
+}
+
+export function fetchFundManagerFundReturns(managerId) {
+  return request(`/api/manager/${managerId}/fund-returns`, {
+    method: 'GET',
+  });
+}
+
+export function fetchFundManagerFundRateTrend(managerId) {
+  return request(`/api/manager/${managerId}/fund-rate-trend`, {
+    method: 'GET',
+  });
+}

@@ -24,7 +24,7 @@ export default {
     *fetchFundBrief({payload: code}, {call, put, select}) {
       const {data} = yield call(fundService.fetchFundBrief, code);
 
-      console.log(data);
+      // console.log(data);
 
       yield put({
         type: 'saveFundBrief',

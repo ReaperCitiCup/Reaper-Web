@@ -27,6 +27,10 @@ class FundManagerNav extends Component {
       dispatch({
         type: 'fundManager/fetchManagerFunds',
         payload: keyword,
+      });
+      dispatch({
+        type: 'fundManager/fetchManagerFundRank',
+        payload: keyword,
       })
     }
 

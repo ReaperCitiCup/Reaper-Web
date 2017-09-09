@@ -7,6 +7,9 @@ import React, {Component} from 'react';
 
 class FundProfitBarChart extends Component {
   render() {
+
+    const {chartData} = this.props;
+    // console.log(chartData);
     let option = {
       color: ['#3398DB'],
       tooltip: {
@@ -25,7 +28,7 @@ class FundProfitBarChart extends Component {
       xAxis: [
         {
           type: 'category',
-          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+          data: chartData.map(fund => fund.name),
           axisTick: {
             alignWithLabel: true
           }
@@ -38,10 +41,10 @@ class FundProfitBarChart extends Component {
       ],
       series: [
         {
-          name: '直接访问',
+          name: '收益',
           type: 'bar',
-          barWidth: '60%',
-          data: [10, 52, 200, 334, 390, 330, 220]
+          barWidth: '30',
+          data: chartData.map(fund => fund.returns),
         }
       ]
     };
@@ -49,7 +52,7 @@ class FundProfitBarChart extends Component {
     return (
       <ReactEcharts
         option={option}
-        style={{height:'300px'}}
+        style={{height:'500px'}}
       />
     )
 

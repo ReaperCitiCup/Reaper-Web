@@ -11,11 +11,11 @@ class CompanyPieChart extends Component {
 
     const {chartData} = this.props;
 
-    console.log(chartData);
+    // console.log(chartData);
 
     let data = [];
     if (chartData != null && chartData != undefined) {
-      for(let i = 0;i < chartData.length; i++) {
+      for (let i = 0; i < chartData.length; i++) {
         data.push({
           value: chartData[i].value,
           name: chartData[i].field
@@ -23,7 +23,7 @@ class CompanyPieChart extends Component {
       }
     }
 
-    console.log(data);
+    // console.log(data);
 
     let option = {
       // title : {
@@ -63,7 +63,7 @@ class CompanyPieChart extends Component {
 
       <ReactEcharts
         option={option}
-        // style={{height:'300px'}}
+        style={{height: '300px'}}
         // notMerge={true}
         // lazyUpdate={true}
         // theme={"theme_name"}

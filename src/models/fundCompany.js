@@ -8,6 +8,10 @@ export default {
     companyId: null,
     productStrategy: null,
     assetAllocation: null,
+    styleAttributionProfit: null,
+    styleAttributionRisk: null,
+    industryAttributionProfit: null,
+    industryAttributionRisk: null,
   },
   reducers: {
     saveCompanyId(state, {payload: companyId}) {
@@ -28,6 +32,34 @@ export default {
       return {
         ...state,
         assetAllocation,
+      }
+    },
+
+    saveStyleAttributionProfit(state, {payload: styleAttributionProfit}) {
+      return {
+        ...state,
+        styleAttributionProfit,
+      }
+    },
+
+    saveStyleAttributionRisk(state, {payload: styleAttributionRisk}) {
+      return {
+        ...state,
+        styleAttributionRisk,
+      }
+    },
+
+    saveIndustryAttributionProfit(state, {payload: industryAttributionProfit}) {
+      return {
+        ...state,
+        industryAttributionProfit,
+      }
+    },
+
+    saveIndustryAttributionRisk(state, {payload: industryAttributionRisk}) {
+      return {
+        ...state,
+        industryAttributionRisk,
       }
     },
 
@@ -73,6 +105,62 @@ export default {
       })
     },
 
+    *fetchStyleAttributionProfit(action, {call, put, select}) {
+
+      const companyId = yield select(state => state.fundCompany.companyId);
+
+      const {data} = yield call(fundCompanyService.fetchCompanyStyleAttributionProfit, companyId);
+
+      console.log(data);
+
+      yield put({
+        type: 'saveStyleAttributionProfit',
+        payload: data,
+      })
+    },
+
+    *fetchStyleAttributionRisk(action, {call, put, select}) {
+
+      const companyId = yield select(state => state.fundCompany.companyId);
+
+      const {data} = yield call(fundCompanyService.fetchCompanyStyleAttributionRisk, companyId);
+
+      console.log(data);
+
+      yield put({
+        type: 'saveStyleAttributionRisk',
+        payload: data,
+      })
+    },
+
+    *fetchIndustryAttributionProfit(action, {call, put, select}) {
+
+      const companyId = yield select(state => state.fundCompany.companyId);
+
+      const {data} = yield call(fundCompanyService.fetchCompanyIndustryAttributionProfit, companyId);
+
+      console.log(data);
+
+      yield put({
+        type: 'saveIndustryAttributionProfit',
+        payload: data,
+      })
+    },
+
+    *fetchIndustryAttributionRisk(action, {call, put, select}) {
+
+      const companyId = yield select(state => state.fundCompany.companyId);
+
+      const {data} = yield call(fundCompanyService.fetchCompanyIndustryAttributionRisk, companyId);
+
+      console.log(data);
+
+      yield put({
+        type: 'saveIndustryAttributionRisk',
+        payload: data,
+      })
+    },
+
   },
   subscriptions: {
     setup({dispatch, history}) {
@@ -86,6 +174,10 @@ export default {
           dispatch({type: 'fetchCompanyId', payload: id});
           dispatch({type: 'fetchProductStrategy'});
           dispatch({type: 'fetchAssetAllocation'});
+          dispatch({type: 'fetchStyleAttributionProfit'});
+          dispatch({type: 'fetchStyleAttributionRisk'});
+          dispatch({type: 'fetchIndustryAttributionProfit'});
+          dispatch({type: 'fetchIndustryAttributionRisk'});
         }
       });
     },

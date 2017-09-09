@@ -31,11 +31,31 @@ class FundManagerNav extends Component {
       dispatch({
         type: 'fundManager/fetchManagerFundRank',
         payload: keyword,
-      })
+      });
+      dispatch({
+        type: 'fundManager/fetchManagerFundReturns',
+        payload: keyword,
+      });
+      dispatch({
+        type: 'fundManager/fetchManagerFundRateTrend',
+        payload: keyword,
+      });
+      dispatch({
+        type: 'fundManager/fetchManagerFundRankTrend',
+        payload: keyword,
+      });
+      dispatch({
+        type: 'fundManager/fetchManagerFundPerformance',
+        payload: keyword,
+      });
+      dispatch({
+        type: 'fundManager/fetchManagerPerformance',
+        payload: keyword,
+      });
     }
 
     const {allManagers, dispatch} = this.props;
-    console.log(allManagers);
+    // console.log(allManagers);
     return (
       <div className="container">
         {allManagers ?

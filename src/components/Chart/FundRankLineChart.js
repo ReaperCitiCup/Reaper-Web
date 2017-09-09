@@ -6,7 +6,7 @@ import ReactEcharts from 'echarts-for-react';
 import React, {Component} from 'react';
 import {connect} from 'dva';
 
-class MultiLineChart extends Component {
+class FundRankLineChart extends Component {
   render() {
 
     const {chartData} = this.props;
@@ -27,7 +27,7 @@ class MultiLineChart extends Component {
     let seriesData = chartData.map(fund => {
       let pointArray = [];
       fund.data.forEach(point => {
-        pointArray.push([point.date, point.value]);
+        pointArray.push([point.date, (point.rank / point.total).toFixed(3)]);
       });
       return {
         name: fund.name,
@@ -76,4 +76,4 @@ class MultiLineChart extends Component {
   }
 }
 
-export default MultiLineChart;
+export default FundRankLineChart;

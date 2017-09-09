@@ -49,7 +49,8 @@ class FundManagerRadarChart extends Component {
         type: 'radar',
         areaStyle: {
           normal: {
-            color: 'rgba(61, 86, 115, 0.25)'
+            color: '#81B6F5',
+            opacity: 0.3
           }
         },
         data: [
@@ -58,7 +59,7 @@ class FundManagerRadarChart extends Component {
             name: '基金经理',
             lineStyle: {
               normal: {
-                color: '#3D5673'
+                color: '#81B6F5',
               }
             },
             symbol: 'none'

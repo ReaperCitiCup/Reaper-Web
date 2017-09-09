@@ -83,6 +83,7 @@ class FundRankingBarChart extends Component {
         data: ['1月', '3月', '6月', '1年', '2年', '3年']
       },
       series: seriesData,
+      color: ['#81B6F5', '#E2827E', '#F9D471', '#74D491']
     };
 
     return (

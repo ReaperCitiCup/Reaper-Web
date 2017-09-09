@@ -48,7 +48,7 @@ class AssetPieChart extends Component {
           }
         }
       ],
-      color: ['#81B6F5', '#E2827E', '#F9D471', '#B6F997']
+      color: ['#81B6F5', '#E2827E', '#F9D471', '#74D491']
     };
 
     return (

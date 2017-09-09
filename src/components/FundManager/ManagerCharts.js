@@ -10,7 +10,8 @@ import ScatterChart from "../Chart/ScatterChart";
 import NetworkChart from "../Chart/NetworkChart";
 import FundRankingBarChart from "../Chart/FundRankingBarChart";
 import FundProfitBarChart from "../Chart/FundProfitBarChart";
-import NetValueLineChart from "../Chart/NetValueLineChart";
+import MultiLineChart from "../Chart/MultiLineChart";
+import FundRankLineChart from "../Chart/FundRankLineChart"
 
 import styles from "./ManagerCharts.css";
 
@@ -19,9 +20,9 @@ const TabPane = Tabs.TabPane;
 class ManagerCharts extends Component {
   render() {
 
-    const {managerFundRank, managerFundReturns, managerFundRateTrend} = this.props;
+    const {managerFundRank, managerFundReturns, managerFundRateTrend, managerFundRankTrend, managerFundPerformance, managerPerformance} = this.props;
 
-
+    console.log(managerPerformance);
     return (
       <div>
         <div className={styles.fundPerformance}>
@@ -43,9 +44,11 @@ class ManagerCharts extends Component {
             <Tabs defaultActiveKey="1">
               <TabPane tab="现任基金收益率走势" key="1">
                 {managerFundRateTrend ?
-                <NetValueLineChart chartData={managerFundRateTrend}/> : null}
+                <MultiLineChart chartData={managerFundRateTrend}/> : null}
               </TabPane>
               <TabPane tab="现任基金排名走势" key="2">
+                {managerFundRankTrend ?
+                  <FundRankLineChart chartData={managerFundRankTrend}/> : null}
               </TabPane>
             </Tabs>
           </div>
@@ -58,11 +61,13 @@ class ManagerCharts extends Component {
         <div className={styles.managerPerformanceDiv}>
           <div className={styles.previousPerformance}>
             <DivHeader>当前基金经理历任基金表现</DivHeader>
-            <ScatterChart/>
+            {managerFundPerformance ?
+              <ScatterChart chartData={managerFundPerformance}/> : null}
           </div>
           <div className={styles.integratedPerformance}>
             <DivHeader>当前基金经理综合表现</DivHeader>
-            <ScatterChart/>
+            {managerPerformance ?
+            <ScatterChart chartData={managerPerformance}/> : null}
           </div>
         </div>
 
@@ -81,7 +86,10 @@ function mapStateToProps(state) {
   return {
     managerFundRank: state.fundManager.managerFundRank,
     managerFundReturns: state.fundManager.managerFundReturns,
-    managerFundRateTrend: state.fundManager.managerFundRateTrend
+    managerFundRateTrend: state.fundManager.managerFundRateTrend,
+    managerFundRankTrend: state.fundManager.managerFundRankTrend,
+    managerFundPerformance: state.fundManager.managerFundPerformance,
+    managerPerformance: state.fundManager.managerPerformance,
   };
 }
 

@@ -11,7 +11,7 @@ class FundProfitBarChart extends Component {
     const {chartData} = this.props;
     // console.log(chartData);
     let option = {
-      color: ['#3398DB'],
+      color: ['#81B6F5', '#E2827E', '#F9D471', '#74D491'],
       tooltip: {
         trigger: 'axis',
         axisPointer: {            // 坐标轴指示器，坐标轴触发有效
@@ -46,7 +46,8 @@ class FundProfitBarChart extends Component {
           barWidth: '30',
           data: chartData.map(fund => fund.returns),
         }
-      ]
+      ],
+
     };
 
     return (

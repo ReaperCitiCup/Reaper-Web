@@ -11,15 +11,7 @@ import plus from '../../assets/plus.png';
 
 import styles from './FundListTable.css';
 
-
-
 class FundListTable extends Component {
-
-
-  constructor(props) {
-    super(props)
-
-  }
 
   onClickRow = (record, index, event) => {
     const {dispatch} = this.props;
@@ -59,7 +51,7 @@ class FundListTable extends Component {
         const {items, dispatch} = this.props;
         const addable = items.filter(item => item.code === record.code).length === 0;
 
-        console.log(items, record.code, addable)
+        // console.log(items, record.code, addable)
         return (
           <div className="editable-row-operations">
             {

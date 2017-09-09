@@ -68,7 +68,7 @@ class ManagerCharts extends Component {
 
         <div className={styles.networkChart}>
           <DivHeader>基金经理社会网络关系图</DivHeader>
-          {/*<NetworkChart/>*/}
+          <NetworkChart/>
         </div>
       </div>
     )

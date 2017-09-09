@@ -8,6 +8,9 @@ export default {
     managerInfo: null,
     managerAbility: null,
     managerFunds: null,
+    managerFundRank: null,
+    managerFundReturns: null,
+    managerFundRateTrend: null,
   },
   reducers: {
     saveFundCode(state, {payload: fundCode}) {
@@ -49,6 +52,27 @@ export default {
         ...state,
         managerFunds,
       }
+    },
+
+    saveManagerFundRank(state, {payload: managerFundRank}) {
+      return {
+        ...state,
+        managerFundRank,
+      }
+    },
+
+    saveManagerFundReturns(state, {payload: managerFundReturns}) {
+      return {
+        ...state,
+        managerFundReturns,
+      }
+    },
+
+    saveManagerFundRateTrend(state, {payload: managerFundRateTrend}) {
+      return {
+        ...state,
+        managerFundRateTrend,
+      }
     }
   },
   effects: {
@@ -86,6 +110,21 @@ export default {
         payload: data.manager[0].id,
       });
 
+      yield put({
+        type: 'fetchManagerFundRank',
+        payload: data.manager[0].id,
+      });
+
+      yield put({
+        type: 'fetchManagerFundReturns',
+        payload: data.manager[0].id,
+      });
+
+      yield put({
+        type: 'fetchManagerFundRateTrend',
+        payload: data.manager[0].id,
+      });
+
     },
 
     // *fetchActiveManager({payload: code}, {call, put, select}) {
@@ -110,9 +149,9 @@ export default {
     },
 
     *fetchManagerAbility({payload: managerId}, {call, put, select}) {
-      const activeManager = yield select(state => state.fundManager.activeManagerId);
+      // const activeManager = yield select(state => state.fundManager.activeManagerId);
 
-      const {data} = yield call(fundManagerService.fetchFundManagerAbility, activeManager);
+      const {data} = yield call(fundManagerService.fetchFundManagerAbility, managerId);
 
       // console.log(data);
 
@@ -123,14 +162,53 @@ export default {
     },
 
     *fetchManagerFunds({payload: managerId}, {call, put, select}) {
-      const activeManager = yield select(state => state.fundManager.activeManagerId);
+      // const activeManager = yield select(state => state.fundManager.activeManagerId);
 
-      const {data} = yield call(fundManagerService.fetchFundManagerFunds, activeManager);
+      const {data} = yield call(fundManagerService.fetchFundManagerFunds, managerId);
+
+      // console.log(data);
+
+      yield put({
+        type: 'saveManagerFunds',
+        payload: data,
+      })
+    },
+
+    *fetchManagerFundRank({payload: managerId}, {call, put, select}) {
+      // const activeManager = yield select(state => state.fundManager.activeManagerId);
+
+      const {data} = yield call(fundManagerService.fetchFundManagerFundRank, managerId);
+
+      // console.log(data);
+
+      yield put({
+        type: 'saveManagerFundRank',
+        payload: data,
+      })
+    },
+
+    *fetchManagerFundReturns({payload: managerId}, {call, put, select}) {
+      // const activeManager = yield select(state => state.fundManager.activeManagerId);
+
+      const {data} = yield call(fundManagerService.fetchFundManagerFundReturns, managerId);
+
+      // console.log(data);
+
+      yield put({
+        type: 'saveManagerFundReturns',
+        payload: data,
+      })
+    },
+
+    *fetchManagerFundRateTrend({payload: managerId}, {call, put, select}) {
+      // const activeManager = yield select(state => state.fundManager.activeManagerId);
+
+      const {data} = yield call(fundManagerService.fetchFundManagerFundRateTrend, managerId);
 
       console.log(data);
 
       yield put({
-        type: 'saveManagerFunds',
+        type: 'saveManagerFundRateTrend',
         payload: data,
       })
     }

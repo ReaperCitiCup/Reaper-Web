@@ -7,15 +7,62 @@ import React, {Component} from 'react';
 
 class FundRankingBarChart extends Component {
   render() {
+
+    const {chartData} = this.props;
+    // console.log(chartData);
+
+    // let funds = [];
+    // let seriesData = [];
+    // let rankData = [];
+    // for (let i = 0; i < chartData.length; i++) {
+    //   funds.push(chartData[i].name);
+    //   for (let j = 0; j < chartData[i].data.length; j++) {
+    //     rankData.push((chartData[i].data[j].rank / chartData[i].data[j].total).toFixed(3));
+    //   }
+    //   seriesData.push({
+    //     name: chartData[i].name,
+    //     type: 'bar',
+    //     data: rankData,
+    //   });
+    //   rankData = [];
+    // }
+
+    let seriesData = chartData.map(fund => {
+      return {
+        name: fund.name,
+        type: 'bar',
+        data: fund.data.map(d => {
+          return {
+            ...d,
+            value: 1 - (d.rank / d.total).toFixed(2)
+          }
+        })
+      }
+    });
+
+
     let option = {
-      tooltip: {
-        trigger: 'axis',
-        axisPointer: {
-          type: 'shadow'
+      // tooltip: {
+      //   formatter: function (params) {
+      //     // console.log(params);
+      //     return [
+      //       params.seriesName + " : " + params.data.rank + " / " + params.data.total,
+      //     ].join('');
+      //   }
+      // },
+      label: {
+        normal: {
+          show: true,
+          formatter: function (params) {
+            // console.log(params);
+            return [
+              params.data.rank + " / " + params.data.total,
+            ].join('');
+          }
         }
       },
       legend: {
-        data: ['2011年', '2012年'],
+        data: chartData.map(fund => fund.name),
         bottom: '0%'
       },
       grid: {
@@ -27,30 +74,21 @@ class FundRankingBarChart extends Component {
       },
       xAxis: {
         type: 'value',
-        boundaryGap: [0, 0.01]
+        boundaryGap: [0, 0.01],
+        min: 0,
+        max: 1,
       },
       yAxis: {
         type: 'category',
-        data: ['巴西', '印尼', '美国', '印度', '中国', '世界人口(万)']
+        data: ['1月', '3月', '6月', '1年', '2年', '3年']
       },
-      series: [
-        {
-          name: '2011年',
-          type: 'bar',
-          data: [18203, 23489, 29034, 104970, 131744, 630230]
-        },
-        {
-          name: '2012年',
-          type: 'bar',
-          data: [19325, 23438, 31000, 121594, 134141, 681807]
-        }
-      ]
+      series: seriesData,
     };
 
     return (
       <ReactEcharts
         option={option}
-        style={{height:'300px'}}
+        style={{height: '500px'}}
       />
     )
 

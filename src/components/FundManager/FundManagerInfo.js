@@ -35,40 +35,56 @@ const columns = [{
   dataIndex: 'workReturn',
 }];
 
-const data = [{
-  key: '1',
-  fundID: 'John Brown',
-  fundName: 32,
-  fundType: 'New York No. 1 Lake Park',
-  scale: 1,
-  workDate: 1,
-  workTime: 1,
-  workReturn: 1
-}, {
-  key: '2',
-  fundID: 'Jim Green',
-  fundName: 42,
-  fundType: 'London No. 1 Lake Park',
-  scale: 1,
-  workDate: 1,
-  workTime: 1,
-  workReturn: 1
-}, {
-  key: '3',
-  fundID: 'Joe Black',
-  fundName: 32,
-  fundType: 'Sidney No. 1 Lake Park',
-  scale: 1,
-  workDate: 1,
-  workTime: 1,
-  workReturn: 1
-}];
+// const data = [{
+//   key: '1',
+//   fundID: 'John Brown',
+//   fundName: 32,
+//   fundType: 'New York No. 1 Lake Park',
+//   scale: 1,
+//   workDate: 1,
+//   workTime: 1,
+//   workReturn: 1
+// }, {
+//   key: '2',
+//   fundID: 'Jim Green',
+//   fundName: 42,
+//   fundType: 'London No. 1 Lake Park',
+//   scale: 1,
+//   workDate: 1,
+//   workTime: 1,
+//   workReturn: 1
+// }, {
+//   key: '3',
+//   fundID: 'Joe Black',
+//   fundName: 32,
+//   fundType: 'Sidney No. 1 Lake Park',
+//   scale: 1,
+//   workDate: 1,
+//   workTime: 1,
+//   workReturn: 1
+// }];
 
 
 class FundManagerInfo extends Component {
 
   render() {
     const {managerInfo, managerAbility, managerFunds, dispatch} = this.props;
+
+    let data = [];
+    if (managerFunds != null && managerFunds != undefined) {
+      for (let i = 0; i < managerFunds.length; i++) {
+        data.push({
+          key: i,
+          fundID: managerFunds[i].id,
+          fundName: managerFunds[i].name,
+          fundType: managerFunds[i].type,
+          scale: managerFunds[i].scope,
+          workDate: managerFunds[i].startDate + " - " + managerFunds[i].endDate,
+          workTime: managerFunds[i].days,
+          workReturn: managerFunds[i].returns,
+        })
+      }
+    }
 
     // console.log(managerInfo);
     // console.log("！！！！！！");

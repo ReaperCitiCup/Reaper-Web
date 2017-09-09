@@ -11,13 +11,29 @@ class ScatterChart extends Component {
 
     const {chartData} = this.props;
 
-    let data = chartData.map(fund => {
-      // let pointArray = [];
-      // pointArray.push([fund.rate, fund.risk]);
-      return [fund.rate, fund.risk];
-    });
+    console.log(chartData)
 
-    console.log(data);
+    let dataNow;
+    let dataOthers;
+
+    if (chartData.funds) {
+      dataNow = chartData.funds.map(point =>
+        [point.rate, point.risk]
+      );
+    } else if (chartData.managers) {
+      dataNow = chartData.managers.map(point =>
+        [point.rate, point.risk]
+      );
+    }
+
+    if (chartData.others) {
+      dataOthers = chartData.others.map(point =>
+        [point.rate, point.risk]
+      );
+    }
+
+
+    // console.log(data);
 
     let option = {
       grid: {
@@ -45,15 +61,10 @@ class ScatterChart extends Component {
           }
         }
       },
-      // toolbox: {
-      //   feature: {
-      //     dataZoom: {},
-      //     brush: {
-      //       type: ['rect', 'polygon', 'clear']
-      //     }
-      //   }
-      // },
-      // brush: {},
+      legend: {
+        data: ['现任', '其他'],
+        left: 'center'
+      },
       xAxis: [
         {
           type: 'value',
@@ -80,9 +91,9 @@ class ScatterChart extends Component {
       ],
       series: [
         {
-          name: '经理',
+          name: '现任',
           type: 'scatter',
-          data: data,
+          data: dataNow,
           // markPoint: {
           //   data: [
           //     {type: 'max', name: '最大值'},
@@ -100,8 +111,14 @@ class ScatterChart extends Component {
           //     {xAxis: 160}
           //   ]
           // }
+        },
+        {
+          name: '其他',
+          type: 'scatter',
+          data: dataOthers,
         }
-      ]
+      ],
+      color:  ['#81B6F5','#E2827E']
     };
 
     return (

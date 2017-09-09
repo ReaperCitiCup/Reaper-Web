@@ -3,6 +3,8 @@ import {Tabs} from 'antd';
 const TabPane = Tabs.TabPane;
 
 import DivHeader from '../Util/DivHeader';
+import RateLineChart from "../Chart/RateLineChart";
+import NetValueLineChart from "../Chart/NetValueLineChart";
 import AttributionBarChart from'../Chart/AttributionBarChart';
 import AbilityBarChart from'../Chart/AbilityBarChart';
 
@@ -16,10 +18,10 @@ function FundAnalysisCharts() {
         <DivHeader>收益 | 风险走势</DivHeader>
         <Tabs defaultActiveKey="1">
           <TabPane tab="收益率走势" key="1">
-
+            <RateLineChart/>
           </TabPane>
           <TabPane tab="风险走势" key="2">
-
+            <NetValueLineChart/>
           </TabPane>
         </Tabs>
       </div>
@@ -28,16 +30,16 @@ function FundAnalysisCharts() {
         <DivHeader>风险概览</DivHeader>
         <Tabs defaultActiveKey="1">
           <TabPane tab="每日回撤" key="1">
-
+            <NetValueLineChart/>
           </TabPane>
           <TabPane tab="波动率" key="2">
-
+            <NetValueLineChart/>
           </TabPane>
           <TabPane tab="在险价值" key="3">
-
+            <NetValueLineChart/>
           </TabPane>
           <TabPane tab="下行波动率" key="4">
-
+            <NetValueLineChart/>
           </TabPane>
         </Tabs>
       </div>
@@ -46,40 +48,22 @@ function FundAnalysisCharts() {
         <DivHeader>评价指标</DivHeader>
         <Tabs defaultActiveKey="1">
           <TabPane tab="夏普指标" key="1">
-
+            <NetValueLineChart/>
           </TabPane>
           <TabPane tab="特雷诺指标" key="2">
-
+            <NetValueLineChart/>
           </TabPane>
           <TabPane tab="詹森指标" key="3">
-
+            <NetValueLineChart/>
           </TabPane>
           <TabPane tab="信息比率" key="4">
-
+            <NetValueLineChart/>
           </TabPane>
         </Tabs>
       </div>
 
-      <div className="card" id="4">
-        <DivHeader>仓位比例</DivHeader>
-        <div>
 
-        </div>
-      </div>
 
-      <div className="card" id="5">
-        <DivHeader>业绩归因</DivHeader>
-
-        <div className={styles.section}>
-          <h4 className={styles.section_title}>配置收益</h4>
-          <AttributionBarChart color="#81B6F5"/>
-        </div>
-        <div className={styles.section}>
-          <h4 className={styles.section_title}>管理收益</h4>
-          <AttributionBarChart color="#F9D471"/>
-        </div>
-
-      </div>
 
       <div className="card" id="6">
         <DivHeader>风格归因</DivHeader>
@@ -116,6 +100,15 @@ function FundAnalysisCharts() {
 
       <div className="card" id="9">
         <DivHeader>Brison 归因</DivHeader>
+
+        <div className={styles.section}>
+          <h4 className={styles.section_title}>基于股票持仓</h4>
+          <AttributionBarChart color="#81B6F5"/>
+        </div>
+        <div className={styles.section}>
+          <h4 className={styles.section_title}>基于债券持仓</h4>
+          <AttributionBarChart color="#F9D471"/>
+        </div>
 
       </div>
 

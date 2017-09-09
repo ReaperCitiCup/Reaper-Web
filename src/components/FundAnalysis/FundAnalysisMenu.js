@@ -27,11 +27,6 @@ class FundAnalysisMenu extends Component {
           <Menu.Item key="3"><a href="#3">评价指标</a></Menu.Item>
         </SubMenu>
 
-        <SubMenu key="sub2" title="大类资产配置">
-          <Menu.Item key="4"><a href="#4">仓位比例</a></Menu.Item>
-          <Menu.Item key="5"><a href="#5">业绩归因</a></Menu.Item>
-        </SubMenu>
-
         <SubMenu key="sub3" title="绩效归因">
           <MenuItemGroup key="g1" title="股票投资绩效归因">
             <Menu.Item key="6"><a href="#6">风格归因</a></Menu.Item>

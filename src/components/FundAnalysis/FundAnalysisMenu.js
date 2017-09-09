@@ -35,7 +35,7 @@ class FundAnalysisMenu extends Component {
           </MenuItemGroup>
           <MenuItemGroup key="g2" title="债券投资绩效归因">
             <Menu.Item key="9"><a href="#9">Brison 归因</a></Menu.Item>
-            <Menu.Item key="10"><a href="#10">利率曲线归因</a></Menu.Item>
+            <Menu.Item key="10"><a href="#10">品种归因</a></Menu.Item>
           </MenuItemGroup>
         </SubMenu>
 

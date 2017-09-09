@@ -7,6 +7,8 @@ import RateLineChart from "../Chart/RateLineChart";
 import NetValueLineChart from "../Chart/NetValueLineChart";
 import AttributionBarChart from'../Chart/AttributionBarChart';
 import AbilityBarChart from'../Chart/AbilityBarChart';
+import BrisonTable from'../Chart/BrisonTable';
+
 
 import styles from './FundAnalysisCharts.css';
 
@@ -63,8 +65,6 @@ function FundAnalysisCharts() {
       </div>
 
 
-
-
       <div className="card" id="6">
         <DivHeader>风格归因</DivHeader>
 
@@ -101,29 +101,26 @@ function FundAnalysisCharts() {
       <div className="card" id="9">
         <DivHeader>Brison 归因</DivHeader>
 
-        <div className={styles.section}>
-          <h4 className={styles.section_title}>基于股票持仓</h4>
-          <AttributionBarChart color="#81B6F5"/>
-        </div>
-        <div className={styles.section}>
-          <h4 className={styles.section_title}>基于债券持仓</h4>
-          <AttributionBarChart color="#F9D471"/>
-        </div>
+
+        <Tabs defaultActiveKey="1">
+          <TabPane tab="基于股票持仓" key="1">
+            <div className={styles.section}>
+              <AttributionBarChart color="#81B6F5"/>
+            </div>
+            <div className={styles.section}>
+             <BrisonTable/>
+            </div>
+          </TabPane>
+          <TabPane tab="基于债券持仓" key="2">
+
+          </TabPane>
+        </Tabs>
 
       </div>
 
       <div className="card" id="10">
-        <DivHeader>利率曲线归因</DivHeader>
-
-        <div className={styles.section}>
-          <h4 className={styles.section_title}>品种归因</h4>
-          <AttributionBarChart color="#E2827E"/>
-        </div>
-        <div className={styles.section}>
-          <h4 className={styles.section_title}>能力归因</h4>
-          <AttributionBarChart color="#E2827E"/>
-        </div>
-
+        <DivHeader>品种归因</DivHeader>
+        <AttributionBarChart color="#E2827E"/>
       </div>
 
       <div className="card" id="11">

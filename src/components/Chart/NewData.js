@@ -3,27 +3,23 @@ export const data = {
   categories: [
     {
       name: "HTMLElement",
-      keyword: {},
-      base: "HTMLElement"
+
     },
     {
       name: "WebGL",
-      keyword: {},
-      base: "WebGLRenderingContext"
+
     },
     {
       name: "SVG",
-      keyword: {},
-      base: "SVGElement"
+
     },
     {
       name: "CSS",
-      keyword: {},
-      base: "CSSRule"
+
     },
     {
       name: "Other",
-      keyword: {}
+
     }
   ],
   nodes: [

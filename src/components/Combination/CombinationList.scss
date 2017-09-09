@@ -10,3 +10,12 @@
 .list_div {
   margin-top: 30px;
 }
+
+.operation {
+  button {
+    padding-right: 10px;
+    color: $sub-font-color;
+    background-color: transparent;
+    cursor: pointer;
+  }
+}

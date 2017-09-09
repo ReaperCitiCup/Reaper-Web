@@ -7,56 +7,19 @@ import {routerRedux} from 'dva/router';
 
 import {Table, Button, Pagination} from 'antd';
 
+import plus from '../../assets/plus.png';
+
 import styles from './FundListTable.css';
 
-const columns = [{
-  title: '基金代码',
-  dataIndex: 'code',
-}, {
-  title: '基金名称',
-  dataIndex: 'name',
-}, {
-  title: '基金经理',
-  dataIndex: 'manager',
-}, {
-  title: '年化收益',
-  dataIndex: 'annualProfit',
-}, {
-  title: '波动率',
-  dataIndex: 'volatility',
-}];
 
-// const data = [];
-// for (let i = 0; i < 10; i++) {
-//   data.push({
-//     key: i,
-//     code: `1111 ${i}`,
-//     name: `基金${i}`,
-//     manager: `London, Park Lane no. ${i}`,
-//     annualProfit: `0.03`,
-//     volatility: `111`
-//   });
-// }
 
 class FundListTable extends Component {
-  state = {
-    selectedRowKeys: [],  // Check here to configure the default column
-    loading: false,
-  };
-  start = () => {
-    this.setState({loading: true});
-    // ajax request after empty completing
-    setTimeout(() => {
-      this.setState({
-        selectedRowKeys: [],
-        loading: false,
-      });
-    }, 1000);
-  };
-  onSelectChange = (selectedRowKeys) => {
-    console.log('selectedRowKeys changed: ', selectedRowKeys);
-    this.setState({selectedRowKeys});
-  };
+
+
+  constructor(props) {
+    super(props)
+
+  }
 
   onClickRow = (record, index, event) => {
     const {dispatch} = this.props;
@@ -73,34 +36,65 @@ class FundListTable extends Component {
 
   render() {
     const {data, page, totalCount} = this.props;
+    const columns = [{
+      title: '基金代码',
+      dataIndex: 'code',
+    }, {
+      title: '基金名称',
+      dataIndex: 'name',
+    }, {
+      title: '基金经理',
+      dataIndex: 'manager',
+    }, {
+      title: '年化收益',
+      dataIndex: 'annualProfit',
+    }, {
+      title: '波动率',
+      dataIndex: 'volatility',
+    }, {
+      title: '添加至组合',
+      dataIndex: 'add',
+      render: (text, record, index) => {
 
-    const {loading, selectedRowKeys} = this.state;
-    const rowSelection = {
-      selectedRowKeys,
-      onChange: this.onSelectChange,
-    };
-    const hasSelected = selectedRowKeys.length > 0;
+        const {items, dispatch} = this.props;
+        const addable = items.filter(item => item.code === record.code).length === 0;
+
+        console.log(items, record.code, addable)
+        return (
+          <div className="editable-row-operations">
+            {
+              addable ?
+                <span>
+                  <img src={plus}
+                       width={14}
+                       onClick={(event) => {
+                         event.stopPropagation();
+                         dispatch({
+                           type: 'createCombination/addItem',
+                           payload: {
+                             code: record.code,
+                             name: record.name
+                           }
+                         })
+                       }}
+                  />
+            </span>
+                : null
+            }
+          </div>
+        );
+      }
+    }];
     return (
       <div className="container">
-        <div style={{marginBottom: 16}}>
-          <Button
-            type="primary"
-            onClick={this.start}
-            disabled={!hasSelected}
-            loading={loading}
-          >
-            清空
-          </Button>
-          <span style={{marginLeft: 8}}>
-            {hasSelected ? `Selected ${selectedRowKeys.length} items` : ''}
-          </span>
-        </div>
+
         <div className={styles.tableDiv}>
-          <Table rowSelection={rowSelection}
-                 columns={columns}
-                 dataSource={data}
-                 pagination={false}
-                 onRowClick={this.onClickRow}
+          <Table
+            // rowSelection={rowSelection}
+            columns={columns}
+            dataSource={data}
+            pagination={false}
+            onRowClick={this.onClickRow}
           />
         </div>
         <Pagination className={styles.pagination}
@@ -120,7 +114,8 @@ function mapStateToProps(state) {
   return {
     data: state.search.result,
     totalCount: state.search.totalCount,
-    page: state.search.page
+    page: state.search.page,
+    items: state.createCombination.items,
   };
 }
 

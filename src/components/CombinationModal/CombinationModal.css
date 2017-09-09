@@ -18,14 +18,43 @@ button {
 
 .modal {
   width: 460px;
-  height: 380px;
   padding: 20px;
   background-color: #F9FAFB;
   border: solid 1px #9FAEC0; }
-  .modal h5 {
-    margin-bottom: 20px;
+
+.title_wrapper {
+  height: 24px; }
+  .title_wrapper h5 {
+    display: inline-block;
+    vertical-align: top;
     color: #3D5673;
     font-size: 16px;
     font-weight: 500; }
+  .title_wrapper img {
+    float: right;
+    margin-top: 5px;
+    cursor: pointer; }
+
+.input {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  border-color: #9FAEC0;
+  border-radius: 0;
+  font-size: 14px; }
+
+.item_list {
+  height: 220px;
+  border: solid 1px #9FAEC0;
+  background-color: #fff;
+  overflow: scroll; }
+
+.button {
+  float: right;
+  font-weight: 400;
+  margin-top: 10px;
+  border-radius: 0;
+  color: #3D5673;
+  background-color: #F9FAFB;
+  border-color: #9FAEC0; }
 
 /*# sourceMappingURL=CombinationModal.css.map */

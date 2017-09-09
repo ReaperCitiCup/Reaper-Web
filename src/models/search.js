@@ -75,7 +75,8 @@ export default {
       function*(action, {call, put, select}) {
 
         const {keyword, order, page} = yield select(state => state.search);
-        console.log(keyword, order)
+        if (!keyword) return;
+
         const {data} = yield call(searchService.search, keyword, order, SEARCH_FUND_SIZE, page);
 
         console.log(data);

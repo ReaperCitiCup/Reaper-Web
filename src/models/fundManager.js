@@ -3,6 +3,7 @@ import * as fundManagerService from '../services/fundManager';
 export default {
   namespace: 'fundManager',
   state: {
+    fundCode: null,
     allManagers: null,
     activeManagerId: null,
     managerInfo: null,

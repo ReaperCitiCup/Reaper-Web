@@ -38,7 +38,6 @@ export default {
     saveResult(state, {payload: result}) {
 
       result.forEach(fund => {
-
         let m = '';
         fund.manager.forEach(manager => m = m + manager.name + ' ');
         fund.key = fund.code;

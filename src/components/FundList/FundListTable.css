@@ -23,4 +23,7 @@ button {
   display: table;
   margin: 0 auto; }
 
+.operation img {
+  cursor: pointer; }
+
 /*# sourceMappingURL=FundListTable.css.map */

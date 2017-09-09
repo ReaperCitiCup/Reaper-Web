@@ -53,7 +53,7 @@ class FundListTable extends Component {
 
         // console.log(items, record.code, addable)
         return (
-          <div className="editable-row-operations">
+          <div className={styles.operation}>
             {
               addable ?
                 <span>

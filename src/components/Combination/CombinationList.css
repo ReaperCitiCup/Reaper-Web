@@ -24,4 +24,10 @@ button {
 .list_div {
   margin-top: 30px; }
 
+.operation button {
+  padding-right: 10px;
+  color: #81B6F5;
+  background-color: transparent;
+  cursor: pointer; }
+
 /*# sourceMappingURL=CombinationList.css.map */

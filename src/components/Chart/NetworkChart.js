@@ -13,7 +13,7 @@ class NetworkChart extends Component {
 
     let option = {
       legend: {
-        data: categories
+        data:categories
       },
       tooltip: {
         trigger: 'item',
@@ -23,19 +23,7 @@ class NetworkChart extends Component {
         layout: 'force',
         animation: false,
         label: false,
-        // label: {
-        //   normal: {
-        //     position: 'right',
-        //     formatter: '{b}'
-        //   }
-        // },
-        // edgeLabel: {
-        //   normal: {
-        //     show: true,
-        //     position: 'middle',
-        //     formatter: '{c}'
-        //   }
-        // },
+
         draggable: true,
         data: data.nodes.map(function (node, idx) {
           node.id = idx;
@@ -53,7 +41,6 @@ class NetworkChart extends Component {
         top: 80,
         tooltip: {
           formatter: function (params, ticket, callback) {
-            console.log(params)
             if (params.dataType === 'node') {
               return params.data.name
             } else if (params.dataType === 'edge') {

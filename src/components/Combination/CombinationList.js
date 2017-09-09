@@ -2,18 +2,17 @@
  * Created by st on 2017/9/5.
  */
 import React, {Component} from 'react';
-import styles from "./CombinationList.css";
+import {connect} from 'dva';
 import {Table} from 'antd';
 
+import styles from "./CombinationList.css";
+
 const columns = [{
-  title: '序号',
-  dataIndex: 'combId',
-}, {
   title: '组合名称',
-  dataIndex: 'combName',
+  dataIndex: 'name',
 }, {
   title: '累计收益',
-  dataIndex: 'accumulatedProfit',
+  dataIndex: 'cumulativeProfit',
 }, {
   title: '年化收益',
   dataIndex: 'annualProfit',
@@ -21,26 +20,26 @@ const columns = [{
   title: '最大回撤',
   dataIndex: 'maxRetracement',
 }, {
-  title: '删除',
-  dataIndex: 'delete',
-}];
+  title: '操作',
+  dataIndex: 'operation',
+  render: (text, record, index) => {
 
-const data = [];
-for (let i = 0; i < 10; i++) {
-  data.push({
-    key: i,
-    combId: i,
-    combName: `我的组合 ${i}`,
-    accumulatedProfit: 100,
-    annualProfit: 100,
-    maxRetracement: 100,
-    delete: 100
-  });
-}
+    // console.log(items, record.code, addable)
+    return (
+      <div className={styles.operation}>
+
+        <button>删除</button>
+
+        <button>回测</button>
+      </div>
+    );
+  }
+}];
 
 class CombinationList extends Component {
 
   render() {
+    const {data} = this.props;
     return (
       <div className="container">
         <div>
@@ -48,7 +47,11 @@ class CombinationList extends Component {
         </div>
 
         <div className={styles.list_div}>
-          <Table columns={columns} dataSource={data} size="middle" pagination={false}/>
+          <Table columns={columns}
+                 dataSource={data}
+                 size="middle"
+                 pagination={false}
+          />
         </div>
 
       </div>
@@ -56,4 +59,10 @@ class CombinationList extends Component {
   }
 }
 
-export default CombinationList;
+function mapStateToProps(state) {
+  return {
+    data: state.combination.combinations,
+  };
+}
+
+export default connect(mapStateToProps)(CombinationList);

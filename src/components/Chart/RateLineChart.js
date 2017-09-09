@@ -14,9 +14,11 @@ class RateLineChart extends Component {
     let dateList = [];
     let valueList = [];
 
-    for (let i = 0; i < chartData.length; i++) {
-      dateList.push(chartData[i].date);
-      valueList.push(chartData[i].value);
+    if (chartData) {
+      for (let i = 0; i < chartData.length; i++) {
+        dateList.push(chartData[i].date);
+        valueList.push(chartData[i].value);
+      }
     }
 
     let option = {

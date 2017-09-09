@@ -55,11 +55,14 @@ export default {
     setup({dispatch, history}) {
       return history.listen(({pathname, query}) => {
         // console.log(pathname.split('/'))
-        if (pathname.indexOf('/fund/') === 0 && pathname.split('/').length === 3) {
-          let id = pathname.split('/fund/')[1];
+        let path = pathname.split('/');
+        if (path.indexOf('fund') === 1) {
+          let id = path[2];
           window.scrollTo(0, 0);
           dispatch({type: 'fetchFundBrief', payload: id});
-          dispatch({type: 'fetchFund', payload: id});
+          if (path.length === 3) {
+            dispatch({type: 'fetchFund', payload: id});
+          }
         }
       });
     },

@@ -7,6 +7,16 @@ import React, {Component} from 'react';
 
 class FundManagerRadarChart extends Component {
   render() {
+
+    const {chartData} = this.props;
+
+    let data = [];
+    data.push(chartData.experience);
+    data.push(chartData.timing);
+    data.push(chartData.returns);
+    data.push(chartData.stability);
+    data.push(chartData.antirisk);
+
     let option = {
       tooltip: {},
       grid: {
@@ -28,11 +38,11 @@ class FundManagerRadarChart extends Component {
           }
         },
         indicator: [
-          {name: '经验值', max: 6500},
-          {name: '择时能力', max: 16000},
-          {name: '收益率', max: 30000},
-          {name: '稳定性', max: 38000},
-          {name: '抗风险', max: 52000},
+          {name: '经验值', max: 100},
+          {name: '择时能力', max: 100},
+          {name: '收益率', max: 100},
+          {name: '稳定性', max: 100},
+          {name: '抗风险', max: 100},
         ]
       },
       series: [{
@@ -44,7 +54,7 @@ class FundManagerRadarChart extends Component {
         },
         data: [
           {
-            value: [4300, 10000, 28000, 35000, 50000],
+            value: data,
             name: '基金经理',
             lineStyle: {
               normal: {
@@ -60,7 +70,7 @@ class FundManagerRadarChart extends Component {
     return (
       <ReactEcharts
         option={option}
-        style={{height:'320px'}}
+        style={{height: '320px'}}
       />
     )
 

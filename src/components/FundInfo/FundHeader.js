@@ -11,8 +11,8 @@ function FundHeader({fundBrief}) {
       <div className={styles.header}>
 
         <div className={styles.title}>
-          <h1>{fundBrief.name ? fundBrief.name : null}</h1>
-          <h2>{fundBrief.code ? fundBrief.code : null}</h2>
+          <h1>{fundBrief ? fundBrief.name : null}</h1>
+          <h2>{fundBrief ? fundBrief.code : null}</h2>
         </div>
 
         {fundBrief ?

@@ -2,6 +2,7 @@
  * Created by st on 2017/9/1.
  */
 import React, {Component} from 'react';
+import {connect} from 'dva';
 import styles from "./ManagerCharts.css";
 import {Table, Button, Tabs} from 'antd';
 import DivHeader from "../Util/DivHeader";
@@ -64,4 +65,13 @@ class ManagerCharts extends Component {
   }
 }
 
-export default ManagerCharts;
+ManagerCharts.propTypes = {};
+
+function mapStateToProps(state) {
+  return {
+    // managerInfo: state.fundManager.managerInfo,
+  };
+}
+
+export default connect(mapStateToProps)(ManagerCharts);
+

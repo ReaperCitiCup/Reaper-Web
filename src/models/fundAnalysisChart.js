@@ -25,6 +25,8 @@ export default {
     fundBrisonAttributionBond: null,
     fundChooseTime: null,
     fundChooseStock: null,
+    fundPerformanceAnalysis: null,
+    managerPerformanceAnalysis: null,
     fundPublicOpinion: null,
   },
   reducers: {
@@ -165,6 +167,20 @@ export default {
       return {
         ...state,
         fundChooseStock,
+      }
+    },
+
+    saveFundPerformanceAnalysis(state, {payload: fundPerformanceAnalysis}) {
+      return {
+        ...state,
+        fundPerformanceAnalysis,
+      }
+    },
+
+    saveManagerPerformanceAnalysis(state, {payload: managerPerformanceAnalysis}) {
+      return {
+        ...state,
+        managerPerformanceAnalysis,
       }
     },
 
@@ -497,6 +513,38 @@ export default {
       });
     },
 
+    *fetchFundPerformanceAnalysis({payload: code}, {call, put, select}) {
+      yield put({
+        type: 'saveFundPerformanceAnalysis',
+        payload: null,
+      });
+
+      const {data} = yield call(fundAnalysisChartService.fetchFundPerformanceAnalysis, code);
+
+      // console.log(data);
+
+      yield put({
+        type: 'saveFundPerformanceAnalysis',
+        payload: data
+      });
+    },
+
+    *fetchManagerPerformanceAnalysis({payload: code}, {call, put, select}) {
+      yield put({
+        type: 'saveManagerPerformanceAnalysis',
+        payload: null,
+      });
+
+      const {data} = yield call(fundAnalysisChartService.fetchManagerPerformanceAnalysis, code);
+
+      // console.log(data);
+
+      yield put({
+        type: 'saveManagerPerformanceAnalysis',
+        payload: data
+      });
+    },
+
     *fetchFundPublicOpinion({payload: code}, {call, put, select}) {
       yield put({
         type: 'saveFundPublicOpinion',
@@ -546,6 +594,8 @@ export default {
           dispatch({type: 'fetchFundBrisonAttributionBond', payload: id});
           dispatch({type: 'fetchFundChooseTime', payload: id});
           dispatch({type: 'fetchFundChooseStock', payload: id});
+          dispatch({type: 'fetchFundPerformanceAnalysis', payload: id});
+          dispatch({type: 'fetchManagerPerformanceAnalysis', payload: id});
           dispatch({type: 'fetchFundPublicOpinion', payload: id});
         }
       });

@@ -128,3 +128,15 @@ export function fetchFundPublicOpinion(code) {
     method: 'GET',
   });
 }
+
+export function fetchFundPerformanceAnalysis(code) {
+  return request(`/api/fund/${code}/fund-performance`, {
+    method: 'GET',
+  });
+}
+
+export function fetchManagerPerformanceAnalysis(code) {
+  return request(`/api/fund/${code}/manager-performance`, {
+    method: 'GET',
+  });
+}

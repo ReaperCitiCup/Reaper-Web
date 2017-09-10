@@ -11,6 +11,7 @@ import AbilityBarChart from'../Chart/AbilityBarChart';
 import StabilityRadarChart from'../Chart/StabilityRadarChart';
 import BrisonTable from'../Chart/BrisonTable';
 import AssetBarChart from '../Chart/AssetBarChart';
+import ScatterChart from '../Chart/ScatterChart';
 
 
 import styles from './FundAnalysisCharts.css';
@@ -21,7 +22,8 @@ function FundAnalysisCharts({
   fundJensenIndex, fundInformationRatio, fundStyleAttributionProfit, fundStyleAttributionRisk,
   fundIndustryAttributionProfit, fundIndustryAttributionRisk, fundStyleStabilityProfit,
   fundStyleStabilityRisk, fundVarietyAttribution, fundBrisonAttributionStock,
-  fundBrisonAttributionBond, fundChooseTime, fundChooseStock, fundPublicOpinion
+  fundBrisonAttributionBond, fundChooseTime, fundChooseStock, fundPublicOpinion,
+  fundPerformanceAnalysis, managerPerformanceAnalysis
 }) {
   // console.log(fundBrisonAttributionBond);
   return (
@@ -194,9 +196,13 @@ function FundAnalysisCharts({
 
         <div className={styles.section}>
           <h4 className={styles.section_title}>当前基金经理历任基金表现</h4>
+          {fundPerformanceAnalysis ?
+            <ScatterChart chartData={fundPerformanceAnalysis}/> : null}
         </div>
         <div className={styles.section}>
           <h4 className={styles.section_title}>当前基金经理综合表现</h4>
+          {managerPerformanceAnalysis ?
+            <ScatterChart chartData={managerPerformanceAnalysis}/> : null}
         </div>
 
       </div>
@@ -236,6 +242,8 @@ function mapStateToProps(state) {
     fundBrisonAttributionBond: state.fundAnalysisChart.fundBrisonAttributionBond,
     fundChooseTime: state.fundAnalysisChart.fundChooseTime,
     fundChooseStock: state.fundAnalysisChart.fundChooseStock,
+    fundPerformanceAnalysis: state.fundAnalysisChart.fundPerformanceAnalysis,
+    managerPerformanceAnalysis: state.fundAnalysisChart.managerPerformanceAnalysis,
     fundPublicOpinion: state.fundAnalysisChart.fundPublicOpinion,
   };
 }

@@ -45,7 +45,7 @@ class AbilityBarChart extends Component {
       })
     });
 
-    console.log(field);
+    // console.log(field);
 
     let seriesData = [];
     field.forEach(fieldValue => {
@@ -63,7 +63,7 @@ class AbilityBarChart extends Component {
     });
 
 
-    console.log(seriesData);
+    // console.log(seriesData);
 
     let option = {
       tooltip: {

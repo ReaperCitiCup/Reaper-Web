@@ -27,7 +27,7 @@ class AssetBarChart extends Component {
       })
     });
 
-    console.log(transferredData);
+    // console.log(transferredData);
 
     let seriesData = [];
     transferredData.forEach(dataValue => {
@@ -54,7 +54,7 @@ class AssetBarChart extends Component {
       })
     });
 
-    console.log(seriesData)
+    // console.log(seriesData)
 
     let option = {
       tooltip: {

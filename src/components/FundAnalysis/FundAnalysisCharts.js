@@ -186,7 +186,14 @@ function FundAnalysisCharts({
       </div>
 
       <div className="card" id="12">
-        <DivHeader>基金经理表现</DivHeader>
+        {/*<DivHeader>择时 | 择股能力</DivHeader>*/}
+
+        <div className={styles.section}>
+          <DivHeader>当前基金经理历任基金表现</DivHeader>
+        </div>
+        <div className={styles.section}>
+          <DivHeader>当前基金经理综合表现</DivHeader>
+        </div>
 
       </div>
     </div>

@@ -14,7 +14,7 @@ class FundManagerRadarChart extends Component {
     data.push(chartData.experience);
     data.push(chartData.timing);
     data.push(chartData.returns);
-    data.push(chartData.stability);
+    data.push(chartData.stockSelect);
     data.push(chartData.antirisk);
 
     let option = {
@@ -41,7 +41,7 @@ class FundManagerRadarChart extends Component {
           {name: '经验值', max: 100},
           {name: '择时能力', max: 100},
           {name: '收益率', max: 100},
-          {name: '稳定性', max: 100},
+          {name: '择股能力', max: 100},
           {name: '抗风险', max: 100},
         ]
       },

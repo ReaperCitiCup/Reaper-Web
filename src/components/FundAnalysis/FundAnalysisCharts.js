@@ -30,7 +30,7 @@ function FundAnalysisCharts({
     <div className={ styles.fund_analysis_chart}>
 
       <div className="card" id="1">
-        <DivHeader>收益 | 风险走势</DivHeader>
+        <DivHeader>收益概览</DivHeader>
         <Tabs defaultActiveKey="1">
           <TabPane tab="收益率走势" key="1">
             {cumulativeProfitData ?

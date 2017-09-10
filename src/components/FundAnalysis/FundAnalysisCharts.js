@@ -1,4 +1,5 @@
 import React from 'react';
+import {connect} from 'dva';
 import {Tabs} from 'antd';
 const TabPane = Tabs.TabPane;
 
@@ -13,7 +14,13 @@ import BrisonTable from'../Chart/BrisonTable';
 
 import styles from './FundAnalysisCharts.css';
 
-function FundAnalysisCharts() {
+function FundAnalysisCharts({
+  cumulativeProfitData, fundRiskTrend, fundDailyRetracement, fundVolatility,
+  fundValueAtRisk, fundDownsideVolatility, fundSharpeIndex, fundTreynorIndex,
+  fundJensenIndex, fundInformationRatio, fundStyleAttributionProfit, fundStyleAttributionRisk,
+  fundIndustryAttributionProfit, fundIndustryAttributionRisk, fundStyleStabilityProfit,
+  fundStyleStabilityRisk
+}) {
   return (
     <div className={ styles.fund_analysis_chart}>
 
@@ -21,10 +28,12 @@ function FundAnalysisCharts() {
         <DivHeader>收益 | 风险走势</DivHeader>
         <Tabs defaultActiveKey="1">
           <TabPane tab="收益率走势" key="1">
-            <RateLineChart/>
+            {cumulativeProfitData ?
+              <RateLineChart chartData={cumulativeProfitData}/> : null}
           </TabPane>
           <TabPane tab="风险走势" key="2">
-            <NetValueLineChart/>
+            {fundRiskTrend ?
+              <NetValueLineChart chartData={fundRiskTrend}/> : null}
           </TabPane>
         </Tabs>
       </div>
@@ -33,16 +42,20 @@ function FundAnalysisCharts() {
         <DivHeader>风险概览</DivHeader>
         <Tabs defaultActiveKey="1">
           <TabPane tab="每日回撤" key="1">
-            <NetValueLineChart/>
+            {fundDailyRetracement ?
+              <NetValueLineChart chartData={fundDailyRetracement}/> : null}
           </TabPane>
           <TabPane tab="波动率" key="2">
-            <NetValueLineChart/>
+            {fundVolatility ?
+              <NetValueLineChart chartData={fundVolatility}/> : null}
           </TabPane>
           <TabPane tab="在险价值" key="3">
-            <NetValueLineChart/>
+            {fundValueAtRisk ?
+              <NetValueLineChart chartData={fundValueAtRisk}/> : null}
           </TabPane>
           <TabPane tab="下行波动率" key="4">
-            <NetValueLineChart/>
+            {fundDownsideVolatility ?
+              <NetValueLineChart chartData={fundDownsideVolatility}/> : null}
           </TabPane>
         </Tabs>
       </div>
@@ -51,16 +64,23 @@ function FundAnalysisCharts() {
         <DivHeader>评价指标</DivHeader>
         <Tabs defaultActiveKey="1">
           <TabPane tab="夏普指标" key="1">
-            <NetValueLineChart/>
+            {fundSharpeIndex ?
+              <NetValueLineChart chartData={fundSharpeIndex}/> : null}
           </TabPane>
           <TabPane tab="特雷诺指标" key="2">
-            <NetValueLineChart/>
+            {fundTreynorIndex ?
+              <NetValueLineChart chartData={fundTreynorIndex}/> : null}
           </TabPane>
           <TabPane tab="詹森指标" key="3">
+            {fundJensenIndex ?
+              <NetValueLineChart chartData={fundJensenIndex}/> : null}
+          </TabPane>
+          <TabPane tab="业绩持续性指标" key="4">
             <NetValueLineChart/>
           </TabPane>
-          <TabPane tab="信息比率" key="4">
-            <NetValueLineChart/>
+          <TabPane tab="信息比率" key="5">
+            {fundInformationRatio ?
+              <NetValueLineChart chartData={fundInformationRatio}/> : null}
           </TabPane>
         </Tabs>
       </div>
@@ -68,14 +88,15 @@ function FundAnalysisCharts() {
 
       <div className="card" id="6">
         <DivHeader>风格归因</DivHeader>
-
         <div className={styles.section}>
           <h4 className={styles.section_title}>主动收益</h4>
-          <AttributionBarChart color="#81B6F5"/>
+          {fundStyleAttributionProfit ?
+            <AttributionBarChart chartData={fundStyleAttributionProfit} color="#81B6F5"/> : null}
         </div>
         <div className={styles.section}>
           <h4 className={styles.section_title}>主动风险</h4>
-          <AttributionBarChart color="#F9D471"/>
+          {fundStyleAttributionRisk ?
+            <AttributionBarChart chartData={fundStyleAttributionRisk} color="#F9D471"/> : null}
         </div>
 
       </div>
@@ -85,11 +106,13 @@ function FundAnalysisCharts() {
 
         <div className={styles.section}>
           <h4 className={styles.section_title}>主动收益</h4>
-          <AttributionBarChart color="#81B6F5"/>
+          {fundIndustryAttributionProfit ?
+            <AttributionBarChart chartData={fundIndustryAttributionProfit} color="#81B6F5"/> : null}
         </div>
         <div className={styles.section}>
           <h4 className={styles.section_title}>主动风险</h4>
-          <AttributionBarChart color="#F9D471"/>
+          {fundIndustryAttributionRisk ?
+            <AttributionBarChart chartData={fundIndustryAttributionRisk} color="#F9D471"/> : null}
         </div>
 
       </div>
@@ -98,11 +121,13 @@ function FundAnalysisCharts() {
         <DivHeader>风格稳定性</DivHeader>
         <div className={styles.section}>
           <h4 className={styles.section_title}>主动收益</h4>
-          <StabilityRadarChart/>
+          {fundStyleStabilityProfit ?
+            <StabilityRadarChart chartData={fundStyleStabilityProfit}/> : null}
         </div>
         <div className={styles.section}>
           <h4 className={styles.section_title}>主动风险</h4>
-          <StabilityRadarChart/>
+          {fundStyleStabilityRisk ?
+            <StabilityRadarChart chartData={fundStyleStabilityRisk}/> : null}
         </div>
       </div>
 
@@ -116,7 +141,7 @@ function FundAnalysisCharts() {
               <AttributionBarChart color="#81B6F5"/>
             </div>
             <div className={styles.section}>
-             <BrisonTable/>
+              <BrisonTable/>
             </div>
           </TabPane>
           <TabPane tab="基于债券持仓" key="2">
@@ -153,4 +178,28 @@ function FundAnalysisCharts() {
   )
 }
 
-export default FundAnalysisCharts;
+FundAnalysisCharts.propTypes = {};
+
+function mapStateToProps(state) {
+  return {
+    cumulativeProfitData: state.fundChart.cumulativeProfitData,
+    fundRiskTrend: state.fundAnalysisChart.fundRiskTrend,
+    fundDailyRetracement: state.fundAnalysisChart.fundDailyRetracement,
+    fundVolatility: state.fundAnalysisChart.fundVolatility,
+    fundValueAtRisk: state.fundAnalysisChart.fundValueAtRisk,
+    fundDownsideVolatility: state.fundAnalysisChart.fundDownsideVolatility,
+    fundSharpeIndex: state.fundAnalysisChart.fundSharpeIndex,
+    fundTreynorIndex: state.fundAnalysisChart.fundTreynorIndex,
+    fundJensenIndex: state.fundAnalysisChart.fundJensenIndex,
+    fundInformationRatio: state.fundAnalysisChart.fundInformationRatio,
+    fundStyleAttributionProfit: state.fundAnalysisChart.fundStyleAttributionProfit,
+    fundStyleAttributionRisk: state.fundAnalysisChart.fundStyleAttributionRisk,
+    fundIndustryAttributionProfit: state.fundAnalysisChart.fundIndustryAttributionProfit,
+    fundIndustryAttributionRisk: state.fundAnalysisChart.fundIndustryAttributionRisk,
+    fundStyleStabilityProfit: state.fundAnalysisChart.fundStyleStabilityProfit,
+    fundStyleStabilityRisk: state.fundAnalysisChart.fundStyleStabilityRisk,
+
+  };
+}
+
+export default connect(mapStateToProps)(FundAnalysisCharts);

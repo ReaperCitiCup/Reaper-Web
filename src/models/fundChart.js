@@ -104,7 +104,7 @@ export default  {
 
       const {data} = yield call(fundChartService.fetchCumulativeProfitData, code, month);
 
-      // console.log(data);
+      console.log(data);
 
       yield put({
         type: 'drawCumulativeProfitChart',

@@ -27,7 +27,7 @@ class NetValueLineChart extends Component {
       // }
     }
 
-    console.log(data)
+    // console.log(data)
 
     let option = {
       tooltip: {

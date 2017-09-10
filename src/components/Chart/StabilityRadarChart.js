@@ -7,20 +7,7 @@ class StabilityRadarChart extends Component {
 
     const {chartData} = this.props;
 
-    let data = [
-      {field: "beta", value: 24.14},
-      {field: "价值", value: 60.57},
-      {field: "动量", value: 19.50},
-      {field: "市值", value: 92.47},
-      {field: "成长性", value: 82.62},
-      {field: "杠杆率", value: 39.14},
-      {field: "波动率", value: 10.39},
-      {field: "流动性", value: 58.20},
-      {field: "特殊性成分", value: 23.49},
-      {field: "盈利能力", value: 85.38},
-      {field: "行业", value: 74.39},
-      {field: "非线性市值", value: 8.49},
-    ];
+    let data = chartData;
 
 
     let indicator = data.map(d => {

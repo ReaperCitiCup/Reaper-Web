@@ -6,6 +6,8 @@ export default {
   namespace: 'fundCompany',
   state: {
     companyId: null,
+    fundPerformance: null,
+    managerPerformance: null,
     productStrategy: null,
     assetAllocation: null,
     styleAttributionProfit: null,
@@ -18,6 +20,20 @@ export default {
       return {
         ...state,
         companyId,
+      }
+    },
+
+    saveFundPerformance(state, {payload: fundPerformance}) {
+      return {
+        ...state,
+        fundPerformance,
+      }
+    },
+
+    saveManagerPerformance(state, {payload: managerPerformance}) {
+      return {
+        ...state,
+        managerPerformance,
       }
     },
 
@@ -77,6 +93,34 @@ export default {
       })
     },
 
+    *fetchFundPerformance(action, {call, put, select}) {
+
+      const companyId = yield select(state => state.fundCompany.companyId);
+
+      const {data} = yield call(fundCompanyService.fetchCompanyFundPerformance, companyId);
+
+      console.log(data);
+
+      yield put({
+        type: 'saveFundPerformance',
+        payload: data,
+      })
+    },
+
+    *fetchManagerPerformance(action, {call, put, select}) {
+
+      const companyId = yield select(state => state.fundCompany.companyId);
+
+      const {data} = yield call(fundCompanyService.fetchCompanyManagerPerformance, companyId);
+
+      console.log(data);
+
+      yield put({
+        type: 'saveManagerPerformance',
+        payload: data,
+      })
+    },
+
     *fetchProductStrategy(action, {call, put, select}) {
 
       const companyId = yield select(state => state.fundCompany.companyId);
@@ -111,7 +155,7 @@ export default {
 
       const {data} = yield call(fundCompanyService.fetchCompanyStyleAttributionProfit, companyId);
 
-      console.log(data);
+      // console.log(data);
 
       yield put({
         type: 'saveStyleAttributionProfit',
@@ -139,7 +183,7 @@ export default {
 
       const {data} = yield call(fundCompanyService.fetchCompanyIndustryAttributionProfit, companyId);
 
-      console.log(data);
+      // console.log(data);
 
       yield put({
         type: 'saveIndustryAttributionProfit',
@@ -153,7 +197,7 @@ export default {
 
       const {data} = yield call(fundCompanyService.fetchCompanyIndustryAttributionRisk, companyId);
 
-      console.log(data);
+      // console.log(data);
 
       yield put({
         type: 'saveIndustryAttributionRisk',
@@ -172,6 +216,8 @@ export default {
           // console.log("-------id: "+id);
           // window.scrollTo(0, 0);
           dispatch({type: 'fetchCompanyId', payload: id});
+          dispatch({type: 'fetchFundPerformance'});
+          dispatch({type: 'fetchManagerPerformance'});
           dispatch({type: 'fetchProductStrategy'});
           dispatch({type: 'fetchAssetAllocation'});
           dispatch({type: 'fetchStyleAttributionProfit'});

@@ -9,6 +9,18 @@ export function fetchCompanyId(code) {
   });
 }
 
+export function fetchCompanyFundPerformance(companyId) {
+  return request(`/api/company/${companyId}/fund-performance`, {
+    method: 'GET',
+  });
+}
+
+export function fetchCompanyManagerPerformance(companyId) {
+  return request(`/api/company/${companyId}/manager-performance`, {
+    method: 'GET',
+  });
+}
+
 export function fetchCompanyProductStrategy(companyId) {
   return request(`/api/company/${companyId}/product-strategy`, {
     method: 'GET',

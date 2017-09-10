@@ -62,7 +62,7 @@ class ScatterChart extends Component {
         }
       },
       legend: {
-        data: ['现任', '其他'],
+        data: ['当前', '其他'],
         left: 'center'
       },
       xAxis: [
@@ -91,7 +91,7 @@ class ScatterChart extends Component {
       ],
       series: [
         {
-          name: '现任',
+          name: '当前',
           type: 'scatter',
           data: dataNow,
           // markPoint: {

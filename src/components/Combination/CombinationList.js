@@ -5,41 +5,80 @@ import React, {Component} from 'react';
 import {connect} from 'dva';
 import {Table} from 'antd';
 
+import CombinationBacktestModal from'../Combination/CombinationBacktestModal';
+
 import styles from "./CombinationList.css";
-
-const columns = [{
-  title: '组合名称',
-  dataIndex: 'name',
-}, {
-  title: '累计收益',
-  dataIndex: 'cumulativeProfit',
-}, {
-  title: '年化收益',
-  dataIndex: 'annualProfit',
-}, {
-  title: '最大回撤',
-  dataIndex: 'maxRetracement',
-}, {
-  title: '操作',
-  dataIndex: 'operation',
-  render: (text, record, index) => {
-
-    // console.log(items, record.code, addable)
-    return (
-      <div className={styles.operation}>
-
-        <button>删除</button>
-
-        <button>回测</button>
-      </div>
-    );
-  }
-}];
 
 class CombinationList extends Component {
 
+  onModalOk = () => {
+    const {dispatch} = this.props;
+    dispatch({
+      type: 'backTestModal/saveShowAndId',
+      payload: {
+        show: false,
+        id: null
+      }
+    })
+  };
+
+  onModalCancel = () => {
+    const {dispatch} = this.props;
+    dispatch({
+      type: 'backTestModal/saveShowAndId',
+      payload: {
+        show: false,
+        id: null
+      }
+    })
+  };
+
   render() {
-    const {data} = this.props;
+    const {dispatch, data, showModal} = this.props;
+
+
+    const columns = [{
+      title: '组合名称',
+      dataIndex: 'name',
+    }, {
+      title: '累计收益',
+      dataIndex: 'cumulativeProfit',
+    }, {
+      title: '年化收益',
+      dataIndex: 'annualProfit',
+    }, {
+      title: '最大回撤',
+      dataIndex: 'maxRetracement',
+    }, {
+      title: '操作',
+      dataIndex: 'operation',
+      render: (text, record, index) => {
+
+        // console.log(items, record.code, addable)
+        return (
+          <div className={styles.operation}>
+
+            <button>删除</button>
+
+            <button
+              onClick={() => {
+                console.log(record.id)
+                dispatch({
+                  type: 'backTestModal/saveShowAndId',
+                  payload: {
+                    show: true,
+                    id: record.id
+                  }
+                })
+              }}
+            >
+              回测
+            </button>
+          </div>
+        );
+      }
+    }];
+
     return (
       <div className="container">
         <div>
@@ -53,7 +92,11 @@ class CombinationList extends Component {
                  pagination={false}
           />
         </div>
-
+        <CombinationBacktestModal
+          visible={showModal}
+          onOk={this.onModalOk}
+          onCancel={this.onModalCancel}
+        />
       </div>
     )
   }
@@ -62,6 +105,7 @@ class CombinationList extends Component {
 function mapStateToProps(state) {
   return {
     data: state.combination.combinations,
+    showModal: state.backTestModal.show,
   };
 }
 

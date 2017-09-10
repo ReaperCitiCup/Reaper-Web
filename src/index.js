@@ -16,6 +16,7 @@ const app = dva({
 // app.model(require('./models/example'));
 app.model(require("./models/user"));
 app.model(require("./models/fundAnalysisChart"));
+app.model(require("./models/backTestModal"));
 app.model(require("./models/fundCompany"));
 app.model(require("./models/combination"));
 app.model(require("./models/createCombination"));

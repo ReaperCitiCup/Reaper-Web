@@ -1,0 +1,33 @@
+@import "../../assets/scss/variables";
+@import "../../assets/scss/base";
+
+.modal {
+  :global {
+    .ant-modal-content {
+      width: 460px;
+    }
+  }
+
+}
+
+.cell {
+  margin-bottom: 30px;
+  > span {
+    display: inline-block;
+    width: 120px;
+    font-size: 14px;
+    color: $main-font-color;
+  }
+
+  >div {
+    display: inline-block;
+  }
+}
+
+.range_picker {
+  //width: 200px;
+}
+
+.select {
+  width: 120px;
+}

@@ -9,7 +9,7 @@ class AttributionBarChart extends Component {
 
   render() {
 
-    let {color} = this.props;
+    let {color, chartData} = this.props;
 
     color = color ? color : '#81B6F5';
 
@@ -20,7 +20,7 @@ class AttributionBarChart extends Component {
         axisPointer: {            // 坐标轴指示器，坐标轴触发有效
           type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
         },
-        formatter: '{c}%'
+        formatter: '{c}'
       },
       grid: {
         top: 0,
@@ -29,14 +29,14 @@ class AttributionBarChart extends Component {
       },
       xAxis: {
         type: 'value',
-        axisLabel: {formatter: '{value}%'}
+        axisLabel: {formatter: '{value}'}
         // position: 'bottom',
         // splitLine: {lineStyle: {type: 'dashed'}},
       },
       yAxis: {
         type: 'category',
         axisTick: {show: false},
-        data: ['ten', 'nine', 'eight', 'seven', 'six', 'five', 'four', 'three', 'two', 'one']
+        data: chartData ? chartData.map(type => type.field) : null,
       },
       series: [
         {
@@ -49,7 +49,7 @@ class AttributionBarChart extends Component {
           // formatter: '{b}'
           // }
           // },
-          data: [-8, 2, 4, 10, 4, 0, 9, 3, 1, 7]
+          data: chartData ? chartData.map(type => type.value) : null,
 
         }
       ],

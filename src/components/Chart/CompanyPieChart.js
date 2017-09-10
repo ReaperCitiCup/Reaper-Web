@@ -11,11 +11,11 @@ class CompanyPieChart extends Component {
 
     const {chartData} = this.props;
 
-    console.log(chartData);
+    // console.log(chartData);
 
     let data = [];
     if (chartData != null && chartData != undefined) {
-      for(let i = 0;i < chartData.length; i++) {
+      for (let i = 0; i < chartData.length; i++) {
         data.push({
           value: chartData[i].value,
           name: chartData[i].field
@@ -23,7 +23,7 @@ class CompanyPieChart extends Component {
       }
     }
 
-    console.log(data);
+    // console.log(data);
 
     let option = {
       // title : {
@@ -57,13 +57,15 @@ class CompanyPieChart extends Component {
         }
       ],
       // color: ['#3D9970', '#FF851B', '#0074D9', '#7FDBFF', '#39CCCC', '#2ECC40', '#FFDC00', '#85144B']
+      color: ['#E3645A', '#F48984', '#FDB8A1', '#F7CC9B', '#F8D76E', '#FEE9A5', '#F0E0BC', '#D1CCC6', '#B6D7B3', '#BEE1DA',
+      '#A7DAD8', '#92BCC3', '#93A9BD', '#B9CDDC', '#BABBDE', '#928BA9', '#CA9ECE', '#EFCEED', '#FECEDC', '#FAA5B3'],
     };
 
     return (
 
       <ReactEcharts
         option={option}
-        // style={{height:'300px'}}
+        style={{height: '300px'}}
         // notMerge={true}
         // lazyUpdate={true}
         // theme={"theme_name"}

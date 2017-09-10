@@ -1,12 +1,16 @@
+
+
 .routeSelect {
   :global {
+    .ant-radio-group {
+
+    }
     .ant-radio-button-wrapper {
 
       text-align: center;
-      width: 180px;
-      height: 180px;
+      width: 150px;
+      height: 140px;
       padding: 6px;
-      margin: 0 30px;
       border-width: 1px;
 
       &:first-child {
@@ -16,6 +20,12 @@
         border-radius: 0;
       }
     }
+  }
+}
+
+:global {
+  .ant-steps .ant-steps-head {
+    background: transparent;
   }
 }
 
@@ -38,8 +48,56 @@
       &:last-child {
         border-radius: 0;
       }
-
-
     }
   }
+}
+
+.stepTitle {
+  font-size: 1.3em;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.selectWeight {
+  :global {
+    .ant-radio-wrapper {
+      display: block;
+    }
+    .ant-radio-group {
+      margin: 8px 20px;
+    }
+  }
+}
+
+.classifyLabel {
+  border: 0 solid #81B6F5;
+  border-left-width: 2px;
+  padding-left: 4px;
+}
+
+.fundListTitle {
+  text-align: center;
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-bottom: 10px;
+
+  & > span {
+    border: 0 solid #8DC6FF;
+    border-bottom-width: 2px;
+    padding-bottom: 2px;
+  }
+}
+
+.strategyClassify {
+  :global {
+    .ant-checkbox-group {
+      margin-left: 20px;
+      margin-bottom: 20px;
+      margin-top: 10px;
+    }
+  }
+}
+
+.contentRetract {
+  margin-left: 15px;
 }

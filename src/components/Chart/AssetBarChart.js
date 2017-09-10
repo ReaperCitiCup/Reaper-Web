@@ -2,7 +2,7 @@ import echarts from 'echarts';
 import ReactEcharts from 'echarts-for-react';
 import React, {Component} from 'react';
 
-class AssetPieChart extends Component {
+class AssetBarChart extends Component {
 
   render() {
 
@@ -104,4 +104,4 @@ class AssetPieChart extends Component {
     )
   }
 }
-export default AssetPieChart;
+export default AssetBarChart;

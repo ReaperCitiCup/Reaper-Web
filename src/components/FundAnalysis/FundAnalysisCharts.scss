@@ -5,6 +5,10 @@
   :global {
     .card {
       margin-bottom: 15px;
+      //p {
+      //  font-size: 14px;
+      //  color: $main-font-color;
+      //}
     }
   }
 }
@@ -21,4 +25,10 @@
     font-size: 12px;
     font-weight: 200;
   }
+}
+
+.description {
+  padding-left: 12px;
+  font-size: 14px;
+  color: $main-font-color;
 }

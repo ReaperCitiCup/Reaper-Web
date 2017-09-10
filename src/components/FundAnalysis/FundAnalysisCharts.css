@@ -31,4 +31,9 @@ button {
     font-size: 12px;
     font-weight: 200; }
 
+.description {
+  padding-left: 12px;
+  font-size: 14px;
+  color: #3D5673; }
+
 /*# sourceMappingURL=FundAnalysisCharts.css.map */

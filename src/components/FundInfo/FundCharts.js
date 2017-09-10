@@ -6,7 +6,7 @@ const TabPane = Tabs.TabPane;
 import NetValueLineChart from "../Chart/NetValueLineChart";
 import RateLineChart from "../Chart/RateLineChart";
 import AssetPieChart from "../Chart/AssetPieChart";
-import AssertBarChart from "../Chart/AssertBarChart";
+import AssertBarChart from "../Chart/AssetBarChart";
 import DivHeader from '../Util/DivHeader';
 
 import styles from './FundCharts.css';

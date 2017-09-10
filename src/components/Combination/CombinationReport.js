@@ -153,6 +153,8 @@ class CombinationReport extends Component {
                 <NetValueLineChart/>
               </TabPane>
             </Tabs>
+
+
           </div>
 
           <div className={styles.section_6}>

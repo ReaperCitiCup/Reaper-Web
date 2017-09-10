@@ -77,14 +77,16 @@ function FundAnalysisCharts({
             {fundJensenIndex ?
               <NetValueLineChart chartData={fundJensenIndex}/> : null}
           </TabPane>
-          <TabPane tab="业绩持续性指标" key="4">
-            <NetValueLineChart/>
-          </TabPane>
-          <TabPane tab="信息比率" key="5">
+          <TabPane tab="信息比率" key="4">
             {fundInformationRatio ?
               <NetValueLineChart chartData={fundInformationRatio}/> : null}
           </TabPane>
         </Tabs>
+      </div>
+
+      <div className="card" id="4">
+        <DivHeader>业绩持续性指标</DivHeader>
+        <p className={styles.description}>持续性指标为___，连输期数／总期数为___，连赢期数／总期数为___</p>
       </div>
 
 

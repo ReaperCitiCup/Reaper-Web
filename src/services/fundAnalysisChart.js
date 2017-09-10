@@ -93,8 +93,32 @@ export function fetchFundStyleStabilityRisk(code) {
   });
 }
 
-export function fetchFundInterestRateCurveVariety(code) {
-  return request(`/api/fund/${code}/interest-rate-curve/variety`, {
+export function fetchFundVarietyAttribution(code) {
+  return request(`/api/fund/${code}/variety-attribution`, {
+    method: 'GET',
+  });
+}
+
+export function fetchFundBrisonAttributionStock(code) {
+  return request(`/api/fund/${code}/brison-attribution/stock`, {
+    method: 'GET',
+  });
+}
+
+export function fetchFundBrisonAttributionBond(code) {
+  return request(`/api/fund/${code}/brison-attribution/bond`, {
+    method: 'GET',
+  });
+}
+
+export function fetchFundChooseTime(code) {
+  return request(`/api/fund/${code}/choose-time`, {
+    method: 'GET',
+  });
+}
+
+export function fetchFundChooseStock(code) {
+  return request(`/api/fund/${code}/choose-stock`, {
     method: 'GET',
   });
 }

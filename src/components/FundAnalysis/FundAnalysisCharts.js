@@ -19,7 +19,8 @@ function FundAnalysisCharts({
   fundValueAtRisk, fundDownsideVolatility, fundSharpeIndex, fundTreynorIndex,
   fundJensenIndex, fundInformationRatio, fundStyleAttributionProfit, fundStyleAttributionRisk,
   fundIndustryAttributionProfit, fundIndustryAttributionRisk, fundStyleStabilityProfit,
-  fundStyleStabilityRisk
+  fundStyleStabilityRisk, fundVarietyAttribution, fundBrisonAttributionStock,
+  fundBrisonAttributionBond, fundChooseTime, fundChooseStock
 }) {
   return (
     <div className={ styles.fund_analysis_chart}>
@@ -137,15 +138,26 @@ function FundAnalysisCharts({
 
         <Tabs defaultActiveKey="1">
           <TabPane tab="基于股票持仓" key="1">
-            <div className={styles.section}>
-              <AttributionBarChart color="#81B6F5"/>
-            </div>
-            <div className={styles.section}>
-              <BrisonTable/>
-            </div>
+            {fundBrisonAttributionStock ?
+              <div>
+                <div className={styles.section}>
+                  <AttributionBarChart chartData={fundBrisonAttributionStock} color="#81B6F5"/>
+                </div>
+                <div className={styles.section}>
+                  <BrisonTable chartData={fundBrisonAttributionStock}/>
+                </div>
+              </div> : null}
           </TabPane>
           <TabPane tab="基于债券持仓" key="2">
-
+            {fundBrisonAttributionBond ?
+              <div>
+                <div className={styles.section}>
+                  <AttributionBarChart chartData={fundBrisonAttributionBond} color="#81B6F5"/>
+                </div>
+                <div className={styles.section}>
+                  <BrisonTable chartData={fundBrisonAttributionBond}/>
+                </div>
+              </div> : null}
           </TabPane>
         </Tabs>
 
@@ -153,19 +165,22 @@ function FundAnalysisCharts({
 
       <div className="card" id="10">
         <DivHeader>品种归因</DivHeader>
-        <AttributionBarChart color="#E2827E"/>
+        {fundVarietyAttribution ?
+          <AttributionBarChart chartData={fundVarietyAttribution} color="#E2827E"/> : null}
       </div>
 
       <div className="card" id="11">
         <DivHeader>择时 | 择股能力</DivHeader>
 
         <div className={styles.section}>
-          <h4 className={styles.section_title}>品种归因</h4>
-          <AbilityBarChart color="#E2827E"/>
+          <h4 className={styles.section_title}>择时能力</h4>
+          {fundChooseTime ?
+            <AbilityBarChart chartData={fundChooseTime} color="#E2827E"/> : null}
         </div>
         <div className={styles.section}>
-          <h4 className={styles.section_title}>能力归因</h4>
-          <AbilityBarChart color="#E2827E"/>
+          <h4 className={styles.section_title}>择股能力</h4>
+          {fundChooseStock ?
+            <AbilityBarChart chartData={fundChooseStock} color="#E2827E"/> : null}
         </div>
 
       </div>
@@ -198,7 +213,11 @@ function mapStateToProps(state) {
     fundIndustryAttributionRisk: state.fundAnalysisChart.fundIndustryAttributionRisk,
     fundStyleStabilityProfit: state.fundAnalysisChart.fundStyleStabilityProfit,
     fundStyleStabilityRisk: state.fundAnalysisChart.fundStyleStabilityRisk,
-
+    fundVarietyAttribution: state.fundAnalysisChart.fundVarietyAttribution,
+    fundBrisonAttributionStock: state.fundAnalysisChart.fundBrisonAttributionStock,
+    fundBrisonAttributionBond: state.fundAnalysisChart.fundBrisonAttributionBond,
+    fundChooseTime: state.fundAnalysisChart.fundChooseTime,
+    fundChooseStock: state.fundAnalysisChart.fundChooseStock,
   };
 }
 

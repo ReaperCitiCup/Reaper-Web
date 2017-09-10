@@ -20,6 +20,11 @@ export default {
     fundIndustryAttributionRisk: null,
     fundStyleStabilityProfit: null,
     fundStyleStabilityRisk: null,
+    fundVarietyAttribution: null,
+    fundBrisonAttributionStock: null,
+    fundBrisonAttributionBond: null,
+    fundChooseTime: null,
+    fundChooseStock: null,
   },
   reducers: {
     saveFundRiskTrend(state, {payload: fundRiskTrend}) {
@@ -124,6 +129,41 @@ export default {
       return {
         ...state,
         fundStyleStabilityRisk,
+      }
+    },
+
+    saveFundVarietyAttribution(state, {payload: fundVarietyAttribution}) {
+      return {
+        ...state,
+        fundVarietyAttribution,
+      }
+    },
+
+    saveFundBrisonAttributionStock(state, {payload: fundBrisonAttributionStock}) {
+      return {
+        ...state,
+        fundBrisonAttributionStock,
+      }
+    },
+
+    saveFundBrisonAttributionBond(state, {payload: fundBrisonAttributionBond}) {
+      return {
+        ...state,
+        fundBrisonAttributionBond,
+      }
+    },
+
+    saveFundChooseTime(state, {payload: fundChooseTime}) {
+      return {
+        ...state,
+        fundChooseTime,
+      }
+    },
+
+    saveFundChooseStock(state, {payload: fundChooseStock}) {
+      return {
+        ...state,
+        fundChooseStock,
       }
     },
 
@@ -369,6 +409,86 @@ export default {
       });
     },
 
+    *fetchFundVarietyAttribution({payload: code}, {call, put, select}) {
+      yield put({
+        type: 'saveFundVarietyAttribution',
+        payload: null,
+      });
+
+      const {data} = yield call(fundAnalysisChartService.fetchFundVarietyAttribution, code);
+
+      // console.log(data);
+
+      yield put({
+        type: 'saveFundVarietyAttribution',
+        payload: data
+      });
+    },
+
+    *fetchFundBrisonAttributionStock({payload: code}, {call, put, select}) {
+      yield put({
+        type: 'saveFundBrisonAttributionStock',
+        payload: null,
+      });
+
+      const {data} = yield call(fundAnalysisChartService.fetchFundBrisonAttributionStock, code);
+
+      // console.log(data);
+
+      yield put({
+        type: 'saveFundBrisonAttributionStock',
+        payload: data
+      });
+    },
+
+    *fetchFundBrisonAttributionBond({payload: code}, {call, put, select}) {
+      yield put({
+        type: 'saveFundBrisonAttributionBond',
+        payload: null,
+      });
+
+      const {data} = yield call(fundAnalysisChartService.fetchFundBrisonAttributionBond, code);
+
+      // console.log(data);
+
+      yield put({
+        type: 'saveFundBrisonAttributionBond',
+        payload: data
+      });
+    },
+
+    *fetchFundChooseTime({payload: code}, {call, put, select}) {
+      yield put({
+        type: 'saveFundChooseTime',
+        payload: null,
+      });
+
+      const {data} = yield call(fundAnalysisChartService.fetchFundChooseTime, code);
+
+      // console.log(data);
+
+      yield put({
+        type: 'saveFundChooseTime',
+        payload: data
+      });
+    },
+
+    *fetchFundChooseStock({payload: code}, {call, put, select}) {
+      yield put({
+        type: 'saveFundChooseStock',
+        payload: null,
+      });
+
+      const {data} = yield call(fundAnalysisChartService.fetchFundChooseStock, code);
+
+      // console.log(data);
+
+      yield put({
+        type: 'saveFundChooseStock',
+        payload: data
+      });
+    },
+
 
   },
   subscriptions: {
@@ -398,6 +518,11 @@ export default {
           dispatch({type: 'fetchFundIndustryAttributionRisk', payload: id});
           dispatch({type: 'fetchFundStyleStabilityProfit', payload: id});
           dispatch({type: 'fetchFundStyleStabilityRisk', payload: id});
+          dispatch({type: 'fetchFundVarietyAttribution', payload: id});
+          dispatch({type: 'fetchFundBrisonAttributionStock', payload: id});
+          dispatch({type: 'fetchFundChooseTime', payload: id});
+          dispatch({type: 'fetchFundChooseStock', payload: id});
+
         }
       });
     },

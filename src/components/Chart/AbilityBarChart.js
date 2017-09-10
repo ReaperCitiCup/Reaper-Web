@@ -8,6 +8,8 @@ import React, {Component} from 'react';
 class AbilityBarChart extends Component {
 
   render() {
+    const {chartData} = this.props;
+
     let option = {
       tooltip : {
         trigger: 'axis',

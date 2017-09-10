@@ -11,7 +11,7 @@ class ScatterChart extends Component {
 
     const {chartData} = this.props;
 
-    console.log(chartData)
+    // console.log(chartData)
 
     let dataNow;
     let dataOthers;

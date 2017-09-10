@@ -25,6 +25,7 @@ export default {
     fundBrisonAttributionBond: null,
     fundChooseTime: null,
     fundChooseStock: null,
+    fundPublicOpinion: null,
   },
   reducers: {
     saveFundRiskTrend(state, {payload: fundRiskTrend}) {
@@ -164,6 +165,13 @@ export default {
       return {
         ...state,
         fundChooseStock,
+      }
+    },
+
+    saveFundPublicOpinion(state, {payload: fundPublicOpinion}) {
+      return {
+        ...state,
+        fundPublicOpinion,
       }
     },
 
@@ -489,6 +497,21 @@ export default {
       });
     },
 
+    *fetchFundPublicOpinion({payload: code}, {call, put, select}) {
+      yield put({
+        type: 'saveFundPublicOpinion',
+        payload: null,
+      });
+
+      const {data} = yield call(fundAnalysisChartService.fetchFundPublicOpinion, code);
+
+      // console.log(data);
+
+      yield put({
+        type: 'saveFundPublicOpinion',
+        payload: data
+      });
+    },
 
   },
   subscriptions: {
@@ -523,7 +546,7 @@ export default {
           dispatch({type: 'fetchFundBrisonAttributionBond', payload: id});
           dispatch({type: 'fetchFundChooseTime', payload: id});
           dispatch({type: 'fetchFundChooseStock', payload: id});
-
+          dispatch({type: 'fetchFundPublicOpinion', payload: id});
         }
       });
     },

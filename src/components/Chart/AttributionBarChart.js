@@ -26,6 +26,7 @@ class AttributionBarChart extends Component {
         top: 0,
         bottom: 30,
         left: 60,
+        right: 20,
       },
       xAxis: {
         type: 'value',

@@ -122,3 +122,9 @@ export function fetchFundChooseStock(code) {
     method: 'GET',
   });
 }
+
+export function fetchFundPublicOpinion(code) {
+  return request(`/api/fund/${code}/public-opinion`, {
+    method: 'GET',
+  });
+}

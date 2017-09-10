@@ -6,6 +6,56 @@ class AssetBarChart extends Component {
 
   render() {
 
+    const {chartData} = this.props;
+
+    let transferredData = [];
+    chartData[0].quantity.forEach(quantity => {
+      transferredData.push({
+        index: [],
+        field: quantity.field,
+        data: [],
+      })
+    });
+
+    transferredData.forEach(singleData => {
+      chartData.forEach(dataValue => {
+        singleData.data.push({
+          date: dataValue.date,
+          value: dataValue.quantity.filter(d => d.field === singleData.field)[0].value,
+        });
+        singleData.index.push(dataValue.index)
+      })
+    });
+
+    console.log(transferredData);
+
+    let seriesData = [];
+    transferredData.forEach(dataValue => {
+      seriesData.push({
+        name: dataValue.field,
+        type: 'bar',
+        barWidth: '40',
+        stack: '总量',
+        data: dataValue.data.map(singleData => {
+          let dataArray = [];
+          dataArray.push(singleData.date, singleData.value);
+          return dataArray;
+        })
+      })
+    });
+    seriesData.push({
+      name: '舆情分析指标',
+      type: 'line',
+      yAxisIndex: 1,
+      data: chartData.map(dataValue => {
+        let dataArray = [];
+        dataArray.push(dataValue.date, dataValue.index);
+        return dataArray;
+      })
+    });
+
+    console.log(seriesData)
+
     let option = {
       tooltip: {
         trigger: 'axis',
@@ -30,12 +80,12 @@ class AssetBarChart extends Component {
       // },
       legend: {
         bottom: 'bottom',
-        data: ['现金', '股票', '债券', '资产规模']
+        data: transferredData.map(dataValue => dataValue.field)
       },
       xAxis: [
         {
           type: 'category',
-          data: ['第一季度', '第二季度', '第三季度', '第四季度'],
+          data: chartData.map(data => data.date),
           axisPointer: {
             type: 'shadow'
           }
@@ -44,49 +94,27 @@ class AssetBarChart extends Component {
       yAxis: [
         {
           type: 'value',
-          name: '占比',
-          min: 0,
-          max: 100,
-          interval: 20,
+          // name: '占比',
+          // min: 0,
+          // max: 100,
+          // interval: 20,
           axisLabel: {
-            formatter: '{value} %'
+            formatter: '{value}'
           }
         },
         {
           type: 'value',
-          name: '亿元',
-          min: 0,
-          max: 25,
-          interval: 5,
+          // name: '亿元',
+          // min: 0,
+          // max: 25,
+          // interval: 5,
           axisLabel: {
-            formatter: '{value} 亿元'
+            formatter: '{value}'
           }
         }
       ],
-      series: [
-        {
-          name: '现金',
-          type: 'bar',
-          data: [12.0, 13.9, 57.0, 23.2]
-        },
-        {
-          name: '股票',
-          type: 'bar',
-          data: [92.6, 15.9, 91.0, 12.4]
-        },
-        {
-          name: '债券',
-          type: 'bar',
-          data: [92.6, 15.9, 91.0, 12.4]
-        },
-        {
-          name: '资产规模',
-          type: 'line',
-          yAxisIndex: 1,
-          data: [5, 12.2, 23.3, 14.5]
-        }
-      ],
-      color:  ['#81B6F5','#E2827E', '#F9D471', '#474457']
+      series: seriesData,
+      color:  ['#E2827E','#CCCCCC', '#74D491', '#AAAAAA']
 
     };
 

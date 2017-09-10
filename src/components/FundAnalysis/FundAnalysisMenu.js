@@ -44,6 +44,8 @@ class FundAnalysisMenu extends Component {
           <Menu.Item key="11"><a href="#11">择时 | 择股能力</a></Menu.Item>
           <Menu.Item key="12"><a href="#12">基金经理表现</a></Menu.Item>
         </SubMenu>
+
+        <Menu.Item key="13"><a href="#13">舆情分析</a></Menu.Item>
       </Menu>
     );
   }

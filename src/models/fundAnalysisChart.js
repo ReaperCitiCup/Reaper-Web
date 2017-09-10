@@ -520,6 +520,7 @@ export default {
           dispatch({type: 'fetchFundStyleStabilityRisk', payload: id});
           dispatch({type: 'fetchFundVarietyAttribution', payload: id});
           dispatch({type: 'fetchFundBrisonAttributionStock', payload: id});
+          dispatch({type: 'fetchFundBrisonAttributionBond', payload: id});
           dispatch({type: 'fetchFundChooseTime', payload: id});
           dispatch({type: 'fetchFundChooseStock', payload: id});
 

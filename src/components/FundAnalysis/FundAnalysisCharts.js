@@ -22,6 +22,7 @@ function FundAnalysisCharts({
   fundStyleStabilityRisk, fundVarietyAttribution, fundBrisonAttributionStock,
   fundBrisonAttributionBond, fundChooseTime, fundChooseStock
 }) {
+  console.log(fundBrisonAttributionBond);
   return (
     <div className={ styles.fund_analysis_chart}>
 

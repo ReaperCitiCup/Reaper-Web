@@ -99,7 +99,7 @@ class FundManagerInfo extends Component {
             <div className={styles.managerInfo_body}>
               <p className={styles.managerName}>{managerInfo ? managerInfo.name : null}</p>
               <p className={styles.managerOtherInfo}>累积任职时间：
-                <span className={styles.workingTime}>4年又149天(jiade)</span>
+                <span className={styles.workingTime}>{managerInfo ? managerInfo.cumulativeDays : null}</span>
               </p>
               <p className={styles.managerOtherInfo}>任职起始时间：
                 <span className={styles.workStartDate}>{managerInfo ? managerInfo.appointedDate : null}</span>

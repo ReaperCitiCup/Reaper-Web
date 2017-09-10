@@ -5,7 +5,7 @@ import * as fundAnalysisChartService from '../services/fundAnalysisChart'
 export default {
   namespace: 'fundAnalysisChart',
   state: {
-    fundRiskTrend: null,
+    // fundRiskTrend: null,
     fundDailyRetracement: null,
     fundVolatility: null,
     fundValueAtRisk: null,
@@ -13,7 +13,7 @@ export default {
     fundSharpeIndex: null,
     fundTreynorIndex: null,
     fundJensenIndex: null,
-    fundInformationRatio: null,
+    // fundInformationRatio: null,
     fundStyleAttributionProfit: null,
     fundStyleAttributionRisk: null,
     fundIndustryAttributionProfit: null,
@@ -28,14 +28,15 @@ export default {
     fundPerformanceAnalysis: null,
     managerPerformanceAnalysis: null,
     fundPublicOpinion: null,
+    fundPerformanceIndex: null,
   },
   reducers: {
-    saveFundRiskTrend(state, {payload: fundRiskTrend}) {
-      return {
-        ...state,
-        fundRiskTrend,
-      }
-    },
+    // saveFundRiskTrend(state, {payload: fundRiskTrend}) {
+    //   return {
+    //     ...state,
+    //     fundRiskTrend,
+    //   }
+    // },
 
     saveFundDailyRetracement(state, {payload: fundDailyRetracement}) {
       return {
@@ -86,12 +87,12 @@ export default {
       }
     },
 
-    saveFundInformationRatio(state, {payload: fundInformationRatio}) {
-      return {
-        ...state,
-        fundInformationRatio,
-      }
-    },
+    // saveFundInformationRatio(state, {payload: fundInformationRatio}) {
+    //   return {
+    //     ...state,
+    //     fundInformationRatio,
+    //   }
+    // },
 
     saveFundStyleAttributionProfit(state, {payload: fundStyleAttributionProfit}) {
       return {
@@ -191,23 +192,30 @@ export default {
       }
     },
 
+    saveFundPerformanceIndex(state, {payload: fundPerformanceIndex}) {
+      return {
+        ...state,
+        fundPerformanceIndex,
+      }
+    },
+
   },
   effects: {
-    *fetchFundRiskTrend({payload: code}, {call, put, select}) {
-      yield put({
-        type: 'saveFundRiskTrend',
-        payload: null,
-      });
-
-      const {data} = yield call(fundAnalysisChartService.fetchFundRiskTrend, code);
-
-      // console.log(data);
-
-      yield put({
-        type: 'saveFundRiskTrend',
-        payload: data
-      });
-    },
+    // *fetchFundRiskTrend({payload: code}, {call, put, select}) {
+    //   yield put({
+    //     type: 'saveFundRiskTrend',
+    //     payload: null,
+    //   });
+    //
+    //   const {data} = yield call(fundAnalysisChartService.fetchFundRiskTrend, code);
+    //
+    //   // console.log(data);
+    //
+    //   yield put({
+    //     type: 'saveFundRiskTrend',
+    //     payload: data
+    //   });
+    // },
 
     *fetchFundDailyRetracement({payload: code}, {call, put, select}) {
       yield put({
@@ -321,21 +329,21 @@ export default {
       });
     },
 
-    *fetchFundInformationRatio({payload: code}, {call, put, select}) {
-      yield put({
-        type: 'saveFundInformationRatio',
-        payload: null,
-      });
-
-      const {data} = yield call(fundAnalysisChartService.fetchFundInformationRatio, code);
-
-      // console.log(data);
-
-      yield put({
-        type: 'saveFundInformationRatio',
-        payload: data
-      });
-    },
+    // *fetchFundInformationRatio({payload: code}, {call, put, select}) {
+    //   yield put({
+    //     type: 'saveFundInformationRatio',
+    //     payload: null,
+    //   });
+    //
+    //   const {data} = yield call(fundAnalysisChartService.fetchFundInformationRatio, code);
+    //
+    //   // console.log(data);
+    //
+    //   yield put({
+    //     type: 'saveFundInformationRatio',
+    //     payload: data
+    //   });
+    // },
 
     *fetchFundStyleAttributionProfit({payload: code}, {call, put, select}) {
       yield put({
@@ -561,6 +569,22 @@ export default {
       });
     },
 
+    *fetchFundPerformanceIndex({payload: code}, {call, put, select}) {
+      yield put({
+        type: 'saveFundPerformanceIndex',
+        payload: null,
+      });
+
+      const {data} = yield call(fundAnalysisChartService.fetchFundPerformanceIndex, code);
+
+      // console.log(data);
+
+      yield put({
+        type: 'saveFundPerformanceIndex',
+        payload: data
+      });
+    },
+
   },
   subscriptions: {
     setup({dispatch, history}) {
@@ -574,7 +598,8 @@ export default {
           dispatch({type: 'fund/fetchFundBrief', payload: id});
           dispatch({type: 'fundCompany/fetchCompanyId', payload: id});
           dispatch({type: 'fundChart/fetchCumulativeProfitData', payload: 1});
-          dispatch({type: 'fetchFundRiskTrend', payload: id});
+          dispatch({type: 'fundChart/fetchUnitNetValueData', payload: id});
+          // dispatch({type: 'fetchFundRiskTrend', payload: id});
           dispatch({type: 'fetchFundDailyRetracement', payload: id});
           dispatch({type: 'fetchFundVolatility', payload: id});
           dispatch({type: 'fetchFundValueAtRisk', payload: id});
@@ -582,7 +607,7 @@ export default {
           dispatch({type: 'fetchFundSharpeIndex', payload: id});
           dispatch({type: 'fetchFundTreynorIndex', payload: id});
           dispatch({type: 'fetchFundJensenIndex', payload: id});
-          dispatch({type: 'fetchFundInformationRatio', payload: id});
+          // dispatch({type: 'fetchFundInformationRatio', payload: id});
           dispatch({type: 'fetchFundStyleAttributionProfit', payload: id});
           dispatch({type: 'fetchFundStyleAttributionRisk', payload: id});
           dispatch({type: 'fetchFundIndustryAttributionProfit', payload: id});
@@ -597,6 +622,7 @@ export default {
           dispatch({type: 'fetchFundPerformanceAnalysis', payload: id});
           dispatch({type: 'fetchManagerPerformanceAnalysis', payload: id});
           dispatch({type: 'fetchFundPublicOpinion', payload: id});
+          dispatch({type: 'fetchFundPerformanceIndex', payload: id});
         }
       });
     },

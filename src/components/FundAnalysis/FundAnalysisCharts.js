@@ -17,13 +17,13 @@ import ScatterChart from '../Chart/ScatterChart';
 import styles from './FundAnalysisCharts.css';
 
 function FundAnalysisCharts({
-  cumulativeProfitData, fundRiskTrend, fundDailyRetracement, fundVolatility,
+  unitNetValueData, cumulativeProfitData, fundDailyRetracement, fundVolatility,
   fundValueAtRisk, fundDownsideVolatility, fundSharpeIndex, fundTreynorIndex,
-  fundJensenIndex, fundInformationRatio, fundStyleAttributionProfit, fundStyleAttributionRisk,
+  fundJensenIndex, fundStyleAttributionProfit, fundStyleAttributionRisk,
   fundIndustryAttributionProfit, fundIndustryAttributionRisk, fundStyleStabilityProfit,
   fundStyleStabilityRisk, fundVarietyAttribution, fundBrisonAttributionStock,
   fundBrisonAttributionBond, fundChooseTime, fundChooseStock, fundPublicOpinion,
-  fundPerformanceAnalysis, managerPerformanceAnalysis
+  fundPerformanceAnalysis, managerPerformanceAnalysis, fundPerformanceIndex
 }) {
   // console.log(fundBrisonAttributionBond);
   return (
@@ -36,9 +36,9 @@ function FundAnalysisCharts({
             {cumulativeProfitData ?
               <RateLineChart chartData={cumulativeProfitData}/> : null}
           </TabPane>
-          <TabPane tab="风险走势" key="2">
-            {fundRiskTrend ?
-              <NetValueLineChart chartData={fundRiskTrend}/> : null}
+          <TabPane tab="单位净值" key="2">
+            {unitNetValueData ?
+              <NetValueLineChart chartData={unitNetValueData}/> : null}
           </TabPane>
         </Tabs>
       </div>
@@ -80,16 +80,19 @@ function FundAnalysisCharts({
             {fundJensenIndex ?
               <NetValueLineChart chartData={fundJensenIndex}/> : null}
           </TabPane>
-          <TabPane tab="信息比率" key="4">
-            {fundInformationRatio ?
-              <NetValueLineChart chartData={fundInformationRatio}/> : null}
-          </TabPane>
+          {/*<TabPane tab="信息比率" key="4">*/}
+          {/*{fundInformationRatio ?*/}
+          {/*<NetValueLineChart chartData={fundInformationRatio}/> : null}*/}
+          {/*</TabPane>*/}
         </Tabs>
       </div>
 
+
       <div className="card" id="4">
         <DivHeader>业绩持续性指标</DivHeader>
-        <p className={styles.description}>持续性指标为___，连输期数／总期数为___，连赢期数／总期数为___</p>
+        <p className={styles.description}>持续性指标为{fundPerformanceIndex ? fundPerformanceIndex.sustainabilityIndex : null}，
+          连输期数／总期数为{fundPerformanceIndex ? fundPerformanceIndex.loseDayRatio : null}，
+          连赢期数／总期数为{fundPerformanceIndex ? fundPerformanceIndex.winDayRatio : null}</p>
       </div>
 
 
@@ -221,8 +224,9 @@ FundAnalysisCharts.propTypes = {};
 
 function mapStateToProps(state) {
   return {
+    unitNetValueData: state.fundChart.unitNetValueData,
     cumulativeProfitData: state.fundChart.cumulativeProfitData,
-    fundRiskTrend: state.fundAnalysisChart.fundRiskTrend,
+    // fundRiskTrend: state.fundAnalysisChart.fundRiskTrend,
     fundDailyRetracement: state.fundAnalysisChart.fundDailyRetracement,
     fundVolatility: state.fundAnalysisChart.fundVolatility,
     fundValueAtRisk: state.fundAnalysisChart.fundValueAtRisk,
@@ -230,7 +234,7 @@ function mapStateToProps(state) {
     fundSharpeIndex: state.fundAnalysisChart.fundSharpeIndex,
     fundTreynorIndex: state.fundAnalysisChart.fundTreynorIndex,
     fundJensenIndex: state.fundAnalysisChart.fundJensenIndex,
-    fundInformationRatio: state.fundAnalysisChart.fundInformationRatio,
+    // fundInformationRatio: state.fundAnalysisChart.fundInformationRatio,
     fundStyleAttributionProfit: state.fundAnalysisChart.fundStyleAttributionProfit,
     fundStyleAttributionRisk: state.fundAnalysisChart.fundStyleAttributionRisk,
     fundIndustryAttributionProfit: state.fundAnalysisChart.fundIndustryAttributionProfit,
@@ -245,6 +249,7 @@ function mapStateToProps(state) {
     fundPerformanceAnalysis: state.fundAnalysisChart.fundPerformanceAnalysis,
     managerPerformanceAnalysis: state.fundAnalysisChart.managerPerformanceAnalysis,
     fundPublicOpinion: state.fundAnalysisChart.fundPublicOpinion,
+    fundPerformanceIndex: state.fundAnalysisChart.fundPerformanceIndex,
   };
 }
 

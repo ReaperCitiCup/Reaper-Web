@@ -13,7 +13,8 @@ class StabilityRadarChart extends Component {
     let indicator = data.map(d => {
       return {
         name: d.field,
-        max: 100
+        min: -50,
+        max: 50
       }
     });
 

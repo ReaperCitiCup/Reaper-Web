@@ -140,3 +140,9 @@ export function fetchManagerPerformanceAnalysis(code) {
     method: 'GET',
   });
 }
+
+export function fetchFundPerformanceIndex(code) {
+  return request(`/api/fund/${code}/performance-index`, {
+    method: 'GET',
+  });
+}

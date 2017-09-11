@@ -15,12 +15,22 @@ class CompanyPieChart extends Component {
 
     let data = [];
     if (chartData != null && chartData != undefined) {
-      for (let i = 0; i < chartData.length; i++) {
-        data.push({
-          value: chartData[i].value,
-          name: chartData[i].field
-        })
+      if(chartData[0].positionRatio !== undefined) {
+        for (let i = 0; i < chartData.length; i++) {
+          data.push({
+            value: chartData[i].positionRatio,
+            name: chartData[i].name
+          })
+        }
+      } else if(chartData[0].field !== undefined){
+        for (let i = 0; i < chartData.length; i++) {
+          data.push({
+            value: chartData[i].value,
+            name: chartData[i].field
+          })
+        }
       }
+
     }
 
     // console.log(data);

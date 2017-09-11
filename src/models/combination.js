@@ -5,6 +5,7 @@ export default {
   namespace: 'combination',
   state: {
     combinations: [],
+    combinationReport: null,
   },
   reducers: {
     saveCombinations(state, {payload: combinations}) {
@@ -13,6 +14,10 @@ export default {
       });
 
       return {...state, combinations};
+    },
+
+    saveCombinationReport(state, {payload: combinationReport}) {
+      return {...state, combinationReport};
     },
 
 
@@ -44,20 +49,44 @@ export default {
 
     },
 
-    *combinationBacktest({payload: backtestInfo}, {call, put, select}) {
-      const {data} = yield call(combinationService.combinationBacktest, backtestInfo.combinationId, backtestInfo.baseIndex, baseIndex.startDate, baseIndex.endDate);
+    *backtestCombination(action, {call, put, select}) {
+      // const {data} = yield call(combinationService.backtestCombination, backtestInfo.combinationId, backtestInfo.baseIndex, baseIndex.startDate, baseIndex.endDate);
+      const {id, startDate, endDate, baseIndex} = yield select(state => state.backTestModal);
+      yield put(routerRedux.push(`/combination/${id}?startDate=${startDate}&endDate=${endDate}&baseIndex=${baseIndex}`));
 
 
+
+    },
+    *fetchBacktestReport({payload: {id, baseIndex, startDate, endDate}}, {call, put, select}) {
+
+      const {data} = yield call(combinationService.backtestCombination, id, baseIndex, startDate, endDate);
+      console.log(data);
+
+      yield put({
+        type: 'saveCombinationReport',
+        payload: data,
+        }
+      )
     }
   },
   subscriptions: {
     setup({dispatch, history}) {
       return history.listen(({pathname, query}) => {
         const array = pathname.split('/');
+        // console.log(array, query)
+
+        // const combinationId = array[2];
         if (array.length === 2 && array[1] === 'combination') {
+          dispatch({type: 'fetchCombinations',});
+        } else if (array.length === 3 && array[1] === 'combination') {
           dispatch({
-            type: 'fetchCombinations',
+            type: 'fetchBacktestReport',
+            payload: {
+              ...query,
+              id: array[1]
+            }
           });
+
         }
       });
     }

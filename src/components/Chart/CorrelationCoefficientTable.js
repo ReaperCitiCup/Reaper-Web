@@ -19,41 +19,58 @@ const columns = [{
 function CorrelationCoefficientTable({chartData}) {
   let data = [];
   if (chartData) {
-    for (let i = 0; i < chartData.length; i++) {
+    // for (let i = 0; i < chartData.length; i++) {
+    //   data.push({
+    //     key: i + 1,
+    //     fund1: chartData[i].fund1,
+    //     fund2: chartData[i].fund2,
+    //     value: chartData[i].value,
+    //   })
+    // }
+    chartData.forEach((dataValue, index) => {
       data.push({
-        key: i + 1,
-        field: chartData[i].field,
-        value: chartData[i].value,
+        key: index,
+        fund1: dataValue.fund1,
+        fund2: dataValue.fund2,
+        value: dataValue.value,
       })
-    }
-  } else {
-    data = [{
-      key: 1,
-      fund1: '000001 华夏成长',
-      fund2: '000003 华夏蓝筹',
-      value: '84.14'
-    }, {
-      key: 2,
-      fund1: '000001 华夏成长',
-      fund2: '000003 华夏蓝筹',
-      value: '12.49'
-    }, {
-      key: 3,
-      fund1: '000001 华夏成长',
-      fund2: '000003 华夏蓝筹',
-      value: '39.51'
-    }, {
-      key: 4,
-      fund1: '000001 华夏成长',
-      fund2: '000003 华夏蓝筹',
-      value: '41.04'
-    }];
+    })
   }
+  // console.log(data);
+  // else {
+  //   data = [{
+  //     key: 1,
+  //     fund1: '000001 华夏成长',
+  //     fund2: '000003 华夏蓝筹',
+  //     value: '84.14'
+  //   }, {
+      {/*key: 2,*/}
+      {/*fund1: '000001 华夏成长',*/}
+      {/*fund2: '000003 华夏蓝筹',*/}
+      {/*value: '12.49'*/}
+    {/*}, {*/}
+      {/*key: 3,*/}
+      {/*fund1: '000001 华夏成长',*/}
+      {/*fund2: '000003 华夏蓝筹',*/}
+      {/*value: '39.51'*/}
+    {/*}, {*/}
+      {/*key: 4,*/}
+      {/*fund1: '000001 华夏成长',*/}
+      {/*fund2: '000003 华夏蓝筹',*/}
+      {/*value: '41.04'*/}
+    {/*}*/}
+      {/*, {*/}
+  //       key: 4,
+  //       fund1: '000001 华夏成长',
+  //       fund2: '000003 华夏蓝筹',
+  //       value: '41.04'
+  //     }];
+  // }
 
   return (
     <Table columns={columns}
            dataSource={data}
-           pagination={false}
+           pagination={{pageSize: 4}}
     />
   )
 }

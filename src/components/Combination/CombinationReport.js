@@ -2,12 +2,14 @@
  * Created by st on 2017/9/6.
  */
 import React, {Component} from 'react';
+import {connect} from 'dva';
 
 import {Row, Col, Table, Tabs} from 'antd';
 
 import DivHeader from "../Util/DivHeader";
-import AssetPieChart from "../Chart/AssetPieChart";
+import CompanyPieChart from "../Chart/CompanyPieChart";
 import NetValueLineChart from "../Chart/NetValueLineChart";
+import DoubleLineChart from "../Chart/DoubleLineChart";
 import AttributionBarChart from "../Chart/AttributionBarChart";
 import CorrelationCoefficientTable from "../Chart/CorrelationCoefficientTable";
 import BrisonTable from "../Chart/BrisonTable";
@@ -17,63 +19,69 @@ import styles from "./CombinationReport.css";
 const TabPane = Tabs.TabPane;
 
 const columns = [{
-  title: 'Name',
+  title: '基金代码',
+  dataIndex: 'code',
+}, {
+  title: '基金名称',
   dataIndex: 'name',
 }, {
-  title: 'Age',
-  dataIndex: 'age',
+  title: '持仓比率',
+  dataIndex: 'positionRatio',
 }, {
-  title: 'Address',
-  dataIndex: 'address',
+  title: '权重',
+  dataIndex: 'weight',
 }];
-
-const data = [{
-  key: '1',
-  name: 'John Brown',
-  age: 32,
-  address: 'New York No. 1 Lake Park',
-}, {
-  key: '2',
-  name: 'Jim Green',
-  age: 42,
-  address: 'London No. 1 Lake Park',
-}, {
-  key: '3',
-  name: 'Joe Black',
-  age: 32,
-  address: 'Sidney No. 1 Lake Park',
-}];
-
 
 class CombinationReport extends Component {
   render() {
+
+    const {combinationReport} = this.props;
+    const tableData = [];
+    if (combinationReport) {
+      combinationReport.combination.forEach(c => {
+        tableData.push({
+          key: c.code,
+          code: c.code,
+          name: c.name,
+          positionRatio: c.positionRatio,
+          weight: c.weight,
+        })
+      })
+    }
+
     return (
       <div className="container">
         <div className={styles.report_body}>
           <h1>回测报告</h1>
           <h3>报告区间：
-            <span>2016年12月29日</span>
+            <span>{combinationReport ? combinationReport.startDate : null}</span>
             —
-            <span>2017年08月31日</span>
+            <span>{combinationReport ? combinationReport.endDate : null}</span>
           </h3>
 
           <div className="gutter-example" id={styles.grade_row}>
             <Row gutter={53}>
               <Col className="gutter-row" span={8}>
                 <div className="gutter-box">综合评价&nbsp;&nbsp;
-                  <span className={styles.numberStyle} id={styles.integratedScore}>96</span>
+                  <span className={styles.numberStyle} id={styles.integratedScore}>
+                    {combinationReport ? combinationReport.score : null}
+                  </span>
                   &nbsp;&nbsp;分
                 </div>
               </Col>
               <Col className="gutter-row" span={8}>
                 <div className="gutter-box">超越同级&nbsp;&nbsp;
-                  <span className={styles.numberStyle} id={styles.exceedProduct}>128</span>
+                  <span className={styles.numberStyle} id={styles.exceedProduct}>
+                    {combinationReport ? combinationReport.transcendQuantity : null}
+                  </span>
                   &nbsp;&nbsp;个产品
                 </div>
               </Col>
               <Col className="gutter-row" span={8}>
                 <div className="gutter-box">位列&nbsp;&nbsp;
-                  <span className={styles.numberStyle} id={styles.ranking}>12</span>
+                  <span className={styles.numberStyle} id={styles.ranking}>
+                    {combinationReport ? combinationReport.rank : null}
+                  </span>
                   &nbsp;&nbsp;名
                 </div>
               </Col>
@@ -84,16 +92,17 @@ class CombinationReport extends Component {
             <DivHeader>基本组成</DivHeader>
 
             <div className={styles.left}>
-              <AssetPieChart/>
+              {combinationReport ?
+                <CompanyPieChart chartData={combinationReport.combination}/> : null}
             </div>
             <div className={styles.right}>
-              <Table columns={columns} dataSource={data} size="middle" pagination={false}/>
+              <Table columns={columns} dataSource={tableData} size="middle" pagination={false}/>
             </div>
           </div>
 
           <div className={styles.section_2}>
             <DivHeader>投资目标</DivHeader>
-            <p>高中低风险/收益
+            <p>{combinationReport ? combinationReport.investmentGoal : null}
             </p>
           </div>
 
@@ -101,13 +110,14 @@ class CombinationReport extends Component {
             <DivHeader>基本表现</DivHeader>
             <table>
               <tbody>
-              <tr className={styles.tr_num}>
-                <td>58.92%</td>
-                <td>119.37%</td>
-                <td>6.66</td>
-                <td>6.61%</td>
-                <td>0.64</td>
-              </tr>
+              {combinationReport ?
+                <tr className={styles.tr_num}>
+                  <td>{combinationReport.intervalAnnualProfit}</td>
+                  <td>{combinationReport.cumulativeProfit}</td>
+                  <td>{combinationReport.finalNetValue}</td>
+                  <td>{combinationReport.maxRetracement}</td>
+                  <td>{combinationReport.sharpeRatio}</td>
+                </tr> : null}
               <tr className={styles.tr_name}>
                 <td>区间年化收益</td>
                 <td>累计收益</td>
@@ -121,30 +131,54 @@ class CombinationReport extends Component {
 
           <div className={styles.section_4}>
             <DivHeader>总体评价</DivHeader>
-            <table>
-              <tbody>
-              <tr>
-                <td>业绩表现</td>
-                <td>该基金组合报告区间的年化收益为66.6%，排名66</td>
-              </tr>
-              <tr>
-                <td>风险表现</td>
-                <td>该基金组合报告区间的最大回撤为6.61%，波动率为23.3%，排名233</td>
-              </tr>
-              <tr>
-                <td>收益风险分析</td>
-                <td>该基金组合属于高风险，低收益，风险收益比0.97</td>
-              </tr>
-              <tr>
-                <td>风格分析</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>业绩归因</td>
-                <td></td>
-              </tr>
-              </tbody>
-            </table>
+            {combinationReport ?
+              <table>
+                <tbody>
+                <tr>
+                  <td>业绩表现</td>
+                  <td>该基金组合报告区间的年化收益为
+                    <span> {combinationReport.intervalAnnualProfit} </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>风险表现</td>
+                  <td>该基金组合报告区间的最大回撤为
+                    <span> {combinationReport.maxRetracement} </span>，波动率为
+                    <span> {combinationReport.volatility} </span></td>
+                </tr>
+                <tr>
+                  <td>收益风险分析</td>
+                  <td>该基金组合属于
+                    <span> {combinationReport.investmentGoal} </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>风格分析</td>
+                  <td>该组合的风格主要为
+                    <span> {combinationReport.mainFactors.map((factor, index) => {
+                      if (index === combinationReport.mainFactors.length - 1) {
+                        return factor;
+                      } else {
+                        return factor + "，"
+                      }
+                    })} </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>业绩归因</td>
+                  <td>股票类持仓总超额效益是
+                    /**
+                     * TODO
+                     */
+                    {/*<span> {combinationReport.brisonAttributionStock.filter(*/}
+                    {/*brisonValue => brisonValue.field === '总超额收益')[0].value} </span>*/}
+                    {/*，债券类持仓总超额效益是*/}
+                    {/*<span> {combinationReport.brisonAttributionBond.filter(*/}
+                    {/*brisonValue => brisonValue.field === '总超额收益')[0].value} </span>*/}
+                  </td>
+                </tr>
+                </tbody>
+              </table> : null}
           </div>
 
           <div className={styles.section_5}>
@@ -152,10 +186,12 @@ class CombinationReport extends Component {
 
             <Tabs defaultActiveKey="1">
               <TabPane tab="累计净值" key="1">
-                <NetValueLineChart/>
+                {combinationReport ?
+                  <DoubleLineChart chartData={combinationReport.cumulativeNetValueTrend}/> : null}
               </TabPane>
               <TabPane tab="收益率" key="2">
-                <NetValueLineChart/>
+                {combinationReport ?
+                  <DoubleLineChart chartData={combinationReport.profitRateTrend}/> : null}
               </TabPane>
             </Tabs>
 
@@ -168,13 +204,16 @@ class CombinationReport extends Component {
             <div className={styles.chart}>
               <Tabs defaultActiveKey="1">
                 <TabPane tab="每日回撤走线图" key="1">
-                  <NetValueLineChart/>
+                  {combinationReport ?
+                    <DoubleLineChart chartData={combinationReport.dailyRetracementTrend}/> : null}
                 </TabPane>
                 <TabPane tab="波动率" key="2">
-                  <NetValueLineChart/>
+                  {combinationReport ?
+                    <DoubleLineChart chartData={combinationReport.volatilityTrend}/> : null}
                 </TabPane>
                 <TabPane tab="相关系数" key="3">
-                  <CorrelationCoefficientTable/>
+                  {combinationReport ?
+                  <CorrelationCoefficientTable chartData={combinationReport.correlationCoefficientTable}/> : null}
                 </TabPane>
               </Tabs>
             </div>
@@ -284,4 +323,11 @@ class CombinationReport extends Component {
   }
 }
 
-export default CombinationReport;
+function mapStateToProps(state) {
+  return {
+    showModal: state.backTestModal.show,
+    combinationReport: state.combination.combinationReport,
+  };
+}
+
+export default connect(mapStateToProps)(CombinationReport);

@@ -15,13 +15,20 @@ class CombinationList extends Component {
 
   onModalOk = () => {
     const {dispatch} = this.props;
+
+    dispatch({
+      type: 'combination/backtestCombination',
+      // payload:
+    })
+
     dispatch({
       type: 'backTestModal/saveShowAndId',
       payload: {
         show: false,
         id: null
       }
-    })
+    });
+
   };
 
   onModalCancel = () => {

@@ -19,16 +19,16 @@ export function deleteCombination(combinationId) {
   })
 }
 
-export function combinationBacktest(combinationId, baseIndex, startDate, endDate) {
-  return request(`/api/combination/${combinationId}/backtest`, {
-    method: 'DELETE',
+export function backtestCombination(combinationId, baseIndex, startDate, endDate) {
+  return request(`/api/combination/${combinationId}/backtest?startDate=${startDate}&endDate=${endDate}&baseIndex=${baseIndex}`, {
+    method: 'GET',
     headers: {
       'Authorization': localStorage.getItem('token')
     },
-    body: {
-      "baseIndex": baseIndex,	//szzz, sz180, sz50, hs300, zz500
-      "startDate": startDate,
-      "endDate": endDate,
-    }
+    // body: {
+    //   "baseIndex": baseIndex,	//szzz, sz180, sz50, hs300, zz500
+    //   "startDate": startDate,
+    //   "endDate": endDate,
+    // }
   })
 }

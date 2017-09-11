@@ -48,6 +48,36 @@
     vertical-align: top;
     padding-top: 50px;
     width: 400px;
+
+    //table {
+    //  width: 100%;
+    //  font-size: 12px;
+    //
+    //  tr {
+    //    height: 30px;
+    //
+    //    th:last-child {
+    //      padding-bottom: 10px;
+    //      padding-left: 50px;
+    //      text-align: left;
+    //      font-weight: 400;
+    //      color: $blue-grey-color;
+    //    }
+    //
+    //    td:first-child {
+    //      text-align: right;
+    //      font-size: 14px;
+    //      color: $main-font-color;
+    //    }
+    //
+    //    td:last-child {
+    //      padding-left: 50px;
+    //      text-align: left;
+    //      font-size: 14px;
+    //      color: $blue-grey-color;
+    //    }
+    //  }
+    //}
   }
 }
 
@@ -103,6 +133,11 @@
         padding-left: 30px;
         text-align: left;
         color: $blue-grey-color;
+      }
+
+      td span {
+        color: $main-font-color;
+        font-weight: 400;
       }
     }
     //.tr_title {

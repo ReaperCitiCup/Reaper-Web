@@ -93,6 +93,9 @@ button {
         padding-left: 30px;
         text-align: left;
         color: #9FAEC0; }
+      .section_4 table tr td span {
+        color: #3D5673;
+        font-weight: 400; }
 
 .section_5 {
   width: 100%;

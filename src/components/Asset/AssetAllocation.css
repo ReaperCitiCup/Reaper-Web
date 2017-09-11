@@ -5,7 +5,7 @@
   width: 60px;
 }
 .routeSelect :global .ant-radio-button-wrapper {
-  margin: 0 80px;
+  margin: 0 150px;
   text-align: center;
   width: 160px;
   height: 140px;
@@ -46,6 +46,9 @@
   margin: 50px 0;
   font-size: 1.3em;
   font-weight: bold;
+}
+.earnRiskTargetStyle :global .ant-slider-step .ant-slider-dot:last-child {
+  display: none;
 }
 .selectWeight :global .ant-radio-wrapper {
   display: block;

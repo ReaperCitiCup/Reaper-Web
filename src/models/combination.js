@@ -43,6 +43,12 @@ export default {
       }
 
     },
+
+    *combinationBacktest({payload: backtestInfo}, {call, put, select}) {
+      const {data} = yield call(combinationService.combinationBacktest, backtestInfo.combinationId, backtestInfo.baseIndex, baseIndex.startDate, baseIndex.endDate);
+
+
+    }
   },
   subscriptions: {
     setup({dispatch, history}) {

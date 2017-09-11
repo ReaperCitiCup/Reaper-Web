@@ -22,7 +22,7 @@ class FundAnalysisMenu extends Component {
         mode="inline"
       >
         <SubMenu key="sub1" title="总体表现">
-          <Menu.Item key="1"><a href="#1">收益 | 风险走势</a></Menu.Item>
+          <Menu.Item key="1"><a href="#1">收益概览</a></Menu.Item>
           <Menu.Item key="2"><a href="#2">风险概览</a></Menu.Item>
           <Menu.Item key="3"><a href="#3">评价指标</a></Menu.Item>
           <Menu.Item key="4"><a href="#4">业绩持续性指标</a></Menu.Item>

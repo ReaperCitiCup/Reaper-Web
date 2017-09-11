@@ -18,3 +18,17 @@ export function deleteCombination(combinationId) {
     },
   })
 }
+
+export function combinationBacktest(combinationId, baseIndex, startDate, endDate) {
+  return request(`/api/combination/${combinationId}/backtest`, {
+    method: 'DELETE',
+    headers: {
+      'Authorization': localStorage.getItem('token')
+    },
+    body: {
+      "baseIndex": baseIndex,	//szzz, sz180, sz50, hs300, zz500
+      "startDate": startDate,
+      "endDate": endDate,
+    }
+  })
+}

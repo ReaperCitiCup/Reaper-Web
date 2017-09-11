@@ -13,6 +13,7 @@ import AccountPage from './routes/AccountPage';
 
 import AuthPage from './routes/AuthPage';
 import AssetAllocationPage from './routes/AssetAllocationPage';
+import ErrorPage from './routes/ErrorPage';
 
 function RouterConfig({ history }) {
   return (
@@ -31,6 +32,8 @@ function RouterConfig({ history }) {
 
       <Route path="/auth" component={AuthPage} />
       <Route path="/asset" component={AssetAllocationPage} />
+
+      <Route path="/404" component={ErrorPage} />
     </Router>
   );
 }

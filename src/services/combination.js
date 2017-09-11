@@ -10,3 +10,11 @@ export function fetchCombination() {
   });
 }
 
+export function deleteCombination(combinationId) {
+  return request(`/api/combination/${combinationId}`, {
+    method: 'DELETE',
+    headers: {
+      'Authorization': localStorage.getItem('token')
+    },
+  })
+}

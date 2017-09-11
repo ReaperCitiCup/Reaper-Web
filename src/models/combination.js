@@ -1,9 +1,10 @@
 import * as combinationService from '../services/combination';
+import {routerRedux} from 'dva/router';
 
 export default {
   namespace: 'combination',
   state: {
-    combinations:[],
+    combinations: [],
   },
   reducers: {
     saveCombinations(state, {payload: combinations}) {
@@ -13,6 +14,8 @@ export default {
 
       return {...state, combinations};
     },
+
+
   },
   effects: {
     *fetchCombinations(action, {call, put, select}) {
@@ -22,6 +25,23 @@ export default {
         type: 'saveCombinations',
         payload: data,
       });
+    },
+
+    *deleteCombination({payload: combinationId}, {call, put, select}) {
+      const {data} = yield call(combinationService.deleteCombination, combinationId);
+
+      if (data.result) {
+        yield put({
+          type: 'fetchCombinations',
+        });
+      } else {
+        if (data.message === '无效操作') {
+          yield  put(routerRedux.push('/404'));
+        } else if (data.result === undefined) {
+          yield put(routerRedux.push('/auth'));
+        }
+      }
+
     },
   },
   subscriptions: {

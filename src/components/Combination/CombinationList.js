@@ -41,14 +41,14 @@ class CombinationList extends Component {
       title: '组合名称',
       dataIndex: 'name',
     }, {
-      title: '累计收益',
-      dataIndex: 'cumulativeProfit',
+      title: '最新收益',
+      dataIndex: 'newProfit',
     }, {
       title: '年化收益',
       dataIndex: 'annualProfit',
     }, {
-      title: '最大回撤',
-      dataIndex: 'maxRetracement',
+      title: '相关系数',
+      dataIndex: 'correlationCoefficient',
     }, {
       title: '操作',
       dataIndex: 'operation',

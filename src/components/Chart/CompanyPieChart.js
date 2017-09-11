@@ -50,11 +50,18 @@ class CompanyPieChart extends Component {
       //   bottom: 'bottom',
       //   data: ['银行', '股票', '债券', '其他']
       // },
+      grid: {
+        top: 30,
+        bottom: 0,
+        // left: 30,
+        // right: 50,
+        containLabel: true
+      },
       series: [
         {
           // name: '占净比',
           type: 'pie',
-          radius: '55%',
+          radius: '60%',
           center: ['50%', '40%'],
           data: data,
           itemStyle: {

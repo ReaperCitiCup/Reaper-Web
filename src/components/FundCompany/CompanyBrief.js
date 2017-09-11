@@ -30,12 +30,12 @@ class CompanyBrief extends Component {
             {managerPerformance ?
               <ScatterChart chartData={managerPerformance}/> : null }
           </div>
-          <div className={styles.section_a}>
-            <DivHeader>产品策略分布</DivHeader>
-            {productStrategy ?
-              <CompanyPieChart chartData={productStrategy}/> : null}
-          </div>
-          <div className={styles.section_b}>
+          <div className={styles.section_c}>
+            {/*<DivHeader>产品策略分布</DivHeader>*/}
+            {/*{productStrategy ?*/}
+              {/*<CompanyPieChart chartData={productStrategy}/> : null}*/}
+          {/*</div>*/}
+          {/*<div className={styles.section_b}>*/}
             <DivHeader>资产配置行业占比</DivHeader>
             {assetAllocation ?
               <CompanyPieChart chartData={assetAllocation}/> : null}

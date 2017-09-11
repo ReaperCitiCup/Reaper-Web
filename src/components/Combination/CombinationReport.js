@@ -2,13 +2,18 @@
  * Created by st on 2017/9/6.
  */
 import React, {Component} from 'react';
-import styles from "./CombinationReport.css";
-import {Row, Col, Table, Tabs} from 'antd';
 
+import {Row, Col, Table, Tabs} from 'antd';
 
 import DivHeader from "../Util/DivHeader";
 import AssetPieChart from "../Chart/AssetPieChart";
 import NetValueLineChart from "../Chart/NetValueLineChart";
+import AttributionBarChart from "../Chart/AttributionBarChart";
+import CorrelationCoefficientTable from "../Chart/CorrelationCoefficientTable";
+import BrisonTable from "../Chart/BrisonTable";
+
+import styles from "./CombinationReport.css";
+
 const TabPane = Tabs.TabPane;
 
 const columns = [{
@@ -132,11 +137,11 @@ class CombinationReport extends Component {
               </tr>
               <tr>
                 <td>风格分析</td>
-                <td> </td>
+                <td></td>
               </tr>
               <tr>
                 <td>业绩归因</td>
-                <td> </td>
+                <td></td>
               </tr>
               </tbody>
             </table>
@@ -169,7 +174,7 @@ class CombinationReport extends Component {
                   <NetValueLineChart/>
                 </TabPane>
                 <TabPane tab="相关系数" key="3">
-                  <NetValueLineChart/>
+                  <CorrelationCoefficientTable/>
                 </TabPane>
               </Tabs>
             </div>
@@ -178,24 +183,36 @@ class CombinationReport extends Component {
               <table>
                 <tbody>
                 <tr>
-                  <td>业绩表现</td>
-                  <td>该基金组合报告区间的年化收益为66.6%，排名66</td>
+                  <th>项目</th>
+                  <th>基金组合</th>
                 </tr>
                 <tr>
-                  <td>风险表现</td>
-                  <td>该基金组合报告区间的最大回撤为6.61%，波动率为23.3%，排名233</td>
+                  <td>最大回撤</td>
+                  <td>66</td>
                 </tr>
                 <tr>
-                  <td>收益风险分析</td>
-                  <td>该基金组合属于高风险，低收益，风险收益比0.97</td>
+                  <td>最大单日跌幅</td>
+                  <td>233</td>
                 </tr>
                 <tr>
-                  <td>风格分析</td>
-                  <td> </td>
+                  <td>最大连跌天数</td>
+                  <td>0.97</td>
                 </tr>
                 <tr>
-                  <td>业绩归因</td>
-                  <td> </td>
+                  <td>年化波动率</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Beta</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>在险价值 VaR</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>基金平均相关系数</td>
+                  <td></td>
                 </tr>
                 </tbody>
               </table>
@@ -203,10 +220,56 @@ class CombinationReport extends Component {
           </div>
 
           <div className={styles.section_7}>
-            <DivHeader>组合详情</DivHeader>
+            <DivHeader>风格归因</DivHeader>
+            <div className={styles.section}>
+              <h4 className={styles.section_title}>主动收益</h4>
+              <AttributionBarChart color="#81B6F5"/>
+            </div>
+            <div className={styles.section}>
+              <h4 className={styles.section_title}>主动风险</h4>
+              <AttributionBarChart color="#F9D471"/>
+            </div>
           </div>
 
+          <div className={styles.section_8}>
+            <DivHeader>行业归因</DivHeader>
 
+            <div className={styles.section}>
+              <h4 className={styles.section_title}>主动收益</h4>
+              <AttributionBarChart color="#81B6F5"/>
+            </div>
+            <div className={styles.section}>
+              <h4 className={styles.section_title}>主动风险</h4>
+              <AttributionBarChart color="#F9D471"/>
+            </div>
+          </div>
+
+          <div className={styles.section_9}>
+            <DivHeader>Brison 归因</DivHeader>
+            <Tabs defaultActiveKey="1">
+              <TabPane tab="基于股票持仓" key="1">
+                <div>
+                  <div className={styles.section}>
+                    <AttributionBarChart color="#81B6F5"/>
+                  </div>
+                  <div className={styles.section}>
+                    <BrisonTable />
+                  </div>
+                </div>
+              </TabPane>
+              <TabPane tab="基于债券持仓" key="2">
+                <div>
+                  <div className={styles.section}>
+                    <AttributionBarChart color="#81B6F5"/>
+                  </div>
+                  <div className={styles.section}>
+                    <BrisonTable />
+                  </div>
+                </div>
+              </TabPane>
+            </Tabs>
+
+          </div>
 
         </div>
       </div>

@@ -45,6 +45,8 @@ html :global .ant-tabs-bar {
 html :global .ant-tabs-tab {
   color: #3D5673;
   font-size: 14px; }
+html :global .ant-table-thead > tr > th {
+  color: #3D5673; }
 @media (max-width: 960px) {
   html :global .container {
     width: 100%; } }

@@ -13,7 +13,7 @@ html {
 
     .container {
       width: 960px;
-      margin:  0 auto;
+      margin: 0 auto;
       @include clear-fix();
     }
 
@@ -48,9 +48,14 @@ html {
       color: $main-font-color;
       font-size: 14px;
     }
+    .ant-table-thead {
+      > tr > th {
+        color: $main-font-color;
+        //background-color: #edf3fa;
+      }
+    }
 
-
-    @media (max-width:960px) {
+    @media (max-width: 960px) {
       .container {
         width: 100%;
       }

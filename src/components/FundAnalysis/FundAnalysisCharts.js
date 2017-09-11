@@ -143,8 +143,6 @@ function FundAnalysisCharts({
 
       <div className="card" id="9">
         <DivHeader>Brison 归因</DivHeader>
-
-
         <Tabs defaultActiveKey="1">
           <TabPane tab="基于股票持仓" key="1">
             {fundBrisonAttributionStock ?

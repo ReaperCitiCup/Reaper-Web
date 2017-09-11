@@ -271,6 +271,13 @@ class CombinationReport extends Component {
 
           </div>
 
+
+          <div className={styles.section_10}>
+            <DivHeader>品种归因</DivHeader>
+            <AttributionBarChart color="#E2827E"/>
+          </div>
+
+
         </div>
       </div>
     )

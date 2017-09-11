@@ -3,6 +3,8 @@
  */
 import React, {Component} from 'react';
 import {connect} from 'dva';
+import {routerRedux} from 'dva/router';
+
 import {Table} from 'antd';
 
 import CombinationBacktestModal from'../Combination/CombinationBacktestModal';
@@ -33,6 +35,12 @@ class CombinationList extends Component {
     })
   };
 
+
+  onClickRow = (record, index, event) => {
+    const {dispatch} = this.props;
+    dispatch(routerRedux.push(`/combination/${record.id}`))
+  };
+
   render() {
     const {dispatch, data, showModal} = this.props;
 
@@ -41,14 +49,14 @@ class CombinationList extends Component {
       title: '组合名称',
       dataIndex: 'name',
     }, {
-      title: '累计收益',
-      dataIndex: 'cumulativeProfit',
+      title: '最新收益',
+      dataIndex: 'newProfit',
     }, {
       title: '年化收益',
       dataIndex: 'annualProfit',
     }, {
-      title: '最大回撤',
-      dataIndex: 'maxRetracement',
+      title: '相关系数',
+      dataIndex: 'correlationCoefficient',
     }, {
       title: '操作',
       dataIndex: 'operation',
@@ -59,15 +67,16 @@ class CombinationList extends Component {
           <div className={styles.operation}>
 
             <button
-            onClick={() => {
+            onClick={(event) => {
+              event.stopPropagation();
               dispatch({
 
               })
             }}>删除</button>
 
             <button
-              onClick={() => {
-                console.log(record.id)
+              onClick={(event) => {
+                event.stopPropagation();
                 dispatch({
                   type: 'backTestModal/saveShowAndId',
                   payload: {
@@ -95,6 +104,7 @@ class CombinationList extends Component {
                  dataSource={data}
                  size="middle"
                  pagination={false}
+                 onRowClick={this.onClickRow}
           />
         </div>
         <CombinationBacktestModal

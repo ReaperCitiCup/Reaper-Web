@@ -1,4 +1,15 @@
 
+.steps_content {
+  min-height: 400px;
+}
+
+.custom_option {
+  :global {
+    .ant-input-number {
+      width: 60px;
+    }
+  }
+}
 
 .routeSelect {
   :global {
@@ -6,9 +17,9 @@
 
     }
     .ant-radio-button-wrapper {
-
+      margin: 0 80px;
       text-align: center;
-      width: 150px;
+      width: 160px;
       height: 140px;
       padding: 6px;
       border-width: 1px;
@@ -23,9 +34,17 @@
   }
 }
 
-:global {
-  .ant-steps .ant-steps-head {
-    background: transparent;
+.steps {
+  :global {
+    .ant-steps-head {
+      background-color: #F9FAFB;
+    }
+    .ant-steps-item.ant-steps-status-wait .ant-steps-head-inner {
+      background-color: #F9FAFB;
+    }
+    .ant-steps-title {
+      background-color: #F9FAFB;
+    }
   }
 }
 
@@ -53,26 +72,61 @@
 }
 
 .stepTitle {
+  margin: 50px 0;
   font-size: 1.3em;
   font-weight: bold;
-  margin-bottom: 15px;
+  //margin-bottom: 15px;
 }
 
 .selectWeight {
   :global {
     .ant-radio-wrapper {
       display: block;
+      font-size: 14px;
     }
     .ant-radio-group {
-      margin: 8px 20px;
+      margin: 10px 0;
     }
   }
 }
 
+.strategyClassify {
+  :global {
+    .ant-checkbox-group {
+      margin: 10px 0;
+    }
+    .ant-checkbox-wrapper {
+      font-size: 14px;
+    }
+  }
+}
+
+
+.weight_left, .weight_right {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.weight_left {
+  width: 600px;
+}
+
+.weight_right {
+  width: 300px;
+}
+
+.section {
+  margin-bottom: 40px;
+  font-size: 14px;
+}
+
 .classifyLabel {
-  border: 0 solid #81B6F5;
-  border-left-width: 2px;
-  padding-left: 4px;
+  //border: 0 solid #81B6F5;
+  //border-left-width: 2px;
+  //padding-left: 4px;
+  display: block;
+  color: #9FAEC0;
+  font-size: 12px;
 }
 
 .fundListTitle {
@@ -81,23 +135,15 @@
   font-weight: bold;
   margin-bottom: 10px;
 
-  & > span {
-    border: 0 solid #8DC6FF;
-    border-bottom-width: 2px;
-    padding-bottom: 2px;
-  }
+  //& > span {
+  //  border: 0 solid #8DC6FF;
+  //  border-bottom-width: 2px;
+  //  padding-bottom: 2px;
+  //}
 }
 
-.strategyClassify {
-  :global {
-    .ant-checkbox-group {
-      margin-left: 20px;
-      margin-bottom: 20px;
-      margin-top: 10px;
-    }
-  }
-}
 
 .contentRetract {
   margin-left: 15px;
 }
+

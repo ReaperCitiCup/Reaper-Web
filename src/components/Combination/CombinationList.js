@@ -58,7 +58,12 @@ class CombinationList extends Component {
         return (
           <div className={styles.operation}>
 
-            <button>删除</button>
+            <button
+            onClick={() => {
+              dispatch({
+
+              })
+            }}>删除</button>
 
             <button
               onClick={() => {

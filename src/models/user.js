@@ -59,6 +59,8 @@ export default {
     *signIn({payload: user, onSuccess, onError}, {call, put}) {
       const {data} = yield call(userService.signIn, user);
 
+      console.log(data)
+
       if (data.result !== undefined) {
         localStorage.setItem('token', data.result);
         yield put({

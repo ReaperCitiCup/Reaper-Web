@@ -27,9 +27,9 @@ class NetworkChart extends Component {
 
     // console.log(categories);
     let option = {
-      legend: {
-        data: seriesData.map(dataValue => dataValue.name),
-      },
+      // legend: {
+      //   data: seriesData.map(dataValue => dataValue.name),
+      // },
       tooltip: {
         trigger: 'item',
       },
@@ -41,7 +41,7 @@ class NetworkChart extends Component {
 
         draggable: true,
         data: seriesData,
-        categories: seriesData.map(dataValue => dataValue.name),
+        // categories: seriesData.map(dataValue => dataValue.name),
         force: {
           // initLayout: 'circular'
           // repulsion: 20,

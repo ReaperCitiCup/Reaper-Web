@@ -92,3 +92,26 @@
 .contentRetract {
   margin-left: 15px;
 }
+.fund_list {
+  display: inline-block;
+  width: 31%;
+  height: 360px;
+  margin: 0 1%;
+}
+.fund_list .fund_item {
+  font-size: 14px;
+  height: 30px;
+  line-height: 30px;
+}
+.fund_list :global .FreeScrollbar-container {
+  padding: 10px;
+}
+.fund_list :global .ant-checkbox {
+  vertical-align: middle;
+}
+.fund_list :global .ant-checkbox-group-item {
+  display: block;
+  font-size: 14px;
+  height: 30px;
+  line-height: 30px;
+}

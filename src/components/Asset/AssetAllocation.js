@@ -59,16 +59,15 @@ class AssetAllocation extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      current: 4,               // 当前步
+      current: 0,               // 当前步
       profitRiskTarget: 5,       // 收益风险目标
-      implementationPath: '',   // 选择实施路径
+      implementationPath: null,   // 选择实施路径
       modalVisible: false,
       factorOptionsVal: [],     // 因子间分散选择
       weight: [0, 0, 0],
-      weightTag: '',
-      recommendWeight: '',      // 推荐权重
-      customWeight: '',         // 自定义权重
-      noWeight: '',             // 暂不选择权重
+      weightTag: null,
+      recommendWeight: null,      // 推荐权重
+      customWeight: null,         // 自定义权重
       customStockWeight: 40,    // 默认股票型基金权重
       customFundWeight: 40,     // 默认期货型基金权重
       customMixWeight: 20,      // 默认混合型基金权重
@@ -76,8 +75,8 @@ class AssetAllocation extends Component {
       stockSelect: [],
       fundSelect: [],
       mixSelect: [],
-      decentralizedApproach: '', // 分散化方法
-      combinationName: '',
+      decentralizedApproach: null, // 分散化方法
+      combinationName: null,
     };
   }
 
@@ -88,32 +87,23 @@ class AssetAllocation extends Component {
     });
     if (this.state.implementationPath === '1') {
       this.setState({
-        classify: [],
-        stockStrategy: [],
-        manageFuture: [],
-        otherChoice: [],
         factorOptionsVal: [],
         fundArr: [],
         stockSelect: [],
         fundSelect: [],
         mixSelect: [],
-        decentralizedApproach: '',
+        decentralizedApproach: null,
       });
     } else if (this.state.implementationPath === '2') {
       this.setState({
         weight: [0, 0, 0],
-        weightTag: '',
-        recommendWeight: '',
-        customWeight: '',
-        noWeight: '',
+        weightTag: null,
+        recommendWeight: null,
+        customWeight: null,
         customStockWeight: 40,
         customFundWeight: 40,
         customMixWeight: 20,
-        classify: [],
-        stockStrategy: [],
-        manageFuture: [],
-        otherChoice: [],
-        decentralizedApproach: '',
+        decentralizedApproach: null,
       });
     }
   };
@@ -123,8 +113,7 @@ class AssetAllocation extends Component {
       weight: e.target.value,
       recommendWeight: e.target.value,
       weightTag: e.target.value,
-      customWeight: '',
-      noWeight: '',
+      customWeight: null,
     });
   };
   onChangeCustomWeight = (e) => {
@@ -132,19 +121,8 @@ class AssetAllocation extends Component {
     this.setState({
       weight: [this.state.customStockWeight,
         this.state.customFundWeight, this.state.customMixWeight],
-      recommendWeight: '',
+      recommendWeight: null,
       customWeight: e.target.value,
-      weightTag: e.target.value,
-      noWeight: '',
-    });
-  };
-  onChangeNoWeight = (e) => {
-    // 暂不选择权重
-    this.setState({
-      weight: [0, 0, 0],
-      recommendWeight: '',
-      customWeight: '',
-      noWeight: e.target.value,
       weightTag: e.target.value,
     });
   };
@@ -335,10 +313,6 @@ class AssetAllocation extends Component {
       ),
       value: 'custom',
     }];
-    const noWeightOption = [{
-      label: '暂不选择权重',
-      value: 'noWeight',
-    }];
 
     const stepThreeContent = [(
       <div className={styles.selectWeight}>
@@ -358,14 +332,6 @@ class AssetAllocation extends Component {
               options={customOption}
               onChange={this.onChangeCustomWeight}
               value={this.state.customWeight}
-            />
-          </div>
-          <div className={styles.section}>
-            <span className={styles.classifyLabel}>不定义权重</span>
-            <RadioGroup
-              onChange={this.onChangeNoWeight}
-              options={noWeightOption}
-              value={this.state.noWeight}
             />
           </div>
         </div>
@@ -394,62 +360,53 @@ class AssetAllocation extends Component {
     const stepFourContent = [(
       <div>
         <div className={styles.stepTitle}>4.选择基金</div>
-        <div className={styles.contentRetract}>
-          <div style={{float: 'left', width: '31%', height: '360px', margin: '0 1%'}}>
-            <div className={styles.fundListTitle}><span>股票型基金</span></div>
-            <FreeScrollBar
-              style={{height: '300px', border: '1px solid #E7E9EC'}}
-            >
-              <div>
-                <CheckboxGroup
-                  options={this.props.assetChoiceList.map((v) => {
-                    if (v.name === '股票型基金') {
-                      return v.funds;
-                    }
-                  })}
-                  value={this.state.stockSelect}
-                  onChange={this.onChangeStockSelect}
-                />
-              </div>
-            </FreeScrollBar>
+
+        {this.props.assetChoiceList.length > 0 ?
+          <div className={styles.contentRetract}>
+            <div className={styles.fund_list}>
+              <div className={styles.fundListTitle}><span>股票型基金</span></div>
+              <FreeScrollBar
+                style={{height: '300px', border: '1px solid #E7E9EC'}}
+              >
+                <div>
+                  <CheckboxGroup
+                    options={this.props.assetChoiceList.filter(v => v.name === 'stock')[0].funds}
+                    value={this.state.stockSelect}
+                    onChange={this.onChangeStockSelect}
+                  />
+                </div>
+              </FreeScrollBar>
+            </div>
+            <div className={styles.fund_list}>
+              <div className={styles.fundListTitle}><span>债券型基金</span></div>
+              <FreeScrollBar
+                style={{height: '300px', border: '1px solid #E7E9EC'}}
+              >
+                <div>
+                  <CheckboxGroup
+                    options={this.props.assetChoiceList.filter(v => v.name === 'bond')[0].funds}
+                    value={this.state.fundSelect}
+                    onChange={this.onChangeFundSelect}
+                  />
+                </div>
+              </FreeScrollBar>
+            </div>
+            <div className={styles.fund_list}>
+              <div className={styles.fundListTitle}><span>混合型基金</span></div>
+              <FreeScrollBar
+                style={{height: '300px', border: '1px solid #E7E9EC'}}
+              >
+                <div>
+                  <CheckboxGroup
+                    options={this.props.assetChoiceList.filter(v => v.name === 'hybrid')[0].funds}
+                    value={this.state.mixSelect}
+                    onChange={this.onChangeMixSelect}
+                  />
+                </div>
+              </FreeScrollBar>
+            </div>
           </div>
-          <div style={{float: 'left', width: '31%', height: '360px', margin: '0 1%'}}>
-            <div className={styles.fundListTitle}><span>债券型基金</span></div>
-            <FreeScrollBar
-              style={{height: '300px', border: '1px solid #E7E9EC'}}
-            >
-              <div>
-                <CheckboxGroup
-                  options={this.props.assetChoiceList.map((v) => {
-                    if (v.name === '债券型基金') {
-                      return v.funds;
-                    }
-                  })}
-                  value={this.state.fundSelect}
-                  onChange={this.onChangeFundSelect}
-                />
-              </div>
-            </FreeScrollBar>
-          </div>
-          <div style={{float: 'left', width: '31%', height: '360px', margin: '0 1%'}}>
-            <div className={styles.fundListTitle}><span>混合型基金</span></div>
-            <FreeScrollBar
-              style={{height: '300px', border: '1px solid #E7E9EC'}}
-            >
-              <div>
-                <CheckboxGroup
-                  options={this.props.assetChoiceList.map((v) => {
-                    if (v.name === '混合型基金') {
-                      return v.funds;
-                    }
-                  })}
-                  value={this.state.mixSelect}
-                  onChange={this.onChangeMixSelect}
-                />
-              </div>
-            </FreeScrollBar>
-          </div>
-        </div>
+          : null }
       </div>
     ), (
       <div>
@@ -457,7 +414,7 @@ class AssetAllocation extends Component {
         <div className={styles.contentRetract}>
           {this.props.factorChoiceList.map((v) => {
             return (
-              <div style={{float: 'left', width: '32%', height: '360px', margin: '20px 1%'}}>
+              <div className={styles.fund_list}>
                 <div className={styles.fundListTitle}><span>{v.name}</span></div>
                 <FreeScrollBar
                   style={{height: '100px', border: '1px solid #E7E9EC'}}
@@ -465,7 +422,9 @@ class AssetAllocation extends Component {
                   <ul>
                     {v.funds.map((x) => {
                       return (
-                        <li key={x.code}>{x.name}</li>
+                        <li
+                          className={styles.fund_item}
+                          key={x.code}>{x.name}</li>
                       )
                     })}
                   </ul>
@@ -484,7 +443,7 @@ class AssetAllocation extends Component {
         <div className={styles.earnRiskTargetStyle}>
           <div className={styles.stepTitle}>1.设置投资目标</div>
           <div>
-            <div style={{ width: '50%', margin: '0 auto' }}>
+            <div style={{width: '50%', margin: '0 auto'}}>
               <div>风险收益目标</div>
               <Slider
                 marks={marks}
@@ -530,25 +489,25 @@ class AssetAllocation extends Component {
         <div className={styles.decentralization}>
           <div className={styles.stepTitle}>5.选择分散化方法</div>
           <RadioGroup onChange={this.onChangeDecentralizedApproach}>
-            <RadioButton value="staticScale"><img width={70} role="presentation" src={staticScale}/>
+            <RadioButton value="1"><img width={70} role="presentation" src={staticScale}/>
               <div>静态比例配置</div>
             </RadioButton>
-            <RadioButton value="meanVariance"><img width={70} role="presentation" src={meanVariance}/>
+            <RadioButton value="2"><img width={70} role="presentation" src={meanVariance}/>
               <div>均值方差</div>
             </RadioButton>
-            <RadioButton value="minVariance"><img width={70} role="presentation" src={minVariance}/>
+            <RadioButton value="3"><img width={70} role="presentation" src={minVariance}/>
               <div>最小方差组合配置</div>
             </RadioButton>
-            <RadioButton value="volatility"><img width={70} role="presentation" src={volatility}/>
+            <RadioButton value="4"><img width={70} role="presentation" src={volatility}/>
               <div>波动率倒数</div>
             </RadioButton>
-            <RadioButton value="maxDispersion"><img width={70} role="presentation" src={maxDispersion}/>
+            <RadioButton value="5"><img width={70} role="presentation" src={maxDispersion}/>
               <div>最大分散化</div>
             </RadioButton>
-            <RadioButton value="riskAssessment"><img width={70} role="presentation" src={riskAssessment}/>
+            <RadioButton value="6"><img width={70} role="presentation" src={riskAssessment}/>
               <div>风险评价</div>
             </RadioButton>
-            <RadioButton value="BLmodel"><img width={70} role="presentation" src={BLmodel}/>
+            <RadioButton value="7"><img width={70} role="presentation" src={BLmodel}/>
               <div>B-L模型</div>
             </RadioButton>
           </RadioGroup>
@@ -574,17 +533,18 @@ class AssetAllocation extends Component {
             this.state.current < steps.length - 1
             &&
             <Button
-              style={{float: 'right'}} disabled={this.state.current === 1 && this.state.implementationPath === '' ||
-              this.state.current === 2 && ((this.state.implementationPath === '1' && this.state.weightTag === '') ||
-              (this.state.implementationPath === '2' && this.state.factorOptionsVal.length === 0)) ||
-              this.state.current === 3 && (this.state.implementationPath === '1' && this.state.fundArr.length === 0)}
+              style={{float: 'right'}} disabled={this.state.current === 1 && this.state.implementationPath === null ||
+            this.state.current === 2 && ((this.state.implementationPath === '1' && this.state.weightTag === null) ||
+            (this.state.implementationPath === '2' && this.state.factorOptionsVal.length === 0)) ||
+            this.state.current === 3 && (this.state.implementationPath === '1' && this.state.fundArr.length === 0)}
               onClick={() => this.next()}
             >下一步</Button>
           }
           {
             this.state.current === steps.length - 1
             &&
-            <Button type="primary" disabled={this.state.decentralizedApproach === ''} style={{float: 'right'}} onClick={() => this.finishChoice()}>创建我的组合</Button>
+            <Button type="primary" disabled={this.state.decentralizedApproach === ''} style={{float: 'right'}}
+                    onClick={() => this.finishChoice()}>创建我的组合</Button>
           }
           {
             this.state.current > 0
@@ -611,8 +571,8 @@ class AssetAllocation extends Component {
 }
 
 function mapStateToProps(state) {
-  const { assetChoiceList, factorChoiceList, combinationResult } = state.asset;
-  return { assetChoiceList, factorChoiceList, combinationResult };
+  const {assetChoiceList, factorChoiceList, combinationResult} = state.asset;
+  return {assetChoiceList, factorChoiceList, combinationResult};
 }
 
 export default connect(mapStateToProps)(AssetAllocation);

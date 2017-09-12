@@ -77,6 +77,7 @@
   font-weight: bold;
   //margin-bottom: 15px;
 }
+
 .earnRiskTargetStyle {
   :global {
     .ant-slider-step {
@@ -109,7 +110,6 @@
     }
   }
 }
-
 
 .weight_left, .weight_right {
   display: inline-block;
@@ -151,8 +151,34 @@
   //}
 }
 
-
 .contentRetract {
   margin-left: 15px;
 }
 
+.fund_list {
+  display: inline-block;
+  width: 31%;
+  height: 360px;
+  margin: 0 1%;
+
+  .fund_item {
+    font-size: 14px;
+    height: 30px;
+    line-height: 30px;
+  }
+
+  :global {
+    .FreeScrollbar-container {
+      padding: 10px;
+    }
+    .ant-checkbox {
+      vertical-align: middle;
+    }
+    .ant-checkbox-group-item {
+      display: block;
+      font-size: 14px;
+      height: 30px;
+      line-height: 30px;
+    }
+  }
+}

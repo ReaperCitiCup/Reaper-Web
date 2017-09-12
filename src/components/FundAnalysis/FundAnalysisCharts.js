@@ -28,7 +28,7 @@ function FundAnalysisCharts({
   fundPositionNetwork
 }) {
 
-  console.log(fundChooseTimeStock);
+  // console.log(fundChooseTimeStock);
 
   return (
     <div className={ styles.fund_analysis_chart}>

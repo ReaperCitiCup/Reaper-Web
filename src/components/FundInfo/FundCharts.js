@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'dva';
-import {Tabs} from 'antd';
+import {Tabs, Table} from 'antd';
 const TabPane = Tabs.TabPane;
 
 import NetValueLineChart from "../Chart/NetValueLineChart";
@@ -11,8 +11,38 @@ import DivHeader from '../Util/DivHeader';
 
 import styles from './FundCharts.css';
 
-function FundCharts({unitNetValueData, cumulativeNetValueData, cumulativeProfitData, currentAssetData}) {
+const columns = [{
+  title: '经理名称',
+  dataIndex: 'managerName',
+}, {
+  title: '任职时间',
+  dataIndex: 'workDate',
+}, {
+  title: '任职天数',
+  dataIndex: 'workTime',
+}, {
+  title: '任期回报',
+  dataIndex: 'returns',
+}];
+
+function FundCharts({
+  unitNetValueData, cumulativeNetValueData,
+  cumulativeProfitData, currentAssetData, fundManagers
+}) {
   // console.log({unitNetValueData});
+  const data = [];
+  if (fundManagers) {
+    fundManagers.forEach((manager, index) => {
+      data.push({
+        key: index,
+        managerName: manager.name,
+        workDate: manager.startDate + ' - ' + manager.endDate,
+        workTime: manager.days,
+        returns: manager.returns,
+      })
+    })
+  }
+
   return (
 
     <div className={"container " + styles.container}>
@@ -54,6 +84,12 @@ function FundCharts({unitNetValueData, cumulativeNetValueData, cumulativeProfitD
           {/*</div>*/}
         </div>
       </div>
+
+      {fundManagers ?
+        <div className={styles.previousFundManagerDiv}>
+          <DivHeader>历任基金经理</DivHeader>
+          <Table columns={columns} dataSource={data} size="middle" pagination={false}/>
+        </div> : null}
     </div>
   )
 }
@@ -65,8 +101,9 @@ function mapStateToProps(state) {
     unitNetValueData: state.fundChart.unitNetValueData,
     cumulativeNetValueData: state.fundChart.cumulativeNetValueData,
     cumulativeProfitData: state.fundChart.cumulativeProfitData,
-    currentAssetData: state.fundChart.currentAssetData
-  };
+    currentAssetData: state.fundChart.currentAssetData,
+    fundManagers: state.fundChart.fundManagers,
+  }
 }
 
 export default connect(mapStateToProps)(FundCharts);

@@ -26,3 +26,9 @@ export function fetchCurrentAssetData(code) {
     method: 'GET',
   });
 }
+
+export function fetchFundManagers(code) {
+  return request(`/api/fund/${code}/managers`, {
+    method: 'GET',
+  });
+}

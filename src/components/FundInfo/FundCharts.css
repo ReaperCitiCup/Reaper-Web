@@ -32,4 +32,10 @@ button {
 .pie_chart {
   text-align: center; }
 
+.previousFundManagerDiv {
+  height: 263px;
+  margin-top: 15px;
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 20px; }
+
 /*# sourceMappingURL=FundCharts.css.map */

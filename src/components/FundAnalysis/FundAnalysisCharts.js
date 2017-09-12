@@ -12,6 +12,7 @@ import StabilityRadarChart from'../Chart/StabilityRadarChart';
 import BrisonTable from'../Chart/BrisonTable';
 import AssetBarChart from '../Chart/AssetBarChart';
 import ScatterChart from '../Chart/ScatterChart';
+import NetworkChart from '../Chart/NetworkChart';
 
 
 import styles from './FundAnalysisCharts.css';
@@ -22,8 +23,9 @@ function FundAnalysisCharts({
   fundJensenIndex, fundStyleAttributionProfit, fundStyleAttributionRisk,
   fundIndustryAttributionProfit, fundIndustryAttributionRisk, fundStyleStabilityProfit,
   fundStyleStabilityRisk, fundVarietyAttribution, fundBrisonAttributionStock,
-  fundBrisonAttributionBond, fundChooseTime, fundChooseStock, fundPublicOpinion,
-  fundPerformanceAnalysis, managerPerformanceAnalysis, fundPerformanceIndex
+  fundBrisonAttributionBond, fundChooseTimeStock, fundPublicOpinion,
+  fundPerformanceAnalysis, managerPerformanceAnalysis, fundPerformanceIndex,
+  fundPositionNetwork
 }) {
   // console.log(fundBrisonAttributionBond);
   return (
@@ -178,16 +180,8 @@ function FundAnalysisCharts({
       <div className="card" id="11">
         <DivHeader>择时 | 择股能力</DivHeader>
 
-        <div className={styles.section}>
-          <h4 className={styles.section_title}>择时能力</h4>
-          {fundChooseTime ?
-            <AbilityBarChart chartData={fundChooseTime} color="#E2827E"/> : null}
-        </div>
-        <div className={styles.section}>
-          <h4 className={styles.section_title}>择股能力</h4>
-          {fundChooseStock ?
-            <AbilityBarChart chartData={fundChooseStock} color="#E2827E"/> : null}
-        </div>
+        {fundChooseTimeStock ?
+          <AbilityBarChart chartData={fundChooseTimeStock} color="#E2827E"/> : null}
 
       </div>
 
@@ -208,10 +202,15 @@ function FundAnalysisCharts({
       </div>
 
       <div className="card" id="13">
+        <DivHeader>基金持仓情况</DivHeader>
+        {fundPositionNetwork ?
+          <NetworkChart chartData={fundPositionNetwork} type={'fund'}/> : null}
+      </div>
+
+      <div className="card" id="14">
         <DivHeader>舆情分析</DivHeader>
         {fundPublicOpinion ?
           <AssetBarChart chartData={fundPublicOpinion}/> : null}
-
       </div>
     </div>
   )
@@ -241,12 +240,12 @@ function mapStateToProps(state) {
     fundVarietyAttribution: state.fundAnalysisChart.fundVarietyAttribution,
     fundBrisonAttributionStock: state.fundAnalysisChart.fundBrisonAttributionStock,
     fundBrisonAttributionBond: state.fundAnalysisChart.fundBrisonAttributionBond,
-    fundChooseTime: state.fundAnalysisChart.fundChooseTime,
-    fundChooseStock: state.fundAnalysisChart.fundChooseStock,
+    fundChooseStock: state.fundAnalysisChart.fundChooseTimeStock,
     fundPerformanceAnalysis: state.fundAnalysisChart.fundPerformanceAnalysis,
     managerPerformanceAnalysis: state.fundAnalysisChart.managerPerformanceAnalysis,
     fundPublicOpinion: state.fundAnalysisChart.fundPublicOpinion,
     fundPerformanceIndex: state.fundAnalysisChart.fundPerformanceIndex,
+    fundPositionNetwork: state.fundAnalysisChart.fundPositionNetwork,
   };
 }
 

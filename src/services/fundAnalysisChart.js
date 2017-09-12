@@ -111,14 +111,8 @@ export function fetchFundBrisonAttributionBond(code) {
   });
 }
 
-export function fetchFundChooseTime(code) {
-  return request(`/api/fund/${code}/choose-time`, {
-    method: 'GET',
-  });
-}
-
-export function fetchFundChooseStock(code) {
-  return request(`/api/fund/${code}/choose-stock`, {
+export function fetchFundChooseTimeStock(code) {
+  return request(`/api/fund/${code}/choose-time-stock`, {
     method: 'GET',
   });
 }
@@ -143,6 +137,12 @@ export function fetchManagerPerformanceAnalysis(code) {
 
 export function fetchFundPerformanceIndex(code) {
   return request(`/api/fund/${code}/performance-index`, {
+    method: 'GET',
+  });
+}
+
+export function fetchFundPositionNetwork(code) {
+  return request(`/api/fund/${code}/position-network`, {
     method: 'GET',
   });
 }

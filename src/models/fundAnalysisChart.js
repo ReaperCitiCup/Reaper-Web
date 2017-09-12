@@ -23,12 +23,12 @@ export default {
     fundVarietyAttribution: null,
     fundBrisonAttributionStock: null,
     fundBrisonAttributionBond: null,
-    fundChooseTime: null,
-    fundChooseStock: null,
+    fundChooseTimeStock: null,
     fundPerformanceAnalysis: null,
     managerPerformanceAnalysis: null,
     fundPublicOpinion: null,
     fundPerformanceIndex: null,
+    fundPositionNetwork: null,
   },
   reducers: {
     // saveFundRiskTrend(state, {payload: fundRiskTrend}) {
@@ -157,17 +157,10 @@ export default {
       }
     },
 
-    saveFundChooseTime(state, {payload: fundChooseTime}) {
+    saveFundChooseTimeStock(state, {payload: fundChooseTimeStock}) {
       return {
         ...state,
-        fundChooseTime,
-      }
-    },
-
-    saveFundChooseStock(state, {payload: fundChooseStock}) {
-      return {
-        ...state,
-        fundChooseStock,
+        fundChooseTimeStock,
       }
     },
 
@@ -196,6 +189,13 @@ export default {
       return {
         ...state,
         fundPerformanceIndex,
+      }
+    },
+
+    saveFundPositionNetwork(state, {payload: fundPositionNetwork}) {
+      return {
+        ...state,
+        fundPositionNetwork,
       }
     },
 
@@ -489,34 +489,18 @@ export default {
       });
     },
 
-    *fetchFundChooseTime({payload: code}, {call, put, select}) {
+    *fetchFundChooseTimeStock({payload: code}, {call, put, select}) {
       yield put({
-        type: 'saveFundChooseTime',
+        type: 'saveFundChooseTimeStock',
         payload: null,
       });
 
-      const {data} = yield call(fundAnalysisChartService.fetchFundChooseTime, code);
+      const {data} = yield call(fundAnalysisChartService.fetchFundChooseTimeStock, code);
 
       // console.log(data);
 
       yield put({
-        type: 'saveFundChooseTime',
-        payload: data
-      });
-    },
-
-    *fetchFundChooseStock({payload: code}, {call, put, select}) {
-      yield put({
-        type: 'saveFundChooseStock',
-        payload: null,
-      });
-
-      const {data} = yield call(fundAnalysisChartService.fetchFundChooseStock, code);
-
-      // console.log(data);
-
-      yield put({
-        type: 'saveFundChooseStock',
+        type: 'saveFundChooseTimeStock',
         payload: data
       });
     },
@@ -585,6 +569,22 @@ export default {
       });
     },
 
+    *fetchFundPositionNetwork({payload: code}, {call, put, select}) {
+      yield put({
+        type: 'saveFundPositionNetwork',
+        payload: null,
+      });
+
+      const {data} = yield call(fundAnalysisChartService.fetchFundPositionNetwork, code);
+
+      // console.log(data);
+
+      yield put({
+        type: 'saveFundPositionNetwork',
+        payload: data
+      });
+    },
+
   },
   subscriptions: {
     setup({dispatch, history}) {
@@ -617,12 +617,12 @@ export default {
           dispatch({type: 'fetchFundVarietyAttribution', payload: id});
           dispatch({type: 'fetchFundBrisonAttributionStock', payload: id});
           dispatch({type: 'fetchFundBrisonAttributionBond', payload: id});
-          dispatch({type: 'fetchFundChooseTime', payload: id});
-          dispatch({type: 'fetchFundChooseStock', payload: id});
+          dispatch({type: 'fetchFundChooseTimeStock', payload: id});
           dispatch({type: 'fetchFundPerformanceAnalysis', payload: id});
           dispatch({type: 'fetchManagerPerformanceAnalysis', payload: id});
           dispatch({type: 'fetchFundPublicOpinion', payload: id});
           dispatch({type: 'fetchFundPerformanceIndex', payload: id});
+          dispatch({type: 'fetchFundPositionNetwork', payload: id});
         }
       });
     },

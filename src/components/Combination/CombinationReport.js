@@ -258,7 +258,7 @@ class CombinationReport extends Component {
             </div>
           </div>
 
-          {combinationReport.styleAttributionProfit && combinationReport.styleAttributionRisk ?
+          {combinationReport && combinationReport.styleAttributionProfit && combinationReport.styleAttributionRisk ?
             <div className={styles.section_7}>
               <DivHeader>风格归因</DivHeader>
               <div className={styles.section}>
@@ -273,7 +273,7 @@ class CombinationReport extends Component {
               </div>
             </div> : null}
 
-          {combinationReport.industryAttributionProfit && combinationReport.industryAttributionRisk ?
+          {combinationReport && combinationReport.industryAttributionProfit && combinationReport.industryAttributionRisk ?
             <div className={styles.section_8}>
               <DivHeader>行业归因</DivHeader>
 
@@ -292,7 +292,7 @@ class CombinationReport extends Component {
           <div className={styles.section_9}>
             <DivHeader>Brison 归因</DivHeader>
             <Tabs defaultActiveKey="1">
-              {combinationReport.brisonAttributionStock ?
+              {combinationReport && combinationReport.brisonAttributionStock ?
                 <TabPane tab="基于股票持仓" key="1">
                   <div>
                     <div className={styles.section}>
@@ -303,7 +303,7 @@ class CombinationReport extends Component {
                     </div>
                   </div>
                 </TabPane> : null}
-              {combinationReport.brisonAttributionBond ?
+              {combinationReport && combinationReport.brisonAttributionBond ?
                 <TabPane tab="基于债券持仓" key="2">
                   <div>
                     <div className={styles.section}>
@@ -319,7 +319,7 @@ class CombinationReport extends Component {
           </div>
 
 
-          {combinationReport.varietyAttribution ?
+          {combinationReport && combinationReport.varietyAttribution ?
             <div className={styles.section_10}>
               <DivHeader>品种归因</DivHeader>
               <AttributionBarChart chartData={combinationReport.varietyAttribution} color="#E2827E"/>

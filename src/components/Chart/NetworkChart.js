@@ -9,11 +9,26 @@ import {data} from './NewData';
 
 class NetworkChart extends Component {
   render() {
-    let categories = data.categories.map(c => c.name);
 
+    const {chartData, type} = this.props;
+
+    let categories = chartData.nodes.map(c => c.name);
+
+    let seriesData = [];
+    chartData.nodes.forEach((node, index) => {
+      seriesData.push({
+        category: 0,
+        id: index,
+        name: node.name,
+      });
+    });
+
+    console.log(seriesData)
+
+    console.log(categories);
     let option = {
       legend: {
-        data:categories
+        data: seriesData.map(dataValue => dataValue.name),
       },
       tooltip: {
         trigger: 'item',
@@ -25,11 +40,8 @@ class NetworkChart extends Component {
         label: false,
 
         draggable: true,
-        data: data.nodes.map(function (node, idx) {
-          node.id = idx;
-          return node;
-        }),
-        categories: data.categories,
+        data: seriesData,
+        categories: seriesData.map(dataValue => dataValue.name),
         force: {
           // initLayout: 'circular'
           // repulsion: 20,

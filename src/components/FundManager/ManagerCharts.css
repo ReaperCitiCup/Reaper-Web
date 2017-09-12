@@ -42,12 +42,6 @@ button {
   margin-top: 15px;
   background-color: rgba(255, 255, 255, 0.95); }
 
-.previousFundManagerDiv {
-  height: 263px;
-  margin-top: 15px;
-  background-color: rgba(255, 255, 255, 0.95);
-  padding: 20px; }
-
 .managerPerformanceDiv {
   height: auto;
   margin-top: 15px; }

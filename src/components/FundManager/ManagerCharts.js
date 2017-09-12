@@ -54,10 +54,6 @@ class ManagerCharts extends Component {
           </div>
         </div>
 
-        <div className={styles.previousFundManagerDiv}>
-          <DivHeader>历任基金经理</DivHeader>
-        </div>
-
         <div className={styles.managerPerformanceDiv}>
           <div className={styles.previousPerformance}>
             <DivHeader>当前基金经理历任基金表现</DivHeader>

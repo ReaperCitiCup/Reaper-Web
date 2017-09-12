@@ -9,7 +9,8 @@ export default  {
     unitNetValueData: null,
     cumulativeNetValueData: null,
     cumulativeProfitData: null,
-    currentAssetData: null
+    currentAssetData: null,
+    fundManagers: null,
   },
   reducers: {
     drawUnitNetValueChart(state, {payload: unitNetValueData}) {
@@ -39,6 +40,13 @@ export default  {
         currentAssetData,
       }
     },
+
+    saveFundManagers(state, {payload: fundManagers}) {
+      return {
+        ...state,
+        fundManagers,
+      }
+    }
   },
   effects: {
     /**
@@ -128,6 +136,20 @@ export default  {
       });
     },
 
+    *fetchFundManagers({payload: code}, {call, put, select}) {
+      yield put({
+        type: 'saveFundManagers',
+        payload: null,
+      });
+
+      const {data} = yield call(fundChartService.fetchFundManagers, code);
+
+      yield put({
+        type: 'saveFundManagers',
+        payload: data,
+      })
+    }
+
   },
   subscriptions: {
     setup({dispatch, history}) {
@@ -140,6 +162,7 @@ export default  {
           dispatch({type: 'fetchCumulativeNetValueData', payload: id});
           dispatch({type: 'fetchCumulativeProfitData', payload: 1});
           dispatch({type: 'fetchCurrentAssetData', payload: id});
+          dispatch({type: 'fetchFundManagers', payload: id});
         }
       });
     },

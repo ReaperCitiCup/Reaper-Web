@@ -48,7 +48,6 @@ class CombinationReport extends Component {
         })
       })
     }
-
     return (
       <div className="container">
         <div className={styles.report_body}>
@@ -213,48 +212,49 @@ class CombinationReport extends Component {
                 </TabPane>
                 <TabPane tab="相关系数" key="3">
                   {combinationReport ?
-                  <CorrelationCoefficientTable chartData={combinationReport.correlationCoefficientTable}/> : null}
+                    <CorrelationCoefficientTable chartData={combinationReport.correlationCoefficientTable}/> : null}
                 </TabPane>
               </Tabs>
             </div>
 
             <div className={styles.table}>
-              <table>
-                <tbody>
-                <tr>
-                  <th>项目</th>
-                  <th>基金组合</th>
-                </tr>
-                <tr>
-                  <td>最大回撤</td>
-                  <td>66</td>
-                </tr>
-                <tr>
-                  <td>最大单日跌幅</td>
-                  <td>233</td>
-                </tr>
-                <tr>
-                  <td>最大连跌天数</td>
-                  <td>0.97</td>
-                </tr>
-                <tr>
-                  <td>年化波动率</td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>Beta</td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>在险价值 VaR</td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>基金平均相关系数</td>
-                  <td></td>
-                </tr>
-                </tbody>
-              </table>
+              {combinationReport ?
+                <table>
+                  <tbody>
+                  <tr>
+                    <th>项目</th>
+                    <th>基金组合</th>
+                  </tr>
+                  <tr>
+                    <td>最大回撤</td>
+                    <td>{combinationReport.maxRetracement}</td>
+                  </tr>
+                  <tr>
+                    <td>最大单日跌幅</td>
+                    <td>{combinationReport.maxDayDown}</td>
+                  </tr>
+                  <tr>
+                    <td>最大连跌天数</td>
+                    <td>{combinationReport.maxDownDays}</td>
+                  </tr>
+                  <tr>
+                    <td>年化波动率</td>
+                    <td>{combinationReport.annualVolatility}</td>
+                  </tr>
+                  <tr>
+                    <td>Beta</td>
+                    <td>{combinationReport.beta}</td>
+                  </tr>
+                  <tr>
+                    <td>在险价值 VaR</td>
+                    <td>{combinationReport.var}</td>
+                  </tr>
+                  <tr>
+                    <td>基金平均相关系数</td>
+                    <td>{combinationReport.averageCorrelationCoefficient}</td>
+                  </tr>
+                  </tbody>
+                </table> : null}
             </div>
           </div>
 
@@ -262,11 +262,13 @@ class CombinationReport extends Component {
             <DivHeader>风格归因</DivHeader>
             <div className={styles.section}>
               <h4 className={styles.section_title}>主动收益</h4>
-              <AttributionBarChart color="#81B6F5"/>
+              {combinationReport ?
+                <AttributionBarChart chartData={combinationReport.styleAttributionProfit} color="#81B6F5"/> : null}
             </div>
             <div className={styles.section}>
               <h4 className={styles.section_title}>主动风险</h4>
-              <AttributionBarChart color="#F9D471"/>
+              {combinationReport ?
+                <AttributionBarChart chartData={combinationReport.styleAttributionRisk} color="#F9D471"/> : null}
             </div>
           </div>
 
@@ -275,37 +277,41 @@ class CombinationReport extends Component {
 
             <div className={styles.section}>
               <h4 className={styles.section_title}>主动收益</h4>
-              <AttributionBarChart color="#81B6F5"/>
+              {combinationReport ?
+                <AttributionBarChart chartData={combinationReport.industryAttributionProfit} color="#81B6F5"/> : null}
             </div>
             <div className={styles.section}>
               <h4 className={styles.section_title}>主动风险</h4>
-              <AttributionBarChart color="#F9D471"/>
+              {combinationReport ?
+                <AttributionBarChart chartData={combinationReport.industryAttributionRisk} color="#F9D471"/> : null}
             </div>
           </div>
 
           <div className={styles.section_9}>
             <DivHeader>Brison 归因</DivHeader>
             <Tabs defaultActiveKey="1">
-              <TabPane tab="基于股票持仓" key="1">
-                <div>
-                  <div className={styles.section}>
-                    <AttributionBarChart color="#81B6F5"/>
+              {combinationReport ?
+                <TabPane tab="基于股票持仓" key="1">
+                  <div>
+                    <div className={styles.section}>
+                      <AttributionBarChart chartData={combinationReport.brisonAttributionStock} color="#81B6F5"/>
+                    </div>
+                    <div className={styles.section}>
+                      <BrisonTable chartData={combinationReport.brisonAttributionStock}/>
+                    </div>
                   </div>
-                  <div className={styles.section}>
-                    <BrisonTable />
+                </TabPane> : null}
+              {combinationReport ?
+                < TabPane tab="基于债券持仓" key="2">
+                  <div>
+                    <div className={styles.section}>
+                      <AttributionBarChart chartData={combinationReport.brisonAttributionStock} color="#81B6F5"/>
+                    </div>
+                    <div className={styles.section}>
+                      <BrisonTable chartData={combinationReport.brisonAttributionStock}/>
+                    </div>
                   </div>
-                </div>
-              </TabPane>
-              <TabPane tab="基于债券持仓" key="2">
-                <div>
-                  <div className={styles.section}>
-                    <AttributionBarChart color="#81B6F5"/>
-                  </div>
-                  <div className={styles.section}>
-                    <BrisonTable />
-                  </div>
-                </div>
-              </TabPane>
+                </TabPane> : null}
             </Tabs>
 
           </div>
@@ -313,7 +319,8 @@ class CombinationReport extends Component {
 
           <div className={styles.section_10}>
             <DivHeader>品种归因</DivHeader>
-            <AttributionBarChart color="#E2827E"/>
+            {combinationReport ?
+              <AttributionBarChart chartData={combinationReport.varietyAttribution} color="#E2827E"/> : null}
           </div>
 
 

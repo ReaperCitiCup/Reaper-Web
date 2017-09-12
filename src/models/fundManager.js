@@ -15,6 +15,7 @@ export default {
     managerFundRankTrend: null,
     managerFundPerformance: null,
     managerPerformance: null,
+    managerSocialNetwork: null,
   },
   reducers: {
     saveFundCode(state, {payload: fundCode}) {
@@ -98,6 +99,13 @@ export default {
         ...state,
         managerPerformance,
       }
+    },
+
+    saveManagerSocialNetwork(state, {payload: managerSocialNetwork}) {
+      return {
+        ...state,
+        managerSocialNetwork,
+      }
     }
   },
   effects: {
@@ -162,6 +170,11 @@ export default {
 
       yield put({
         type: 'fetchManagerPerformance',
+        payload: data.manager[0].id,
+      });
+
+      yield put({
+        type: 'fetchManagerSocialNetwork',
         payload: data.manager[0].id,
       });
 
@@ -288,6 +301,19 @@ export default {
 
       yield put({
         type: 'saveManagerPerformance',
+        payload: data,
+      })
+    },
+
+    *fetchManagerSocialNetwork({payload: managerId}, {call, put, select}) {
+      // const activeManager = yield select(state => state.fundManager.activeManagerId);
+
+      const {data} = yield call(fundManagerService.fetchFundManagerSocialNetwork, managerId);
+
+      // console.log(data);
+
+      yield put({
+        type: 'saveManagerSocialNetwork',
         payload: data,
       })
     }

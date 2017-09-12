@@ -39,3 +39,14 @@ export function signOut() {
   //     method: 'POST',
   // });
 }
+
+export function editPassword(user) {
+  console.log(user)
+  return requestWithoutError(`/api/user/password`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(user),
+  });
+}

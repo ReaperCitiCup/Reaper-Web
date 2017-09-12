@@ -1,5 +1,5 @@
 import * as userService from '../services/user';
-import { routerRedux } from 'dva/router';
+import {routerRedux} from 'dva/router';
 
 export default {
   namespace: 'user',
@@ -48,11 +48,13 @@ export default {
       const {user} = yield select(state => state.user);
       const token = localStorage.getItem('token');
 
-      if (token !== null && user === null) {
-        yield put({
-          type: 'fetchUser',
-        });
-      }
+      // TODO
+
+      // if (token && !user) {
+      yield put({
+        type: 'fetchUser',
+      });
+      // }
 
     },
 
@@ -83,6 +85,24 @@ export default {
       onSuccess();
       yield put(routerRedux.push('/auth'));
     },
+
+    *editPassword({payload: password, onSuccess, onError}, {call, put, select}) {
+
+      const {user} = yield select(state => state.user);
+
+      if (!user) return;
+
+      const body = {
+        // id: user.id,
+        oldPassword: password.old,
+        password: password.password
+      }
+
+      const {data} = yield call(userService.editPassword, body)
+
+      console.log(data);
+    },
+
   },
   subscriptions: {
     setup({dispatch, history}) {

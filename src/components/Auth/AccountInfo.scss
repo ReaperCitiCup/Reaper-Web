@@ -12,9 +12,9 @@
 
 .contentName {
   color: $main-font-color;
-  font-size: 16px;
+  font-size: 40px;
   letter-spacing: 1.6px;
-  line-height: 22px;
+  //line-height: 22px;
   font-weight: 500;
 }
 
@@ -43,8 +43,8 @@
 
 .accountInfo {
   display: inline-block;
-  margin-top: 20px;
-  margin-left: 60px;
+  margin-top: 40px;
+  //margin-left: 60px;
   width: 450px;
   height: auto;
   vertical-align: top;
@@ -89,4 +89,12 @@
   margin-right: 40px;
   width: 100px;
   //height: 32px;
+  font-weight: 400;
+}
+
+.username {
+  margin-bottom: 30px;
+  font-size: 16px;
+  font-weight: 500;
+  color: $main-font-color;
 }

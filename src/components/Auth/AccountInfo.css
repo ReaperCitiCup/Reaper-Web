@@ -26,9 +26,8 @@ button {
 
 .contentName {
   color: #3D5673;
-  font-size: 16px;
+  font-size: 40px;
   letter-spacing: 1.6px;
-  line-height: 22px;
   font-weight: 500; }
 
 .avatar {
@@ -53,8 +52,7 @@ button {
 
 .accountInfo {
   display: inline-block;
-  margin-top: 20px;
-  margin-left: 60px;
+  margin-top: 40px;
   width: 450px;
   height: auto;
   vertical-align: top; }
@@ -90,6 +88,13 @@ button {
 
 .accountButton {
   margin-right: 40px;
-  width: 100px; }
+  width: 100px;
+  font-weight: 400; }
+
+.username {
+  margin-bottom: 30px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #3D5673; }
 
 /*# sourceMappingURL=AccountInfo.css.map */

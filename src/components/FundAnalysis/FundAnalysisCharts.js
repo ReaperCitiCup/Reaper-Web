@@ -27,7 +27,9 @@ function FundAnalysisCharts({
   fundPerformanceAnalysis, managerPerformanceAnalysis, fundPerformanceIndex,
   fundPositionNetwork
 }) {
-  // console.log(fundBrisonAttributionBond);
+
+  console.log(fundChooseTimeStock);
+
   return (
     <div className={ styles.fund_analysis_chart}>
 
@@ -240,7 +242,7 @@ function mapStateToProps(state) {
     fundVarietyAttribution: state.fundAnalysisChart.fundVarietyAttribution,
     fundBrisonAttributionStock: state.fundAnalysisChart.fundBrisonAttributionStock,
     fundBrisonAttributionBond: state.fundAnalysisChart.fundBrisonAttributionBond,
-    fundChooseStock: state.fundAnalysisChart.fundChooseTimeStock,
+    fundChooseTimeStock: state.fundAnalysisChart.fundChooseTimeStock,
     fundPerformanceAnalysis: state.fundAnalysisChart.fundPerformanceAnalysis,
     managerPerformanceAnalysis: state.fundAnalysisChart.managerPerformanceAnalysis,
     fundPublicOpinion: state.fundAnalysisChart.fundPublicOpinion,

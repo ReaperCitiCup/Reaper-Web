@@ -23,9 +23,9 @@ class NetworkChart extends Component {
       });
     });
 
-    console.log(seriesData)
+    // console.log(seriesData)
 
-    console.log(categories);
+    // console.log(categories);
     let option = {
       legend: {
         data: seriesData.map(dataValue => dataValue.name),

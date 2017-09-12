@@ -10,7 +10,14 @@ class WeightPieChart extends Component {
       series: [
         {
           type: 'pie',
-          radius: '70%',
+          radius: '45%',
+          grid: {
+            top: 0,
+            bottom: 0,
+            left: 50,
+            right: 100,
+            containLabel: true
+          },
           data: [
             { value: this.props.stockWeight, name: `${this.props.stockWeight}% 股票型` },
             { value: this.props.fundWeight, name: `${this.props.fundWeight}% 债券型` },
@@ -25,6 +32,7 @@ class WeightPieChart extends Component {
           },
         },
       ],
+      color: ['#B6D7B3', '#BEE1DA', '#A7DAD8', '#92BCC3', '#93A9BD', '#B9CDDC', '#BABBDE', '#928BA9', '#CA9ECE', '#EFCEED', '#FECEDC', '#FAA5B3'],
     };
     return (
       <ReactEcharts

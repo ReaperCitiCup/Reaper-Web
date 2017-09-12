@@ -56,3 +56,9 @@ export function fetchFundManagerPerformance(managerId) {
     method: 'GET',
   });
 }
+
+export function fetchFundManagerSocialNetwork(managerId) {
+  return request(`/api/manager/${managerId}/social-network`, {
+    method: 'GET',
+  });
+}

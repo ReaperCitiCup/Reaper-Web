@@ -52,6 +52,10 @@ class FundManagerNav extends Component {
         type: 'fundManager/fetchManagerPerformance',
         payload: keyword,
       });
+      dispatch({
+        type: 'fundManager/fetchManagerSocialNetwork',
+        payload: keyword,
+      });
     }
 
     const {allManagers, dispatch} = this.props;

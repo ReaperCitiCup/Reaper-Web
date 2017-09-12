@@ -20,9 +20,13 @@ const TabPane = Tabs.TabPane;
 class ManagerCharts extends Component {
   render() {
 
-    const {managerFundRank, managerFundReturns, managerFundRateTrend, managerFundRankTrend, managerFundPerformance, managerPerformance} = this.props;
+    const {
+      managerFundRank, managerFundReturns, managerFundRateTrend,
+      managerFundRankTrend, managerFundPerformance, managerPerformance,
+      managerSocialNetwork
+    } = this.props;
 
-    console.log(managerPerformance);
+    // console.log(managerPerformance);
     return (
       <div>
         <div className={styles.fundPerformance}>
@@ -44,7 +48,7 @@ class ManagerCharts extends Component {
             <Tabs defaultActiveKey="1">
               <TabPane tab="现任基金收益率走势" key="1">
                 {managerFundRateTrend ?
-                <MultiLineChart chartData={managerFundRateTrend}/> : null}
+                  <MultiLineChart chartData={managerFundRateTrend}/> : null}
               </TabPane>
               <TabPane tab="现任基金排名走势" key="2">
                 {managerFundRankTrend ?
@@ -63,14 +67,15 @@ class ManagerCharts extends Component {
           <div className={styles.integratedPerformance}>
             <DivHeader>当前基金经理综合表现</DivHeader>
             {managerPerformance ?
-            <ScatterChart chartData={managerPerformance}/> : null}
+              <ScatterChart chartData={managerPerformance}/> : null}
           </div>
         </div>
 
-        <div className={styles.networkChart}>
-          <DivHeader>基金经理社会网络关系图</DivHeader>
-          {/*<NetworkChart/>*/}
-        </div>
+        {managerSocialNetwork ?
+          <div className={styles.networkChart}>
+            <DivHeader>基金经理社会网络关系图</DivHeader>
+            <NetworkChart chartData={managerSocialNetwork} type={'manager'}/>
+          </div> : null}
       </div>
     )
   }
@@ -86,6 +91,8 @@ function mapStateToProps(state) {
     managerFundRankTrend: state.fundManager.managerFundRankTrend,
     managerFundPerformance: state.fundManager.managerFundPerformance,
     managerPerformance: state.fundManager.managerPerformance,
+    managerSocialNetwork: state.fundManager.managerSocialNetwork,
+
   };
 }
 

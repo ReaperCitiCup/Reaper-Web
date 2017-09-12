@@ -5,7 +5,7 @@ import echarts from 'echarts';
 import ReactEcharts from 'echarts-for-react';
 import React, {Component} from 'react';
 
-import {data} from './NewData';
+// import {data} from './NewData';
 
 class NetworkChart extends Component {
   render() {
@@ -49,19 +49,26 @@ class NetworkChart extends Component {
           repulsion: 20,
           gravity: 0.2
         },
-        edges: data.links,
+        edges: chartData.links,
         top: 80,
         tooltip: {
           formatter: function (params, ticket, callback) {
             if (params.dataType === 'node') {
               return params.data.name
             } else if (params.dataType === 'edge') {
-              let source = data.nodes[params.data.source].name;
-              let target = data.nodes[params.data.target].name;
-              return source + ' ' + target + '<br/> 权重：' + params.data.value
+              let source = chartData.nodes[params.data.source].name;
+              let target = chartData.nodes[params.data.target].name;
+              console.log(params.data);
+              if (type === 'fund') {
+                return source + ' ' + target + '<br/> 权重：' + params.data.value
+              } else if (type === 'manager') {
+                return source + ' ' + target + '<br/> 共事天数：' + params.data.days +
+                '<br/> 共事次数：' + params.data.times
+              }
             }
           }
-        }
+        },
+        color: ['#F48984'],
       }]
     };
 

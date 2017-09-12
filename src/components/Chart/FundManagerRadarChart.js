@@ -43,7 +43,10 @@ class FundManagerRadarChart extends Component {
           {name: '收益率', max: 100},
           {name: '择股能力', max: 100},
           {name: '抗风险', max: 100},
-        ]
+        ],
+        splitArea: {
+          show: false
+        },
       },
       series: [{
         type: 'radar',

@@ -95,37 +95,36 @@ function FundAnalysisCharts({
           连赢期数／总期数为{fundPerformanceIndex ? fundPerformanceIndex.winDayRatio : null}</p>
       </div>
 
+      {fundStyleAttributionProfit && fundStyleAttributionRisk ?
+        <div className="card" id="6">
+          <DivHeader>风格归因</DivHeader>
+          <div className={styles.section}>
+            <h4 className={styles.section_title}>主动收益</h4>
+            {fundStyleAttributionProfit ?
+              <AttributionBarChart chartData={fundStyleAttributionProfit} color="#81B6F5"/> : null}
+          </div>
+          <div className={styles.section}>
+            <h4 className={styles.section_title}>主动风险</h4>
+            {fundStyleAttributionRisk ?
+              <AttributionBarChart chartData={fundStyleAttributionRisk} color="#F9D471"/> : null}
+          </div>
+        </div> : null}
 
-      <div className="card" id="6">
-        <DivHeader>风格归因</DivHeader>
-        <div className={styles.section}>
-          <h4 className={styles.section_title}>主动收益</h4>
-          {fundStyleAttributionProfit ?
-            <AttributionBarChart chartData={fundStyleAttributionProfit} color="#81B6F5"/> : null}
-        </div>
-        <div className={styles.section}>
-          <h4 className={styles.section_title}>主动风险</h4>
-          {fundStyleAttributionRisk ?
-            <AttributionBarChart chartData={fundStyleAttributionRisk} color="#F9D471"/> : null}
-        </div>
+      {fundIndustryAttributionProfit && fundIndustryAttributionRisk ?
+        <div className="card" id="7">
+          <DivHeader>行业归因</DivHeader>
 
-      </div>
-
-      <div className="card" id="7">
-        <DivHeader>行业归因</DivHeader>
-
-        <div className={styles.section}>
-          <h4 className={styles.section_title}>主动收益</h4>
-          {fundIndustryAttributionProfit ?
-            <AttributionBarChart chartData={fundIndustryAttributionProfit} color="#81B6F5"/> : null}
-        </div>
-        <div className={styles.section}>
-          <h4 className={styles.section_title}>主动风险</h4>
-          {fundIndustryAttributionRisk ?
-            <AttributionBarChart chartData={fundIndustryAttributionRisk} color="#F9D471"/> : null}
-        </div>
-
-      </div>
+          <div className={styles.section}>
+            <h4 className={styles.section_title}>主动收益</h4>
+            {fundIndustryAttributionProfit ?
+              <AttributionBarChart chartData={fundIndustryAttributionProfit} color="#81B6F5"/> : null}
+          </div>
+          <div className={styles.section}>
+            <h4 className={styles.section_title}>主动风险</h4>
+            {fundIndustryAttributionRisk ?
+              <AttributionBarChart chartData={fundIndustryAttributionRisk} color="#F9D471"/> : null}
+          </div>
+        </div> : null}
 
       <div className="card" id="8">
         <DivHeader>风格稳定性</DivHeader>
@@ -144,8 +143,8 @@ function FundAnalysisCharts({
       <div className="card" id="9">
         <DivHeader>Brison 归因</DivHeader>
         <Tabs defaultActiveKey="1">
-          <TabPane tab="基于股票持仓" key="1">
-            {fundBrisonAttributionStock ?
+          {fundBrisonAttributionStock ?
+            <TabPane tab="基于股票持仓" key="1">
               <div>
                 <div className={styles.section}>
                   <AttributionBarChart chartData={fundBrisonAttributionStock} color="#81B6F5"/>
@@ -153,10 +152,10 @@ function FundAnalysisCharts({
                 <div className={styles.section}>
                   <BrisonTable chartData={fundBrisonAttributionStock}/>
                 </div>
-              </div> : null}
-          </TabPane>
-          <TabPane tab="基于债券持仓" key="2">
-            {fundBrisonAttributionBond ?
+              </div>
+            </TabPane> : null}
+          {fundBrisonAttributionBond ?
+            <TabPane tab="基于债券持仓" key="2">
               <div>
                 <div className={styles.section}>
                   <AttributionBarChart chartData={fundBrisonAttributionBond} color="#81B6F5"/>
@@ -164,17 +163,17 @@ function FundAnalysisCharts({
                 <div className={styles.section}>
                   <BrisonTable chartData={fundBrisonAttributionBond}/>
                 </div>
-              </div> : null}
-          </TabPane>
+              </div>
+            </TabPane> : null}
         </Tabs>
 
       </div>
 
-      <div className="card" id="10">
-        <DivHeader>品种归因</DivHeader>
-        {fundVarietyAttribution ?
-          <AttributionBarChart chartData={fundVarietyAttribution} color="#E2827E"/> : null}
-      </div>
+      {fundVarietyAttribution ?
+        <div className="card" id="10">
+          <DivHeader>品种归因</DivHeader>
+          <AttributionBarChart chartData={fundVarietyAttribution} color="#E2827E"/>
+        </div> : null}
 
       <div className="card" id="11">
         <DivHeader>择时 | 择股能力</DivHeader>

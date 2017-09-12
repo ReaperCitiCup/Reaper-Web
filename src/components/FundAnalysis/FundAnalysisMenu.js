@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {connect} from 'dva';
 import {Menu, Icon} from 'antd';
 
 import styles from './FundAnalysisMenu.css';
@@ -7,11 +8,17 @@ const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
 
 class FundAnalysisMenu extends Component {
+
   handleClick = (e) => {
     console.log('click ', e);
   }
 
   render() {
+    const {
+      fundStyleAttributionProfit, fundStyleAttributionRisk, fundIndustryAttributionProfit,
+      fundIndustryAttributionRisk, fundVarietyAttribution
+    } = this.props;
+
     return (
       <Menu
         onClick={this.handleClick}
@@ -30,13 +37,16 @@ class FundAnalysisMenu extends Component {
 
         <SubMenu key="sub3" title="绩效归因">
           <MenuItemGroup key="g1" title="股票投资绩效归因">
-            <Menu.Item key="6"><a href="#6">风格归因</a></Menu.Item>
+            {fundStyleAttributionProfit && fundStyleAttributionRisk ?
+              <Menu.Item key="6"><a href="#6">风格归因</a></Menu.Item> : null}
             <Menu.Item key="7"><a href="#7">行业归因</a></Menu.Item>
-            <Menu.Item key="8"><a href="#8">风格稳定性</a></Menu.Item>
+            {fundIndustryAttributionProfit && fundIndustryAttributionRisk ?
+              <Menu.Item key="8"><a href="#8">风格稳定性</a></Menu.Item> : null}
           </MenuItemGroup>
           <MenuItemGroup key="g2" title="债券投资绩效归因">
             <Menu.Item key="9"><a href="#9">Brison 归因</a></Menu.Item>
-            <Menu.Item key="10"><a href="#10">品种归因</a></Menu.Item>
+            {fundVarietyAttribution ?
+              <Menu.Item key="10"><a href="#10">品种归因</a></Menu.Item> : null}
           </MenuItemGroup>
         </SubMenu>
 
@@ -51,4 +61,14 @@ class FundAnalysisMenu extends Component {
   }
 }
 
-export default FundAnalysisMenu;
+function mapStateToProps(state) {
+  return {
+    fundStyleAttributionProfit: state.fundAnalysisChart.fundStyleAttributionProfit,
+    fundStyleAttributionRisk: state.fundAnalysisChart.fundStyleAttributionRisk,
+    fundIndustryAttributionProfit: state.fundAnalysisChart.fundIndustryAttributionProfit,
+    fundIndustryAttributionRisk: state.fundAnalysisChart.fundIndustryAttributionRisk,
+    fundVarietyAttribution: state.fundAnalysisChart.fundVarietyAttribution,
+  }
+}
+
+export default connect(mapStateToProps)(FundAnalysisMenu);

@@ -33,39 +33,41 @@ class CompanyBrief extends Component {
           <div className={styles.section_c}>
             {/*<DivHeader>产品策略分布</DivHeader>*/}
             {/*{productStrategy ?*/}
-              {/*<CompanyPieChart chartData={productStrategy}/> : null}*/}
-          {/*</div>*/}
-          {/*<div className={styles.section_b}>*/}
+            {/*<CompanyPieChart chartData={productStrategy}/> : null}*/}
+            {/*</div>*/}
+            {/*<div className={styles.section_b}>*/}
             <DivHeader>资产配置行业占比</DivHeader>
             {assetAllocation ?
               <CompanyPieChart chartData={assetAllocation}/> : null}
           </div>
-          <div className={styles.section_c}>
-            <DivHeader>风格归因</DivHeader>
-            <div className={styles.section}>
-              <h4 className={styles.section_title}>主动收益</h4>
-              {styleAttributionProfit ?
-                <AttributionBarChart color="#81B6F5" chartData={styleAttributionProfit}/> : null}
-            </div>
-            <div className={styles.section}>
-              <h4 className={styles.section_title}>主动风险</h4>
-              {styleAttributionRisk ?
-                <AttributionBarChart color="#F9D471" chartData={styleAttributionRisk}/> : null}
-            </div>
-          </div>
-          <div className={styles.section_c}>
-            <DivHeader>行业归因</DivHeader>
-            <div className={styles.section}>
-              <h4 className={styles.section_title}>主动收益</h4>
-              {industryAttributionProfit ?
-                <AttributionBarChart color="#81B6F5" chartData={industryAttributionProfit}/> : null}
-            </div>
-            <div className={styles.section}>
-              <h4 className={styles.section_title}>主动风险</h4>
-              {industryAttributionRisk ?
-                <AttributionBarChart color="#F9D471" chartData={industryAttributionRisk}/> : null}
-            </div>
-          </div>
+          {styleAttributionProfit ?
+            <div className={styles.section_c}>
+              <DivHeader>风格归因</DivHeader>
+              <div className={styles.section}>
+                <h4 className={styles.section_title}>主动收益</h4>
+                {styleAttributionProfit ?
+                  <AttributionBarChart color="#81B6F5" chartData={styleAttributionProfit}/> : null}
+              </div>
+              <div className={styles.section}>
+                <h4 className={styles.section_title}>主动风险</h4>
+                {styleAttributionRisk ?
+                  <AttributionBarChart color="#F9D471" chartData={styleAttributionRisk}/> : null}
+              </div>
+            </div> : null}
+          {industryAttributionProfit ?
+            <div className={styles.section_c}>
+              <DivHeader>行业归因</DivHeader>
+              <div className={styles.section}>
+                <h4 className={styles.section_title}>主动收益</h4>
+                {industryAttributionProfit ?
+                  <AttributionBarChart color="#81B6F5" chartData={industryAttributionProfit}/> : null}
+              </div>
+              <div className={styles.section}>
+                <h4 className={styles.section_title}>主动风险</h4>
+                {industryAttributionRisk ?
+                  <AttributionBarChart color="#F9D471" chartData={industryAttributionRisk}/> : null}
+              </div>
+            </div> : null}
         </div>
       </div>
     )

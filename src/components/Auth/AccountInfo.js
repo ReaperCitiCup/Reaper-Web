@@ -3,7 +3,7 @@
  */
 import React, {Component} from 'react';
 import {connect} from 'dva';
-import {Form, Input, Icon, Button} from 'antd';
+import {Form, Input, Button, message} from 'antd';
 
 import styles from './AccountInfo.css';
 
@@ -14,20 +14,6 @@ class AccountInfo extends Component {
   state = {
     confirmDirty: false,
   };
-
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     userName: '',
-  //   };
-  // }
-  // emitEmpty = () => {
-  //   this.userNameInput.focus();
-  //   this.setState({ userName: '' });
-  // };
-  // onChangeUserName = (e) => {
-  //   this.setState({ userName: e.target.value });
-  // };
 
   handleSubmit = (e) => {
     e.preventDefault();

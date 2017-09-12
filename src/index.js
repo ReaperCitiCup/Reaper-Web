@@ -24,6 +24,7 @@ app.model(require("./models/fundManager"));
 app.model(require("./models/fund"));
 app.model(require("./models/fundChart"));
 app.model(require("./models/search"));
+app.model(require("./models/assetAllocation"));
 
 
 // 4. Router

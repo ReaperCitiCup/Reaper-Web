@@ -16,4 +16,63 @@ html {
 button {
   outline: none; }
 
+.bg {
+  width: 100%; }
+
+.text_wrapper {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  padding-top: 100px;
+  padding-bottom: 100px;
+  font-size: 0; }
+  .text_wrapper .left, .text_wrapper .right {
+    display: inline-block;
+    vertical-align: top; }
+  .text_wrapper .left {
+    width: 60%;
+    font-size: 16px;
+    text-align: right; }
+  .text_wrapper .right {
+    width: 40%; }
+    .text_wrapper .right h1, .text_wrapper .right h2 {
+      color: #fff;
+      font-weight: 500;
+      letter-spacing: 1px; }
+    .text_wrapper .right h1 {
+      font-size: 40px; }
+    .text_wrapper .right h2 {
+      font-size: 20px; }
+
+.section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 100px; }
+  .section h4 {
+    margin-bottom: 80px;
+    color: #9FAEC0;
+    font-size: 14px;
+    text-align: center; }
+
+.row {
+  font-size: 0; }
+  .row > div {
+    display: inline-block;
+    vertical-align: top;
+    width: 33%;
+    padding: 0 5%;
+    text-align: center; }
+    .row > div .icon {
+      display: block;
+      width: 32px;
+      margin: 0 auto 30px; }
+    .row > div h5 {
+      margin-bottom: 10px;
+      color: #81B6F5;
+      font-size: 14px;
+      font-weight: 500; }
+    .row > div p {
+      color: #3D5673;
+      font-size: 14px; }
+
 /*# sourceMappingURL=IndexPage.css.map */

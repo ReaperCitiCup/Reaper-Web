@@ -1,9 +1,85 @@
 @import "../assets/scss/variables";
 @import "../assets/scss/base";
 
-//.baseBody {
-//  background: $background-color;
-//  width: 100%;
-//  min-height: 100%;
-//  height: 100%;
-//}
+.bg_wrapper {
+  //height: 600px;
+}
+.bg {
+  //position: absolute;
+  width: 100%;
+}
+
+.text_wrapper {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  padding-top: 100px;
+  padding-bottom: 100px;
+  font-size: 0;
+  .left, .right {
+    display: inline-block;
+    vertical-align: top;
+  }
+  .left {
+    width: 60%;
+    font-size: 16px;
+    text-align: right;
+  }
+
+  .right {
+    width: 40%;
+
+    h1, h2 {
+      color: $white-color;
+      font-weight: 500;
+      letter-spacing: 1px;
+    }
+    h1 {
+      font-size: 40px;
+    }
+
+    h2 {
+      font-size: 20px;
+    }
+  }
+}
+
+.section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 100px;
+  h4 {
+    margin-bottom: 80px;
+    color: $blue-grey-color;
+    font-size: 14px;
+    text-align: center;
+  }
+}
+.row {
+  font-size: 0;
+  > div {
+    display: inline-block;
+    vertical-align: top;
+    width: 33%;
+    padding: 0 5%;
+    text-align: center;
+
+    .icon {
+      display: block;
+      width: 32px;
+      margin: 0 auto 30px;
+    }
+
+    h5 {
+      margin-bottom: 10px;
+      color: $sub-font-color;
+      font-size: 14px;
+      font-weight: 500;
+    }
+    p {
+      color: $main-font-color;
+      font-size: 14px;
+    }
+  }
+}
+

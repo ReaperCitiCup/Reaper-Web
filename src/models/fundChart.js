@@ -108,11 +108,13 @@ export default  {
       //   type: 'drawCumulativeProfitChart',
       //   payload: null,
       // });
-      const code = yield  select(state => state.fund.fundCode);
+      const code = yield  select(state => state.fund.fundBrief.code);
+
+      console.log(code);
 
       const {data} = yield call(fundChartService.fetchCumulativeProfitData, code, month);
 
-      // console.log(data);
+      console.log(data);
 
       yield put({
         type: 'drawCumulativeProfitChart',
@@ -158,13 +160,19 @@ export default  {
         if (pathname.indexOf('/fund/') === 0 && pathname.split('/').length === 3) {
           let id = pathname.split('/fund/')[1];
           window.scrollTo(0, 0);
-          dispatch({type: 'fetchUnitNetValueData', payload: id});
-          dispatch({type: 'fetchCumulativeNetValueData', payload: id});
-          dispatch({type: 'fetchCumulativeProfitData', payload: 1});
-          dispatch({type: 'fetchCurrentAssetData', payload: id});
-          dispatch({type: 'fetchFundManagers', payload: id});
+          dispatch({
+            type: 'fund/fetchFundBrief',
+            payload: id,
+            onSuccess: () => {
+              dispatch({type: 'fetchUnitNetValueData', payload: id});
+              dispatch({type: 'fetchCumulativeNetValueData', payload: id});
+              dispatch({type: 'fetchCumulativeProfitData', payload: 1});
+              dispatch({type: 'fetchCurrentAssetData', payload: id});
+              dispatch({type: 'fetchFundManagers', payload: id});
+            }
+          });
         }
       });
     },
   },
-}
+};

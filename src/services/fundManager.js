@@ -39,11 +39,11 @@ export function fetchFundManagerFundRateTrend(managerId) {
   });
 }
 
-export function fetchFundManagerFundRankTrend(managerId) {
-  return request(`/api/manager/${managerId}/fund-rank-trend`, {
-    method: 'GET',
-  });
-}
+// export function fetchFundManagerFundRankTrend(managerId) {
+//   return request(`/api/manager/${managerId}/fund-rank-trend`, {
+//     method: 'GET',
+//   });
+// }
 
 export function fetchFundManagerFundPerformance(managerId) {
   return request(`/api/manager/${managerId}/fund-performance`, {

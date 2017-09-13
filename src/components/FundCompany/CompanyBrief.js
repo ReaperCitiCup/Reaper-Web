@@ -12,13 +12,13 @@ import ScatterChart from '../Chart/ScatterChart';
 
 class CompanyBrief extends Component {
   render() {
-    const {fundPerformance, managerPerformance, productStrategy, assetAllocation, styleAttributionProfit, styleAttributionRisk, industryAttributionProfit, industryAttributionRisk} = this.props;
+    const {companyName, fundPerformance, managerPerformance, productStrategy, assetAllocation, styleAttributionProfit, styleAttributionRisk, industryAttributionProfit, industryAttributionRisk} = this.props;
     // console.log(productStrategy);
     return (
       <div className={"container " + styles.brief}>
-        {/*<div className={styles.title}>*/}
-        {/*<h1>华夏基金</h1>*/}
-        {/*</div>*/}
+        <div className={styles.title}>
+          <h1>{companyName ? companyName : null}</h1>
+        </div>
         <div className={styles.card}>
           <div className={styles.section_a}>
             <DivHeader>公司旗下基金表现</DivHeader>
@@ -78,6 +78,7 @@ CompanyBrief.propTypes = {};
 
 function mapStateToProps(state) {
   return {
+    companyName: state.fundCompany.companyName,
     fundPerformance: state.fundCompany.fundPerformance,
     managerPerformance: state.fundCompany.managerPerformance,
     productStrategy: state.fundCompany.productStrategy,

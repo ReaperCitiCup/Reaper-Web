@@ -22,8 +22,7 @@ class ManagerCharts extends Component {
 
     const {
       managerFundRank, managerFundReturns, managerFundRateTrend,
-      managerFundRankTrend, managerFundPerformance, managerPerformance,
-      managerSocialNetwork
+      managerFundPerformance, managerPerformance, managerSocialNetwork
     } = this.props;
 
     // console.log(managerPerformance);
@@ -44,18 +43,9 @@ class ManagerCharts extends Component {
         </div>
 
         <div className={styles.fundYieldTrend}>
-          <div className="card">
-            <Tabs defaultActiveKey="1">
-              <TabPane tab="现任基金收益率走势" key="1">
-                {managerFundRateTrend ?
-                  <MultiLineChart chartData={managerFundRateTrend}/> : null}
-              </TabPane>
-              <TabPane tab="现任基金排名走势" key="2">
-                {managerFundRankTrend ?
-                  <FundRankLineChart chartData={managerFundRankTrend}/> : null}
-              </TabPane>
-            </Tabs>
-          </div>
+          <DivHeader>现任基金收益率走势</DivHeader>
+          {managerFundRateTrend ?
+            <MultiLineChart chartData={managerFundRateTrend}/> : null}
         </div>
 
         <div className={styles.managerPerformanceDiv}>
@@ -88,11 +78,10 @@ function mapStateToProps(state) {
     managerFundRank: state.fundManager.managerFundRank,
     managerFundReturns: state.fundManager.managerFundReturns,
     managerFundRateTrend: state.fundManager.managerFundRateTrend,
-    managerFundRankTrend: state.fundManager.managerFundRankTrend,
+    // managerFundRankTrend: state.fundManager.managerFundRankTrend,
     managerFundPerformance: state.fundManager.managerFundPerformance,
     managerPerformance: state.fundManager.managerPerformance,
     managerSocialNetwork: state.fundManager.managerSocialNetwork,
-
   };
 }
 

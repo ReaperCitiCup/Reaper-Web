@@ -599,7 +599,7 @@ export default {
           // console.log("-------id: "+id);
           // window.scrollTo(0, 0);
           dispatch({type: 'fund/fetchFundBrief', payload: id});
-          dispatch({type: 'fundCompany/fetchCompanyId', payload: id});
+          dispatch({type: 'fundCompany/fetchCompanyBrief', payload: id});
           dispatch({type: 'fundChart/fetchCumulativeProfitData', payload: 1});
           dispatch({type: 'fundChart/fetchUnitNetValueData', payload: id});
           // dispatch({type: 'fetchFundRiskTrend', payload: id});

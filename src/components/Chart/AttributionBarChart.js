@@ -25,7 +25,7 @@ class AttributionBarChart extends Component {
       grid: {
         top: 0,
         bottom: 30,
-        left: 60,
+        left: 100,
         right: 20,
       },
       xAxis: {
@@ -57,18 +57,34 @@ class AttributionBarChart extends Component {
       color: [color]
     };
 
-    return (
+    if (chartData.length > 10) {
+      return (
 
-      <ReactEcharts
-        option={option}
-        // style={{height:'300px'}}
-        // notMerge={true}
-        // lazyUpdate={true}
-        // theme={"theme_name"}
-        // onChartReady={this.onChartReadyCallback}
-        // onEvents={EventsDict}
-      />
-    )
+        <ReactEcharts
+          option={option}
+          style={{height:'600px'}}
+          // notMerge={true}
+          // lazyUpdate={true}
+          // theme={"theme_name"}
+          // onChartReady={this.onChartReadyCallback}
+          // onEvents={EventsDict}
+        />
+      )
+    } else {
+      return (
+        <ReactEcharts
+          option={option}
+          style={{height:'300px'}}
+          // notMerge={true}
+          // lazyUpdate={true}
+          // theme={"theme_name"}
+          // onChartReady={this.onChartReadyCallback}
+          // onEvents={EventsDict}
+        />
+      )
+    }
+
+
   }
 }
 export default AttributionBarChart;

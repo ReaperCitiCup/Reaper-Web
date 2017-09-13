@@ -18,7 +18,7 @@ import NetworkChart from '../Chart/NetworkChart';
 import styles from './FundAnalysisCharts.css';
 
 function FundAnalysisCharts({
-  unitNetValueData, cumulativeProfitData, fundDailyRetracement, fundVolatility,
+  unitNetValueData, cumulativeProfitData, fundVolatility,
   fundValueAtRisk, fundDownsideVolatility, fundSharpeIndex, fundTreynorIndex,
   fundJensenIndex, fundStyleAttributionProfit, fundStyleAttributionRisk,
   fundIndustryAttributionProfit, fundIndustryAttributionRisk, fundStyleStabilityProfit,
@@ -50,19 +50,19 @@ function FundAnalysisCharts({
       <div className="card" id="2">
         <DivHeader>风险概览</DivHeader>
         <Tabs defaultActiveKey="1">
-          <TabPane tab="每日回撤" key="1">
-            {fundDailyRetracement ?
-              <NetValueLineChart chartData={fundDailyRetracement}/> : null}
-          </TabPane>
-          <TabPane tab="波动率" key="2">
+          {/*<TabPane tab="每日回撤" key="1">*/}
+            {/*{fundDailyRetracement ?*/}
+              {/*<NetValueLineChart chartData={fundDailyRetracement}/> : null}*/}
+          {/*</TabPane>*/}
+          <TabPane tab="波动率" key="1">
             {fundVolatility ?
               <NetValueLineChart chartData={fundVolatility}/> : null}
           </TabPane>
-          <TabPane tab="在险价值" key="3">
+          <TabPane tab="在险价值" key="2">
             {fundValueAtRisk ?
               <NetValueLineChart chartData={fundValueAtRisk}/> : null}
           </TabPane>
-          <TabPane tab="下行波动率" key="4">
+          <TabPane tab="下行波动率" key="3">
             {fundDownsideVolatility ?
               <NetValueLineChart chartData={fundDownsideVolatility}/> : null}
           </TabPane>
@@ -225,7 +225,7 @@ function mapStateToProps(state) {
     unitNetValueData: state.fundChart.unitNetValueData,
     cumulativeProfitData: state.fundChart.cumulativeProfitData,
     // fundRiskTrend: state.fundAnalysisChart.fundRiskTrend,
-    fundDailyRetracement: state.fundAnalysisChart.fundDailyRetracement,
+    // fundDailyRetracement: state.fundAnalysisChart.fundDailyRetracement,
     fundVolatility: state.fundAnalysisChart.fundVolatility,
     fundValueAtRisk: state.fundAnalysisChart.fundValueAtRisk,
     fundDownsideVolatility: state.fundAnalysisChart.fundDownsideVolatility,

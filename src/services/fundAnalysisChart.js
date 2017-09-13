@@ -3,17 +3,17 @@
  */
 import request from '../utils/request';
 
-export function fetchFundRiskTrend(code) {
-  return request(`/api/fund/${code}/risk-trend`, {
-    method: 'GET',
-  });
-}
-
-export function fetchFundDailyRetracement(code) {
-  return request(`/api/fund/${code}/daily-retracement`, {
-    method: 'GET',
-  });
-}
+// export function fetchFundRiskTrend(code) {
+//   return request(`/api/fund/${code}/risk-trend`, {
+//     method: 'GET',
+//   });
+// }
+//
+// export function fetchFundDailyRetracement(code) {
+//   return request(`/api/fund/${code}/daily-retracement`, {
+//     method: 'GET',
+//   });
+// }
 
 export function fetchFundVolatility(code) {
   return request(`/api/fund/${code}/volatility`, {

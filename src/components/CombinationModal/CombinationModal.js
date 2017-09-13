@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'dva';
 
-import {Input, Button} from 'antd';
+import {Input, Button, message} from 'antd';
 
 import CombinationItem from './CombinationItem';
 
@@ -10,7 +10,7 @@ import down from '../../assets/caretdown.png';
 
 import styles from './CombinationModal.css';
 
-function CombinationModal({dispatch, className, show, items}) {
+function CombinationModal({dispatch, className, show, name, items}) {
 
   function onClickArrow() {
     dispatch({
@@ -36,6 +36,21 @@ function CombinationModal({dispatch, className, show, items}) {
     })
   }
 
+  function onClickSave() {
+    dispatch({
+      type: "createCombination/createCombination",
+      onSuccess: (m) => message.success(m),
+      onError: (m) => message.error(m)
+    })
+  }
+
+  function onInputChange(event) {
+    dispatch({
+      type: "createCombination/saveName",
+      payload: event.target.value,
+    })
+  }
+
   return (
     <div className={styles.modal + ' ' + className}>
       <div className={styles.title_wrapper}>
@@ -51,7 +66,10 @@ function CombinationModal({dispatch, className, show, items}) {
         <div>
           <Input className={styles.input}
                  size="large"
-                 placeholder="输入组合名称"/>
+                 placeholder="输入组合名称"
+                 value={name}
+                 onChange={onInputChange}
+          />
           <div
             className={styles.item_list}
           >
@@ -66,6 +84,7 @@ function CombinationModal({dispatch, className, show, items}) {
             )}
           </div>
           <Button
+            onClick={onClickSave}
             className={styles.button}
             type="primary"
             size="large"
@@ -79,6 +98,7 @@ function CombinationModal({dispatch, className, show, items}) {
 function mapStateToProps(state) {
   return {
     show: state.createCombination.show,
+    name: state.createCombination.name,
     items: state.createCombination.items,
   };
 }

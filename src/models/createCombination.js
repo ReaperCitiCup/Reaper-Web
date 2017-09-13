@@ -1,3 +1,5 @@
+import * as combinationService from '../services/combination';
+
 export default {
   namespace: 'createCombination',
   state: {
@@ -7,11 +9,22 @@ export default {
 
   },
   reducers: {
-
     saveShow(state, {payload: show}) {
       return {
         ...state,
         show
+      }
+    },
+    saveName(state, {payload: name}) {
+      return {
+        ...state,
+        name
+      }
+    },
+    saveItems(state, {payload: items}) {
+      return {
+        ...state,
+        items
       }
     },
     saveRatio(state, {payload: {code, ratio}}) {
@@ -134,7 +147,41 @@ export default {
     },
   }
   ,
-  effects: {}
+  effects: {
+    *createCombination({onSuccess, onError}, {call, put, select}) {
+      const {name, items} = yield select(state => state.createCombination);
+
+      if (items.length === 0) {
+        if (onError) onError("组合至少添加一个基金");
+        return;
+      }
+
+      let funds = items.forEach(item => {
+        return {
+          id: item.id,
+          ratio: item.ratio,
+        }
+      });
+      const body = {
+        name,
+        funds
+      }
+      const {data} = yield call(combinationService.createCombination, body);
+      console.log(data);
+
+      if (data.result) {
+        if (onSuccess) onSuccess("创建组合成功");
+      } else {
+        if (onError) onError("创建组合失败");
+      }
+
+      yield put({
+          type: 'saveCombinationReport',
+          payload: data,
+        }
+      )
+    }
+  }
   ,
   subscriptions: {}
   ,

@@ -33,8 +33,19 @@ button {
     width: 60%;
     font-size: 16px;
     text-align: right; }
+    .text_wrapper .left h2 {
+      color: #fff;
+      margin-top: 10px;
+      font-size: 20px;
+      font-weight: 500;
+      line-height: 30px;
+      letter-spacing: 1px; }
   .text_wrapper .right {
     width: 40%; }
+    .text_wrapper .right .line {
+      margin-left: 30px;
+      padding-left: 30px;
+      border-left: solid #fff 1px; }
     .text_wrapper .right h1, .text_wrapper .right h2 {
       color: #fff;
       font-weight: 500;
@@ -45,7 +56,7 @@ button {
       font-size: 20px; }
 
 .section {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 100px; }
   .section h4 {
@@ -60,7 +71,7 @@ button {
     display: inline-block;
     vertical-align: top;
     width: 33%;
-    padding: 0 5%;
+    padding: 0 2%;
     text-align: center; }
     .row > div .icon {
       display: block;

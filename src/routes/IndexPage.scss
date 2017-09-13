@@ -24,10 +24,26 @@
     width: 60%;
     font-size: 16px;
     text-align: right;
+
+    h2 {
+      color: $white-color;
+      margin-top: 10px;
+
+      font-size: 20px;
+      font-weight: 500;
+      line-height: 30px;
+      letter-spacing: 1px;
+
+    }
   }
 
   .right {
     width: 40%;
+    .line {
+      margin-left: 30px;
+      padding-left: 30px;
+      border-left: solid $white-color 1px;
+    }
 
     h1, h2 {
       color: $white-color;
@@ -42,10 +58,12 @@
       font-size: 20px;
     }
   }
+
+
 }
 
 .section {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 100px;
   h4 {
@@ -61,7 +79,7 @@
     display: inline-block;
     vertical-align: top;
     width: 33%;
-    padding: 0 5%;
+    padding: 0 2%;
     text-align: center;
 
     .icon {

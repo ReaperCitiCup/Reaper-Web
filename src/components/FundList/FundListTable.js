@@ -62,12 +62,16 @@ class FundListTable extends Component {
                        onClick={(event) => {
                          event.stopPropagation();
                          dispatch({
+                           type: 'createCombination/saveShow',
+                           payload: true
+                         });
+                         dispatch({
                            type: 'createCombination/addItem',
                            payload: {
                              code: record.code,
                              name: record.name
                            }
-                         })
+                         });
                        }}
                   />
             </span>

@@ -59,6 +59,7 @@ function CombinationModal({dispatch, className, show, items}) {
               <CombinationItem
                 key={item.code}
                 item={item}
+                max={100}
                 onRatioChange={ratio => onItemRatioChange(item.code, ratio)}
                 onClickDelete={() => onClickItemDelete(item.code)}
               />

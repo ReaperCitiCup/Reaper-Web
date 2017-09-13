@@ -4,7 +4,7 @@ import {Slider, InputNumber} from 'antd';
 import styles from './CombinationItem.css';
 import trash from '../../assets/delete.png';
 
-function CombinationItem({item, onRatioChange, onClickDelete}) {
+function CombinationItem({item, onRatioChange, onClickDelete, max}) {
 
 
   // state = {

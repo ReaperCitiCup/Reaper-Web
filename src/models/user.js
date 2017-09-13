@@ -50,11 +50,11 @@ export default {
 
       // TODO
 
-      // if (token && !user) {
-      yield put({
-        type: 'fetchUser',
-      });
-      // }
+      if (token && !user) {
+        yield put({
+          type: 'fetchUser',
+        });
+      }
 
     },
 

@@ -18,17 +18,17 @@ class ScatterChart extends Component {
 
     if (chartData.funds) {
       dataNow = chartData.funds.map(point =>
-        [point.rate, point.risk]
+        [point.rate, point.risk, point.name]
       );
     } else if (chartData.managers) {
       dataNow = chartData.managers.map(point =>
-        [point.rate, point.risk]
+        [point.rate, point.risk, point.name]
       );
     }
 
     if (chartData.others) {
       dataOthers = chartData.others.map(point =>
-        [point.rate, point.risk]
+        [point.rate, point.risk, point.name]
       );
     }
 
@@ -48,7 +48,7 @@ class ScatterChart extends Component {
         showDelay: 0,
         formatter: function (params) {
           // console.log(params)
-          return '收益率：' + params.value[0] + '<br/>'
+          return params.value[2] + ' :<br/>' + '收益率：' + params.value[0] + '<br/>'
             + '风险：' + params.value[1];
 
         },

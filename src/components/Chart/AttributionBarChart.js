@@ -13,6 +13,16 @@ class AttributionBarChart extends Component {
 
     color = color ? color : '#81B6F5';
 
+    // console.log(chartData);
+
+    function sortBy(field) {
+      return function (a, b) {
+        return a[field] - b[field];
+      }
+    }
+
+    // console.log(chartData.sort(sortBy('value')));
+
     let option = {
 
       tooltip: {
@@ -62,7 +72,7 @@ class AttributionBarChart extends Component {
 
         <ReactEcharts
           option={option}
-          style={{height:'600px'}}
+          style={{height: '600px'}}
           // notMerge={true}
           // lazyUpdate={true}
           // theme={"theme_name"}
@@ -74,7 +84,7 @@ class AttributionBarChart extends Component {
       return (
         <ReactEcharts
           option={option}
-          style={{height:'300px'}}
+          style={{height: '300px'}}
           // notMerge={true}
           // lazyUpdate={true}
           // theme={"theme_name"}

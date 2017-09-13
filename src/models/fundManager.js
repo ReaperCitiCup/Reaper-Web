@@ -193,7 +193,7 @@ export default {
     *fetchManagerInfo({payload: managerId}, {call, put, select}) {
       const {data} = yield call(fundManagerService.fetchFundManagerInfo, managerId);
 
-      console.log(data);
+      // console.log(data);
 
       yield put({
         type: 'saveManagerInfo',
@@ -206,7 +206,7 @@ export default {
 
       const {data} = yield call(fundManagerService.fetchFundManagerAbility, managerId);
 
-      console.log(data);
+      // console.log(data);
 
       yield put({
         type: 'saveManagerAbility',
@@ -219,7 +219,7 @@ export default {
 
       const {data} = yield call(fundManagerService.fetchFundManagerFunds, managerId);
 
-      console.log(data);
+      // console.log(data);
 
       yield put({
         type: 'saveManagerFunds',
@@ -232,14 +232,11 @@ export default {
 
       const {data} = yield call(fundManagerService.fetchFundManagerFundRank, managerId);
 
-      if (data) {
-        console.log(data);
+      yield put({
+        type: 'saveManagerFundRank',
+        payload: data,
+      })
 
-        yield put({
-          type: 'saveManagerFundRank',
-          payload: data,
-        })
-      }
     },
 
     *fetchManagerFundReturns({payload: managerId}, {call, put, select}) {
@@ -247,7 +244,7 @@ export default {
 
       const {data} = yield call(fundManagerService.fetchFundManagerFundReturns, managerId);
 
-      console.log(data);
+      // console.log(data);
 
       yield put({
         type: 'saveManagerFundReturns',
@@ -260,7 +257,7 @@ export default {
 
       const {data} = yield call(fundManagerService.fetchFundManagerFundRateTrend, managerId);
 
-      console.log(data);
+      // console.log(data);
 
       yield put({
         type: 'saveManagerFundRateTrend',
@@ -312,8 +309,8 @@ export default {
 
       const {data} = yield call(fundManagerService.fetchFundManagerSocialNetwork, managerId);
 
-      console.log("!!!!!!!!!!!!!!!");
-      console.log(data);
+      // console.log("!!!!!!!!!!!!!!!");
+      // console.log(data);
 
       yield put({
         type: 'saveManagerSocialNetwork',

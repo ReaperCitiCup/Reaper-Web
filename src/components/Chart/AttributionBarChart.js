@@ -9,9 +9,11 @@ class AttributionBarChart extends Component {
 
   render() {
 
-    let {color, chartData} = this.props;
+    const {color, chartData} = this.props;
 
-    color = color ? color : '#81B6F5';
+    let data = chartData ? chartData.sort((a, b) => a.value > b.value) : null;
+
+    let newColor = color ? color : '#81B6F5';
 
     let option = {
 
@@ -37,7 +39,7 @@ class AttributionBarChart extends Component {
       yAxis: {
         type: 'category',
         axisTick: {show: false},
-        data: chartData ? chartData.map(type => type.field) : null,
+        data: data ? data.map(type => type.field) : null,
       },
       series: [
         {
@@ -50,19 +52,31 @@ class AttributionBarChart extends Component {
           // formatter: '{b}'
           // }
           // },
-          data: chartData ? chartData.map(type => type.value) : null,
+          data: data ? data.map(type => type.value) : null,
 
         }
       ],
-      color: [color]
+      color: [newColor]
     };
-
-    if (chartData.length > 10) {
+    if (chartData.length < 5) {
       return (
 
         <ReactEcharts
           option={option}
-          style={{height:'600px'}}
+          style={{height: '220px'}}
+          // notMerge={true}
+          // lazyUpdate={true}
+          // theme={"theme_name"}
+          // onChartReady={this.onChartReadyCallback}
+          // onEvents={EventsDict}
+        />
+      )
+    } else if (chartData.length > 10) {
+      return (
+
+        <ReactEcharts
+          option={option}
+          style={{height: '600px'}}
           // notMerge={true}
           // lazyUpdate={true}
           // theme={"theme_name"}
@@ -74,7 +88,7 @@ class AttributionBarChart extends Component {
       return (
         <ReactEcharts
           option={option}
-          style={{height:'300px'}}
+          style={{height: '300px'}}
           // notMerge={true}
           // lazyUpdate={true}
           // theme={"theme_name"}

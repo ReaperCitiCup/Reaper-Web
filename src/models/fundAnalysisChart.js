@@ -588,7 +588,10 @@ export default {
   },
   subscriptions: {
     setup({dispatch, history}) {
-      return history.listen(({pathname, query}) => {
+      return history.listen(({pathname, query, hash}) => {
+
+        if (hash !== '') return;
+
         let path = pathname.split('/');
         // console.log(path);
         if (path.indexOf('fund') === 1 && path.indexOf('analysis') === 3 && path.length === 4) {

@@ -414,7 +414,7 @@ class AssetAllocation extends Component {
         <div className={styles.contentRetract}>
           {this.props.factorChoiceList.map((v) => {
             return (
-              <div className={styles.fund_list}>
+              <div className={styles.fund_list} key={v.name}>
                 <div className={styles.fundListTitle}><span>{v.name}</span></div>
                 <FreeScrollBar
                   style={{height: '100px', border: '1px solid #E7E9EC'}}
@@ -559,9 +559,7 @@ class AssetAllocation extends Component {
           title="创建组合"
           onOk={this.handleOK}
           onCancel={this.handleCancel}
-          footer={[
-            <Button onClick={this.handleOK}>保存</Button>,
-          ]}
+          footer={<Button onClick={this.handleOK}>保存</Button>}
         >
           <Input value={this.state.combinationName} onChange={this.onChangeCombinationName} placeholder="请输入组合名称..."/>
         </Modal>

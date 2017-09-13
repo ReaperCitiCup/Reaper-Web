@@ -27,6 +27,7 @@ class FundRankingBarChart extends Component {
     //   rankData = [];
     // }
 
+
     let seriesData = chartData.map(fund => {
       return {
         name: fund.name,
@@ -39,6 +40,24 @@ class FundRankingBarChart extends Component {
         })
       }
     });
+
+    // console.log(seriesData);
+
+    let allTypes = [];
+    for (let i = 0; i < chartData.length; i++) {
+      let typeArray = [];
+      for (let j = 0; j < chartData[i].data.length; j++) {
+        typeArray.push(chartData[i].data[j].type);
+      }
+      allTypes.push(typeArray);
+    }
+    // console.log(allTypes);
+
+    let yAxisData = allTypes[0];
+    for (let i = 0; i < allTypes.length; i++) {
+      yAxisData = yAxisData.concat(allTypes[i].filter(v => !yAxisData.includes(v)))
+    }
+    // console.log(yAxisData);
 
 
     let option = {
@@ -80,7 +99,7 @@ class FundRankingBarChart extends Component {
       },
       yAxis: {
         type: 'category',
-        data: ['1月', '3月', '6月', '1年', '2年', '3年']
+        data: yAxisData,
       },
       series: seriesData,
       // color: ['#81B6F5', '#E2827E', '#F9D471', '#74D491']

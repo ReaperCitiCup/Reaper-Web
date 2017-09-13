@@ -10,6 +10,16 @@ export function fetchCombination() {
   });
 }
 
+export function createCombination(combination) {
+  return request(`/api/combination`, {
+      method: 'POST',
+      headers: {
+        'Authorization': localStorage.getItem('token')
+      },
+    body: JSON.stringify(combination),
+    })
+}
+
 export function deleteCombination(combinationId) {
   return request(`/api/combination/${combinationId}`, {
     method: 'DELETE',
@@ -25,10 +35,5 @@ export function backtestCombination(combinationId, baseIndex, startDate, endDate
     headers: {
       'Authorization': localStorage.getItem('token')
     },
-    // body: {
-    //   "baseIndex": baseIndex,	//szzz, sz180, sz50, hs300, zz500
-    //   "startDate": startDate,
-    //   "endDate": endDate,
-    // }
   })
 }

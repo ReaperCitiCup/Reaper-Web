@@ -21,11 +21,11 @@ export function fetchCompanyManagerPerformance(companyId) {
   });
 }
 
-export function fetchCompanyProductStrategy(companyId) {
-  return request(`/api/company/${companyId}/product-strategy`, {
-    method: 'GET',
-  });
-}
+// export function fetchCompanyProductStrategy(companyId) {
+//   return request(`/api/company/${companyId}/product-strategy`, {
+//     method: 'GET',
+//   });
+// }
 
 export function fetchCompanyAssetAllocation(companyId) {
   return request(`/api/company/${companyId}/asset-allocation`, {

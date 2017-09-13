@@ -105,7 +105,8 @@ export default {
         payload: data.name,
       });
 
-      onSuccess();
+      if (onSuccess)
+        onSuccess();
     },
 
     *fetchFundPerformance(action, {call, put, select}) {
@@ -138,19 +139,19 @@ export default {
       })
     },
 
-    *fetchProductStrategy(action, {call, put, select}) {
-
-      const companyId = yield select(state => state.fundCompany.companyId);
-
-      const {data} = yield call(fundCompanyService.fetchCompanyProductStrategy, companyId);
-
-      // console.log(data);
-
-      yield put({
-        type: 'saveProductStrategy',
-        payload: data,
-      })
-    },
+    // *fetchProductStrategy(action, {call, put, select}) {
+    //
+    //   const companyId = yield select(state => state.fundCompany.companyId);
+    //
+    //   const {data} = yield call(fundCompanyService.fetchCompanyProductStrategy, companyId);
+    //
+    //   // console.log(data);
+    //
+    //   yield put({
+    //     type: 'saveProductStrategy',
+    //     payload: data,
+    //   })
+    // },
 
     *fetchAssetAllocation(action, {call, put, select}) {
 
@@ -186,7 +187,7 @@ export default {
 
       const {data} = yield call(fundCompanyService.fetchCompanyStyleAttributionRisk, companyId);
 
-      console.log(data);
+      // console.log(data);
 
       yield put({
         type: 'saveStyleAttributionRisk',
@@ -238,7 +239,7 @@ export default {
             onSuccess: () => {
               dispatch({type: 'fetchFundPerformance'});
               dispatch({type: 'fetchManagerPerformance'});
-              dispatch({type: 'fetchProductStrategy'});
+              // dispatch({type: 'fetchProductStrategy'});
               dispatch({type: 'fetchAssetAllocation'});
               dispatch({type: 'fetchStyleAttributionProfit'});
               dispatch({type: 'fetchStyleAttributionRisk'});

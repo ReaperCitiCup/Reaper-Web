@@ -15,6 +15,16 @@ class AttributionBarChart extends Component {
 
     let newColor = color ? color : '#81B6F5';
 
+    // console.log(chartData);
+
+    function sortBy(field) {
+      return function (a, b) {
+        return a[field] - b[field];
+      }
+    }
+
+    // console.log(chartData.sort(sortBy('value')));
+
     let option = {
 
       tooltip: {

@@ -206,11 +206,11 @@ class CombinationReport extends Component {
                   {combinationReport ?
                     <DoubleLineChart chartData={combinationReport.dailyRetracementTrend}/> : null}
                 </TabPane>
-                <TabPane tab="波动率" key="2">
-                  {combinationReport ?
-                    <DoubleLineChart chartData={combinationReport.volatilityTrend}/> : null}
-                </TabPane>
-                <TabPane tab="相关系数" key="3">
+                {/*<TabPane tab="波动率" key="2">*/}
+                  {/*{combinationReport ?*/}
+                    {/*<DoubleLineChart chartData={combinationReport.volatilityTrend}/> : null}*/}
+                {/*</TabPane>*/}
+                <TabPane tab="相关系数" key="2">
                   {combinationReport ?
                     <CorrelationCoefficientTable chartData={combinationReport.correlationCoefficientTable}/> : null}
                 </TabPane>

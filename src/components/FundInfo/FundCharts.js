@@ -29,7 +29,7 @@ function FundCharts({
   unitNetValueData, cumulativeNetValueData,
   cumulativeProfitData, currentAssetData, fundManagers
 }) {
-  // console.log({unitNetValueData});
+  // console.log({cumulativeProfitData});
   const data = [];
   if (fundManagers) {
     fundManagers.forEach((manager, index) => {

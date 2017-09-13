@@ -59,13 +59,15 @@ class FundManagerNav extends Component {
     }
 
     const {allManagers, dispatch} = this.props;
-    // console.log(allManagers);
+    if (allManagers)
+      console.log(allManagers);
     return (
       <div className="container">
         {allManagers ?
           <div>
             {allManagers.map(manager =>
-              <button className={styles.managerNameButton} key={manager.id} value={manager.id} onClick={onClick}>{manager.name}</button>
+              <button className={styles.managerNameButton} key={manager.id} value={manager.id}
+                      onClick={onClick}>{manager.name}</button>
             )}
           </div> : null}
       </div>

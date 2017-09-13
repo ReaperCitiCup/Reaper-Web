@@ -6,7 +6,7 @@ export default {
   namespace: 'fundAnalysisChart',
   state: {
     // fundRiskTrend: null,
-    fundDailyRetracement: null,
+    // fundDailyRetracement: null,
     fundVolatility: null,
     fundValueAtRisk: null,
     fundDownsideVolatility: null,
@@ -38,12 +38,12 @@ export default {
     //   }
     // },
 
-    saveFundDailyRetracement(state, {payload: fundDailyRetracement}) {
-      return {
-        ...state,
-        fundDailyRetracement,
-      }
-    },
+    // saveFundDailyRetracement(state, {payload: fundDailyRetracement}) {
+    //   return {
+    //     ...state,
+    //     fundDailyRetracement,
+    //   }
+    // },
 
     saveFundVolatility(state, {payload: fundVolatility}) {
       return {
@@ -217,21 +217,21 @@ export default {
     //   });
     // },
 
-    *fetchFundDailyRetracement({payload: code}, {call, put, select}) {
-      yield put({
-        type: 'saveFundDailyRetracement',
-        payload: null,
-      });
-
-      const {data} = yield call(fundAnalysisChartService.fetchFundDailyRetracement, code);
-
-      // console.log(data);
-
-      yield put({
-        type: 'saveFundDailyRetracement',
-        payload: data
-      });
-    },
+    // *fetchFundDailyRetracement({payload: code}, {call, put, select}) {
+    //   yield put({
+    //     type: 'saveFundDailyRetracement',
+    //     payload: null,
+    //   });
+    //
+    //   const {data} = yield call(fundAnalysisChartService.fetchFundDailyRetracement, code);
+    //
+    //   // console.log(data);
+    //
+    //   yield put({
+    //     type: 'saveFundDailyRetracement',
+    //     payload: data
+    //   });
+    // },
 
     *fetchFundVolatility({payload: code}, {call, put, select}) {
       yield put({
@@ -600,7 +600,7 @@ export default {
           dispatch({type: 'fundChart/fetchCumulativeProfitData', payload: 1});
           dispatch({type: 'fundChart/fetchUnitNetValueData', payload: id});
           // dispatch({type: 'fetchFundRiskTrend', payload: id});
-          dispatch({type: 'fetchFundDailyRetracement', payload: id});
+          // dispatch({type: 'fetchFundDailyRetracement', payload: id});
           dispatch({type: 'fetchFundVolatility', payload: id});
           dispatch({type: 'fetchFundValueAtRisk', payload: id});
           dispatch({type: 'fetchFundDownsideVolatility', payload: id});

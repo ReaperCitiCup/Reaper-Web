@@ -81,7 +81,7 @@ export default {
 
   },
   effects: {
-    *fetchCompanyId({payload: fundCode}, {call, put, select}) {
+    *fetchCompanyId({payload: fundCode, onSuccess}, {call, put, select}) {
 
       const {data} = yield call(fundCompanyService.fetchCompanyId, fundCode);
 
@@ -89,17 +89,21 @@ export default {
 
       yield put({
         type: 'saveCompanyId',
-        payload: data,
-      })
+        payload: data.id,
+      });
+
+      onSuccess();
     },
 
     *fetchFundPerformance(action, {call, put, select}) {
 
       const companyId = yield select(state => state.fundCompany.companyId);
 
+      // console.log("!!!!!!!!!" + companyId);
+
       const {data} = yield call(fundCompanyService.fetchCompanyFundPerformance, companyId);
 
-      console.log(data);
+      // console.log(data);
 
       yield put({
         type: 'saveFundPerformance',
@@ -215,15 +219,21 @@ export default {
           let id = path[2];
           // console.log("-------id: "+id);
           // window.scrollTo(0, 0);
-          dispatch({type: 'fetchCompanyId', payload: id});
-          dispatch({type: 'fetchFundPerformance'});
-          dispatch({type: 'fetchManagerPerformance'});
-          dispatch({type: 'fetchProductStrategy'});
-          dispatch({type: 'fetchAssetAllocation'});
-          dispatch({type: 'fetchStyleAttributionProfit'});
-          dispatch({type: 'fetchStyleAttributionRisk'});
-          dispatch({type: 'fetchIndustryAttributionProfit'});
-          dispatch({type: 'fetchIndustryAttributionRisk'});
+          dispatch({
+            type: 'fetchCompanyId',
+            payload: id,
+            onSuccess: () => {
+              dispatch({type: 'fetchFundPerformance'});
+              dispatch({type: 'fetchManagerPerformance'});
+              dispatch({type: 'fetchProductStrategy'});
+              dispatch({type: 'fetchAssetAllocation'});
+              dispatch({type: 'fetchStyleAttributionProfit'});
+              dispatch({type: 'fetchStyleAttributionRisk'});
+              dispatch({type: 'fetchIndustryAttributionProfit'});
+              dispatch({type: 'fetchIndustryAttributionRisk'});
+            }
+          });
+
         }
       });
     },

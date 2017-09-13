@@ -22,7 +22,7 @@ class FundBrief extends Component {
                     <div>
                       <h3>{fund.assessNetValue}</h3>
                       <div className={styles.sectionSide}>
-                        <p>{fund.assessIncrease}%</p>
+                        <p>{fund.assessIncrease}</p>
                         <p>{fund.assessDailyRate}%</p>
                       </div>
                     </div>

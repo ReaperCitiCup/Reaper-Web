@@ -48,7 +48,9 @@ class AssetPieChart extends Component {
           }
         }
       ],
-      color: ['#81B6F5', '#E2827E', '#F9D471', '#74D491']
+      // color: ['#81B6F5', '#E2827E', '#F9D471', '#74D491']
+      color: ['#E3645A', '#F48984', '#FDB8A1', '#F7CC9B', '#F8D76E', '#FEE9A5', '#F0E0BC', '#D1CCC6', '#B6D7B3', '#BEE1DA',
+        '#A7DAD8', '#92BCC3', '#93A9BD', '#B9CDDC', '#BABBDE', '#928BA9', '#CA9ECE', '#EFCEED', '#FECEDC', '#FAA5B3'],
     };
 
     return (

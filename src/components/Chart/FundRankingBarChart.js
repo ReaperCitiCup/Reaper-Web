@@ -63,13 +63,13 @@ class FundRankingBarChart extends Component {
       },
       legend: {
         data: chartData.map(fund => fund.name),
-        bottom: '0%'
+        bottom: '10'
       },
       grid: {
-        top: '0%',
-        left: '3%',
-        right: '4%',
-        bottom: '8%',
+        top: 30,
+        bottom: 70,
+        left: 30,
+        right: 30,
         containLabel: true
       },
       xAxis: {
@@ -83,7 +83,9 @@ class FundRankingBarChart extends Component {
         data: ['1月', '3月', '6月', '1年', '2年', '3年']
       },
       series: seriesData,
-      color: ['#81B6F5', '#E2827E', '#F9D471', '#74D491']
+      // color: ['#81B6F5', '#E2827E', '#F9D471', '#74D491']
+      color: ['#E3645A', '#F48984', '#FDB8A1', '#F7CC9B', '#F8D76E', '#FEE9A5', '#F0E0BC', '#D1CCC6', '#B6D7B3', '#BEE1DA',
+        '#A7DAD8', '#92BCC3', '#93A9BD', '#B9CDDC', '#BABBDE', '#928BA9', '#CA9ECE', '#EFCEED', '#FECEDC', '#FAA5B3'],
     };
 
     return (

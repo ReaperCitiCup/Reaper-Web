@@ -53,6 +53,7 @@ class NetworkChart extends Component {
         top: 80,
         tooltip: {
           formatter: function (params, ticket, callback) {
+            console.log(params);
             if (params.dataType === 'node') {
               return params.data.name
             } else if (params.dataType === 'edge') {

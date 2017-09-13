@@ -22,16 +22,22 @@ class FundProfitBarChart extends Component {
         top: '3%',
         left: '3%',
         right: '4%',
-        bottom: '3%',
+        bottom: '80',
         containLabel: true
       },
       xAxis: [
         {
           type: 'category',
           data: chartData.map(fund => fund.name),
+          nameRotate: 90,
           axisTick: {
             alignWithLabel: true
+          },
+          axisLabel: {
+            interval: 0,
+            rotate: 60
           }
+
         }
       ],
       yAxis: [
@@ -43,7 +49,7 @@ class FundProfitBarChart extends Component {
         {
           name: '收益',
           type: 'bar',
-          barWidth: '30',
+          barWidth: chartData.length > 5 ? '15' : '30',
           data: chartData.map(fund => fund.returns),
         }
       ],

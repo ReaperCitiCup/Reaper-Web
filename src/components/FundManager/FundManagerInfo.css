@@ -25,13 +25,12 @@ button {
   display: inline-block;
   background-color: rgba(255, 255, 255, 0.95);
   margin-right: 15px;
-  padding: 12.5px;
+  padding: 12.5px 20px;
   vertical-align: top; }
 
 .managerPhoto {
-  width: 120px;
-  height: 125px;
-  background-color: #f6f6f6;
+  width: auto;
+  height: auto;
   display: inline-block; }
 
 .managerInfo_body {

@@ -21,15 +21,18 @@ export default {
   },
   effects: {
 
-    *fetchFundBrief({payload: code}, {call, put, select}) {
+    *fetchFundBrief({payload: code, onSuccess}, {call, put, select}) {
       const {data} = yield call(fundService.fetchFundBrief, code);
 
-      // console.log(data);
+      console.log(data);
 
       yield put({
         type: 'saveFundBrief',
         payload: data,
       });
+
+      if (onSuccess)
+        onSuccess();
     },
 
     *fetchFund({payload: code}, {call, put, select}) {

@@ -94,7 +94,8 @@ class FundManagerInfo extends Component {
         <div className={styles.totalInfoDiv}>
           <div className={styles.managerNameDiv}>
             <div className={styles.managerPhoto}>
-
+              {managerInfo ?
+                <img src={managerInfo.managerImageUrl}/> : null}
             </div>
             <div className={styles.managerInfo_body}>
               <p className={styles.managerName}>{managerInfo ? managerInfo.name : null}</p>

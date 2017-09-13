@@ -3,7 +3,7 @@
  */
 import request from '../utils/request';
 
-export function fetchCompanyId(code) {
+export function fetchCompanyBrief(code) {
   return request(`/api/fund/${code}/company`, {
     method: 'GET',
   });

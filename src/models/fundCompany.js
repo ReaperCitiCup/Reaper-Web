@@ -6,6 +6,7 @@ export default {
   namespace: 'fundCompany',
   state: {
     companyId: null,
+    companyName: null,
     fundPerformance: null,
     managerPerformance: null,
     productStrategy: null,
@@ -20,6 +21,13 @@ export default {
       return {
         ...state,
         companyId,
+      }
+    },
+
+    saveCompanyName(state, {payload: companyName}) {
+      return {
+        ...state,
+        companyName,
       }
     },
 
@@ -81,15 +89,20 @@ export default {
 
   },
   effects: {
-    *fetchCompanyId({payload: fundCode, onSuccess}, {call, put, select}) {
+    *fetchCompanyBrief({payload: fundCode, onSuccess}, {call, put, select}) {
 
-      const {data} = yield call(fundCompanyService.fetchCompanyId, fundCode);
+      const {data} = yield call(fundCompanyService.fetchCompanyBrief, fundCode);
 
       // console.log(data);
 
       yield put({
         type: 'saveCompanyId',
         payload: data.id,
+      });
+
+      yield put({
+        type: 'saveCompanyName',
+        payload: data.name,
       });
 
       onSuccess();
@@ -220,7 +233,7 @@ export default {
           // console.log("-------id: "+id);
           // window.scrollTo(0, 0);
           dispatch({
-            type: 'fetchCompanyId',
+            type: 'fetchCompanyBrief',
             payload: id,
             onSuccess: () => {
               dispatch({type: 'fetchFundPerformance'});

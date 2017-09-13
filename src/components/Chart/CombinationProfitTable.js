@@ -39,13 +39,42 @@ const columns = [{
 
 function CombinationProfitTable({chartData}) {
   let data = [];
-  for (let i = 0; i < chartData.length; i++) {
-    data.push({
-      key: i + 1,
-      field: chartData[i].field,
-      value: chartData[i].value,
-    })
+  {/*for (let i = 0; i < chartData.length; i++) {*/
   }
+  //   data.push({
+  //     key: i + 1,
+  //     field: chartData[i].field,
+  //     value: chartData[i].value,
+  //   })
+  // }
+
+  if (chartData) {
+    data.push({
+      key: 1,
+      project: '总收益率',
+      combination: chartData.totalProfitRate.combination,
+      base: chartData.totalProfitRate.combination,
+    });
+    data.push({
+      key: 2,
+      project: '超额收益率',
+      combination: chartData.overProfitRate.combination,
+      base: chartData.overProfitRate.combination,
+    });
+    data.push({
+      key: 3,
+      project: '年化收益',
+      combination: chartData.annualProfit.combination,
+      base: chartData.annualProfit.combination,
+    });
+    data.push({
+      key: 4,
+      project: '盈利占天比',
+      combination: chartData.profitDaysRatio.combination,
+      base: chartData.profitDaysRatio.combination,
+    });
+  }
+
   return (
     <Table columns={columns}
            dataSource={data}

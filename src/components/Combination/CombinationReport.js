@@ -13,6 +13,7 @@ import DoubleLineChart from "../Chart/DoubleLineChart";
 import AttributionBarChart from "../Chart/AttributionBarChart";
 import CorrelationCoefficientTable from "../Chart/CorrelationCoefficientTable";
 import BrisonTable from "../Chart/BrisonTable";
+import CombinationProfitTable from "../Chart/CombinationProfitTable";
 
 import styles from "./CombinationReport.css";
 
@@ -48,6 +49,14 @@ class CombinationReport extends Component {
         })
       })
     }
+
+    const combinationProfitTableData = combinationReport ? {
+        totalProfitRate: combinationReport.totalProfitRate,
+        overProfitRate: combinationReport.overProfitRate,
+        annualProfit: combinationReport.annualProfit,
+        profitDaysRatio: combinationReport.profitDaysRatio,
+      } : null;
+
     return (
       <div className="container">
         <div className={styles.report_body}>
@@ -194,6 +203,7 @@ class CombinationReport extends Component {
               </TabPane>
             </Tabs>
 
+            <CombinationProfitTable chartData={combinationProfitTableData}/>
 
           </div>
 
@@ -207,8 +217,8 @@ class CombinationReport extends Component {
                     <DoubleLineChart chartData={combinationReport.dailyRetracementTrend}/> : null}
                 </TabPane>
                 {/*<TabPane tab="波动率" key="2">*/}
-                  {/*{combinationReport ?*/}
-                    {/*<DoubleLineChart chartData={combinationReport.volatilityTrend}/> : null}*/}
+                {/*{combinationReport ?*/}
+                {/*<DoubleLineChart chartData={combinationReport.volatilityTrend}/> : null}*/}
                 {/*</TabPane>*/}
                 <TabPane tab="相关系数" key="2">
                   {combinationReport ?

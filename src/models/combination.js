@@ -90,7 +90,7 @@ export default {
             type: 'fetchBacktestReport',
             payload: {
               ...query,
-              id: array[1]
+              id: array[2]
             }
           });
 

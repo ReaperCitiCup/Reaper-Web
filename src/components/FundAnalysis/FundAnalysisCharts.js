@@ -95,8 +95,8 @@ function FundAnalysisCharts({
       <div className="card" id="4">
         <DivHeader>业绩持续性指标</DivHeader>
         <p className={styles.description}>持续性指标为{fundPerformanceIndex ? fundPerformanceIndex.sustainabilityIndex : null}，
-          连输期数／总期数为{fundPerformanceIndex ? fundPerformanceIndex.loseDayRatio : null}，
-          连赢期数／总期数为{fundPerformanceIndex ? fundPerformanceIndex.winDayRatio : null}</p>
+          连输期数／总期数为{fundPerformanceIndex ? fundPerformanceIndex.loseDayRatio + '%' : null}，
+          连赢期数／总期数为{fundPerformanceIndex ? fundPerformanceIndex.winDayRatio + '%' : null}</p>
       </div>
 
       {fundStyleAttributionProfit && fundStyleAttributionRisk ?

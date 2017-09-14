@@ -28,6 +28,8 @@ export default {
     *fetchCombinations(action, {call, put, select}) {
 
       const {user} = select(state => state.user);
+
+      console.log(user)
       if (!user) return;
 
       const {data} = yield call(combinationService.fetchCombination);

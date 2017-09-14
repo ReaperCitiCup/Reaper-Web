@@ -55,10 +55,12 @@ export default {
         ],
       });
     },
+
     *fetchFactorChoice({payload: body}, {call, put}) {
       // console.log(body);
 
       const {data} = yield call(assetAllocationService.getDataList, body);
+
       yield put({
         type: 'saveFactor',
         payload: data

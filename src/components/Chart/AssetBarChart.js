@@ -34,7 +34,7 @@ class AssetBarChart extends Component {
       seriesData.push({
         name: dataValue.field,
         type: 'bar',
-        barWidth: '40',
+        barWidth: '20',
         stack: '总量',
         data: dataValue.data.map(singleData => {
           let dataArray = [];
@@ -114,7 +114,7 @@ class AssetBarChart extends Component {
         }
       ],
       series: seriesData,
-      color:  ['#E2827E','#CCCCCC', '#74D491', '#AAAAAA']
+      color:  ['#E2827E', '#F9D471']
 
     };
 

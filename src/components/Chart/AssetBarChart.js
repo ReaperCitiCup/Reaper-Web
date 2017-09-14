@@ -43,16 +43,16 @@ class AssetBarChart extends Component {
         })
       })
     });
-    seriesData.push({
-      name: '舆情分析指标',
-      type: 'line',
-      yAxisIndex: 1,
-      data: chartData.map(dataValue => {
-        let dataArray = [];
-        dataArray.push(dataValue.date, dataValue.index);
-        return dataArray;
-      })
-    });
+    // seriesData.push({
+    //   name: '舆情分析指标',
+    //   type: 'line',
+    //   yAxisIndex: 1,
+    //   data: chartData.map(dataValue => {
+    //     let dataArray = [];
+    //     dataArray.push(dataValue.date, dataValue.index);
+    //     return dataArray;
+    //   })
+    // });
 
     // console.log(seriesData)
 

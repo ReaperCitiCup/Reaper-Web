@@ -14,11 +14,11 @@ function FundInfoPage({fund}) {
     <div className="baseBody">
       <MainLayout>
         <BreadcrumbSearch/>
-        {fund ?
-          <div>
-            <FundHeader/>
-            <FundBrief fund={fund}/>
-          </div> : null}
+
+        <div>
+          {fund ? <FundHeader/> : null}
+          <FundBrief fund={fund}/>
+        </div>
         <div>
           <FundCharts/>
         </div>

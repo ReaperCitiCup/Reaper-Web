@@ -251,10 +251,10 @@ class CombinationReport extends Component {
                     <td>年化波动率</td>
                     <td>{combinationReport.annualVolatility}</td>
                   </tr>
-                  <tr>
-                    <td>Beta</td>
-                    <td>{combinationReport.beta}</td>
-                  </tr>
+                  {/*<tr>*/}
+                    {/*<td>Beta</td>*/}
+                    {/*<td>{combinationReport.beta}</td>*/}
+                  {/*</tr>*/}
                   <tr>
                     <td>在险价值 VaR</td>
                     <td>{combinationReport.var}</td>

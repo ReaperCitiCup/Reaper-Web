@@ -14,7 +14,7 @@ class StabilityRadarChart extends Component {
       return {
         name: d.field,
         min: -50,
-        max: 50
+        max: 300
       }
     });
 
@@ -27,7 +27,7 @@ class StabilityRadarChart extends Component {
       },
       radar: {
         // shape: 'circle',
-        radius: 90,
+        radius: 80,
         name: {
           textStyle: {
             color: '#3D5673',

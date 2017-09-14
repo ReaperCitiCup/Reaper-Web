@@ -61,7 +61,7 @@ class ManagerCharts extends Component {
           </div>
         </div>
 
-        {managerSocialNetwork ?
+        {managerSocialNetwork && managerSocialNetwork.nodes.length > 0 ?
           <div className={styles.networkChart}>
             <DivHeader>基金经理社会网络关系图</DivHeader>
             <NetworkChart chartData={managerSocialNetwork} type={'manager'}/>

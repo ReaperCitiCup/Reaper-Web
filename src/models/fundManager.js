@@ -115,7 +115,7 @@ export default {
       function*({payload: code}, {call, put, select}) {
         const {data} = yield call(fundService.fetchFund, code);
 
-        // console.log(data.manager);
+        console.log(data);
 
         yield put({
           type: 'saveAllManagers',

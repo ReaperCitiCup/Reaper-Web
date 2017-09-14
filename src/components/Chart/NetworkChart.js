@@ -44,13 +44,13 @@ class NetworkChart extends Component {
         // categories: seriesData.map(dataValue => dataValue.name),
         force: {
           // initLayout: 'circular'
+          repulsion: 100,
+          edgeLength: 100,
           // repulsion: 20,
-          edgeLength: 10,
-          repulsion: 20,
-          gravity: 0.2
+          // gravity: 0.2
         },
         edges: chartData.links,
-        top: 80,
+        // top: 80,
         tooltip: {
           formatter: function (params, ticket, callback) {
             // console.log(params);
@@ -59,7 +59,7 @@ class NetworkChart extends Component {
             } else if (params.dataType === 'edge') {
               let source = chartData.nodes[params.data.source].name;
               let target = chartData.nodes[params.data.target].name;
-              console.log(params.data);
+              // console.log(params.data);
               if (type === 'fund') {
                 return source + ' ' + target + '<br/> 权重：' + params.data.value
               } else if (type === 'manager') {
@@ -77,7 +77,7 @@ class NetworkChart extends Component {
     return (
       <ReactEcharts
         option={option}
-        style={{height: '700px'}}
+        // style={{height: '700px'}}
       />
     )
   }

@@ -51,8 +51,8 @@ function FundAnalysisCharts({
         <DivHeader>风险概览</DivHeader>
         <Tabs defaultActiveKey="1">
           {/*<TabPane tab="每日回撤" key="1">*/}
-            {/*{fundDailyRetracement ?*/}
-              {/*<NetValueLineChart chartData={fundDailyRetracement}/> : null}*/}
+          {/*{fundDailyRetracement ?*/}
+          {/*<NetValueLineChart chartData={fundDailyRetracement}/> : null}*/}
           {/*</TabPane>*/}
           <TabPane tab="波动率" key="1">
             {fundVolatility ?
@@ -200,14 +200,13 @@ function FundAnalysisCharts({
           {managerPerformanceAnalysis ?
             <ScatterChart chartData={managerPerformanceAnalysis}/> : null}
         </div>
-
       </div>
 
-      <div className="card" id="13">
-        <DivHeader>基金持仓情况</DivHeader>
-        {fundPositionNetwork ?
-          <NetworkChart chartData={fundPositionNetwork} type={'fund'}/> : null}
-      </div>
+      {fundPositionNetwork && fundPositionNetwork.nodes.length > 0 ?
+        <div className="card" id="13">
+          <DivHeader>基金持仓情况</DivHeader>
+          <NetworkChart chartData={fundPositionNetwork} type={'fund'}/>
+        </div> : null}
 
       <div className="card" id="14">
         <DivHeader>舆情分析</DivHeader>

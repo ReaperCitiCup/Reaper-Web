@@ -124,10 +124,10 @@ class FundManagerInfo extends Component {
         </div>
 
         <div className={styles.introductionDiv}>
-          {managerAbility ?
-            <div className={styles.infoChartDiv}>
-              <FundManagerRadarChart chartData={managerAbility}/>
-            </div> : null}
+
+          <div className={styles.infoChartDiv}>
+            {managerAbility ? <FundManagerRadarChart chartData={managerAbility}/> : null}
+          </div>
           <div className={styles.managerIntroDiv}>
             <DivHeader>基金经理简介</DivHeader>
             <p className={styles.managerIntro}>
@@ -139,7 +139,7 @@ class FundManagerInfo extends Component {
         <div className={styles.fundHistoryDiv}>
           <DivHeader>历史管理基金</DivHeader>
           <div>
-            <Table columns={columns} dataSource={data} size="middle" pagination={false}/>
+            <Table columns={columns} dataSource={data} size="middle" pagination={data.length > 5}/>
           </div>
 
         </div>

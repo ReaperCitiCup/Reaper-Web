@@ -21,7 +21,7 @@ button {
   margin-top: 15px; }
 
 .performanceLeft {
-  width: 621px;
+  width: 470px;
   height: auto;
   display: inline-block;
   background-color: rgba(255, 255, 255, 0.95);
@@ -30,7 +30,7 @@ button {
   margin-right: 18px; }
 
 .performanceRight {
-  width: 319px;
+  width: 470px;
   height: auto;
   display: inline-block;
   background-color: rgba(255, 255, 255, 0.95);

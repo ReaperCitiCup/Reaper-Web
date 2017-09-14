@@ -82,7 +82,8 @@ class FundRankingBarChart extends Component {
       },
       legend: {
         data: chartData.map(fund => fund.name),
-        bottom: '10'
+        bottom: '10',
+        type: 'scroll',
       },
       grid: {
         top: 30,

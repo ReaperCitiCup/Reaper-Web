@@ -51,7 +51,8 @@ class MultiLineChart extends Component {
           10, // 右
           20,  // 下
           10, // 左
-        ]
+        ],
+        type: 'scroll'
       },
       grid: {
         top: 30,

@@ -14,7 +14,7 @@ class NetValueLineChart extends Component {
     if (chartData) {
       for (let i = 0; i < chartData.length; i++) {
         date.push(chartData[i].date);
-        data.push(chartData[i].value);
+        data.push(chartData[i].value.toFixed(3));
       }
     } else {
       // let base = +new Date(1968, 9, 3);

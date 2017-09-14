@@ -135,12 +135,12 @@ function FundAnalysisCharts({
         <div className={styles.section}>
           <h4 className={styles.section_title}>主动收益</h4>
           {fundStyleStabilityProfit ?
-            <StabilityRadarChart chartData={fundStyleStabilityProfit}/> : null}
+            <StabilityRadarChart chartData={fundStyleStabilityProfit} type={'主动收益'}/> : null}
         </div>
         <div className={styles.section}>
           <h4 className={styles.section_title}>主动风险</h4>
           {fundStyleStabilityRisk ?
-            <StabilityRadarChart chartData={fundStyleStabilityRisk}/> : null}
+            <StabilityRadarChart chartData={fundStyleStabilityRisk} type={'主动风险'}/> : null}
         </div>
       </div>
 

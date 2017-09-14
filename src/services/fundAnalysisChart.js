@@ -82,13 +82,13 @@ export function fetchFundIndustryAttributionRisk(code) {
 }
 
 export function fetchFundStyleStabilityProfit(code) {
-  return request(`/api/fund/${code}/style-stability/profit`, {
+  return request(`/api/fund/${code}/style-attribution/profit`, {
     method: 'GET',
   });
 }
 
 export function fetchFundStyleStabilityRisk(code) {
-  return request(`/api/fund/${code}/style-stability/risk`, {
+  return request(`/api/fund/${code}/style-attribution/risk`, {
     method: 'GET',
   });
 }

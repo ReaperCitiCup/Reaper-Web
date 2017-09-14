@@ -5,7 +5,7 @@ import React, {Component} from 'react';
 class StabilityRadarChart extends Component {
   render() {
 
-    const {chartData} = this.props;
+    const {chartData, type} = this.props;
 
     let data = chartData;
 
@@ -20,7 +20,11 @@ class StabilityRadarChart extends Component {
 
 
     let option = {
-      tooltip: {},
+      tooltip: {
+        // formatter: function (params) {
+        //   console.log(params);
+        // }
+      },
       radar: {
         // shape: 'circle',
         radius: 90,
@@ -38,6 +42,7 @@ class StabilityRadarChart extends Component {
         },
       },
       series: [{
+        name: type,
         type: 'radar',
         areaStyle: {
           normal: {
@@ -47,7 +52,7 @@ class StabilityRadarChart extends Component {
         },
         data: [
           {
-            value: data.map(d => d.value),
+            value: data.map(d => d.value.toFixed(3)),
             lineStyle: {
               normal: {
                 color: '#81B6F5',

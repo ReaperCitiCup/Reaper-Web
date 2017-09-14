@@ -11,6 +11,7 @@ export default {
     assetChoiceList: [],
     factorChoiceList: [],
     combinationResult: '',
+    fundList: []
   },
 
   subscriptions: {
@@ -78,6 +79,23 @@ export default {
         type: 'saveAsset',
         payload: mockList,
       });
+      yield put({
+        type: 'saveFundList',
+        payload: [
+          {
+            name:"stock",
+            funds: []
+          },
+          {
+            name:"bond",
+            funds: []
+          },
+          {
+            name:"hybrid",
+            funds: []
+          },
+        ],
+      });
     },
     *fetchFactorChoice({payload: data}, {call, put}) {
       console.log(data);
@@ -123,11 +141,34 @@ export default {
               name: '124',
             },
           ],
+        },
+        {
+          name: '因子4',
+          funds: [
+            {
+              code: 123,
+              name: '123',
+            },
+            {
+              code: 124,
+              name: '124',
+            },
+          ],
         }
       ];
       yield put({
         type: 'saveFactor',
         payload: mockList
+      });
+
+      yield put({
+        type: 'saveFundList',
+        payload: mockList.map(factor => {
+          return {
+            name: factor.name,
+            funds: factor.funds.map(fund => fund.code)
+          }
+        }),
       });
     },
     *createCombination({payload: data}, {call, put}) {
@@ -151,6 +192,9 @@ export default {
     saveCreateCombination(state, {payload: combinationResult}) {
       return {...state, combinationResult};
     },
+    saveFundList(state, {payload: fundList}) {
+      return {...state, fundList};
+    }
   },
 
 };

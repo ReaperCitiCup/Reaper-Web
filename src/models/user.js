@@ -12,12 +12,16 @@ export default {
     },
   },
   effects: {
-    *fetchUser(action, {call, put, select}) {
+    *fetchUser({onSuccess}, {call, put, select}) {
       const {data} = yield call(userService.currentUser);
       yield put({
         type: 'saveUser',
         payload: data,
       });
+
+      if (data && onSuccess) {
+        onSuccess();
+      }
     },
 
     *signUp({payload: user, onSuccess, onError}, {call, put}) {
@@ -44,15 +48,14 @@ export default {
       }
     },
 
-    *refreshUser(action, {put, select}) {
+    *refreshUser({onSuccess}, {put, select}) {
       const {user} = yield select(state => state.user);
       const token = localStorage.getItem('token');
-
-      // TODO
 
       if (token && !user) {
         yield put({
           type: 'fetchUser',
+          onSuccess,
         });
       }
 
@@ -107,9 +110,19 @@ export default {
   subscriptions: {
     setup({dispatch, history}) {
       return history.listen(({pathname, query}) => {
-        dispatch({
-          type: 'refreshUser',
-        });
+        if (pathname === '/combination') {
+          dispatch({
+            type: 'refreshUser',
+            onSuccess: () => dispatch({
+              type: 'combination/fetchCombinations',
+            })
+          });
+        } else {
+          dispatch({
+            type: 'refreshUser',
+          });
+        }
+
       });
     }
   },

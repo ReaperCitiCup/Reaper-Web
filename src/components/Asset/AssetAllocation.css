@@ -95,8 +95,7 @@
 .fund_list {
   display: inline-block;
   width: 31%;
-  height: 360px;
-  margin: 0 1%;
+  margin: 0 1% 30px;
 }
 .fund_list .fund_item {
   font-size: 14px;

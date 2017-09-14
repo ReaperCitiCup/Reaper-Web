@@ -11,19 +11,11 @@ class AttributionBarChart extends Component {
 
     const {color, chartData} = this.props;
 
-    let data = chartData ? chartData.sort((a, b) => a.value > b.value) : null;
+    let data = chartData ? chartData.sort((a, b) => a.value - b.value) : null;
 
     let newColor = color ? color : '#81B6F5';
 
-    console.log(data);
-
-    function sortBy(field) {
-      return function (a, b) {
-        return a[field] - b[field];
-      }
-    }
-
-    // console.log(chartData.sort(sortBy('value')));
+    // console.log(data);
 
     let option = {
 

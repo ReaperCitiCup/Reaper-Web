@@ -9,9 +9,11 @@ export default {
   },
   reducers: {
     saveCombinations(state, {payload: combinations}) {
-      combinations.forEach(combination => {
-        combination.key = combination.id;
-      });
+      if (combinations) {
+        combinations.forEach(combination => {
+          combination.key = combination.id;
+        });
+      }
 
       return {...state, combinations};
     },
@@ -24,6 +26,10 @@ export default {
   },
   effects: {
     *fetchCombinations(action, {call, put, select}) {
+
+      const {user} = select(state => state.user);
+      if (!user) return;
+
       const {data} = yield call(combinationService.fetchCombination);
 
       yield put({
@@ -55,7 +61,6 @@ export default {
       yield put(routerRedux.push(`/combination/${id}?startDate=${startDate}&endDate=${endDate}&baseIndex=${baseIndex}`));
 
 
-
     },
     *fetchBacktestReport({payload: {id, baseIndex, startDate, endDate}}, {call, put, select}) {
 
@@ -63,8 +68,8 @@ export default {
       console.log(data);
 
       yield put({
-        type: 'saveCombinationReport',
-        payload: data,
+          type: 'saveCombinationReport',
+          payload: data,
         }
       )
     }

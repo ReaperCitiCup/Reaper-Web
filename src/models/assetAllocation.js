@@ -97,10 +97,15 @@ export default {
         ],
       });
     },
-    *fetchFactorChoice({payload: data}, {call, put}) {
+    *fetchFactorChoice({payload: data}, {call, put, select}) {
       console.log(data);
 
+      const {user} = yield select(state => state.user)
+      console.log(localStorage.getItem('token'))
+
       const result = yield call(assetAllocationService.getDataList, data);
+
+      console.log(result);
 
       let mockList = [
         {

@@ -8,7 +8,7 @@ export function getDataList(data) {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      Authorization: localStorage.getItem('token'),
+      'Authorization': localStorage.getItem('token'),
     },
     body: JSON.stringify(data),
   });
@@ -19,7 +19,7 @@ export function createCombination(data) {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      Authorization: localStorage.getItem('token'),
+      'Authorization': localStorage.getItem('token'),
     },
     body: JSON.stringify(data),
   });

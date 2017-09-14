@@ -114,3 +114,17 @@
   height: 30px;
   line-height: 30px;
 }
+.scroll_wrapper {
+  height: 300px;
+  border: 1px solid #E7E9EC;
+}
+.scroll_wrapper :global .FreeScrollbar {
+  overflow: scroll !important;
+}
+.scroll_wrapper_small {
+  height: 100px;
+  border: 1px solid #E7E9EC;
+}
+.scroll_wrapper_small :global .FreeScrollbar {
+  overflow: scroll !important;
+}

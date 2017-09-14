@@ -151,21 +151,30 @@ export default {
     *createCombination({onSuccess, onError}, {call, put, select}) {
       const {name, items} = yield select(state => state.createCombination);
 
+      const {user} = yield select(state => state.user);
+      if (!user) {
+        onError("登录后才能创建组合！");
+        return;
+      }
       if (items.length === 0) {
         if (onError) onError("组合至少添加一个基金");
         return;
+      } else if (name === '') {
+        if (onError) onError("请输入组合名字");
+        return;
       }
 
-      let funds = items.forEach(item => {
-        return {
-          id: item.id,
-          ratio: item.ratio,
-        }
-      });
+        let funds = items.map(item => {
+          return {
+            id: item.code,
+            ratio: item.ratio,
+          }
+        });
       const body = {
         name,
         funds
       }
+
       const {data} = yield call(combinationService.createCombination, body);
       console.log(data);
 
@@ -176,8 +185,13 @@ export default {
       }
 
       yield put({
-          type: 'saveCombinationReport',
-          payload: data,
+          type: 'saveName',
+          payload: '',
+        }
+      )
+      yield put({
+          type: 'saveItems',
+          payload: [],
         }
       )
     }

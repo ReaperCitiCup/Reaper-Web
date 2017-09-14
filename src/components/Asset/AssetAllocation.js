@@ -170,21 +170,30 @@ class AssetAllocation extends Component {
     });
   };
   onChangeStockSelect = (value) => {
-    this.setState({
-      fundArr: this.state.fundArr.concat(value),
-      stockSelect: value,
-    });
+    this.props.dispatch({
+      type: 'asset/saveFundToFundList',
+      payload: {
+        name: 'stock',
+        value,
+      }
+    })
   };
-  onChangeFundSelect = (value) => {
-    this.setState({
-      fundArr: this.state.fundArr.concat(value),
-      fundSelect: value,
-    });
+  onChangeBondSelect = (value) => {
+    this.props.dispatch({
+      type: 'asset/saveFundToFundList',
+      payload: {
+        name: 'bond',
+        value,
+      }
+    })
   };
-  onChangeMixSelect = (value) => {
-    this.setState({
-      fundArr: this.state.fundArr.concat(value),
-      mixSelect: value,
+  onChangeHybridSelect = (value) => {
+    this.props.dispatch({
+      type: 'asset/saveFundToFundList',
+      payload: {
+        name: 'hybrid',
+        value,
+      }
     })
   };
   onChangeDecentralizedApproach = (e) => {
@@ -357,53 +366,72 @@ class AssetAllocation extends Component {
       </div>
     )];
 
+    const {assetChoiceList, factorChoiceList, fundList, } = this.props;
     const stepFourContent = [(
       <div>
         <div className={styles.stepTitle}>4.选择基金</div>
 
-        {this.props.assetChoiceList.length > 0 ?
+        {assetChoiceList.length > 0 && fundList.filter(v => v.name === 'stock').length > 0?
           <div className={styles.contentRetract}>
             <div className={styles.fund_list}>
               <div className={styles.fundListTitle}><span>股票型基金</span></div>
-              <FreeScrollBar
-                style={{height: '300px', border: '1px solid #E7E9EC'}}
-              >
-                <div>
-                  <CheckboxGroup
-                    options={this.props.assetChoiceList.filter(v => v.name === 'stock')[0].funds}
-                    value={this.state.stockSelect}
-                    onChange={this.onChangeStockSelect}
-                  />
-                </div>
-              </FreeScrollBar>
+              <div className={styles.scroll_wrapper}>
+                <FreeScrollBar>
+                  <div>
+                    <CheckboxGroup
+                      options={assetChoiceList.filter(v => v.name === 'stock')[0].funds
+                        .map(fund => {
+                          return {
+                            label: fund.name,
+                            value: fund.code
+                          }
+                        })}
+                      value={fundList.filter(v => v.name === 'stock')[0].funds}
+                      onChange={this.onChangeStockSelect}
+                    />
+                  </div>
+                </FreeScrollBar>
+              </div>
             </div>
             <div className={styles.fund_list}>
               <div className={styles.fundListTitle}><span>债券型基金</span></div>
-              <FreeScrollBar
-                style={{height: '300px', border: '1px solid #E7E9EC'}}
-              >
-                <div>
-                  <CheckboxGroup
-                    options={this.props.assetChoiceList.filter(v => v.name === 'bond')[0].funds}
-                    value={this.state.fundSelect}
-                    onChange={this.onChangeFundSelect}
-                  />
-                </div>
-              </FreeScrollBar>
+              <div className={styles.scroll_wrapper}>
+                <FreeScrollBar>
+                  <div>
+                    <CheckboxGroup
+                      options={assetChoiceList.filter(v => v.name === 'bond')[0].funds
+                        .map(fund => {
+                          return {
+                            label: fund.name,
+                            value: fund.code
+                          }
+                        })}
+                      value={fundList.filter(v => v.name === 'bond')[0].funds}
+                      onChange={this.onChangeBondSelect}
+                    />
+                  </div>
+                </FreeScrollBar>
+              </div>
             </div>
             <div className={styles.fund_list}>
               <div className={styles.fundListTitle}><span>混合型基金</span></div>
-              <FreeScrollBar
-                style={{height: '300px', border: '1px solid #E7E9EC'}}
-              >
-                <div>
-                  <CheckboxGroup
-                    options={this.props.assetChoiceList.filter(v => v.name === 'hybrid')[0].funds}
-                    value={this.state.mixSelect}
-                    onChange={this.onChangeMixSelect}
-                  />
-                </div>
-              </FreeScrollBar>
+              <div className={styles.scroll_wrapper}>
+                <FreeScrollBar>
+                  <div>
+                    <CheckboxGroup
+                      options={assetChoiceList.filter(v => v.name === 'hybrid')[0].funds
+                        .map(fund => {
+                          return {
+                            label: fund.name,
+                            value: fund.code
+                          }
+                        })}
+                      value={fundList.filter(v => v.name === 'hybrid')[0].funds}
+                      onChange={this.onChangeHybridSelect}
+                    />
+                  </div>
+                </FreeScrollBar>
+              </div>
             </div>
           </div>
           : null }
@@ -415,20 +443,22 @@ class AssetAllocation extends Component {
           {this.props.factorChoiceList.map((v) => {
             return (
               <div className={styles.fund_list} key={v.name}>
-                <div className={styles.fundListTitle}><span>{v.name}</span></div>
-                <FreeScrollBar
-                  style={{height: '100px', border: '1px solid #E7E9EC'}}
-                >
-                  <ul>
-                    {v.funds.map((x) => {
-                      return (
-                        <li
-                          className={styles.fund_item}
-                          key={x.code}>{x.name}</li>
-                      )
-                    })}
-                  </ul>
-                </FreeScrollBar>
+                <div className={styles.fundListTitle}>
+                  <span>{factorOptions.filter(f => f.value === v.name)[0].label}</span></div>
+
+                <div className={styles.scroll_wrapper_small}>
+                  <FreeScrollBar>
+                    <ul>
+                      {v.funds.map(x => {
+                        return (
+                          <li
+                            className={styles.fund_item}
+                            key={x.code}>{x.name}</li>
+                        )
+                      })}
+                    </ul>
+                  </FreeScrollBar>
+                </div>
               </div>
             );
           })}
@@ -536,7 +566,8 @@ class AssetAllocation extends Component {
               style={{float: 'right'}} disabled={this.state.current === 1 && this.state.implementationPath === null ||
             this.state.current === 2 && ((this.state.implementationPath === '1' && this.state.weightTag === null) ||
             (this.state.implementationPath === '2' && this.state.factorOptionsVal.length === 0)) ||
-            this.state.current === 3 && (this.state.implementationPath === '1' && this.state.fundArr.length === 0)}
+            this.state.current === 3 && (this.state.implementationPath === '1' &&
+            fundList.reduce((pre, cur) => pre + cur.funds.length)=== 0)}
               onClick={() => this.next()}
             >下一步</Button>
           }
@@ -569,8 +600,8 @@ class AssetAllocation extends Component {
 }
 
 function mapStateToProps(state) {
-  const {assetChoiceList, factorChoiceList, combinationResult} = state.asset;
-  return {assetChoiceList, factorChoiceList, combinationResult};
+  const {assetChoiceList, factorChoiceList, combinationResult, fundList} = state.asset;
+  return {assetChoiceList, factorChoiceList, combinationResult, fundList};
 }
 
 export default connect(mapStateToProps)(AssetAllocation);

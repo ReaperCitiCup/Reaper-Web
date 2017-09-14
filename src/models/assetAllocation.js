@@ -27,57 +27,15 @@ export default {
   },
 
   effects: {
-    *fetchAssetChoice({payload: data}, {call, put}) {
+    *fetchAssetChoice({payload: body}, {call, put}) {
 
-      console.log(data);
+      // console.log(body);
 
-      const result = yield call(assetAllocationService.getDataList, data);
-
-      let mockList = [
-        {
-          name: 'stock',
-          funds: [
-            {
-              value: 123,
-              label: '123',
-            },
-            {
-              value: 124,
-              label: '124',
-            },
-          ],
-        },
-        {
-          name: 'bond',
-          funds: [
-            {
-              value: 123,
-              label: '123',
-            },
-            {
-              value: 124,
-              label: '124',
-            },
-          ],
-        },
-        {
-          name: 'hybrid',
-          funds: [
-            {
-              value: 123,
-              label: '123',
-            },
-            {
-              value: 124,
-              label: '124',
-            },
-          ],
-        }
-      ];
+      const {data} = yield call(assetAllocationService.getDataList, body);
 
       yield put({
         type: 'saveAsset',
-        payload: mockList,
+        payload: data,
       });
       yield put({
         type: 'saveFundList',
@@ -97,87 +55,29 @@ export default {
         ],
       });
     },
-    *fetchFactorChoice({payload: data}, {call, put, select}) {
-      console.log(data);
 
-      const {user} = yield select(state => state.user)
-      console.log(localStorage.getItem('token'))
+    *fetchFactorChoice({payload: body}, {call, put}) {
+      // console.log(body);
 
-      const result = yield call(assetAllocationService.getDataList, data);
+      const {data} = yield call(assetAllocationService.getDataList, body);
 
-      console.log(result);
-
-      let mockList = [
-        {
-          name: '因子1',
-          funds: [
-            {
-              code: 123,
-              name: '123',
-            },
-            {
-              code: 124,
-              name: '124',
-            },
-          ],
-        },
-        {
-          name: '因子2',
-          funds: [
-            {
-              code: 123,
-              name: '123',
-            },
-            {
-              code: 124,
-              name: '124',
-            },
-          ],
-        },
-        {
-          name: '因子3',
-          funds: [
-            {
-              code: 123,
-              name: '123',
-            },
-            {
-              code: 124,
-              name: '124',
-            },
-          ],
-        },
-        {
-          name: '因子4',
-          funds: [
-            {
-              code: 123,
-              name: '123',
-            },
-            {
-              code: 124,
-              name: '124',
-            },
-          ],
-        }
-      ];
       yield put({
         type: 'saveFactor',
-        payload: mockList
+        payload: data
       });
 
       yield put({
         type: 'saveFundList',
-        payload: mockList.map(factor => {
+        payload: data.map(factor => {
           return {
             name: factor.name,
-            funds: factor.funds.map(fund => fund.code)
+            funds: factor.funds
           }
         }),
       });
     },
-    *createCombination({payload: data}, {call, put}) {
-      const result = yield call(assetAllocationService.createCombination, data);
+    *createCombination({payload: body}, {call, put}) {
+      const {data} = yield call(assetAllocationService.createCombination, body);
       yield put({
         type: 'saveCreateCombination',
         payload: {
@@ -199,6 +99,26 @@ export default {
     },
     saveFundList(state, {payload: fundList}) {
       return {...state, fundList};
+    },
+    saveFundToFundList(state, {payload: {name, value}}) {
+      let category = state.fundList.filter(c => c.name === name);
+      if (category.length === 1) {
+        category = category[0];
+
+        console.log(category)
+
+        category.funds = value;
+
+
+        return {
+          ...state,
+          fundList: [
+            ...state.fundList,
+            ...category,
+          ]
+        };
+      }
+      return state;
     }
   },
 

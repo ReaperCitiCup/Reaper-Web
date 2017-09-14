@@ -161,7 +161,7 @@ export default  {
           let id = pathname.split('/fund/')[1];
           window.scrollTo(0, 0);
           dispatch({
-            type: 'fund/fetchFundBrief',
+            type: 'fund/fetchFund',
             payload: id,
             onSuccess: () => {
               dispatch({type: 'fetchUnitNetValueData', payload: id});

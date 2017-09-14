@@ -16,8 +16,8 @@ function FundInfoPage({fund}) {
         <BreadcrumbSearch/>
 
         <div>
-          {fund ? <FundHeader/> : null}
-          <FundBrief fund={fund}/>
+          <FundHeader/>
+          <FundBrief/>
         </div>
         <div>
           <FundCharts/>

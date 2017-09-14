@@ -94,12 +94,12 @@ class FundBrief extends Component {
   }
 }
 
-FundBrief.propTypes = {};
-
 function mapStateToProps(state) {
   return {
-    // fundChart: state.fundChart.fundChart
+    fund: state.fund.fund,
   };
 }
 
-export default FundBrief;
+FundBrief.propTypes = {};
+
+export default connect()(FundBrief);

@@ -23,13 +23,13 @@ function FundListHeader({dispatch}) {
       <div className={styles.headerDiv}>
         <div className={styles.leftDiv}>
           <span className={styles.listHeader}>基金数据库</span>
-          <span className={styles.listNumSpan}>
-            共计
-            <span className={styles.listNum}>
-              111,111
-            </span>
-            只
-          </span>
+          {/*<span className={styles.listNumSpan}>*/}
+            {/*共计*/}
+            {/*<span className={styles.listNum}>*/}
+              {/*111,111*/}
+            {/*</span>*/}
+            {/*只*/}
+          {/*</span>*/}
           <span className={styles.listSortSpan}>
             排序：
           </span>

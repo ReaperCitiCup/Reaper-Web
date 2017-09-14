@@ -64,7 +64,7 @@ class ScatterChart extends Component {
         }
       },
       legend: {
-        data: ['当前', '其他'],
+        data: ['其他', '当前'],
         left: 'center'
       },
       xAxis: [
@@ -93,6 +93,11 @@ class ScatterChart extends Component {
       ],
       series: [
         {
+          name: '其他',
+          type: 'scatter',
+          data: dataOthers,
+        },
+        {
           name: '当前',
           type: 'scatter',
           data: dataNow,
@@ -114,11 +119,6 @@ class ScatterChart extends Component {
           //   ]
           // }
         },
-        {
-          name: '其他',
-          type: 'scatter',
-          data: dataOthers,
-        }
       ],
       color: ['#81B6F5', '#E2827E']
     };

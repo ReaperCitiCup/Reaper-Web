@@ -16,20 +16,22 @@ class ScatterChart extends Component {
     let dataNow;
     let dataOthers;
 
-    if (chartData.funds) {
-      dataNow = chartData.funds.map(point =>
-        [point.rate, point.risk, point.name]
-      );
-    } else if (chartData.managers) {
-      dataNow = chartData.managers.map(point =>
-        [point.rate, point.risk, point.name]
-      );
-    }
+    if (chartData) {
+      if (chartData.funds) {
+        dataNow = chartData.funds.map(point =>
+          [point.rate, point.risk, point.name]
+        );
+      } else if (chartData.managers) {
+        dataNow = chartData.managers.map(point =>
+          [point.rate, point.risk, point.name]
+        );
+      }
 
-    if (chartData.others) {
-      dataOthers = chartData.others.map(point =>
-        [point.rate, point.risk, point.name]
-      );
+      if (chartData.others) {
+        dataOthers = chartData.others.map(point =>
+          [point.rate, point.risk, point.name]
+        );
+      }
     }
 
 
@@ -118,7 +120,7 @@ class ScatterChart extends Component {
           data: dataOthers,
         }
       ],
-      color:  ['#81B6F5','#E2827E']
+      color: ['#81B6F5', '#E2827E']
     };
 
     return (

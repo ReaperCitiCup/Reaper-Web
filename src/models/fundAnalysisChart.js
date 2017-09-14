@@ -577,7 +577,7 @@ export default {
 
       const {data} = yield call(fundAnalysisChartService.fetchFundPositionNetwork, code);
 
-      // console.log(data);
+      console.log(data);
 
       yield put({
         type: 'saveFundPositionNetwork',

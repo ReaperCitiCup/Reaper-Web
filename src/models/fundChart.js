@@ -110,11 +110,11 @@ export default  {
       // });
       const code = yield  select(state => state.fund.fundBrief.code);
 
-      console.log(code);
+      // console.log(code);
 
       const {data} = yield call(fundChartService.fetchCumulativeProfitData, code, month);
 
-      console.log(data);
+      // console.log(data);
 
       yield put({
         type: 'drawCumulativeProfitChart',

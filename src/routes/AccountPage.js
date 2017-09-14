@@ -12,7 +12,7 @@ function IndexPage() {
     <div className="baseBody">
       <MainLayout>
         <div className="container">
-          <Breadcrumb items={[1, 2, 3]}/>
+          {/*<Breadcrumb items={[1, 2, 3]}/>*/}
         </div>
         <AccountInfo/>
       </MainLayout>

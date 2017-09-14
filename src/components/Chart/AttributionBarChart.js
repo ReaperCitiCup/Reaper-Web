@@ -15,7 +15,7 @@ class AttributionBarChart extends Component {
 
     let newColor = color ? color : '#81B6F5';
 
-    // console.log(chartData);
+    console.log(data);
 
     function sortBy(field) {
       return function (a, b) {
@@ -62,7 +62,7 @@ class AttributionBarChart extends Component {
           // formatter: '{b}'
           // }
           // },
-          data: data ? data.map(type => type.value) : null,
+          data: data ? data.map(type => type.value.toFixed(3)) : null,
 
         }
       ],

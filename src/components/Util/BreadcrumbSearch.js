@@ -10,9 +10,9 @@ class BreadcrumbSearch extends Component {
   render() {
     return (
       <div className="container">
-        <div className={styles.leftDiv}>
-          <MyBreadcrumb items={[1, 2, 3]}/>
-        </div>
+        {/*<div className={styles.leftDiv}>*/}
+          {/*<MyBreadcrumb items={[1, 2, 3]}/>*/}
+        {/*</div>*/}
         <FundSearchInput/>
       </div>
     )

@@ -131,7 +131,7 @@ export default {
 
       const {data} = yield call(fundCompanyService.fetchCompanyManagerPerformance, companyId);
 
-      console.log(data);
+      // console.log(data);
 
       yield put({
         type: 'saveManagerPerformance',

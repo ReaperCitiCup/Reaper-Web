@@ -5,10 +5,10 @@
   :global {
     .card {
       margin-bottom: 15px;
-      //p {
-      //  font-size: 14px;
-      //  color: $main-font-color;
-      //}
+      p span{
+        font-weight: 500;
+        color: $sub-font-color;
+      }
     }
   }
 }

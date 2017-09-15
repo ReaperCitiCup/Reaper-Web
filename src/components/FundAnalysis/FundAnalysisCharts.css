@@ -18,6 +18,9 @@ button {
 
 .fund_analysis_chart :global .card {
   margin-bottom: 15px; }
+  .fund_analysis_chart :global .card p span {
+    font-weight: 500;
+    color: #81B6F5; }
 
 .section {
   display: inline-block;

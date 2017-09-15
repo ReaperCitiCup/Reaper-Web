@@ -102,4 +102,4 @@ function mapStateToProps(state) {
 
 FundBrief.propTypes = {};
 
-export default connect()(FundBrief);
+export default connect(mapStateToProps)(FundBrief);

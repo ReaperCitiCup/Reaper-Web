@@ -161,9 +161,10 @@ export default  {
           let id = pathname.split('/fund/')[1];
           window.scrollTo(0, 0);
           dispatch({
-            type: 'fund/fetchFund',
+            type: 'fund/fetchFundBrief',
             payload: id,
             onSuccess: () => {
+              console.log('success')
               dispatch({type: 'fetchUnitNetValueData', payload: id});
               dispatch({type: 'fetchCumulativeNetValueData', payload: id});
               dispatch({type: 'fetchCumulativeProfitData', payload: 1});

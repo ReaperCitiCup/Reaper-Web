@@ -5,43 +5,18 @@ import echarts from 'echarts';
 import ReactEcharts from 'echarts-for-react';
 import React, {Component} from 'react';
 
+import styles from "./FundRankingBarChart.css";
+
 class FundRankingBarChart extends Component {
-  render() {
 
-    const {chartData} = this.props;
-    // console.log(chartData);
+  constructor(props) {
 
-    // let funds = [];
-    // let seriesData = [];
-    // let rankData = [];
-    // for (let i = 0; i < chartData.length; i++) {
-    //   funds.push(chartData[i].name);
-    //   for (let j = 0; j < chartData[i].data.length; j++) {
-    //     rankData.push((chartData[i].data[j].rank / chartData[i].data[j].total).toFixed(3));
-    //   }
-    //   seriesData.push({
-    //     name: chartData[i].name,
-    //     type: 'bar',
-    //     data: rankData,
-    //   });
-    //   rankData = [];
-    // }
-
-
-    let seriesData = chartData.map(fund => {
-      return {
-        name: fund.name,
-        type: 'bar',
-        data: fund.data.map(d => {
-          return {
-            ...d,
-            value: 1 - (d.rank / d.total).toFixed(2)
-          }
-        })
-      }
-    });
-
-    // console.log(seriesData);
+    if (!props)  {
+      super();
+      return;
+    }
+    super(props);
+    const {chartData} = props;
 
     let allTypes = [];
     for (let i = 0; i < chartData.length; i++) {
@@ -51,14 +26,47 @@ class FundRankingBarChart extends Component {
       }
       allTypes.push(typeArray);
     }
-    // console.log(allTypes);
 
     let yAxisData = allTypes[0];
     for (let i = 0; i < allTypes.length; i++) {
       yAxisData = yAxisData.concat(allTypes[i].filter(v => !yAxisData.includes(v)))
     }
-    // console.log(yAxisData);
+    console.log(yAxisData);
 
+    this.state = {
+      allTypes: yAxisData,
+      type: yAxisData[0],
+    }
+  }
+
+  onClick = (value) => {
+    this.setState({
+      type: value
+    })
+  };
+
+  render() {
+    const {chartData} = this.props;
+    const {type, allTypes} = this.state;
+    console.log(chartData);
+    console.log(type);
+
+    let partData =[];
+    chartData.forEach(fund => {
+      let fieldDatas = fund.data.filter(t => t.type === type);
+
+      if (fieldDatas.length > 0 )
+        partData.push({
+          id: fund.id,
+          name: fund.name,
+          value: 1 - (fieldDatas[0].rank / fieldDatas[0].total).toFixed(2),
+          rank: fieldDatas[0].rank,
+          total: fieldDatas[0].total
+        })
+    })
+
+
+    console.log('!!', partData)
 
     let option = {
       // tooltip: {
@@ -73,22 +81,16 @@ class FundRankingBarChart extends Component {
         normal: {
           show: true,
           formatter: function (params) {
-            // console.log(params);
             return [
               params.data.rank + " / " + params.data.total,
             ].join('');
           }
         }
       },
-      legend: {
-        data: chartData.map(fund => fund.name),
-        bottom: '10',
-        type: 'scroll',
-      },
       grid: {
         top: 30,
-        bottom: 70,
-        left: 30,
+        bottom: 20,
+        left: 10,
         right: 30,
         containLabel: true
       },
@@ -100,19 +102,31 @@ class FundRankingBarChart extends Component {
       },
       yAxis: {
         type: 'category',
-        data: yAxisData,
+        data: partData.map(fund => fund.name),
       },
-      series: seriesData,
+      series:[{
+        name: type,
+        type: 'bar',
+        data: partData
+      }],
       // color: ['#81B6F5', '#E2827E', '#F9D471', '#74D491']
       color: ['#E3645A', '#F48984', '#FDB8A1', '#F7CC9B', '#F8D76E', '#FEE9A5', '#F0E0BC', '#D1CCC6', '#B6D7B3', '#BEE1DA',
         '#A7DAD8', '#92BCC3', '#93A9BD', '#B9CDDC', '#BABBDE', '#928BA9', '#CA9ECE', '#EFCEED', '#FECEDC', '#FAA5B3'],
     };
 
     return (
+      <div  style={{height:  `500px`}}>
+        <div className={styles.button_wrapper}>
+          {allTypes.map(type =>
+          <button onClick={() => this.onClick(type)}
+                  key={type}
+                  value={type}>{type}</button>)}
+        </div>
       <ReactEcharts
         option={option}
-        style={{height: '500px'}}
+        style={{height:  `450px`}}
       />
+      </div>
     )
 
   }

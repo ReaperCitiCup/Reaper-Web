@@ -47,13 +47,6 @@ class AttributionBarChart extends Component {
         {
           // name: '生活费',
           type: 'bar',
-          // stack: '总量',
-          // label: {
-          // normal: {
-          //   show: true,
-          // formatter: '{b}'
-          // }
-          // },
           data: data ? data.map(type => type.value.toFixed(3)) : null,
 
         }

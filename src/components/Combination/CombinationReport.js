@@ -30,6 +30,19 @@ const columns = [{
   dataIndex: 'weight',
 }];
 
+const factorOptions = [
+  {label: 'beta', value: 'beta'},
+  {label: '价值', value: 'btop'},
+  {label: '盈利能力', value: 'profit'},
+  {label: '成长性', value: 'growth'},
+  {label: '杠杆率', value: 'leverage'},
+  {label: '流动性', value: 'liquidity'},
+  {label: '动量', value: 'momentum'},
+  {label: '非线性市值', value: 'nlsize'},
+  {label: '波动率', value: 'volatility'},
+  {label: '市值', value: 'size'},
+];
+
 class CombinationReport extends Component {
   render() {
 
@@ -116,8 +129,8 @@ class CombinationReport extends Component {
               <tbody>
               {combinationReport ?
                 <tr className={styles.tr_num}>
-                  <td>{combinationReport.intervalAnnualProfit}</td>
-                  <td>{combinationReport.cumulativeProfit}</td>
+                  <td>{combinationReport.intervalAnnualProfit}%</td>
+                  <td>{combinationReport.cumulativeProfit}%</td>
                   <td>{combinationReport.finalNetValue}</td>
                   <td>{combinationReport.maxRetracement}</td>
                   <td>{combinationReport.sharpeRatio}</td>
@@ -141,20 +154,20 @@ class CombinationReport extends Component {
                 <tr>
                   <td>业绩表现</td>
                   <td>该基金组合报告区间的年化收益为
-                    <span> {combinationReport.intervalAnnualProfit} </span>
+                    <span> {combinationReport.intervalAnnualProfit}%</span>
                   </td>
                 </tr>
                 <tr>
                   <td>风险表现</td>
                   <td>该基金组合报告区间的最大回撤为
                     <span> {combinationReport.maxRetracement} </span>，波动率为
-                    <span> {combinationReport.volatility} </span></td>
+                    <span> {combinationReport.volatility}% </span></td>
                 </tr>
                 <tr>
                   <td>收益风险分析</td>
                   <td>该基金组合属于
                     <span> {combinationReport.investmentGoal} </span>，风险收益比
-                    <span> ？？？ </span>
+                    <span> {combinationReport.sharpeRatio} </span>
                   </td>
                 </tr>
                 <tr>
@@ -162,9 +175,9 @@ class CombinationReport extends Component {
                   <td>该组合的风格主要为
                     <span> {combinationReport.mainFactors.map((factor, index) => {
                       if (index === combinationReport.mainFactors.length - 1) {
-                        return factor;
+                        return factorOptions.filter(option => option.value === factor)[0].label;
                       } else {
-                        return factor + "，"
+                        return factorOptions.filter(option => option.value === factor)[0].label + "，"
                       }
                     })} </span>
                   </td>
@@ -245,7 +258,7 @@ class CombinationReport extends Component {
                   </tr>
                   <tr>
                     <td>年化波动率</td>
-                    <td>{combinationReport.annualVolatility}</td>
+                    <td>{combinationReport.annualVolatility}%</td>
                   </tr>
                   {/*<tr>*/}
                   {/*<td>Beta</td>*/}
@@ -264,7 +277,7 @@ class CombinationReport extends Component {
             </div>
           </div>
 
-          {combinationReport && combinationReport.styleAttributionProfit && combinationReport.styleAttributionRisk ?
+          {combinationReport && combinationReport.styleAttributionProfit && combinationReport.styleAttributionRisk && combinationReport.styleAttributionRisk.length > 0 ?
             <div className={styles.section_7}>
               <DivHeader>风格归因</DivHeader>
               <div className={styles.section}>
@@ -279,7 +292,7 @@ class CombinationReport extends Component {
               </div>
             </div> : null}
 
-          {combinationReport && combinationReport.industryAttributionProfit && combinationReport.industryAttributionRisk ?
+          {combinationReport && combinationReport.industryAttributionProfit && combinationReport.industryAttributionRisk && combinationReport.industryAttributionRisk.length > 0 ?
             <div className={styles.section_8}>
               <DivHeader>行业归因</DivHeader>
 
@@ -295,37 +308,37 @@ class CombinationReport extends Component {
               </div>
             </div> : null}
 
-          <div className={styles.section_9}>
-            <DivHeader>Brison 归因</DivHeader>
-            <Tabs defaultActiveKey="1">
-              {combinationReport && combinationReport.brisonAttributionStock ?
-                <TabPane tab="基于股票持仓" key="1">
-                  <div>
-                    <div className={styles.section}>
-                      <AttributionBarChart chartData={combinationReport.brisonAttributionStock} color="#81B6F5"/>
+          {combinationReport && combinationReport.brisonAttributionStock && combinationReport.brisonAttributionStock.length > 0 ?
+            <div className={styles.section_9}>
+              <DivHeader>Brison 归因</DivHeader>
+              <Tabs defaultActiveKey="1">
+                {combinationReport && combinationReport.brisonAttributionStock ?
+                  <TabPane tab="基于股票持仓" key="1">
+                    <div>
+                      <div className={styles.section}>
+                        <AttributionBarChart chartData={combinationReport.brisonAttributionStock} color="#81B6F5"/>
+                      </div>
+                      <div className={styles.section}>
+                        <BrisonTable chartData={combinationReport.brisonAttributionStock}/>
+                      </div>
                     </div>
-                    <div className={styles.section}>
-                      <BrisonTable chartData={combinationReport.brisonAttributionStock}/>
+                  </TabPane> : null}
+                {combinationReport && combinationReport.brisonAttributionBond ?
+                  <TabPane tab="基于债券持仓" key="2">
+                    <div>
+                      <div className={styles.section}>
+                        <AttributionBarChart chartData={combinationReport.brisonAttributionBond} color="#81B6F5"/>
+                      </div>
+                      <div className={styles.section}>
+                        <BrisonTable chartData={combinationReport.brisonAttributionBond}/>
+                      </div>
                     </div>
-                  </div>
-                </TabPane> : null}
-              {combinationReport && combinationReport.brisonAttributionBond ?
-                <TabPane tab="基于债券持仓" key="2">
-                  <div>
-                    <div className={styles.section}>
-                      <AttributionBarChart chartData={combinationReport.brisonAttributionBond} color="#81B6F5"/>
-                    </div>
-                    <div className={styles.section}>
-                      <BrisonTable chartData={combinationReport.brisonAttributionBond}/>
-                    </div>
-                  </div>
-                </TabPane> : null}
-            </Tabs>
+                  </TabPane> : null}
+              </Tabs>
+            </div> : null}
 
-          </div>
 
-
-          {combinationReport && combinationReport.varietyAttribution ?
+          {combinationReport && combinationReport.varietyAttribution && combinationReport.varietyAttribution.length > 0 ?
             <div className={styles.section_10}>
               <DivHeader>品种归因</DivHeader>
               <AttributionBarChart chartData={combinationReport.varietyAttribution} color="#E2827E"/>

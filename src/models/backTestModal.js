@@ -3,9 +3,9 @@ export default {
   state: {
     id: null,
     show: false,
-    startDate: new Date().toISOString().substring(0, 10),
-    endDate: new Date().toISOString().substring(0, 10),
-    baseIndex: 'szzz'
+    startDate: new Date(2016, 6, 1).toISOString().substring(0, 10),
+    endDate: new Date(2016, 8, 1).toISOString().substring(0, 10),
+    baseIndex: 'szzs'
   },
   reducers: {
     saveShowAndId(state, {payload: {id, show}}) {

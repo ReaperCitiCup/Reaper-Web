@@ -25,7 +25,7 @@ class DoubleLineChart extends Component {
 
     let seriesData = [];
     seriesData.push({
-      name: 'fund',
+      name: '基金组合',
       type: 'line',
       showSymbol: false,
       data: chartData.fund.map(dataValue => {
@@ -35,7 +35,7 @@ class DoubleLineChart extends Component {
       })
     });
     seriesData.push({
-      name: 'base',
+      name: '基准',
       type: 'line',
       showSymbol: false,
       data: chartData.base.map(dataValue => {
@@ -66,7 +66,7 @@ class DoubleLineChart extends Component {
         trigger: 'axis'
       },
       legend: {
-        data: ['fund', 'base'],
+        data: ['基金组合', '基准'],
         bottom: '0%',
       },
       grid: {

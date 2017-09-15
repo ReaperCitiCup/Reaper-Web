@@ -26,9 +26,6 @@ const columns = [{
   title: '基金名称',
   dataIndex: 'name',
 }, {
-  title: '持仓比率',
-  dataIndex: 'positionRatio',
-}, {
   title: '权重',
   dataIndex: 'weight',
 }];
@@ -44,7 +41,6 @@ class CombinationReport extends Component {
           key: c.code,
           code: c.code,
           name: c.name,
-          positionRatio: c.positionRatio,
           weight: c.weight,
         })
       })
@@ -67,34 +63,34 @@ class CombinationReport extends Component {
             <span>{combinationReport ? combinationReport.endDate : null}</span>
           </h3>
 
-          <div className="gutter-example" id={styles.grade_row}>
-            <Row gutter={53}>
-              <Col className="gutter-row" span={8}>
-                <div className="gutter-box">综合评价&nbsp;&nbsp;
-                  <span className={styles.numberStyle} id={styles.integratedScore}>
-                    {combinationReport ? combinationReport.score : null}
-                  </span>
-                  &nbsp;&nbsp;分
-                </div>
-              </Col>
-              <Col className="gutter-row" span={8}>
-                <div className="gutter-box">超越同级&nbsp;&nbsp;
-                  <span className={styles.numberStyle} id={styles.exceedProduct}>
-                    {combinationReport ? combinationReport.transcendQuantity : null}
-                  </span>
-                  &nbsp;&nbsp;个产品
-                </div>
-              </Col>
-              <Col className="gutter-row" span={8}>
-                <div className="gutter-box">位列&nbsp;&nbsp;
-                  <span className={styles.numberStyle} id={styles.ranking}>
-                    {combinationReport ? combinationReport.rank : null}
-                  </span>
-                  &nbsp;&nbsp;名
-                </div>
-              </Col>
-            </Row>
-          </div>
+          {/*<div className="gutter-example" id={styles.grade_row}>*/}
+          {/*<Row gutter={53}>*/}
+          {/*<Col className="gutter-row" span={8}>*/}
+          {/*<div className="gutter-box">综合评价&nbsp;&nbsp;*/}
+          {/*<span className={styles.numberStyle} id={styles.integratedScore}>*/}
+          {/*{combinationReport ? combinationReport.score : null}*/}
+          {/*</span>*/}
+          {/*&nbsp;&nbsp;分*/}
+          {/*</div>*/}
+          {/*</Col>*/}
+          {/*<Col className="gutter-row" span={8}>*/}
+          {/*<div className="gutter-box">超越同级&nbsp;&nbsp;*/}
+          {/*<span className={styles.numberStyle} id={styles.exceedProduct}>*/}
+          {/*{combinationReport ? combinationReport.transcendQuantity : null}*/}
+          {/*</span>*/}
+          {/*&nbsp;&nbsp;个产品*/}
+          {/*</div>*/}
+          {/*</Col>*/}
+          {/*<Col className="gutter-row" span={8}>*/}
+          {/*<div className="gutter-box">位列&nbsp;&nbsp;*/}
+          {/*<span className={styles.numberStyle} id={styles.ranking}>*/}
+          {/*{combinationReport ? combinationReport.rank : null}*/}
+          {/*</span>*/}
+          {/*&nbsp;&nbsp;名*/}
+          {/*</div>*/}
+          {/*</Col>*/}
+          {/*</Row>*/}
+          {/*</div>*/}
 
           <div className={styles.section_1}>
             <DivHeader>基本组成</DivHeader>
@@ -157,7 +153,8 @@ class CombinationReport extends Component {
                 <tr>
                   <td>收益风险分析</td>
                   <td>该基金组合属于
-                    <span> {combinationReport.investmentGoal} </span>
+                    <span> {combinationReport.investmentGoal} </span>，风险收益比
+                    <span> ？？？ </span>
                   </td>
                 </tr>
                 <tr>
@@ -175,11 +172,8 @@ class CombinationReport extends Component {
                 <tr>
                   <td>业绩归因</td>
                   <td>股票类持仓总超额效益是
-                    /**
-                     * TODO
-                     */
-                    {/*<span> {combinationReport.brisonAttributionStock.filter(*/}
-                    {/*brisonValue => brisonValue.field === '总超额收益')[0].value} </span>*/}
+                    <span> {combinationReport.brisonAttributionStock.filter(
+                      brisonValue => brisonValue.field === '总超额效益')[0].value}% </span>
                     {/*，债券类持仓总超额效益是*/}
                     {/*<span> {combinationReport.brisonAttributionBond.filter(*/}
                     {/*brisonValue => brisonValue.field === '总超额收益')[0].value} </span>*/}
@@ -203,7 +197,9 @@ class CombinationReport extends Component {
               </TabPane>
             </Tabs>
 
-            <CombinationProfitTable chartData={combinationProfitTableData}/>
+            <div className={styles.table}>
+              <CombinationProfitTable chartData={combinationProfitTableData}/>
+            </div>
 
           </div>
 
@@ -252,8 +248,8 @@ class CombinationReport extends Component {
                     <td>{combinationReport.annualVolatility}</td>
                   </tr>
                   {/*<tr>*/}
-                    {/*<td>Beta</td>*/}
-                    {/*<td>{combinationReport.beta}</td>*/}
+                  {/*<td>Beta</td>*/}
+                  {/*<td>{combinationReport.beta}</td>*/}
                   {/*</tr>*/}
                   <tr>
                     <td>在险价值 VaR</td>

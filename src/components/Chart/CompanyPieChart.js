@@ -15,10 +15,10 @@ class CompanyPieChart extends Component {
 
     let data = [];
     if (chartData != null && chartData != undefined) {
-      if(chartData[0].positionRatio !== undefined) {
+      if(chartData[0].weight !== undefined) {
         for (let i = 0; i < chartData.length; i++) {
           data.push({
-            value: chartData[i].positionRatio,
+            value: chartData[i].weight,
             name: chartData[i].name
           })
         }

@@ -37,6 +37,9 @@ function CombinationBacktestModal({dispatch, visible, onOk, onCancel, startDate,
 
   // const today = new Date().toISOString().substring(0, 10);
 
+  console.log(startDate);
+  console.log(endDate);
+
   return (
     <Modal
       title="回测"
@@ -47,13 +50,14 @@ function CombinationBacktestModal({dispatch, visible, onOk, onCancel, startDate,
     >
 
       <div className={styles.cell}>
-        <span>起始日期</span>
+        <span>回测日期</span>
         <div>
           <RangePicker
             className={styles.range_picker}
             disabledDate={disabledDate}
             value={[moment(startDate, dateFormat), moment(endDate, dateFormat)]}
             onChange={handleDateChange}
+            allowClear={false}
           />
         </div>
       </div>
@@ -66,10 +70,10 @@ function CombinationBacktestModal({dispatch, visible, onOk, onCancel, startDate,
             // defaultValue="szzz"
             value={baseIndex}
             onChange={handleSelectChange}>
-            <Select.Option value="szzz">上证综指</Select.Option>
+            <Select.Option value="szzs">上证指数</Select.Option>
+            <Select.Option value="gzzs">国债指数</Select.Option>
             <Select.Option value="sz180">上证 180</Select.Option>
             <Select.Option value="sz50">上证 50</Select.Option>
-            <Select.Option value="hs300">沪深 300</Select.Option>
             <Select.Option value="zz500">中证 500</Select.Option>
           </Select>
         </div>

@@ -2,6 +2,8 @@
  * Created by wyj on 2017/9/11.
  */
 import * as assetAllocationService from '../services/assetAllocation';
+import {routerRedux} from 'dva/router';
+
 
 export default {
 
@@ -78,17 +80,24 @@ export default {
         }),
       });
     },
-    *createCombination({payload: body}, {call, put, select}) {
+    *createCombination({payload: body, onSuccess, onError}, {call, put, select}) {
 
       const {fundList:funds} = yield select(state => state.asset);
 
-      console.log(funds);
+      // console.log(funds);
       body.funds = funds;
 
-      console.log(body);
+      // console.log(body);
       const {data} = yield call(assetAllocationService.createCombination, body);
 
-      console.log(data)
+      // console.log(data)
+
+      if(data && onSuccess) {
+        onSuccess();
+        yield put(routerRedux.push('/combination'));
+      } else {
+        onError();
+      }
     },
   },
 

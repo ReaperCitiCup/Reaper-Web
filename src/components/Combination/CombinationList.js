@@ -2,6 +2,7 @@
  * Created by st on 2017/9/5.
  */
 import React, {Component} from 'react';
+import {message} from 'antd';
 import {connect} from 'dva';
 import {routerRedux} from 'dva/router';
 
@@ -78,7 +79,10 @@ class CombinationList extends Component {
               event.stopPropagation();
               dispatch({
                 type: 'combination/deleteCombination',
-                payload: record.id
+                payload: record.id,
+
+                onSuccess: (m) => message.success('删除成功！'),
+                onError: (m) => message.error(m)
               })
             }}>删除</button>
 

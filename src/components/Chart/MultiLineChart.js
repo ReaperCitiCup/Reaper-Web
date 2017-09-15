@@ -23,13 +23,14 @@ class MultiLineChart extends Component {
       }
     });
 
-    minDate = minDate.split('-');
-    maxDate = maxDate.split('-');
+    // minDate = minDate.split('-');
+    // maxDate = maxDate.split('-');
 
     let dateArray = [];
-    let currentDate = new Date(minDate[0], minDate[1], minDate[2]);
+    // let currentDate = new Date(minDate[0], minDate[1], minDate[2]);
+    let currentDate = new Date(minDate)
 
-    while (currentDate <= new Date(maxDate[0], maxDate[1], maxDate[2])) {
+    while (currentDate <= new Date(maxDate)) {
       dateArray.push(new Date(currentDate).toISOString().substring(0, 10));
       currentDate.setDate(currentDate.getDate() + 1);
     }

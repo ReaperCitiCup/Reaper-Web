@@ -173,20 +173,20 @@ class CombinationReport extends Component {
                 <tr>
                   <td>风格分析</td>
                   <td>该组合的风格主要为
-                    <span> {combinationReport.mainFactors.map((factor, index) => {
-                      if (index === combinationReport.mainFactors.length - 1) {
-                        return factorOptions.filter(option => option.value === factor)[0].label;
-                      } else {
-                        return factorOptions.filter(option => option.value === factor)[0].label + "，"
-                      }
-                    })} </span>
+                    {/*<span> {combinationReport.mainFactors.map((factor, index) => {*/}
+                      {/*if (index === combinationReport.mainFactors.length - 1) {*/}
+                        {/*return factorOptions.filter(option => option.value === factor)[0].label;*/}
+                      {/*} else {*/}
+                        {/*return factorOptions.filter(option => option.value === factor)[0].label + "，"*/}
+                      {/*}*/}
+                    {/*})} </span>*/}
                   </td>
                 </tr>
                 <tr>
                   <td>业绩归因</td>
                   <td>股票类持仓总超额效益是
-                    <span> {combinationReport.brisonAttributionStock.filter(
-                      brisonValue => brisonValue.field === '总超额效益')[0].value.toFixed(2)}% </span>
+                    {/*<span> {combinationReport.brisonAttributionStock.filter(*/}
+                      {/*brisonValue => brisonValue.field === '总超额效益')[0].value.toFixed(2)}% </span>*/}
                     {/*，债券类持仓总超额效益是*/}
                     {/*<span> {combinationReport.brisonAttributionBond.filter(*/}
                     {/*brisonValue => brisonValue.field === '总超额收益')[0].value} </span>*/}

@@ -39,7 +39,7 @@ export default {
       });
     },
 
-    *deleteCombination({payload: combinationId}, {call, put, select}) {
+    *deleteCombination({payload: combinationId, onSuccess, onError}, {call, put, select}) {
       const {user} = yield select(state => state.user);
       const {data} = yield call(combinationService.deleteCombination, combinationId);
 
@@ -53,12 +53,16 @@ export default {
         yield put({
           type: 'fetchCombinations',
         });
+        if(onSuccess) {
+          onSuccess();
+        }
       } else {
         if (data.message === '无效操作') {
           yield  put(routerRedux.push('/404'));
         } else if (data.result === undefined) {
           yield put(routerRedux.push('/auth'));
         }
+        onError();
       }
 
     },

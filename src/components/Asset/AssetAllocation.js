@@ -2,7 +2,7 @@
  * Created by wyj on 2017/9/2.
  */
 import React, {Component} from 'react';
-import {Steps, Button, Slider, Radio, InputNumber, Checkbox, Modal, Input} from 'antd';
+import {Steps, Button, Slider, Radio, InputNumber, Checkbox, Modal, Input, message} from 'antd';
 import FreeScrollBar from 'react-free-scrollbar';
 import {connect} from 'dva';
 import asset from '../../assets/assetAllocation/asset.png';
@@ -234,6 +234,8 @@ class AssetAllocation extends Component {
           method: this.state.decentralizedApproach,
           profitRate: this.state.profitRate
         },
+        onSuccess: (m) => message.success(m),
+        onError: (m) => message.error(m)
       })
     } else if (this.state.implementationPath === 2) {
       this.props.dispatch({

@@ -10,32 +10,40 @@ class DoubleLineChart extends Component {
   render() {
 
     const {chartData} = this.props;
-    // console.log(chartData);
+    console.log(chartData);
 
 
     let minDate;
     let maxDate;
+    let fundMin, fundMax, baseMin, baseMax;
 
-    chartData.forEach(fund => {
-      if (fund.data[0] && fund.data[fund.data.length - 1]) {
-        let min = fund.data[0].date;
-        let max = fund.data[fund.data.length - 1].date;
-        minDate = minDate < min ? minDate : min;
-        maxDate = maxDate > max ? maxDate : max;
-      }
-    });
+    let fund = chartData.fund;
+    if (fund[0] && fund[fund.length - 1]) {
+      fundMin = fund[0].date;
+      fundMax = fund[fund.length - 1].date;
+    }
 
-    minDate = minDate.split('-');
-    maxDate = maxDate.split('-');
+
+    let base = chartData.base;
+    if (base[0] && base[base.length - 1]) {
+      baseMin = base[0].date;
+      baseMax = base[base.length - 1].date;
+    }
+    minDate = fundMin < baseMin ? fundMin : baseMin;
+    maxDate = fundMax > baseMax ? fundMax : baseMax;
+    // console.log(minDate, maxDate)
 
     let dateArray = [];
-    let currentDate = new Date(minDate[0], minDate[1], minDate[2]);
+    let currentDate = new Date(minDate);
+    // console.log(currentDate);
 
-    while (currentDate <= new Date(maxDate[0], maxDate[1], maxDate[2])) {
+    // console.log(minDate[0], minDate[1], minDate[2], currentDate)
+    while (currentDate <= new Date(maxDate)) {
       dateArray.push(new Date(currentDate).toISOString().substring(0, 10));
       currentDate.setDate(currentDate.getDate() + 1);
     }
 
+    // console.log(dateArray)
     // let dateList = chartData.fund.map(dataValue => dataValue.date);
 
 

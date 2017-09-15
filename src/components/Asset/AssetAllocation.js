@@ -376,7 +376,7 @@ class AssetAllocation extends Component {
       <div>
         <div className={styles.stepTitle}>4.选择基金</div>
 
-        {assetChoiceList.length > 0 && fundList.filter(v => v.name === 'stock').length > 0 ?
+        {assetChoiceList.length > 0 && fundList.filter(v => v.category === 'stock').length > 0 ?
           <div className={styles.contentRetract}>
             <div className={styles.fund_list}>
               <div className={styles.fundListTitle}><span>股票型基金</span></div>
@@ -391,7 +391,7 @@ class AssetAllocation extends Component {
                             value: fund.code
                           }
                         })}
-                      value={fundList.filter(v => v.name === 'stock')[0].funds}
+                      value={fundList.filter(v => v.category === 'stock')[0].codes}
                       onChange={this.onChangeStockSelect}
                     />
                   </div>
@@ -411,7 +411,7 @@ class AssetAllocation extends Component {
                             value: fund.code
                           }
                         })}
-                      value={fundList.filter(v => v.name === 'bond')[0].funds}
+                      value={fundList.filter(v => v.category === 'bond')[0].codes}
                       onChange={this.onChangeBondSelect}
                     />
                   </div>
@@ -431,7 +431,7 @@ class AssetAllocation extends Component {
                             value: fund.code
                           }
                         })}
-                      value={fundList.filter(v => v.name === 'hybrid')[0].funds}
+                      value={fundList.filter(v => v.category === 'hybrid')[0].codes}
                       onChange={this.onChangeHybridSelect}
                     />
                   </div>
@@ -524,23 +524,23 @@ class AssetAllocation extends Component {
         <div className={styles.decentralization}>
           <div className={styles.stepTitle}>5.选择分散化方法</div>
           <RadioGroup onChange={this.onChangeDecentralizedApproach}>
-            <RadioButton value="1"><img width={70} role="presentation" src={staticScale}/>
+            <RadioButton value={1}><img width={70} role="presentation" src={staticScale}/>
               <div>静态比例配置</div>
             </RadioButton>
-            <RadioButton value="2" onClick={this.onClickMethod2}><img width={70} role="presentation"
+            <RadioButton value={2} onClick={this.onClickMethod2}><img width={70} role="presentation"
                                                                       src={meanVariance}/>
               <div>均值方差</div>
             </RadioButton>
-            <RadioButton value="3"><img width={70} role="presentation" src={minVariance}/>
+            <RadioButton value={3}><img width={70} role="presentation" src={minVariance}/>
               <div>最小方差组合配置</div>
             </RadioButton>
-            <RadioButton value="4"><img width={70} role="presentation" src={volatility}/>
+            <RadioButton value={4}><img width={70} role="presentation" src={volatility}/>
               <div>波动率倒数</div>
             </RadioButton>
-            <RadioButton value="5"><img width={70} role="presentation" src={maxDispersion}/>
+            <RadioButton value={5}><img width={70} role="presentation" src={maxDispersion}/>
               <div>最大分散化</div>
             </RadioButton>
-            <RadioButton value="6"><img width={70} role="presentation" src={riskAssessment}/>
+            <RadioButton value={6}><img width={70} role="presentation" src={riskAssessment}/>
               <div>风险评价</div>
             </RadioButton>
           </RadioGroup>
@@ -570,7 +570,7 @@ class AssetAllocation extends Component {
             this.state.current === 2 && ((this.state.implementationPath === 1 && this.state.weightTag === null) ||
             (this.state.implementationPath === 2 && this.state.factorOptionsVal.length === 0)) ||
             this.state.current === 3 && (this.state.implementationPath === 1 &&
-            fundList.length > 0 && fundList.reduce((pre, cur) => pre + cur.funds.length, 0) === 0)}
+            fundList.length > 0 && fundList.reduce((pre, cur) => pre + cur.codes.length, 0) === 0)}
               onClick={this.next}
             >下一步</Button>
           }

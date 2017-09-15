@@ -29,10 +29,11 @@ export default {
   effects: {
     *fetchAssetChoice({payload: body}, {call, put}) {
 
-      // console.log(body);
+      console.log(body);
 
       const {data} = yield call(assetAllocationService.getDataList, body);
 
+      console.log(data)
       yield put({
         type: 'saveAsset',
         payload: data,
@@ -41,16 +42,16 @@ export default {
         type: 'saveFundList',
         payload: [
           {
-            name:"stock",
-            funds: []
+            category:"stock",
+            codes: []
           },
           {
-            name:"bond",
-            funds: []
+            category:"bond",
+            codes: []
           },
           {
-            name:"hybrid",
-            funds: []
+            category:"hybrid",
+            codes: []
           },
         ],
       });
@@ -71,8 +72,8 @@ export default {
         type: 'saveFundList',
         payload: data.map(factor => {
           return {
-            name: factor.name,
-            funds: factor.funds
+            category: factor.name,
+            codes: factor.funds.map(fund => fund.code)
           }
         }),
       });
@@ -80,14 +81,11 @@ export default {
     *createCombination({payload: body}, {call, put, select}) {
 
       const {fundList:funds} = yield select(state => state.asset);
-      body.funds = funds.map(c => {
-        return {
-          name: c.name,
-          codes: c.funds.map(fund => fund.code)
-        }
-      });
 
-      console.log(body)
+      console.log(funds);
+      body.funds = funds;
+
+      console.log(body);
       const {data} = yield call(assetAllocationService.createCombination, body);
 
       console.log(data)
@@ -108,14 +106,10 @@ export default {
       return {...state, fundList};
     },
     saveFundToFundList(state, {payload: {name, value}}) {
-      let category = state.fundList.filter(c => c.name === name);
+      let category = state.fundList.filter(c => c.category === name);
       if (category.length === 1) {
         category = category[0];
-
-        console.log(category)
-
-        category.funds = value;
-
+        category.codes = value;
 
         return {
           ...state,

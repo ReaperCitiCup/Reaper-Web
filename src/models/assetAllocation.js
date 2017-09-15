@@ -57,10 +57,11 @@ export default {
     },
 
     *fetchFactorChoice({payload: body}, {call, put}) {
-      // console.log(body);
+      console.log(body);
 
       const {data} = yield call(assetAllocationService.getDataList, body);
 
+      console.log(data)
       yield put({
         type: 'saveFactor',
         payload: data
@@ -88,12 +89,8 @@ export default {
 
       console.log(body)
       const {data} = yield call(assetAllocationService.createCombination, body);
-      yield put({
-        type: 'saveCreateCombination',
-        payload: {
-          combinationResult: 1,
-        },
-      });
+
+      console.log(data)
     },
   },
 

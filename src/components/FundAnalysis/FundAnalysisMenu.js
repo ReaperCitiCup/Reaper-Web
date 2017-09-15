@@ -16,7 +16,7 @@ class FundAnalysisMenu extends Component {
   render() {
     const {
       fundStyleAttributionProfit, fundStyleAttributionRisk, fundIndustryAttributionProfit,
-      fundIndustryAttributionRisk, fundVarietyAttribution
+      fundIndustryAttributionRisk, fundVarietyAttribution, fundPositionNetwork
     } = this.props;
 
     return (
@@ -55,7 +55,8 @@ class FundAnalysisMenu extends Component {
           <Menu.Item key="12"><a href="#12">基金经理表现</a></Menu.Item>
         </SubMenu>
 
-        <Menu.Item key="13"><a href="#13">基金持仓情况</a></Menu.Item>
+        {fundPositionNetwork && fundPositionNetwork.nodes.length > 0 ?
+          <Menu.Item key="13"><a href="#13">基金持仓情况</a></Menu.Item> : null}
         <Menu.Item key="14"><a href="#14">舆情分析</a></Menu.Item>
       </Menu>
     );
@@ -69,6 +70,7 @@ function mapStateToProps(state) {
     fundIndustryAttributionProfit: state.fundAnalysisChart.fundIndustryAttributionProfit,
     fundIndustryAttributionRisk: state.fundAnalysisChart.fundIndustryAttributionRisk,
     fundVarietyAttribution: state.fundAnalysisChart.fundVarietyAttribution,
+    fundPositionNetwork: state.fundAnalysisChart.fundPositionNetwork,
   }
 }
 

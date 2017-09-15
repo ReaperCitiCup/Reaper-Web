@@ -40,7 +40,14 @@ export default {
     },
 
     *deleteCombination({payload: combinationId}, {call, put, select}) {
+      const {user} = yield select(state => state.user);
       const {data} = yield call(combinationService.deleteCombination, combinationId);
+
+      console.log(user);
+      console.log(combinationId);
+      console.log(data);
+      console.log(data.result);
+      console.log(data.message);
 
       if (data.result) {
         yield put({

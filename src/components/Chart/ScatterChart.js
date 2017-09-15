@@ -96,11 +96,13 @@ class ScatterChart extends Component {
           name: '其他',
           type: 'scatter',
           data: dataOthers,
+          symbolSize: 5,
         },
         {
           name: '当前',
           type: 'scatter',
           data: dataNow,
+          symbolSize: 5,
           // markPoint: {
           //   data: [
           //     {type: 'max', name: '最大值'},

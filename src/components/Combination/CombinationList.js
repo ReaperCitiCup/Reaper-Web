@@ -19,7 +19,7 @@ class CombinationList extends Component {
     dispatch({
       type: 'combination/backtestCombination',
       // payload:
-    })
+    });
 
     dispatch({
       type: 'backTestModal/saveShowAndId',
@@ -43,10 +43,10 @@ class CombinationList extends Component {
   };
 
 
-  onClickRow = (record, index, event) => {
-    const {dispatch} = this.props;
-    dispatch(routerRedux.push(`/combination/${record.id}`))
-  };
+  // onClickRow = (record, index, event) => {
+  //   const {dispatch} = this.props;
+  //   dispatch(routerRedux.push(`/combination/${record.id}`))
+  // };
 
   render() {
     const {dispatch, data, showModal} = this.props;
@@ -77,7 +77,8 @@ class CombinationList extends Component {
             onClick={(event) => {
               event.stopPropagation();
               dispatch({
-
+                type: 'combination/deleteCombination',
+                payload: record.id
               })
             }}>删除</button>
 
@@ -111,7 +112,7 @@ class CombinationList extends Component {
                  dataSource={data}
                  size="middle"
                  pagination={false}
-                 onRowClick={this.onClickRow}
+                 // onRowClick={this.onClickRow}
           />
         </div>
         <CombinationBacktestModal

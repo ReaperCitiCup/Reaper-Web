@@ -59,8 +59,8 @@ class FundManagerNav extends Component {
     }
 
     const {allManagers, dispatch} = this.props;
-    if (allManagers)
-      console.log(allManagers);
+    // if (allManagers)
+      // console.log(allManagers);
     return (
       <div className="container">
         {allManagers ?

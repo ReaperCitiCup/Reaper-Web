@@ -31,25 +31,31 @@ class FundRankingBarChart extends Component {
     for (let i = 0; i < allTypes.length; i++) {
       yAxisData = yAxisData.concat(allTypes[i].filter(v => !yAxisData.includes(v)))
     }
-    console.log(yAxisData);
+    // console.log(yAxisData);
 
     this.state = {
       allTypes: yAxisData,
       type: yAxisData[0],
+      barColor: ['#E3645A'],
     }
   }
 
   onClick = (value) => {
+    const colorArray = ['#E3645A', '#F48984', '#FDB8A1', '#F7CC9B', '#F8D76E', '#FEE9A5', '#F0E0BC', '#D1CCC6', '#B6D7B3', '#BEE1DA',
+      '#A7DAD8', '#92BCC3', '#93A9BD', '#B9CDDC', '#BABBDE', '#928BA9', '#CA9ECE', '#EFCEED', '#FECEDC', '#FAA5B3'];
+    let barColor = [];
+    barColor.push(colorArray.sort(function(){return 0.5-Math.random();}).slice(0,1));
     this.setState({
-      type: value
+      type: value,
+      barColor: barColor,
     })
   };
 
   render() {
     const {chartData} = this.props;
-    const {type, allTypes} = this.state;
-    console.log(chartData);
-    console.log(type);
+    const {type, allTypes, barColor} = this.state;
+    // console.log(chartData);
+    // console.log(barColor);
 
     let partData =[];
     chartData.forEach(fund => {
@@ -63,10 +69,10 @@ class FundRankingBarChart extends Component {
           rank: fieldDatas[0].rank,
           total: fieldDatas[0].total
         })
-    })
+    });
 
 
-    console.log('!!', partData)
+    // console.log('!!', partData)
 
     let option = {
       // tooltip: {
@@ -110,8 +116,7 @@ class FundRankingBarChart extends Component {
         data: partData
       }],
       // color: ['#81B6F5', '#E2827E', '#F9D471', '#74D491']
-      color: ['#E3645A', '#F48984', '#FDB8A1', '#F7CC9B', '#F8D76E', '#FEE9A5', '#F0E0BC', '#D1CCC6', '#B6D7B3', '#BEE1DA',
-        '#A7DAD8', '#92BCC3', '#93A9BD', '#B9CDDC', '#BABBDE', '#928BA9', '#CA9ECE', '#EFCEED', '#FECEDC', '#FAA5B3'],
+      color: barColor,
     };
 
     return (

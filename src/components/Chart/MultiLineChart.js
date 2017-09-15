@@ -11,15 +11,16 @@ class MultiLineChart extends Component {
 
     const {chartData} = this.props;
 
-
     let minDate;
     let maxDate;
 
     chartData.forEach(fund => {
-      let min = fund.data[0].date;
-      let max = fund.data[fund.data.length-1].date;
-      minDate = minDate < min ? minDate : min;
-      maxDate = maxDate > max ? maxDate : max;
+      if (fund.data[0] && fund.data[fund.data.length - 1]) {
+        let min = fund.data[0].date;
+        let max = fund.data[fund.data.length - 1].date;
+        minDate = minDate < min ? minDate : min;
+        maxDate = maxDate > max ? maxDate : max;
+      }
     });
 
     minDate = minDate.split('-');
@@ -27,7 +28,7 @@ class MultiLineChart extends Component {
 
     let dateArray = [];
     let currentDate = new Date(minDate[0], minDate[1], minDate[2]);
-    
+
     while (currentDate <= new Date(maxDate[0], maxDate[1], maxDate[2])) {
       dateArray.push(new Date(currentDate).toISOString().substring(0, 10));
       currentDate.setDate(currentDate.getDate() + 1);

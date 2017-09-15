@@ -63,6 +63,7 @@ class AssetAllocation extends Component {
       profitRiskTarget: 5,       // 收益风险目标
       implementationPath: null,   // 选择实施路径
       modalVisible: false,
+      averageVisible: false,
       factorOptionsVal: [],     // 因子间分散选择
       weight: [0, 0, 0],
       weightTag: null,
@@ -71,12 +72,9 @@ class AssetAllocation extends Component {
       customStockWeight: 40,    // 默认股票型基金权重
       customFundWeight: 40,     // 默认期货型基金权重
       customMixWeight: 20,      // 默认混合型基金权重
-      fundArr: [],              // 基金选择
-      stockSelect: [],
-      fundSelect: [],
-      mixSelect: [],
       decentralizedApproach: null, // 分散化方法
       combinationName: null,
+      profitRate: 0.05
     };
   }
 
@@ -88,10 +86,6 @@ class AssetAllocation extends Component {
     if (this.state.implementationPath === '1') {
       this.setState({
         factorOptionsVal: [],
-        fundArr: [],
-        stockSelect: [],
-        fundSelect: [],
-        mixSelect: [],
         decentralizedApproach: null,
       });
     } else if (this.state.implementationPath === '2') {
@@ -200,7 +194,22 @@ class AssetAllocation extends Component {
     this.setState({
       decentralizedApproach: e.target.value,
     });
+
+    // console.log(e.target.value)
+
+    if (e.target.value === 2) {
+      this.setState({
+        averageVisible: true,
+      })
+    }
   };
+
+  onClickMethod2 = () => {
+    this.setState({
+      averageVisible: true,
+    })
+  }
+
   finishChoice = () => {
     this.setState({
       modalVisible: true,
@@ -222,41 +231,27 @@ class AssetAllocation extends Component {
             hybrid: this.state.weight[2],
           },
           name: this.state.combinationName,
-          funds: [
-            {
-              category: '股票型',
-              codes: this.state.stockSelect,
-            },
-            {
-              category: '债券型',
-              codes: this.state.fundSelect,
-            },
-            {
-              category: '混合型',
-              codes: this.state.mixSelect,
-            }
-          ],
           method: this.state.decentralizedApproach,
+          profitRate: this.state.profitRate
         },
       })
     } else if (this.state.implementationPath === '2') {
       this.props.dispatch({
-        type: 'asset/fetchFactorChoice',
+        type: 'asset/createCombination',
         payload: {
           profitRiskTarget: this.state.profitRiskTarget,
           path: this.state.implementationPath,
           factor: this.state.factorOptionsVal,
           name: this.state.combinationName,
-          funds: [
-            // TODO 待添加
-          ],
           method: this.state.decentralizedApproach,
+          profitRate: this.state.profitRate
         }
       })
     }
   };
+
   onChangeCombinationName = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     this.setState({
       combinationName: e.target.value,
     });
@@ -264,6 +259,16 @@ class AssetAllocation extends Component {
   handleCancel = () => {
     this.setState({
       modalVisible: false,
+    });
+  };
+  onChangeProfitRate = (value) => {
+    this.setState({
+      profitRate: value,
+    });
+  }
+  handleAverageOK = () => {
+    this.setState({
+      averageVisible: false,
     });
   };
   next = () => {
@@ -366,12 +371,12 @@ class AssetAllocation extends Component {
       </div>
     )];
 
-    const {assetChoiceList, factorChoiceList, fundList, } = this.props;
+    const {assetChoiceList, factorChoiceList, fundList,} = this.props;
     const stepFourContent = [(
       <div>
         <div className={styles.stepTitle}>4.选择基金</div>
 
-        {assetChoiceList.length > 0 && fundList.filter(v => v.name === 'stock').length > 0?
+        {assetChoiceList.length > 0 && fundList.filter(v => v.name === 'stock').length > 0 ?
           <div className={styles.contentRetract}>
             <div className={styles.fund_list}>
               <div className={styles.fundListTitle}><span>股票型基金</span></div>
@@ -522,7 +527,8 @@ class AssetAllocation extends Component {
             <RadioButton value="1"><img width={70} role="presentation" src={staticScale}/>
               <div>静态比例配置</div>
             </RadioButton>
-            <RadioButton value="2"><img width={70} role="presentation" src={meanVariance}/>
+            <RadioButton value="2" onClick={this.onClickMethod2}><img width={70} role="presentation"
+                                                                      src={meanVariance}/>
               <div>均值方差</div>
             </RadioButton>
             <RadioButton value="3"><img width={70} role="presentation" src={minVariance}/>
@@ -536,9 +542,6 @@ class AssetAllocation extends Component {
             </RadioButton>
             <RadioButton value="6"><img width={70} role="presentation" src={riskAssessment}/>
               <div>风险评价</div>
-            </RadioButton>
-            <RadioButton value="7"><img width={70} role="presentation" src={BLmodel}/>
-              <div>B-L模型</div>
             </RadioButton>
           </RadioGroup>
         </div>
@@ -567,7 +570,7 @@ class AssetAllocation extends Component {
             this.state.current === 2 && ((this.state.implementationPath === '1' && this.state.weightTag === null) ||
             (this.state.implementationPath === '2' && this.state.factorOptionsVal.length === 0)) ||
             this.state.current === 3 && (this.state.implementationPath === '1' &&
-            fundList.reduce((pre, cur) => pre + cur.funds.length)=== 0)}
+            fundList.length > 0 && fundList.reduce((pre, cur) => pre + cur.funds.length, 0) === 0)}
               onClick={() => this.next()}
             >下一步</Button>
           }
@@ -594,6 +597,17 @@ class AssetAllocation extends Component {
         >
           <Input value={this.state.combinationName} onChange={this.onChangeCombinationName} placeholder="请输入组合名称..."/>
         </Modal>
+
+        <Modal
+          visible={this.state.averageVisible}
+          title="均值方差收益率"
+          onOk={this.handleAverageOK}
+          footer={<Button onClick={this.handleAverageOK}>确定</Button>}
+        >
+          <InputNumber min={0} max={1} step={0.01} value={this.state.profitRate} onChange={this.onChangeProfitRate}/> %
+          <p>最佳收益率为 0.05% - 0.1%</p>
+        </Modal>
+
       </div>
     );
   }

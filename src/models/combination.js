@@ -27,9 +27,8 @@ export default {
   effects: {
     *fetchCombinations(action, {call, put, select}) {
 
-      const {user} = select(state => state.user);
+      const {user} = yield select(state => state.user);
 
-      console.log(user)
       if (!user) return;
 
       const {data} = yield call(combinationService.fetchCombination);

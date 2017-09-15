@@ -76,7 +76,17 @@ export default {
         }),
       });
     },
-    *createCombination({payload: body}, {call, put}) {
+    *createCombination({payload: body}, {call, put, select}) {
+
+      const {fundList:funds} = yield select(state => state.asset);
+      body.funds = funds.map(c => {
+        return {
+          name: c.name,
+          codes: c.funds.map(fund => fund.code)
+        }
+      });
+
+      console.log(body)
       const {data} = yield call(assetAllocationService.createCombination, body);
       yield put({
         type: 'saveCreateCombination',

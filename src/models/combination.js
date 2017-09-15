@@ -43,11 +43,11 @@ export default {
       const {user} = yield select(state => state.user);
       const {data} = yield call(combinationService.deleteCombination, combinationId);
 
-      console.log(user);
-      console.log(combinationId);
-      console.log(data);
-      console.log(data.result);
-      console.log(data.message);
+      // console.log(user);
+      // console.log(combinationId);
+      // console.log(data);
+      // console.log(data.result);
+      // console.log(data.message);
 
       if (data.result) {
         yield put({
@@ -73,7 +73,7 @@ export default {
     *fetchBacktestReport({payload: {id, baseIndex, startDate, endDate}}, {call, put, select}) {
 
       const {data} = yield call(combinationService.backtestCombination, id, baseIndex, startDate, endDate);
-      console.log(data);
+      // console.log(data);
 
       yield put({
           type: 'saveCombinationReport',

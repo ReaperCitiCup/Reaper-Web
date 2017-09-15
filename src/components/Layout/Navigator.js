@@ -24,10 +24,11 @@ function Navigator({dispatch, user}) {
     <div className={styles.navBar}>
       <div className={styles.logoDiv}>
         <div className={styles.imgDiv}>
-          <img src={logo} alt={"logo"} className={styles.iconImage}></img>
+          {/*<img src={logo} alt={"logo"} className={styles.iconImage}></img>*/}
         </div>
         <div className={styles.labelDiv}>
-          <label className={styles.logoLabel}>FOF-Navigator</label>
+          <h1>FOF</h1>
+          <h2>Navigator</h2>
         </div>
       </div>
       <Menu

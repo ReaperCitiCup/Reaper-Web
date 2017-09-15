@@ -20,7 +20,7 @@ function BrisonTable({chartData}) {
       data.push({
         key: i + 1,
         field: chartData[i].field,
-        value: chartData[i].value + '%',
+        value: chartData[i].value.toFixed(3) + '%',
       })
     }
   } else {

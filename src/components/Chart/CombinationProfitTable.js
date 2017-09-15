@@ -52,26 +52,26 @@ function CombinationProfitTable({chartData}) {
     data.push({
       key: 1,
       project: '总收益率',
-      combination: chartData.totalProfitRate.combination + '%',
-      base: chartData.totalProfitRate.baseIndex + '%',
+      combination: chartData.totalProfitRate.combination.toFixed(2) + '%',
+      base: chartData.totalProfitRate.baseIndex.toFixed(2) + '%',
     });
     data.push({
       key: 2,
       project: '超额收益率',
-      combination: chartData.overProfitRate.combination + '%',
-      base: chartData.overProfitRate.baseIndex + '%',
+      combination: chartData.overProfitRate.combination.toFixed(2) + '%',
+      base: chartData.overProfitRate.baseIndex.toFixed(2) + '%',
     });
     data.push({
       key: 3,
       project: '年化收益',
-      combination: chartData.annualProfit.combination + '%',
-      base: chartData.annualProfit.baseIndex + '%',
+      combination: chartData.annualProfit.combination.toFixed(2) + '%',
+      base: chartData.annualProfit.baseIndex.toFixed(2) + '%',
     });
     data.push({
       key: 4,
       project: '盈利占天比',
-      combination: chartData.profitDaysRatio.combination + '%',
-      base: chartData.profitDaysRatio.baseIndex + '%',
+      combination: chartData.profitDaysRatio.combination.toFixed(2) + '%',
+      base: chartData.profitDaysRatio.baseIndex.toFixed(2) + '%',
     });
   }
 

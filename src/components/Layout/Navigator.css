@@ -54,6 +54,18 @@ button {
 
 .labelDiv {
   display: inline-block; }
+  .labelDiv h1 {
+    color: #81B6F5;
+    font-weight: 400;
+    font-size: 36px;
+    letter-spacing: 2px;
+    line-height: 36px; }
+  .labelDiv h2 {
+    color: #81B6F5;
+    font-weight: 400;
+    font-size: 14px;
+    letter-spacing: 1px;
+    opacity: 0.7; }
 
 .menuDiv {
   float: right;

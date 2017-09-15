@@ -32,7 +32,7 @@ function CorrelationCoefficientTable({chartData}) {
         key: index,
         fund1: dataValue.fund1,
         fund2: dataValue.fund2,
-        value: dataValue.value,
+        value: dataValue.value.toFixed(4),
       })
     })
   }

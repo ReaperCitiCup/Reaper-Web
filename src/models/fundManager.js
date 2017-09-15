@@ -159,11 +159,6 @@ export default {
           payload: data.manager[0].id,
         });
 
-        // yield put({
-        //   type: 'fetchManagerFundRankTrend',
-        //   payload: data.manager[0].id,
-        // });
-
         yield put({
           type: 'fetchManagerFundPerformance',
           payload: data.manager[0].id,

@@ -10,13 +10,10 @@ class MultiLineChart extends Component {
   render() {
 
     const {chartData} = this.props;
-    // console.log(chartData);
 
-    let dateList = chartData.map(fund => fund.data.map(d => d.date));
 
     let minDate;
     let maxDate;
-
 
     chartData.forEach(fund => {
       let min = fund.data[0].date;
@@ -25,29 +22,16 @@ class MultiLineChart extends Component {
       maxDate = maxDate > max ? maxDate : max;
     });
 
-    console.log(minDate, maxDate)
-
     minDate = minDate.split('-');
     maxDate = maxDate.split('-');
 
     let dateArray = [];
     let currentDate = new Date(minDate[0], minDate[1], minDate[2]);
-
-    console.log(currentDate);
     
     while (currentDate <= new Date(maxDate[0], maxDate[1], maxDate[2])) {
       dateArray.push(new Date(currentDate).toISOString().substring(0, 10));
-      currentDate.add(1, 'days');
+      currentDate.setDate(currentDate.getDate() + 1);
     }
-
-    // let unionDate = dateList[0];
-    // for (let i = 0; i < dateList.length; i++) {
-    //   if (dateList[i].length > unionDate.length) {
-    //     unionDate = dateList[i];
-    //   }
-    // }
-
-    console.log(dateArray);
 
 
     let seriesData = chartData.map(fund => {

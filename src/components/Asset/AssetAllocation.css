@@ -21,6 +21,12 @@
 .steps :global .ant-steps-head {
   background-color: #F9FAFB;
 }
+.steps :global .ant-steps-item.ant-steps-status-finish .ant-steps-head-inner {
+  background-color: #F9FAFB;
+}
+.steps :global .ant-steps-head-inner {
+  background-color: #F9FAFB;
+}
 .steps :global .ant-steps-item.ant-steps-status-wait .ant-steps-head-inner {
   background-color: #F9FAFB;
 }
@@ -33,7 +39,7 @@
   width: 110px;
   height: 108px;
   padding: 4px;
-  margin: 0 10px;
+  margin: 0 25px;
   border-width: 1px;
 }
 .decentralization :global .ant-radio-button-wrapper:first-child {

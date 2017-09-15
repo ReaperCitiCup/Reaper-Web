@@ -81,14 +81,14 @@ class AssetAllocation extends Component {
   onChangeRouteSelect = (e) => {
     // 实施路径选择
     this.setState({
-      implementationPath: e.target.value,
+      implementationPath: parseInt(e.target.value),
     });
-    if (this.state.implementationPath === '1') {
+    if (this.state.implementationPath === 1) {
       this.setState({
         factorOptionsVal: [],
         decentralizedApproach: null,
       });
-    } else if (this.state.implementationPath === '2') {
+    } else if (this.state.implementationPath === 2) {
       this.setState({
         weight: [0, 0, 0],
         weightTag: null,
@@ -219,7 +219,7 @@ class AssetAllocation extends Component {
     this.setState({
       modalVisible: false,
     });
-    if (this.state.implementationPath === '1') {
+    if (this.state.implementationPath === 1) {
       this.props.dispatch({
         type: 'asset/createCombination',
         payload: {
@@ -235,7 +235,7 @@ class AssetAllocation extends Component {
           profitRate: this.state.profitRate
         },
       })
-    } else if (this.state.implementationPath === '2') {
+    } else if (this.state.implementationPath === 2) {
       this.props.dispatch({
         type: 'asset/createCombination',
         payload: {
@@ -273,7 +273,7 @@ class AssetAllocation extends Component {
   };
   next = () => {
     if (this.state.current === 2) {
-      if (this.state.implementationPath === '1') {
+      if (this.state.implementationPath === 1) {
         this.props.dispatch({
           type: 'asset/fetchAssetChoice',
           payload: {
@@ -286,7 +286,7 @@ class AssetAllocation extends Component {
             }
           },
         })
-      } else if (this.state.implementationPath === '2') {
+      } else if (this.state.implementationPath === 2) {
         this.props.dispatch({
           type: 'asset/fetchFactorChoice',
           payload: {
@@ -500,10 +500,10 @@ class AssetAllocation extends Component {
         <div className={styles.routeSelect}>
           <div className={styles.stepTitle}>2.选择实施路径</div>
           <RadioGroup onChange={this.onChangeRouteSelect} value={this.state.implementationPath}>
-            <RadioButton value="1"><img width={100} role="presentation" src={asset}/>
+            <RadioButton value={1}><img width={100} role="presentation" src={asset}/>
               <div>资产间分散</div>
             </RadioButton>
-            <RadioButton value="2"><img width={100} role="presentation" src={factor}/>
+            <RadioButton value={2}><img width={100} role="presentation" src={factor}/>
               <div>因子间分散</div>
             </RadioButton>
           </RadioGroup>
@@ -512,11 +512,11 @@ class AssetAllocation extends Component {
     }, {
       stepNum: '3',
       title: "权重 | 因子",
-      content: this.state.implementationPath === '1' ? stepThreeContent[0] : stepThreeContent[1],
+      content: this.state.implementationPath === 1 ? stepThreeContent[0] : stepThreeContent[1],
     }, {
       stepNum: '4',
       title: "选择基金",
-      content: this.state.implementationPath === '1' ? stepFourContent[0] : stepFourContent[1],
+      content: this.state.implementationPath === 1 ? stepFourContent[0] : stepFourContent[1],
     }, {
       stepNum: '5',
       title: "分散化方法",
@@ -567,18 +567,18 @@ class AssetAllocation extends Component {
             &&
             <Button
               style={{float: 'right'}} disabled={this.state.current === 1 && this.state.implementationPath === null ||
-            this.state.current === 2 && ((this.state.implementationPath === '1' && this.state.weightTag === null) ||
-            (this.state.implementationPath === '2' && this.state.factorOptionsVal.length === 0)) ||
-            this.state.current === 3 && (this.state.implementationPath === '1' &&
+            this.state.current === 2 && ((this.state.implementationPath === 1 && this.state.weightTag === null) ||
+            (this.state.implementationPath === 2 && this.state.factorOptionsVal.length === 0)) ||
+            this.state.current === 3 && (this.state.implementationPath === 1 &&
             fundList.length > 0 && fundList.reduce((pre, cur) => pre + cur.funds.length, 0) === 0)}
-              onClick={() => this.next()}
+              onClick={this.next}
             >下一步</Button>
           }
           {
             this.state.current === steps.length - 1
             &&
             <Button type="primary" disabled={this.state.decentralizedApproach === ''} style={{float: 'right'}}
-                    onClick={() => this.finishChoice()}>创建我的组合</Button>
+                    onClick={this.finishChoice}>创建我的组合</Button>
           }
           {
             this.state.current > 0

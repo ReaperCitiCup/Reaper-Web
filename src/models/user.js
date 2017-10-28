@@ -12,7 +12,7 @@ export default {
     },
   },
   effects: {
-    *fetchUser({onSuccess}, {call, put, select}) {
+    * fetchUser({onSuccess}, {call, put, select}) {
       const {data} = yield call(userService.currentUser);
       yield put({
         type: 'saveUser',
@@ -24,17 +24,17 @@ export default {
       }
     },
 
-    *signUp({payload: user, onSuccess, onError}, {call, put}) {
+    * signUp({payload: user, onSuccess, onError}, {call, put}) {
       const {data: signUpData} = yield call(userService.signUp, user);
-      console.log(signUpData);
+      // console.log(signUpData);
 
-      if (!signUpData.result) {
+      if (signUpData !== undefined && !signUpData.result) {
         onError(signUpData.message);
         return;
       }
 
       const {data} = yield call(userService.signIn, user);
-      console.log(data);
+      // console.log(data);
 
       if (data.result !== undefined) {
         localStorage.setItem('token', data.result);
@@ -48,7 +48,7 @@ export default {
       }
     },
 
-    *refreshUser({onSuccess}, {put, select}) {
+    * refreshUser({onSuccess}, {put, select}) {
       const {user} = yield select(state => state.user);
       const token = localStorage.getItem('token');
 
@@ -61,7 +61,7 @@ export default {
 
     },
 
-    *signIn({payload: user, onSuccess, onError}, {call, put}) {
+    * signIn({payload: user, onSuccess, onError}, {call, put}) {
       const {data} = yield call(userService.signIn, user);
 
       console.log(data)
@@ -78,7 +78,7 @@ export default {
         onError(data.message.split(': ')[1]);
       }
     },
-    *signOut({onSuccess}, {call, put}) {
+    * signOut({onSuccess}, {call, put}) {
       yield call(userService.signOut);
       //onComplete();
       yield put({
@@ -89,7 +89,7 @@ export default {
       yield put(routerRedux.push('/auth'));
     },
 
-    *editPassword({payload: password, onSuccess, onError}, {call, put, select}) {
+    * editPassword({payload: password, onSuccess, onError}, {call, put, select}) {
 
       const {user} = yield select(state => state.user);
 

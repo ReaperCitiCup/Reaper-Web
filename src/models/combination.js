@@ -22,10 +22,15 @@ export default {
       return {...state, combinationReport};
     },
 
+    clearCombinationReport(state) {
+      state.combinationReport = null;
+      return {...state}
+    }
+
 
   },
   effects: {
-    *fetchCombinations(action, {call, put, select}) {
+    * fetchCombinations(action, {call, put, select}) {
 
       const {user} = yield select(state => state.user);
 
@@ -39,7 +44,7 @@ export default {
       });
     },
 
-    *deleteCombination({payload: combinationId, onSuccess, onError}, {call, put, select}) {
+    * deleteCombination({payload: combinationId, onSuccess, onError}, {call, put, select}) {
       const {user} = yield select(state => state.user);
       const {data} = yield call(combinationService.deleteCombination, combinationId);
 
@@ -53,7 +58,7 @@ export default {
         yield put({
           type: 'fetchCombinations',
         });
-        if(onSuccess) {
+        if (onSuccess) {
           onSuccess();
         }
       } else {
@@ -67,14 +72,18 @@ export default {
 
     },
 
-    *backtestCombination(action, {call, put, select}) {
+    * backtestCombination(action, {call, put, select}) {
       // const {data} = yield call(combinationService.backtestCombination, backtestInfo.combinationId, backtestInfo.baseIndex, baseIndex.startDate, baseIndex.endDate);
       const {id, startDate, endDate, baseIndex} = yield select(state => state.backTestModal);
       yield put(routerRedux.push(`/combination/${id}?startDate=${startDate}&endDate=${endDate}&baseIndex=${baseIndex}`));
 
 
     },
-    *fetchBacktestReport({payload: {id, baseIndex, startDate, endDate}}, {call, put, select}) {
+    * fetchBacktestReport({payload: {id, baseIndex, startDate, endDate}}, {call, put, select}) {
+
+      yield put({
+        type: 'clearCombinationReport'
+      });
 
       const {data} = yield call(combinationService.backtestCombination, id, baseIndex, startDate, endDate);
       // console.log(data);

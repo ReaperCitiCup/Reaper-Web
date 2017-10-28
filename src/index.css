@@ -40,6 +40,10 @@ html :global .card {
     margin-bottom: 20px;
     color: #3D5673;
     font-size: 16px; }
+html :global .loadingWrapper {
+  text-align: center; }
+  html :global .loadingWrapper img {
+    width: 50px; }
 html :global .ant-tabs-bar {
   border-bottom: none; }
 html :global .ant-tabs-tab {

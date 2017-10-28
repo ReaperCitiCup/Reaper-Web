@@ -87,6 +87,10 @@
 .section_5{
   > div {
     width: 240px;
+    a {
+      color: $main-font-color;
+      cursor: text;
+    }
   }
   &:after {
     content: "";
@@ -109,4 +113,12 @@
   color: $blue-grey-color;
   font-size: 12px;
   font-weight: 200;
+}
+
+.loadingWrapper {
+  text-align: center;
+
+  img {
+    width: 50px;
+  }
 }

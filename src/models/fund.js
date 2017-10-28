@@ -1,11 +1,20 @@
 import * as fundService from '../services/fund';
+
 export default {
   namespace: 'fund',
   state: {
+    isLoading: true,
     fundBrief: null,
     fund: null,
   },
   reducers: {
+    saveLoadingState (state, {payload: isLoading}) {
+      state.isLoading = isLoading;
+      return {
+        ...state
+      }
+    },
+
     saveFundBrief(state, {payload: fundBrief}) {
       return {
         ...state,
@@ -21,7 +30,13 @@ export default {
   },
   effects: {
 
-    *fetchFundBrief({payload: code, onSuccess}, {call, put, select}) {
+    * fetchFundBrief({payload: code, onSuccess}, {call, put, select}) {
+
+      yield put({
+        type: 'saveLoadingState',
+        payload: true
+      });
+
       const {data} = yield call(fundService.fetchFundBrief, code);
 
       console.log(data);
@@ -33,9 +48,15 @@ export default {
 
       if (onSuccess)
         onSuccess();
+
+      yield put({
+        type: 'saveLoadingState',
+        payload: false
+      });
+
     },
 
-    *fetchFund({payload: code}, {call, put, select}) {
+    * fetchFund({payload: code}, {call, put, select}) {
       yield put({
         type: 'saveFund',
         payload: null,

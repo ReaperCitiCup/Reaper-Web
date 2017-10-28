@@ -79,6 +79,9 @@ button {
 
 .section_5 > div {
   width: 240px; }
+  .section_5 > div a {
+    color: #3D5673;
+    cursor: text; }
 .section_5:after {
   content: "";
   display: inline-block;
@@ -96,5 +99,10 @@ button {
   color: #9FAEC0;
   font-size: 12px;
   font-weight: 200; }
+
+.loadingWrapper {
+  text-align: center; }
+  .loadingWrapper img {
+    width: 50px; }
 
 /*# sourceMappingURL=FundBrief.css.map */

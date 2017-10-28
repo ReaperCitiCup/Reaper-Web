@@ -40,6 +40,14 @@ html {
       }
     }
 
+    .loadingWrapper {
+      text-align: center;
+
+      img {
+        width: 50px;
+      }
+    }
+
     // ant design
     .ant-tabs-bar {
       border-bottom: none;

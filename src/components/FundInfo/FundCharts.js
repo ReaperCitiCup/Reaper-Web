@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'dva';
 import {Tabs, Table} from 'antd';
+
 const TabPane = Tabs.TabPane;
 
 import NetValueLineChart from "../Chart/NetValueLineChart";
@@ -10,6 +11,7 @@ import AssetBarChart from "../Chart/AssetBarChart";
 import DivHeader from '../Util/DivHeader';
 
 import styles from './FundCharts.css';
+import loading from '../../assets/loading.gif';
 
 const columns = [{
   title: '经理名称',
@@ -26,9 +28,9 @@ const columns = [{
 }];
 
 function FundCharts({
-  unitNetValueData, cumulativeNetValueData,
-  cumulativeProfitData, currentAssetData, fundManagers
-}) {
+                      unitNetValueData, cumulativeNetValueData,
+                      cumulativeProfitData, currentAssetData, fundManagers
+                    }) {
   // console.log({cumulativeProfitData});
   const data = [];
   if (fundManagers) {
@@ -48,16 +50,18 @@ function FundCharts({
     <div className={"container " + styles.container}>
       <div className="card">
         <DivHeader>净值走势</DivHeader>
-        <Tabs defaultActiveKey="1">
-          <TabPane tab="单位净值走势" key="1">
-            {unitNetValueData ?
-              <NetValueLineChart chartData={unitNetValueData}/> : null}
-          </TabPane>
-          <TabPane tab="累计净值走势" key="2">
-            {cumulativeNetValueData ?
-              <NetValueLineChart chartData={cumulativeNetValueData}/> : null}
-          </TabPane>
-        </Tabs>
+        {unitNetValueData && cumulativeNetValueData ?
+          <Tabs defaultActiveKey="1">
+            <TabPane tab="单位净值走势" key="1">
+              <NetValueLineChart chartData={unitNetValueData}/>
+            </TabPane>
+            <TabPane tab="累计净值走势" key="2">
+              <NetValueLineChart chartData={cumulativeNetValueData}/>
+            </TabPane>
+          </Tabs> :
+          <div className="loadingWrapper">
+            <img src={loading}/>
+          </div>}
       </div>
 
       <div className="card">

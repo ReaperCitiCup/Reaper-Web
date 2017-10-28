@@ -4,6 +4,7 @@
 import React, {Component} from 'react';
 import {connect} from 'dva';
 import styles from './FundBrief.css';
+import loading from '../../assets/loading.gif';
 
 class FundBrief extends Component {
   render() {
@@ -63,7 +64,10 @@ class FundBrief extends Component {
                     </div>
                   </div>
                 </div>
-              </div> : null}
+              </div> :
+              <div className="loadingWrapper">
+                <img src={loading} />
+              </div>}
           </div>
           <div className={styles.card}>
             {fund ?
@@ -86,7 +90,10 @@ class FundBrief extends Component {
                     <p>成立日：{fund.establishmentDate}</p>
                   </div>
                 </div>
-              </div> : null }
+              </div> :
+              <div className="loadingWrapper">
+                <img src={loading} />
+              </div>}
           </div>
         </div>
       </div>
@@ -96,6 +103,7 @@ class FundBrief extends Component {
 
 function mapStateToProps(state) {
   return {
+    isLoading: state.fund.isLoading,
     fund: state.fund.fund,
   };
 }

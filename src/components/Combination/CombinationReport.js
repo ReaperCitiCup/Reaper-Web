@@ -173,13 +173,13 @@ class CombinationReport extends Component {
                 <tr>
                   <td>风格分析</td>
                   <td>该组合的风格主要为
-                    {/*<span> {combinationReport.mainFactors.map((factor, index) => {*/}
-                      {/*if (index === combinationReport.mainFactors.length - 1) {*/}
-                        {/*return factorOptions.filter(option => option.value === factor)[0].label;*/}
-                      {/*} else {*/}
-                        {/*return factorOptions.filter(option => option.value === factor)[0].label + "，"*/}
-                      {/*}*/}
-                    {/*})} </span>*/}
+                    <span> {combinationReport.mainFactors.map((factor, index) => {
+                      if (index === combinationReport.mainFactors.length - 1) {
+                        return factorOptions.filter(option => option.value === factor)[0].label;
+                      } else {
+                        return factorOptions.filter(option => option.value === factor)[0].label + "，"
+                      }
+                    })} </span>
                   </td>
                 </tr>
                 <tr>
@@ -344,7 +344,40 @@ class CombinationReport extends Component {
               <AttributionBarChart chartData={combinationReport.varietyAttribution} color="#E2827E"/>
             </div> : null}
 
+          <div className={styles.section_11}>
+            <DivHeader>相关指标说明</DivHeader>
+            <p>
+              <span>区间年化收益</span> 在投资一段时间内的收益，假定一年都是这个水平，折算的年收益率。
+            </p>
+            <p>
+              <span>Beta</span> 一种风险度量指标(Beta系数)，度量市场的变化对股票或组合收益率变化的影响程度，反映股票或组合对于市场的敏感程度(系统性风险)。
+            </p>
+            <p>
+              <span>最大回撤</span> 在选定周期内任一历史时点往后推，产品净值走到最低点时的收益率回撤幅度的最大值。最大回撤用来描述在任意时点买入产品后，可能出现的最大亏损幅度。最大回撤是一个重要的风险指标，该指标越小越好。
+            </p>
+            <p>
+              <span>在险价值</span> 基于过去交易日的收益序列，找到排序在倒数1%的收益；一般被称为“在险价值”，是指在一定的置信水平下(在本系统中置信水平取99%)，基金或组合在未来一段时间内(在本系统中取10个交易日)的最大可能损失比例。属于风险指标，该值越小越好。
+            </p>
+            <p>
+              <span>夏普比率</span> Sharpe Ratio=(rp-rf)/σp，超额收益与组合标准差的比值，rp是基金的年化收益，rf为无风险利率，本系统用固定的3%。夏普比率是一个可以同时对收益和风险加以考虑的综合指标，反映每单位风险的超额收益，该指标越大越好。
+            </p>
+          </div>
 
+          <div className={styles.section_12}>
+            <DivHeader>免责申明</DivHeader>
+            <p>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;基金组合分析技术由FOF-Navigator系统提供给用户使用。
+            </p>
+            <p>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;所涉及的内容均由客观数据和模型计算得来，仅供参考，不构成对所述资产管理计划、契约型基金、证券或产品的出价、征价、要约或要约邀请，不构成任何合同或承诺的基础，不构成买卖任何投资工具或者达成任何交易的推荐，亦不构成财务、法律、税务、投资建议、投资咨询意见或其他意见，对任何因直接或间接使用本报告涉及的信息和内容或者据此进行投资所造成的一切后果或损失，系统开发者不承担任何法律责任。
+            </p>
+            <p>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本报告中提及的数据及信息以及这些投资带来的收入可能会波动。过去的表现并不代表未来的表现，未来的回报也无法保证，投资者可能会损失本金。外汇汇率波动有可能对某些投资的价值或价格或来自这一投资的收入产生不良影响。因其包括重大的市场风险，因此并不适合所有投资者。在任何情况下，本公司不对任何人因使用本报告中的任何内容所引致的任何损失负任何责任，投资者自主作出投资决策并自行承担投资风险。
+            </p>
+            <p>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本报告的数据内容版权归相关内容提供方所有，未经事先许可，任何人不得以任何方式或方法修改、翻版、分发、转载、复制、发表、许可或仿制本报告。
+            </p>
+          </div>
         </div>
       </div>
     )

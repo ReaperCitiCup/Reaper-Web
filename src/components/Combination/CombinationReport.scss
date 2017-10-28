@@ -226,6 +226,19 @@
   text-align: left;
 }
 
+.section_11, .section_12 {
+  width: 100%;
+  padding-top: 40px;
+  text-align: left;
+  font-size: 14px;
+  color: $main-font-color;
+
+  span {
+    color: $main-font-color;
+    font-weight: 400;
+  }
+}
+
 .section {
   display: inline-block;
   vertical-align: top;

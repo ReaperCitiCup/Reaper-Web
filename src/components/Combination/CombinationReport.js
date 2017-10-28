@@ -7,6 +7,7 @@ import {connect} from 'dva';
 import {Row, Col, Table, Tabs} from 'antd';
 
 import DivHeader from "../Util/DivHeader";
+import Loading from '../Util/Loading';
 import CompanyPieChart from "../Chart/CompanyPieChart";
 import NetValueLineChart from "../Chart/NetValueLineChart";
 import DoubleLineChart from "../Chart/DoubleLineChart";
@@ -43,10 +44,26 @@ const factorOptions = [
   {label: '市值', value: 'size'},
 ];
 
+const factors = ['beta', 'btop', 'profit'];
+
+factors.map((factor, index) => {
+  if (index === factors.length - 1) {
+    console.log(factorOptions.filter(option => option.value === factor)[0].label);
+  } else {
+    console.log(factorOptions.filter(option => option.value === factor)[0].label + "，");
+  }
+});
+
+// console.log("！！！！！"+factorOptions.filter(option => option.value === 'btop')[0].label);
+
+
 class CombinationReport extends Component {
   render() {
 
     const {combinationReport} = this.props;
+    if (combinationReport) {
+      console.log(combinationReport.mainFactors);
+    }
     const tableData = [];
     if (combinationReport) {
       combinationReport.combination.forEach(c => {
@@ -60,11 +77,11 @@ class CombinationReport extends Component {
     }
 
     const combinationProfitTableData = combinationReport ? {
-        totalProfitRate: combinationReport.totalProfitRate,
-        overProfitRate: combinationReport.overProfitRate,
-        annualProfit: combinationReport.annualProfit,
-        profitDaysRatio: combinationReport.profitDaysRatio,
-      } : null;
+      totalProfitRate: combinationReport.totalProfitRate,
+      overProfitRate: combinationReport.overProfitRate,
+      annualProfit: combinationReport.annualProfit,
+      profitDaysRatio: combinationReport.profitDaysRatio,
+    } : null;
 
     return (
       <div className="container">
@@ -110,7 +127,7 @@ class CombinationReport extends Component {
 
             <div className={styles.left}>
               {combinationReport ?
-                <CompanyPieChart chartData={combinationReport.combination}/> : null}
+                <CompanyPieChart chartData={combinationReport.combination}/> : <Loading/>}
             </div>
             <div className={styles.right}>
               <Table columns={columns} dataSource={tableData} size="middle" pagination={false}/>
@@ -119,31 +136,34 @@ class CombinationReport extends Component {
 
           <div className={styles.section_2}>
             <DivHeader>投资目标</DivHeader>
-            <p>{combinationReport ? combinationReport.investmentGoal : null}
-            </p>
+            {combinationReport ?
+              <p>combinationReport.investmentGoal
+              </p> : <Loading/>}
           </div>
 
           <div className={styles.section_3}>
             <DivHeader>基本表现</DivHeader>
-            <table>
-              <tbody>
-              {combinationReport ?
-                <tr className={styles.tr_num}>
-                  <td>{combinationReport.intervalAnnualProfit}%</td>
-                  <td>{combinationReport.cumulativeProfit}%</td>
-                  <td>{combinationReport.finalNetValue}</td>
-                  <td>{combinationReport.maxRetracement}</td>
-                  <td>{combinationReport.sharpeRatio}</td>
-                </tr> : null}
-              <tr className={styles.tr_name}>
-                <td>区间年化收益</td>
-                <td>累计收益</td>
-                <td>最新净值</td>
-                <td>最大回撤</td>
-                <td>夏普比率</td>
-              </tr>
-              </tbody>
-            </table>
+            {combinationReport ?
+              <div>
+                <table>
+                  <tbody>
+                  <tr className={styles.tr_num}>
+                    <td>{combinationReport.intervalAnnualProfit}%</td>
+                    <td>{combinationReport.cumulativeProfit}%</td>
+                    <td>{combinationReport.finalNetValue}</td>
+                    <td>{combinationReport.maxRetracement}</td>
+                    <td>{combinationReport.sharpeRatio}</td>
+                  </tr>
+                  <tr className={styles.tr_name}>
+                    <td>区间年化收益</td>
+                    <td>累计收益</td>
+                    <td>最新净值</td>
+                    <td>最大回撤</td>
+                    <td>夏普比率</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div> : <Loading/>}
           </div>
 
           <div className={styles.section_4}>
@@ -189,11 +209,11 @@ class CombinationReport extends Component {
                       {/*brisonValue => brisonValue.field === '总超额效益')[0].value.toFixed(2)}% </span>*/}
                     {/*，债券类持仓总超额效益是*/}
                     {/*<span> {combinationReport.brisonAttributionBond.filter(*/}
-                    {/*brisonValue => brisonValue.field === '总超额收益')[0].value} </span>*/}
+                      {/*brisonValue => brisonValue.field === '总超额收益')[0].value} </span>*/}
                   </td>
                 </tr>
                 </tbody>
-              </table> : null}
+              </table> : <Loading/>}
           </div>
 
           <div className={styles.section_5}>
@@ -202,11 +222,11 @@ class CombinationReport extends Component {
             <Tabs defaultActiveKey="1">
               <TabPane tab="累计净值" key="1">
                 {combinationReport ?
-                  <DoubleLineChart chartData={combinationReport.cumulativeNetValueTrend}/> : null}
+                  <DoubleLineChart chartData={combinationReport.cumulativeNetValueTrend}/> : <Loading/>}
               </TabPane>
               <TabPane tab="收益率" key="2">
                 {combinationReport ?
-                  <DoubleLineChart chartData={combinationReport.profitRateTrend}/> : null}
+                  <DoubleLineChart chartData={combinationReport.profitRateTrend}/> : <Loading/>}
               </TabPane>
             </Tabs>
 
@@ -223,7 +243,7 @@ class CombinationReport extends Component {
               <Tabs defaultActiveKey="1">
                 <TabPane tab="每日回撤走线图" key="1">
                   {combinationReport ?
-                    <DoubleLineChart chartData={combinationReport.dailyRetracementTrend}/> : null}
+                    <DoubleLineChart chartData={combinationReport.dailyRetracementTrend}/> : <Loading/>}
                 </TabPane>
                 {/*<TabPane tab="波动率" key="2">*/}
                 {/*{combinationReport ?*/}
@@ -231,7 +251,8 @@ class CombinationReport extends Component {
                 {/*</TabPane>*/}
                 <TabPane tab="相关系数" key="2">
                   {combinationReport ?
-                    <CorrelationCoefficientTable chartData={combinationReport.correlationCoefficientTable}/> : null}
+                    <CorrelationCoefficientTable chartData={combinationReport.correlationCoefficientTable}/> :
+                    <Loading/>}
                 </TabPane>
               </Tabs>
             </div>
@@ -273,7 +294,7 @@ class CombinationReport extends Component {
                     <td>{combinationReport.averageCorrelationCoefficient}</td>
                   </tr>
                   </tbody>
-                </table> : null}
+                </table> : <Loading/>}
             </div>
           </div>
 
@@ -283,12 +304,14 @@ class CombinationReport extends Component {
               <div className={styles.section}>
                 <h4 className={styles.section_title}>主动收益</h4>
                 {combinationReport ?
-                  <AttributionBarChart chartData={combinationReport.styleAttributionProfit} color="#81B6F5"/> : null}
+                  <AttributionBarChart chartData={combinationReport.styleAttributionProfit} color="#81B6F5"/> :
+                  <Loading/>}
               </div>
               <div className={styles.section}>
                 <h4 className={styles.section_title}>主动风险</h4>
                 {combinationReport ?
-                  <AttributionBarChart chartData={combinationReport.styleAttributionRisk} color="#F9D471"/> : null}
+                  <AttributionBarChart chartData={combinationReport.styleAttributionRisk} color="#F9D471"/> :
+                  <Loading/>}
               </div>
             </div> : null}
 
@@ -299,12 +322,14 @@ class CombinationReport extends Component {
               <div className={styles.section}>
                 <h4 className={styles.section_title}>主动收益</h4>
                 {combinationReport ?
-                  <AttributionBarChart chartData={combinationReport.industryAttributionProfit} color="#81B6F5"/> : null}
+                  <AttributionBarChart chartData={combinationReport.industryAttributionProfit} color="#81B6F5"/> :
+                  <Loading/>}
               </div>
               <div className={styles.section}>
                 <h4 className={styles.section_title}>主动风险</h4>
                 {combinationReport ?
-                  <AttributionBarChart chartData={combinationReport.industryAttributionRisk} color="#F9D471"/> : null}
+                  <AttributionBarChart chartData={combinationReport.industryAttributionRisk} color="#F9D471"/> :
+                  <Loading/>}
               </div>
             </div> : null}
 
@@ -322,7 +347,7 @@ class CombinationReport extends Component {
                         <BrisonTable chartData={combinationReport.brisonAttributionStock}/>
                       </div>
                     </div>
-                  </TabPane> : null}
+                  </TabPane> : <Loading/>}
                 {combinationReport && combinationReport.brisonAttributionBond ?
                   <TabPane tab="基于债券持仓" key="2">
                     <div>
@@ -333,7 +358,7 @@ class CombinationReport extends Component {
                         <BrisonTable chartData={combinationReport.brisonAttributionBond}/>
                       </div>
                     </div>
-                  </TabPane> : null}
+                  </TabPane> : <Loading/>}
               </Tabs>
             </div> : null}
 

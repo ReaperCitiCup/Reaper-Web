@@ -3,8 +3,8 @@
  */
 import React, {Component} from 'react';
 import {connect} from 'dva';
+import Loading from '../Util/Loading';
 import styles from './FundBrief.css';
-import loading from '../../assets/loading.gif';
 
 class FundBrief extends Component {
   render() {
@@ -65,9 +65,7 @@ class FundBrief extends Component {
                   </div>
                 </div>
               </div> :
-              <div className="loadingWrapper">
-                <img src={loading} />
-              </div>}
+              <Loading/>}
           </div>
           <div className={styles.card}>
             {fund ?
@@ -91,9 +89,7 @@ class FundBrief extends Component {
                   </div>
                 </div>
               </div> :
-              <div className="loadingWrapper">
-                <img src={loading} />
-              </div>}
+              <Loading/>}
           </div>
         </div>
       </div>

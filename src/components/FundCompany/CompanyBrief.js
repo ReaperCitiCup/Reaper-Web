@@ -3,8 +3,10 @@
  */
 import React, {Component} from 'react';
 import {connect} from 'dva';
+import {Spin} from 'antd';
 import styles from './CompanyBrief.css';
 import DivHeader from '../Util/DivHeader';
+import Loading from '../Util/Loading'
 
 import CompanyPieChart from '../Chart/CompanyPieChart';
 import AttributionBarChart from '../Chart/AttributionBarChart';
@@ -23,12 +25,14 @@ class CompanyBrief extends Component {
           <div className={styles.section_a}>
             <DivHeader>公司旗下基金表现</DivHeader>
             {fundPerformance ?
-              <ScatterChart chartData={fundPerformance}/> : null}
+              <ScatterChart chartData={fundPerformance}/> :
+              <Loading/>}
           </div>
           <div className={styles.section_b}>
             <DivHeader>公司旗下基金经理表现</DivHeader>
             {managerPerformance ?
-              <ScatterChart chartData={managerPerformance}/> : null }
+              <ScatterChart chartData={managerPerformance}/> :
+              <Loading/>}
           </div>
           <div className={styles.section_c}>
             {/*<DivHeader>产品策略分布</DivHeader>*/}
@@ -38,7 +42,8 @@ class CompanyBrief extends Component {
             {/*<div className={styles.section_b}>*/}
             <DivHeader>资产配置行业占比</DivHeader>
             {assetAllocation ?
-              <CompanyPieChart chartData={assetAllocation}/> : null}
+              <CompanyPieChart chartData={assetAllocation}/> :
+              <Loading/>}
           </div>
           {styleAttributionProfit ?
             <div className={styles.section_c}>
@@ -46,28 +51,33 @@ class CompanyBrief extends Component {
               <div className={styles.section}>
                 <h4 className={styles.section_title}>主动收益</h4>
                 {styleAttributionProfit ?
-                  <AttributionBarChart color="#81B6F5" chartData={styleAttributionProfit}/> : null}
+                  <AttributionBarChart color="#81B6F5" chartData={styleAttributionProfit}/> :
+                  <Loading/>}
               </div>
               <div className={styles.section}>
                 <h4 className={styles.section_title}>主动风险</h4>
                 {styleAttributionRisk ?
-                  <AttributionBarChart color="#F9D471" chartData={styleAttributionRisk}/> : null}
+                  <AttributionBarChart color="#F9D471" chartData={styleAttributionRisk}/> :
+                  <Loading/>}
               </div>
-            </div> : null}
+            </div> :
+            <Loading/>}
           {industryAttributionProfit ?
             <div className={styles.section_c}>
               <DivHeader>行业归因</DivHeader>
               <div className={styles.section}>
                 <h4 className={styles.section_title}>主动收益</h4>
                 {industryAttributionProfit ?
-                  <AttributionBarChart color="#81B6F5" chartData={industryAttributionProfit}/> : null}
+                  <AttributionBarChart color="#81B6F5" chartData={industryAttributionProfit}/> :
+                  <Loading/>}
               </div>
               <div className={styles.section}>
                 <h4 className={styles.section_title}>主动风险</h4>
                 {industryAttributionRisk ?
-                  <AttributionBarChart color="#F9D471" chartData={industryAttributionRisk}/> : null}
+                  <AttributionBarChart color="#F9D471" chartData={industryAttributionRisk}/> :
+                  <Loading/>}
               </div>
-            </div> : null}
+            </div> : <Loading/>}
         </div>
       </div>
     )

@@ -2,6 +2,7 @@
  * Created by st on 2017/9/10.
  */
 import * as fundAnalysisChartService from '../services/fundAnalysisChart'
+
 export default {
   namespace: 'fundAnalysisChart',
   state: {
@@ -233,7 +234,7 @@ export default {
     //   });
     // },
 
-    *fetchFundVolatility({payload: code}, {call, put, select}) {
+    * fetchFundVolatility({payload: code}, {call, put, select}) {
       yield put({
         type: 'saveFundVolatility',
         payload: null,
@@ -249,7 +250,7 @@ export default {
       });
     },
 
-    *fetchFundValueAtRisk({payload: code}, {call, put, select}) {
+    * fetchFundValueAtRisk({payload: code}, {call, put, select}) {
       yield put({
         type: 'saveFundValueAtRisk',
         payload: null,
@@ -265,7 +266,7 @@ export default {
       });
     },
 
-    *fetchFundDownsideVolatility({payload: code}, {call, put, select}) {
+    * fetchFundDownsideVolatility({payload: code}, {call, put, select}) {
       yield put({
         type: 'saveFundDownsideVolatility',
         payload: null,
@@ -281,7 +282,7 @@ export default {
       });
     },
 
-    *fetchFundSharpeIndex({payload: code}, {call, put, select}) {
+    * fetchFundSharpeIndex({payload: code}, {call, put, select}) {
       yield put({
         type: 'saveFundSharpeIndex',
         payload: null,
@@ -297,7 +298,7 @@ export default {
       });
     },
 
-    *fetchFundTreynorIndex({payload: code}, {call, put, select}) {
+    * fetchFundTreynorIndex({payload: code}, {call, put, select}) {
       yield put({
         type: 'saveFundTreynorIndex',
         payload: null,
@@ -313,7 +314,7 @@ export default {
       });
     },
 
-    *fetchFundJensenIndex({payload: code}, {call, put, select}) {
+    * fetchFundJensenIndex({payload: code}, {call, put, select}) {
       yield put({
         type: 'saveFundJensenIndex',
         payload: null,
@@ -345,7 +346,7 @@ export default {
     //   });
     // },
 
-    *fetchFundStyleAttributionProfit({payload: code}, {call, put, select}) {
+    * fetchFundStyleAttributionProfit({payload: code}, {call, put, select}) {
       yield put({
         type: 'saveFundStyleAttributionProfit',
         payload: null,
@@ -361,7 +362,7 @@ export default {
       });
     },
 
-    *fetchFundStyleAttributionRisk({payload: code}, {call, put, select}) {
+    * fetchFundStyleAttributionRisk({payload: code}, {call, put, select}) {
       yield put({
         type: 'saveFundStyleAttributionRisk',
         payload: null,
@@ -377,7 +378,7 @@ export default {
       });
     },
 
-    *fetchFundIndustryAttributionProfit({payload: code}, {call, put, select}) {
+    * fetchFundIndustryAttributionProfit({payload: code}, {call, put, select}) {
       yield put({
         type: 'saveFundIndustryAttributionProfit',
         payload: null,
@@ -393,7 +394,7 @@ export default {
       });
     },
 
-    *fetchFundIndustryAttributionRisk({payload: code}, {call, put, select}) {
+    * fetchFundIndustryAttributionRisk({payload: code}, {call, put, select}) {
       yield put({
         type: 'saveFundIndustryAttributionRisk',
         payload: null,
@@ -409,7 +410,7 @@ export default {
       });
     },
 
-    *fetchFundStyleStabilityProfit({payload: code}, {call, put, select}) {
+    * fetchFundStyleStabilityProfit({payload: code}, {call, put, select}) {
       yield put({
         type: 'saveFundStyleStabilityProfit',
         payload: null,
@@ -425,7 +426,7 @@ export default {
       });
     },
 
-    *fetchFundStyleStabilityRisk({payload: code}, {call, put, select}) {
+    * fetchFundStyleStabilityRisk({payload: code}, {call, put, select}) {
       yield put({
         type: 'saveFundStyleStabilityRisk',
         payload: null,
@@ -441,7 +442,7 @@ export default {
       });
     },
 
-    *fetchFundVarietyAttribution({payload: code}, {call, put, select}) {
+    * fetchFundVarietyAttribution({payload: code}, {call, put, select}) {
       yield put({
         type: 'saveFundVarietyAttribution',
         payload: null,
@@ -457,7 +458,7 @@ export default {
       });
     },
 
-    *fetchFundBrisonAttributionStock({payload: code}, {call, put, select}) {
+    * fetchFundBrisonAttributionStock({payload: code}, {call, put, select}) {
       yield put({
         type: 'saveFundBrisonAttributionStock',
         payload: null,
@@ -473,7 +474,7 @@ export default {
       });
     },
 
-    *fetchFundBrisonAttributionBond({payload: code}, {call, put, select}) {
+    * fetchFundBrisonAttributionBond({payload: code}, {call, put, select}) {
       yield put({
         type: 'saveFundBrisonAttributionBond',
         payload: null,
@@ -489,7 +490,7 @@ export default {
       });
     },
 
-    *fetchFundChooseTimeStock({payload: code}, {call, put, select}) {
+    * fetchFundChooseTimeStock({payload: code}, {call, put, select}) {
       yield put({
         type: 'saveFundChooseTimeStock',
         payload: null,
@@ -505,7 +506,7 @@ export default {
       });
     },
 
-    *fetchFundPerformanceAnalysis({payload: code}, {call, put, select}) {
+    * fetchFundPerformanceAnalysis({payload: code}, {call, put, select}) {
       yield put({
         type: 'saveFundPerformanceAnalysis',
         payload: null,
@@ -521,7 +522,7 @@ export default {
       });
     },
 
-    *fetchManagerPerformanceAnalysis({payload: code}, {call, put, select}) {
+    * fetchManagerPerformanceAnalysis({payload: code}, {call, put, select}) {
       yield put({
         type: 'saveManagerPerformanceAnalysis',
         payload: null,
@@ -537,7 +538,7 @@ export default {
       });
     },
 
-    *fetchFundPublicOpinion({payload: code}, {call, put, select}) {
+    * fetchFundPublicOpinion({payload: code}, {call, put, select}) {
       yield put({
         type: 'saveFundPublicOpinion',
         payload: null,
@@ -553,7 +554,7 @@ export default {
       });
     },
 
-    *fetchFundPerformanceIndex({payload: code}, {call, put, select}) {
+    * fetchFundPerformanceIndex({payload: code}, {call, put, select}) {
       yield put({
         type: 'saveFundPerformanceIndex',
         payload: null,
@@ -569,7 +570,7 @@ export default {
       });
     },
 
-    *fetchFundPositionNetwork({payload: code}, {call, put, select}) {
+    * fetchFundPositionNetwork({payload: code}, {call, put, select}) {
       yield put({
         type: 'saveFundPositionNetwork',
         payload: null,
@@ -602,6 +603,7 @@ export default {
             type: 'fund/fetchFundBrief',
             payload: id,
             onSuccess: () => {
+              // dispatch({type: 'fundChart/clearCumulativeProfitData'});
               dispatch({type: 'fundCompany/fetchCompanyBrief', payload: id});
               dispatch({type: 'fundChart/fetchCumulativeProfitData', payload: 1});
               dispatch({type: 'fundChart/fetchUnitNetValueData', payload: id});

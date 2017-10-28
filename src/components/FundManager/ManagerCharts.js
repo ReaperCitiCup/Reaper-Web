@@ -3,7 +3,7 @@
  */
 import React, {Component} from 'react';
 import {connect} from 'dva';
-import {Table, Button, Tabs} from 'antd';
+import {Table, Button, Tabs, Spin} from 'antd';
 import DivHeader from "../Util/DivHeader";
 
 import ScatterChart from "../Chart/ScatterChart";
@@ -32,32 +32,47 @@ class ManagerCharts extends Component {
           <div className={styles.performanceLeft}>
             <DivHeader>现任基金排名</DivHeader>
             {managerFundRank ?
-              <FundRankingBarChart chartData={managerFundRank}/> : null}
+              <FundRankingBarChart chartData={managerFundRank}/> :
+              <div className="loadingWrapper">
+                <Spin tip="Loading..."/>
+              </div>}
           </div>
 
           <div className={styles.performanceRight}>
             <DivHeader>现任基金收益</DivHeader>
             {managerFundReturns ?
-              <FundProfitBarChart chartData={managerFundReturns}/> : null}
+              <FundProfitBarChart chartData={managerFundReturns}/> :
+              <div className="loadingWrapper">
+                <Spin tip="Loading..."/>
+              </div>}
           </div>
         </div>
 
         <div className={styles.fundYieldTrend}>
           <DivHeader>现任基金收益率走势</DivHeader>
           {managerFundRateTrend ?
-            <MultiLineChart chartData={managerFundRateTrend}/> : null}
+            <MultiLineChart chartData={managerFundRateTrend}/> :
+            <div className="loadingWrapper">
+              <Spin tip="Loading..."/>
+            </div>}
         </div>
 
         <div className={styles.managerPerformanceDiv}>
           <div className={styles.previousPerformance}>
             <DivHeader>当前基金经理历任基金表现</DivHeader>
             {managerFundPerformance ?
-              <ScatterChart chartData={managerFundPerformance}/> : null}
+              <ScatterChart chartData={managerFundPerformance}/> :
+              <div className="loadingWrapper">
+                <Spin tip="Loading..."/>
+              </div>}
           </div>
           <div className={styles.integratedPerformance}>
             <DivHeader>当前基金经理综合表现</DivHeader>
             {managerPerformance ?
-              <ScatterChart chartData={managerPerformance}/> : null}
+              <ScatterChart chartData={managerPerformance}/> :
+              <div className="loadingWrapper">
+                <Spin tip="Loading..."/>
+              </div>}
           </div>
         </div>
 

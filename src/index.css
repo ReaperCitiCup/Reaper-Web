@@ -41,9 +41,10 @@ html :global .card {
     color: #3D5673;
     font-size: 16px; }
 html :global .loadingWrapper {
-  text-align: center; }
-  html :global .loadingWrapper img {
-    width: 50px; }
+  width: 100%;
+  padding: 30px;
+  text-align: center;
+  background-color: #fff; }
 html :global .ant-tabs-bar {
   border-bottom: none; }
 html :global .ant-tabs-tab {

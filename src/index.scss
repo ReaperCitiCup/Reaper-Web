@@ -41,11 +41,10 @@ html {
     }
 
     .loadingWrapper {
+      width: 100%;
+      padding: 30px;
       text-align: center;
-
-      img {
-        width: 50px;
-      }
+      background-color: $white-color;
     }
 
     // ant design

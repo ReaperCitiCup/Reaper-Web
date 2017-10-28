@@ -1,15 +1,17 @@
 import React from 'react';
 import {connect} from 'dva';
 import {Tabs} from 'antd';
+
 const TabPane = Tabs.TabPane;
 
 import DivHeader from '../Util/DivHeader';
+import Loading from '../Util/Loading';
 import RateLineChart from "../Chart/RateLineChart";
 import NetValueLineChart from "../Chart/NetValueLineChart";
-import AttributionBarChart from'../Chart/AttributionBarChart';
-import AbilityBarChart from'../Chart/AbilityBarChart';
-import StabilityRadarChart from'../Chart/StabilityRadarChart';
-import BrisonTable from'../Chart/BrisonTable';
+import AttributionBarChart from '../Chart/AttributionBarChart';
+import AbilityBarChart from '../Chart/AbilityBarChart';
+import StabilityRadarChart from '../Chart/StabilityRadarChart';
+import BrisonTable from '../Chart/BrisonTable';
 import AssetBarChart from '../Chart/AssetBarChart';
 import ScatterChart from '../Chart/ScatterChart';
 import NetworkChart from '../Chart/NetworkChart';
@@ -18,85 +20,89 @@ import NetworkChart from '../Chart/NetworkChart';
 import styles from './FundAnalysisCharts.css';
 
 function FundAnalysisCharts({
-  unitNetValueData, cumulativeProfitData, fundVolatility,
-  fundValueAtRisk, fundDownsideVolatility, fundSharpeIndex, fundTreynorIndex,
-  fundJensenIndex, fundStyleAttributionProfit, fundStyleAttributionRisk,
-  fundIndustryAttributionProfit, fundIndustryAttributionRisk, fundStyleStabilityProfit,
-  fundStyleStabilityRisk, fundVarietyAttribution, fundBrisonAttributionStock,
-  fundBrisonAttributionBond, fundChooseTimeStock, fundPublicOpinion,
-  fundPerformanceAnalysis, managerPerformanceAnalysis, fundPerformanceIndex,
-  fundPositionNetwork
-}) {
+                              unitNetValueData, cumulativeProfitData, fundVolatility,
+                              fundValueAtRisk, fundDownsideVolatility, fundSharpeIndex, fundTreynorIndex,
+                              fundJensenIndex, fundStyleAttributionProfit, fundStyleAttributionRisk,
+                              fundIndustryAttributionProfit, fundIndustryAttributionRisk, fundStyleStabilityProfit,
+                              fundStyleStabilityRisk, fundVarietyAttribution, fundBrisonAttributionStock,
+                              fundBrisonAttributionBond, fundChooseTimeStock, fundPublicOpinion,
+                              fundPerformanceAnalysis, managerPerformanceAnalysis, fundPerformanceIndex,
+                              fundPositionNetwork
+                            }) {
 
   // console.log(fundChooseTimeStock);
 
   return (
-    <div className={ styles.fund_analysis_chart}>
+    <div className={styles.fund_analysis_chart}>
 
       <div className="card" id="1">
         <DivHeader>收益概览</DivHeader>
-        <Tabs defaultActiveKey="1">
-          <TabPane tab="收益率走势" key="1">
-            {cumulativeProfitData ?
-              <RateLineChart chartData={cumulativeProfitData}/> : null}
-          </TabPane>
-          <TabPane tab="单位净值" key="2">
-            {unitNetValueData ?
-              <NetValueLineChart chartData={unitNetValueData}/> : null}
-          </TabPane>
-        </Tabs>
+        {cumulativeProfitData && unitNetValueData ?
+          <Tabs defaultActiveKey="1">
+            <TabPane tab="单位净值" key="1">
+              <NetValueLineChart chartData={unitNetValueData}/>
+            </TabPane>
+            <TabPane tab="收益率走势" key="2">
+              <RateLineChart chartData={cumulativeProfitData}/>
+            </TabPane>
+          </Tabs> : <Loading/>}
       </div>
 
       <div className="card" id="2">
         <DivHeader>风险概览</DivHeader>
-        <Tabs defaultActiveKey="1">
-          {/*<TabPane tab="每日回撤" key="1">*/}
-          {/*{fundDailyRetracement ?*/}
-          {/*<NetValueLineChart chartData={fundDailyRetracement}/> : null}*/}
-          {/*</TabPane>*/}
-          <TabPane tab="波动率" key="1">
-            {fundVolatility ?
-              <NetValueLineChart chartData={fundVolatility}/> : null}
-          </TabPane>
-          <TabPane tab="在险价值" key="2">
-            {fundValueAtRisk ?
-              <NetValueLineChart chartData={fundValueAtRisk}/> : null}
-          </TabPane>
-          <TabPane tab="下行波动率" key="3">
-            {fundDownsideVolatility ?
-              <NetValueLineChart chartData={fundDownsideVolatility}/> : null}
-          </TabPane>
-        </Tabs>
+        {fundVolatility && fundValueAtRisk && fundDownsideVolatility ?
+          <Tabs defaultActiveKey="1">
+            {/*<TabPane tab="每日回撤" key="1">*/}
+            {/*{fundDailyRetracement ?*/}
+            {/*<NetValueLineChart chartData={fundDailyRetracement}/> : null}*/}
+            {/*</TabPane>*/}
+            <TabPane tab="波动率" key="1">
+              {fundVolatility ?
+                <NetValueLineChart chartData={fundVolatility}/> : null}
+            </TabPane>
+            <TabPane tab="在险价值" key="2">
+              {fundValueAtRisk ?
+                <NetValueLineChart chartData={fundValueAtRisk}/> : null}
+            </TabPane>
+            <TabPane tab="下行波动率" key="3">
+              {fundDownsideVolatility ?
+                <NetValueLineChart chartData={fundDownsideVolatility}/> : null}
+            </TabPane>
+          </Tabs> : <Loading/>}
       </div>
 
       <div className="card" id="3">
         <DivHeader>评价指标</DivHeader>
-        <Tabs defaultActiveKey="1">
-          <TabPane tab="夏普指标" key="1">
-            {fundSharpeIndex ?
-              <NetValueLineChart chartData={fundSharpeIndex}/> : null}
-          </TabPane>
-          <TabPane tab="特雷诺指标" key="2">
-            {fundTreynorIndex ?
-              <NetValueLineChart chartData={fundTreynorIndex}/> : null}
-          </TabPane>
-          <TabPane tab="詹森指标" key="3">
-            {fundJensenIndex ?
-              <NetValueLineChart chartData={fundJensenIndex}/> : null}
-          </TabPane>
-          {/*<TabPane tab="信息比率" key="4">*/}
-          {/*{fundInformationRatio ?*/}
-          {/*<NetValueLineChart chartData={fundInformationRatio}/> : null}*/}
-          {/*</TabPane>*/}
-        </Tabs>
+        {fundSharpeIndex && fundTreynorIndex && fundJensenIndex ?
+          <Tabs defaultActiveKey="1">
+            <TabPane tab="夏普指标" key="1">
+              {fundSharpeIndex ?
+                <NetValueLineChart chartData={fundSharpeIndex}/> : null}
+            </TabPane>
+            <TabPane tab="特雷诺指标" key="2">
+              {fundTreynorIndex ?
+                <NetValueLineChart chartData={fundTreynorIndex}/> : null}
+            </TabPane>
+            <TabPane tab="詹森指标" key="3">
+              {fundJensenIndex ?
+                <NetValueLineChart chartData={fundJensenIndex}/> : null}
+            </TabPane>
+            {/*<TabPane tab="信息比率" key="4">*/}
+            {/*{fundInformationRatio ?*/}
+            {/*<NetValueLineChart chartData={fundInformationRatio}/> : null}*/}
+            {/*</TabPane>*/}
+          </Tabs> : <Loading/>}
       </div>
 
 
       <div className="card" id="4">
         <DivHeader>业绩持续性指标</DivHeader>
-        <p className={styles.description}>持续性指标为<span> {fundPerformanceIndex ? fundPerformanceIndex.sustainabilityIndex : null} </span>，
-          连输期数／总期数为<span> {fundPerformanceIndex ? fundPerformanceIndex.loseDayRatio + '%' : null} </span>，
-          连赢期数／总期数为<span> {fundPerformanceIndex ? fundPerformanceIndex.winDayRatio + '%' : null} </span></p>
+        {fundPerformanceIndex ?
+          <p className={styles.description}>
+            持续性指标为<span> {fundPerformanceIndex.sustainabilityIndex} </span>，
+            连输期数／总期数为<span> {fundPerformanceIndex.loseDayRatio + '%'} </span>，
+            连赢期数／总期数为<span> {fundPerformanceIndex.winDayRatio + '%'} </span></p> :
+          <Loading/>}
       </div>
 
       {fundStyleAttributionProfit && fundStyleAttributionRisk ?
@@ -105,12 +111,12 @@ function FundAnalysisCharts({
           <div className={styles.section}>
             <h4 className={styles.section_title}>主动收益</h4>
             {fundStyleAttributionProfit ?
-              <AttributionBarChart chartData={fundStyleAttributionProfit} color="#81B6F5"/> : null}
+              <AttributionBarChart chartData={fundStyleAttributionProfit} color="#81B6F5"/> : <Loading/>}
           </div>
           <div className={styles.section}>
             <h4 className={styles.section_title}>主动风险</h4>
             {fundStyleAttributionRisk ?
-              <AttributionBarChart chartData={fundStyleAttributionRisk} color="#F9D471"/> : null}
+              <AttributionBarChart chartData={fundStyleAttributionRisk} color="#F9D471"/> : <Loading/>}
           </div>
         </div> : null}
 
@@ -121,12 +127,12 @@ function FundAnalysisCharts({
           <div className={styles.section}>
             <h4 className={styles.section_title}>主动收益</h4>
             {fundIndustryAttributionProfit ?
-              <AttributionBarChart chartData={fundIndustryAttributionProfit} color="#81B6F5"/> : null}
+              <AttributionBarChart chartData={fundIndustryAttributionProfit} color="#81B6F5"/> : <Loading/>}
           </div>
           <div className={styles.section}>
             <h4 className={styles.section_title}>主动风险</h4>
             {fundIndustryAttributionRisk ?
-              <AttributionBarChart chartData={fundIndustryAttributionRisk} color="#F9D471"/> : null}
+              <AttributionBarChart chartData={fundIndustryAttributionRisk} color="#F9D471"/> : <Loading/>}
           </div>
         </div> : null}
 
@@ -135,43 +141,44 @@ function FundAnalysisCharts({
         <div className={styles.section}>
           <h4 className={styles.section_title}>主动收益</h4>
           {fundStyleStabilityProfit ?
-            <StabilityRadarChart chartData={fundStyleStabilityProfit} type={'主动收益'}/> : null}
+            <StabilityRadarChart chartData={fundStyleStabilityProfit} type={'主动收益'}/> : <Loading/>}
         </div>
         <div className={styles.section}>
           <h4 className={styles.section_title}>主动风险</h4>
           {fundStyleStabilityRisk ?
-            <StabilityRadarChart chartData={fundStyleStabilityRisk} type={'主动风险'}/> : null}
+            <StabilityRadarChart chartData={fundStyleStabilityRisk} type={'主动风险'}/> : <Loading/>}
         </div>
       </div>
 
-      <div className="card" id="9">
-        <DivHeader>Brison 归因</DivHeader>
-        <Tabs defaultActiveKey="1">
-          {fundBrisonAttributionStock ?
-            <TabPane tab="基于股票持仓" key="1">
-              <div>
-                <div className={styles.section}>
-                  <AttributionBarChart chartData={fundBrisonAttributionStock} color="#81B6F5"/>
+      {fundBrisonAttributionStock && fundBrisonAttributionBond ?
+        <div className="card" id="9">
+          <DivHeader>Brison 归因</DivHeader>
+          <Tabs defaultActiveKey="1">
+            {fundBrisonAttributionStock ?
+              <TabPane tab="基于股票持仓" key="1">
+                <div>
+                  <div className={styles.section}>
+                    <AttributionBarChart chartData={fundBrisonAttributionStock} color="#81B6F5"/>
+                  </div>
+                  <div className={styles.section}>
+                    <BrisonTable chartData={fundBrisonAttributionStock}/>
+                  </div>
                 </div>
-                <div className={styles.section}>
-                  <BrisonTable chartData={fundBrisonAttributionStock}/>
+              </TabPane> : <Loading/>}
+            {fundBrisonAttributionBond ?
+              <TabPane tab="基于债券持仓" key="2">
+                <div>
+                  <div className={styles.section}>
+                    <AttributionBarChart chartData={fundBrisonAttributionBond} color="#81B6F5"/>
+                  </div>
+                  <div className={styles.section}>
+                    <BrisonTable chartData={fundBrisonAttributionBond}/>
+                  </div>
                 </div>
-              </div>
-            </TabPane> : null}
-          {fundBrisonAttributionBond ?
-            <TabPane tab="基于债券持仓" key="2">
-              <div>
-                <div className={styles.section}>
-                  <AttributionBarChart chartData={fundBrisonAttributionBond} color="#81B6F5"/>
-                </div>
-                <div className={styles.section}>
-                  <BrisonTable chartData={fundBrisonAttributionBond}/>
-                </div>
-              </div>
-            </TabPane> : null}
-        </Tabs>
+              </TabPane> : <Loading/>}
+          </Tabs>
 
-      </div>
+        </div> : null}
 
       {fundVarietyAttribution ?
         <div className="card" id="10">
@@ -183,7 +190,7 @@ function FundAnalysisCharts({
         <DivHeader>择时 | 择股能力</DivHeader>
 
         {fundChooseTimeStock ?
-          <AbilityBarChart chartData={fundChooseTimeStock} color="#E2827E"/> : null}
+          <AbilityBarChart chartData={fundChooseTimeStock} color="#E2827E"/> : <Loading/>}
 
       </div>
 
@@ -193,12 +200,12 @@ function FundAnalysisCharts({
         <div className={styles.section}>
           <h4 className={styles.section_title}>当前基金经理历任基金表现</h4>
           {fundPerformanceAnalysis ?
-            <ScatterChart chartData={fundPerformanceAnalysis}/> : null}
+            <ScatterChart chartData={fundPerformanceAnalysis}/> : <Loading/>}
         </div>
         <div className={styles.section}>
           <h4 className={styles.section_title}>当前基金经理综合表现</h4>
           {managerPerformanceAnalysis ?
-            <ScatterChart chartData={managerPerformanceAnalysis}/> : null}
+            <ScatterChart chartData={managerPerformanceAnalysis}/> : <Loading/>}
         </div>
       </div>
 
@@ -211,7 +218,7 @@ function FundAnalysisCharts({
       <div className="card" id="14">
         <DivHeader>舆情分析</DivHeader>
         {fundPublicOpinion ?
-          <AssetBarChart chartData={fundPublicOpinion}/> : null}
+          <AssetBarChart chartData={fundPublicOpinion}/> : <Loading/>}
       </div>
     </div>
   )

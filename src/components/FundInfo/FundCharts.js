@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'dva';
-import {Tabs, Table} from 'antd';
+import {Tabs, Table, Spin} from 'antd';
 
 const TabPane = Tabs.TabPane;
 
@@ -9,6 +9,7 @@ import RateLineChart from "../Chart/RateLineChart";
 import AssetPieChart from "../Chart/AssetPieChart";
 import AssetBarChart from "../Chart/AssetBarChart";
 import DivHeader from '../Util/DivHeader';
+import Loading from '../Util/Loading'
 
 import styles from './FundCharts.css';
 import loading from '../../assets/loading.gif';
@@ -59,9 +60,7 @@ function FundCharts({
               <NetValueLineChart chartData={cumulativeNetValueData}/>
             </TabPane>
           </Tabs> :
-          <div className="loadingWrapper">
-            <img src={loading}/>
-          </div>}
+          <Loading/>}
       </div>
 
       <div className="card">
@@ -69,18 +68,20 @@ function FundCharts({
         {cumulativeProfitData ?
           <div>
             <RateLineChart chartData={cumulativeProfitData}/>
-          </div> : null}
+          </div> :
+          <Loading/>}
       </div>
 
       <div className="card">
         <DivHeader>资产配置</DivHeader>
         <div className={styles.pie_chart}>
           <div className={styles.section}>
-            <h4 className={styles.sectionTitle}>当前资产配置</h4>
             {currentAssetData ?
               <div>
+                <h4 className={styles.sectionTitle}>当前资产配置</h4>
                 <AssetPieChart chartData={currentAssetData}/>
-              </div> : null}
+              </div> :
+              <Loading/>}
           </div>
           {/*<div className={styles.section}>*/}
           {/*<h4 className={styles.sectionTitle}>历史资产配置</h4>*/}
@@ -93,7 +94,8 @@ function FundCharts({
         <div className={styles.previousFundManagerDiv}>
           <DivHeader>历任基金经理</DivHeader>
           <Table columns={columns} dataSource={data} size="middle" pagination={false}/>
-        </div> : null}
+        </div> :
+        <Loading/>}
     </div>
   )
 }

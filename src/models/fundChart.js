@@ -3,7 +3,7 @@
  */
 import * as fundChartService from '../services/fundChart';
 
-export default  {
+export default {
   namespace: 'fundChart',
   state: {
     unitNetValueData: null,
@@ -46,9 +46,25 @@ export default  {
         ...state,
         fundManagers,
       }
-    }
+    },
+
+    // clearCumulativeProfitData(state, {payload: cumulativeProfitData}) {
+    //   // state.cumulativeProfitData = null;
+    //   return {
+    //     ...state,
+    //     cumulativeProfitData,
+    //   }
+    // }
   },
   effects: {
+
+    // * clearCumulativeProfitData({payload: cumulativeProfitData}, {call, put, select}) {
+    //   yield put({
+    //     type: 'clearCumulativeProfitData',
+    //     payload: null,
+    //   });
+    // },
+
     /**
      * 获取基金单位净值走势图的数据
      * @param code 基金代码
@@ -56,7 +72,7 @@ export default  {
      * @param put
      * @param select
      */
-      *fetchUnitNetValueData({payload: code}, {call, put, select}) {
+    * fetchUnitNetValueData({payload: code}, {call, put, select}) {
       yield put({
         type: 'drawUnitNetValueChart',
         payload: null,
@@ -79,7 +95,7 @@ export default  {
      * @param put
      * @param select
      */
-      *fetchCumulativeNetValueData({payload: code}, {call, put, select}) {
+    * fetchCumulativeNetValueData({payload: code}, {call, put, select}) {
       yield put({
         type: 'drawCumulativeNetValueChart',
         payload: null,
@@ -103,12 +119,13 @@ export default  {
      * @param put
      * @param select
      */
-      *fetchCumulativeProfitData({payload: month}, {call, put, select}) {
+    * fetchCumulativeProfitData({payload: month}, {call, put, select}) {
       // yield put({
       //   type: 'drawCumulativeProfitChart',
       //   payload: null,
       // });
-      const code = yield  select(state => state.fund.fundBrief.code);
+
+      const code = yield select(state => state.fund.fundBrief.code);
 
       // console.log(code);
 
@@ -122,7 +139,7 @@ export default  {
       });
     },
 
-    *fetchCurrentAssetData({payload: code}, {call, put, select}) {
+    * fetchCurrentAssetData({payload: code}, {call, put, select}) {
       yield put({
         type: 'drawCurrentAssetChart',
         payload: null,
@@ -138,7 +155,7 @@ export default  {
       });
     },
 
-    *fetchFundManagers({payload: code}, {call, put, select}) {
+    * fetchFundManagers({payload: code}, {call, put, select}) {
       yield put({
         type: 'saveFundManagers',
         payload: null,
@@ -150,7 +167,7 @@ export default  {
         type: 'saveFundManagers',
         payload: data,
       })
-    }
+    },
 
   },
   subscriptions: {
@@ -164,7 +181,8 @@ export default  {
             type: 'fund/fetchFundBrief',
             payload: id,
             onSuccess: () => {
-              console.log('success')
+              console.log('success');
+              // dispatch({type: 'clearCumulativeProfitData'});
               dispatch({type: 'fetchUnitNetValueData', payload: id});
               dispatch({type: 'fetchCumulativeNetValueData', payload: id});
               dispatch({type: 'fetchCumulativeProfitData', payload: 1});

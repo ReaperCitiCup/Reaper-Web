@@ -4,15 +4,21 @@ export default {
   namespace: 'createCombination',
   state: {
     show: false,
+    isLoading: false,
     name: '',
     items: []
-
   },
   reducers: {
     saveShow(state, {payload: show}) {
       return {
         ...state,
         show
+      }
+    },
+    saveIsLoading(state, {payload: isLoading}) {
+      return {
+        ...state,
+        isLoading
       }
     },
     saveName(state, {payload: name}) {
@@ -148,28 +154,46 @@ export default {
   }
   ,
   effects: {
-    *createCombination({onSuccess, onError}, {call, put, select}) {
+    * createCombination({onSuccess, onError}, {call, put, select}) {
+
+      yield put({
+        type: 'saveIsLoading',
+        payload: true
+      });
+
       const {name, items} = yield select(state => state.createCombination);
 
       const {user} = yield select(state => state.user);
       if (!user) {
         onError("登录后才能创建组合！");
+        yield put({
+          type: 'saveIsLoading',
+          payload: false
+        });
         return;
       }
       if (items.length === 0) {
         if (onError) onError("组合至少添加一个基金");
+        yield put({
+          type: 'saveIsLoading',
+          payload: false
+        });
         return;
       } else if (name === '') {
         if (onError) onError("请输入组合名字");
+        yield put({
+          type: 'saveIsLoading',
+          payload: false
+        });
         return;
       }
 
-        let funds = items.map(item => {
-          return {
-            id: item.code,
-            ratio: item.ratio,
-          }
-        });
+      let funds = items.map(item => {
+        return {
+          id: item.code,
+          ratio: item.ratio,
+        }
+      });
       const body = {
         name,
         funds
@@ -194,6 +218,12 @@ export default {
           payload: [],
         }
       )
+
+      yield put({
+        type: 'saveIsLoading',
+        payload: false
+      });
+
     }
   }
   ,

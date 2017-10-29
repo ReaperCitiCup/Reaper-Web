@@ -15,3 +15,10 @@
     cursor: pointer;
   }
 }
+
+:global {
+  .ant-table-tbody > tr > td {
+    cursor: pointer;
+  }
+}
+

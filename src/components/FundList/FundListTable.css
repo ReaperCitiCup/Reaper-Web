@@ -26,4 +26,7 @@ button {
 .operation img {
   cursor: pointer; }
 
+:global .ant-table-tbody > tr > td {
+  cursor: pointer; }
+
 /*# sourceMappingURL=FundListTable.css.map */

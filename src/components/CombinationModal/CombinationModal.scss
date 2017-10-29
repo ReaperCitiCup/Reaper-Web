@@ -41,7 +41,7 @@
   overflow: scroll;
 }
 
-.button {
+.button, .mySpin {
   float: right;
   font-weight: 400;
   margin-top: 10px;
@@ -50,3 +50,6 @@
   background-color: $background-color;
   border-color: $blue-grey-color;
 }
+
+
+

@@ -137,7 +137,7 @@ class CombinationReport extends Component {
           <div className={styles.section_2}>
             <DivHeader>投资目标</DivHeader>
             {combinationReport ?
-              <p>combinationReport.investmentGoal
+              <p>{combinationReport.investmentGoal}
               </p> : <Loading/>}
           </div>
 

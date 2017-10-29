@@ -97,12 +97,22 @@ class ScatterChart extends Component {
           type: 'scatter',
           data: dataOthers,
           symbolSize: 5,
+          itemStyle: {
+            normal: {
+              opacity: 0.3
+            }
+          }
         },
         {
           name: '当前',
           type: 'scatter',
           data: dataNow,
           symbolSize: 5,
+          // itemStyle: {
+          //   normal: {
+          //     opacity: 0.5
+          //   }
+          // }
           // markPoint: {
           //   data: [
           //     {type: 'max', name: '最大值'},

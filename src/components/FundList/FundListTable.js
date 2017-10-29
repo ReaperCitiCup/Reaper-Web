@@ -14,6 +14,7 @@ import styles from './FundListTable.css';
 class FundListTable extends Component {
 
   onClickRow = (record, index, event) => {
+    // console.log(record);
     const {dispatch} = this.props;
     dispatch(routerRedux.push(`/fund/${record.code}`))
   };
@@ -34,6 +35,7 @@ class FundListTable extends Component {
     }, {
       title: '基金名称',
       dataIndex: 'name',
+      // render: text => <button onClick={this.onClickRow}>{text}</button>
     }, {
       title: '基金经理',
       dataIndex: 'manager',
@@ -53,31 +55,32 @@ class FundListTable extends Component {
 
         // console.log(items, record.code, addable)
         return (
-          <div className={styles.operation}>
+          <div>
             {
               addable ?
+                <div className={styles.operation} onClick={(event) => {
+                  event.stopPropagation();
+                  dispatch({
+                    type: 'createCombination/saveShow',
+                    payload: true
+                  });
+                  dispatch({
+                    type: 'createCombination/addItem',
+                    payload: {
+                      code: record.code,
+                      name: record.name
+                    }
+                  });
+                }}>
                 <span>
                   <img src={plus}
                        width={14}
-                       onClick={(event) => {
-                         event.stopPropagation();
-                         dispatch({
-                           type: 'createCombination/saveShow',
-                           payload: true
-                         });
-                         dispatch({
-                           type: 'createCombination/addItem',
-                           payload: {
-                             code: record.code,
-                             name: record.name
-                           }
-                         });
-                       }}
                   />
             </span>
-                : null
+                </div> : null
             }
           </div>
+
         );
       }
     }];
@@ -86,6 +89,7 @@ class FundListTable extends Component {
 
         <div className={styles.tableDiv}>
           <Table
+            className={styles.fundListTable}
             // rowSelection={rowSelection}
             columns={columns}
             dataSource={data}

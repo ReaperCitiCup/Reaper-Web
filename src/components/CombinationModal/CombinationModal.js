@@ -1,16 +1,18 @@
 import React, {Component} from 'react';
 import {connect} from 'dva';
+import {routerRedux} from 'dva/router';
 
-import {Input, Button, message} from 'antd';
+import {Input, Button, message, Spin} from 'antd';
 
 import CombinationItem from './CombinationItem';
+import Loading from '../Util/Loading';
 
 import up from '../../assets/caretup.png';
 import down from '../../assets/caretdown.png';
 
 import styles from './CombinationModal.css';
 
-function CombinationModal({dispatch, className, show, name, items}) {
+function CombinationModal({dispatch, className, show, isLoading, name, items}) {
 
   function onClickArrow() {
     dispatch({
@@ -39,9 +41,12 @@ function CombinationModal({dispatch, className, show, name, items}) {
   function onClickSave() {
     dispatch({
       type: "createCombination/createCombination",
-      onSuccess: (m) => message.success(m),
+      onSuccess: () => {
+        (m) => message.success(m);
+        dispatch(routerRedux.push(`/combination`));
+      },
       onError: (m) => message.error(m)
-    })
+    });
   }
 
   function onInputChange(event) {
@@ -83,12 +88,13 @@ function CombinationModal({dispatch, className, show, name, items}) {
               />
             )}
           </div>
-          <Button
-            onClick={onClickSave}
-            className={styles.button}
-            type="primary"
-            size="large"
-          >保存</Button>
+          {!isLoading ?
+            <Button
+              onClick={onClickSave}
+              className={styles.button}
+              type="primary"
+              size="large"
+            >保存</Button> : <Spin className={styles.mySpin}/>}
         </div>
         : null}
     </div>
@@ -98,6 +104,7 @@ function CombinationModal({dispatch, className, show, name, items}) {
 function mapStateToProps(state) {
   return {
     show: state.createCombination.show,
+    isLoading: state.createCombination.isLoading,
     name: state.createCombination.name,
     items: state.createCombination.items,
   };

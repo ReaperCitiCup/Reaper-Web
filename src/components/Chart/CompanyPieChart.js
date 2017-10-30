@@ -61,7 +61,7 @@ class CompanyPieChart extends Component {
         {
           // name: '占净比',
           type: 'pie',
-          radius: '60%',
+          radius: '55%',
           center: ['50%', '40%'],
           data: data,
           itemStyle: {

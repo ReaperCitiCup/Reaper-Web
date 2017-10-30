@@ -5,11 +5,9 @@ import React, {Component} from 'react';
 import {message} from 'antd';
 import {connect} from 'dva';
 import {routerRedux} from 'dva/router';
-
 import {Table} from 'antd';
-
-import CombinationBacktestModal from'../Combination/CombinationBacktestModal';
-
+import CombinationBacktestModal from '../Combination/CombinationBacktestModal';
+import CombinationInfoModal from '../Combination/CombinationInfoModal';
 import styles from "./CombinationList.css";
 
 class CombinationList extends Component {
@@ -39,6 +37,19 @@ class CombinationList extends Component {
       payload: {
         show: false,
         id: null
+      }
+    })
+  };
+
+  onClickCombination = (record) => {
+    console.log(record)
+    const {dispatch} = this.props;
+    dispatch({
+      type: 'combination/saveShowModalInfo',
+      payload: {
+        showModal: true,
+        currentId: record.id,
+        currentName: record.name
       }
     })
   };
@@ -75,16 +86,17 @@ class CombinationList extends Component {
           <div className={styles.operation}>
 
             <button
-            onClick={(event) => {
-              event.stopPropagation();
-              dispatch({
-                type: 'combination/deleteCombination',
-                payload: record.id,
+              onClick={(event) => {
+                event.stopPropagation();
+                dispatch({
+                  type: 'combination/deleteCombination',
+                  payload: record.id,
 
-                onSuccess: (m) => message.success('删除成功！'),
-                onError: (m) => message.error(m)
-              })
-            }}>删除</button>
+                  onSuccess: (m) => message.success('删除成功！'),
+                  onError: (m) => message.error(m)
+                })
+              }}>删除
+            </button>
 
             <button
               onClick={(event) => {
@@ -116,7 +128,7 @@ class CombinationList extends Component {
                  dataSource={data}
                  size="middle"
                  pagination={false}
-                 // onRowClick={this.onClickRow}
+                 onRowClick={this.onClickCombination}
           />
         </div>
         <CombinationBacktestModal
@@ -124,6 +136,7 @@ class CombinationList extends Component {
           onOk={this.onModalOk}
           onCancel={this.onModalCancel}
         />
+        <CombinationInfoModal/>
       </div>
     )
   }

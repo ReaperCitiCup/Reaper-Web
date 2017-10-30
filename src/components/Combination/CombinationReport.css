@@ -29,6 +29,14 @@ button {
     padding-top: 15px;
     color: #3D5673;
     font-size: 12px; }
+    .report_body h3 div {
+      display: inline-block;
+      cursor: pointer; }
+      .report_body h3 div span {
+        vertical-align: middle; }
+      .report_body h3 div img {
+        vertical-align: middle;
+        padding-right: 5px; }
 
 #grade_row {
   padding-top: 30px;
@@ -46,11 +54,11 @@ button {
   .section_1 .left {
     display: inline-block;
     margin-right: 118px;
-    width: 339px; }
+    width: 339px;
+    vertical-align: middle; }
   .section_1 .right {
     display: inline-block;
-    vertical-align: top;
-    padding-top: 50px;
+    vertical-align: middle;
     width: 400px; }
 
 .section_2 {

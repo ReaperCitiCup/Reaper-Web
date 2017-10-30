@@ -6,6 +6,9 @@ export default {
   state: {
     combinations: [],
     combinationReport: null,
+    showModal: false,
+    currentId: null,
+    currentName: null,
   },
   reducers: {
     saveCombinations(state, {payload: combinations}) {
@@ -20,6 +23,11 @@ export default {
 
     saveCombinationReport(state, {payload: combinationReport}) {
       return {...state, combinationReport};
+    },
+
+    saveShowModalInfo(state, {payload: showModal, currentId, currentName}) {
+      // console.log(showModal);
+      return {...state, showModal, currentId, currentName};
     },
 
     clearCombinationReport(state) {

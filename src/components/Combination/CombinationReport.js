@@ -3,6 +3,7 @@
  */
 import React, {Component} from 'react';
 import {connect} from 'dva';
+import domtoimage from 'dom-to-image';
 
 import {Row, Col, Table, Tabs} from 'antd';
 
@@ -15,6 +16,7 @@ import AttributionBarChart from "../Chart/AttributionBarChart";
 import CorrelationCoefficientTable from "../Chart/CorrelationCoefficientTable";
 import BrisonTable from "../Chart/BrisonTable";
 import CombinationProfitTable from "../Chart/CombinationProfitTable";
+import saveIcon from '../../assets/save.png';
 
 import styles from "./CombinationReport.css";
 
@@ -54,10 +56,24 @@ factors.map((factor, index) => {
   }
 });
 
-// console.log("！！！！！"+factorOptions.filter(option => option.value === 'btop')[0].label);
+let node = document.getElementsByClassName('report_body');
+console.log(node);
 
 
 class CombinationReport extends Component {
+
+  handleClickSave() {
+    // domtoimage.toPng(node)
+    //   .then(function (dataUrl) {
+    //     let img = new Image();
+    //     img.src = dataUrl;
+    //     document.body.appendChild(img);
+    //   })
+    //   .catch(function (error) {
+    //     console.error('oops, something went wrong!', error);
+    //   });
+  }
+
   render() {
 
     const {combinationReport} = this.props;
@@ -91,6 +107,12 @@ class CombinationReport extends Component {
             <span>{combinationReport ? combinationReport.startDate : null}</span>
             —
             <span>{combinationReport ? combinationReport.endDate : null}</span>
+          </h3>
+          <h3>
+            <div onClick={this.handleClickSave()}>
+              <img src={saveIcon} width={25}/>
+              <span>保存为pdf</span>
+            </div>
           </h3>
 
           {/*<div className="gutter-example" id={styles.grade_row}>*/}
@@ -202,16 +224,16 @@ class CombinationReport extends Component {
                     })} </span>
                   </td>
                 </tr>
-                <tr>
-                  <td>业绩归因</td>
-                  <td>股票类持仓总超额效益是
-                    {/*<span> {combinationReport.brisonAttributionStock.filter(*/}
-                      {/*brisonValue => brisonValue.field === '总超额效益')[0].value.toFixed(2)}% </span>*/}
-                    {/*，债券类持仓总超额效益是*/}
-                    {/*<span> {combinationReport.brisonAttributionBond.filter(*/}
-                      {/*brisonValue => brisonValue.field === '总超额收益')[0].value} </span>*/}
-                  </td>
-                </tr>
+                {/*<tr>*/}
+                {/*<td>业绩归因</td>*/}
+                {/*<td>股票类持仓总超额效益是*/}
+                {/*<span> {combinationReport.brisonAttributionStock.filter(*/}
+                {/*brisonValue => brisonValue.field === '总超额效益')[0].value.toFixed(2)}% </span>*/}
+                {/*，债券类持仓总超额效益是*/}
+                {/*<span> {combinationReport.brisonAttributionBond.filter(*/}
+                {/*brisonValue => brisonValue.field === '总超额收益')[0].value} </span>*/}
+                {/*</td>*/}
+                {/*</tr>*/}
                 </tbody>
               </table> : <Loading/>}
           </div>

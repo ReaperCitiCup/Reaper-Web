@@ -18,6 +18,17 @@
     padding-top: 15px;
     color: $main-font-color;
     font-size: 12px;
+    div {
+      display: inline-block;
+      cursor: pointer;
+      span {
+        vertical-align: middle;
+      }
+      img {
+        vertical-align: middle;
+        padding-right: 5px;
+      }
+    }
   }
 }
 
@@ -41,12 +52,13 @@
     display: inline-block;
     margin-right: 118px;
     width: 339px;
+    vertical-align: middle;
   }
 
   .right {
     display: inline-block;
-    vertical-align: top;
-    padding-top: 50px;
+    vertical-align: middle;
+    //padding-top: 50px;
     width: 400px;
 
     //table {

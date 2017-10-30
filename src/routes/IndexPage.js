@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'dva';
+import domtoimage from 'dom-to-image';
 
 import MainLayout from '../components/Layout/MainLayout'
 
@@ -11,10 +12,26 @@ import icon_2 from '../assets/icon_2.png';
 import icon_3 from '../assets/icon_3.png';
 
 function IndexPage() {
+
+  let handleClickSave = () => {
+    console.log("!!!!!");
+    let node = document.getElementsByClassName('baseBody')[0];
+    console.log(node);
+    domtoimage.toPng(node)
+      .then(function (dataUrl) {
+        let img = new Image();
+        img.src = dataUrl;
+        document.body.appendChild(img);
+      })
+      .catch(function (error) {
+        console.error('oops, something went wrong!', error);
+      });
+  }
   return (
     <div className="baseBody">
       <MainLayout>
         {/*<p>我是首页</p>*/}
+        <button onClick={handleClickSave}>11111111</button>
         <div className={styles.bg_wrapper}>
           <img src={bg} className={styles.bg}/>
 

@@ -13,21 +13,10 @@ import icon_2 from '../assets/icon_2.png';
 import icon_3 from '../assets/icon_3.png';
 
 function IndexPage() {
-
-  // let handleClickSave = () => {
-  //   console.log("!!!!!");
-  //   let node = document.getElementsByClassName('baseBody')[0];
-  //   console.log(node);
-  //   domtoimage.toBlob(node)
-  //     .then(function (blob) {
-  //       FileSaver.saveAs(blob, '回测报告.png');
-  //     });
-  // }
   return (
     <div className="baseBody">
       <MainLayout>
         {/*<p>我是首页</p>*/}
-        <button onClick={handleClickSave}>11111111</button>
         <div className={styles.bg_wrapper}>
           <img src={bg} className={styles.bg}/>
 

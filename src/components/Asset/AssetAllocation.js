@@ -440,6 +440,9 @@ class AssetAllocation extends Component {
                 </FreeScrollBar>
               </div>
             </div>
+            <div>
+              * 以上基金是根据您的偏好为您筛选出各类中综合表现优秀的基金。
+            </div>
           </div>
           : null }
       </div>
@@ -469,6 +472,9 @@ class AssetAllocation extends Component {
               </div>
             );
           })}
+        </div>
+        <div>
+          * 以上基金是根据您的偏好为您筛选出各类中综合表现优秀的基金。
         </div>
       </div>
     )];

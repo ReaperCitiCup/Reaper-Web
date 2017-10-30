@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'dva';
 import domtoimage from 'dom-to-image';
+import FileSaver from 'file-saver';
 
 import MainLayout from '../components/Layout/MainLayout'
 
@@ -13,20 +14,15 @@ import icon_3 from '../assets/icon_3.png';
 
 function IndexPage() {
 
-  let handleClickSave = () => {
-    console.log("!!!!!");
-    let node = document.getElementsByClassName('baseBody')[0];
-    console.log(node);
-    domtoimage.toPng(node)
-      .then(function (dataUrl) {
-        let img = new Image();
-        img.src = dataUrl;
-        document.body.appendChild(img);
-      })
-      .catch(function (error) {
-        console.error('oops, something went wrong!', error);
-      });
-  }
+  // let handleClickSave = () => {
+  //   console.log("!!!!!");
+  //   let node = document.getElementsByClassName('baseBody')[0];
+  //   console.log(node);
+  //   domtoimage.toBlob(node)
+  //     .then(function (blob) {
+  //       FileSaver.saveAs(blob, '回测报告.png');
+  //     });
+  // }
   return (
     <div className="baseBody">
       <MainLayout>

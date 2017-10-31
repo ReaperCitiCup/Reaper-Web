@@ -37,7 +37,12 @@ class NetworkChart extends Component {
         type: 'graph',
         layout: 'force',
         animation: false,
-        label: false,
+        label: {
+          normal: {
+            show: true,
+            position: 'top'
+          }
+        },
 
         draggable: true,
         data: seriesData,
@@ -55,7 +60,7 @@ class NetworkChart extends Component {
           formatter: function (params, ticket, callback) {
             // console.log(params);
             if (params.dataType === 'node') {
-              return params.data.name
+              // return params.data.name
             } else if (params.dataType === 'edge') {
               let source = chartData.nodes[params.data.source].name;
               let target = chartData.nodes[params.data.target].name;

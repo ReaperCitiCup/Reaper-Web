@@ -13,6 +13,7 @@ import Loading from '../Util/Loading';
 import CompanyPieChart from "../Chart/CompanyPieChart";
 import NetValueLineChart from "../Chart/NetValueLineChart";
 import DoubleLineChart from "../Chart/DoubleLineChart";
+import DoubleYAxisChart from "../Chart/DoubleYAxisChart";
 import AttributionBarChart from "../Chart/AttributionBarChart";
 import CorrelationCoefficientTable from "../Chart/CorrelationCoefficientTable";
 import BrisonTable from "../Chart/BrisonTable";
@@ -45,6 +46,7 @@ const factorOptions = [
   {label: '非线性市值', value: 'nlsize'},
   {label: '波动率', value: 'volatility'},
   {label: '市值', value: 'size'},
+  {label: '波动率', value: 'residualvolatility'}
 ];
 
 class CombinationReport extends Component {
@@ -94,23 +96,24 @@ class CombinationReport extends Component {
               —
               <span>{combinationReport ? combinationReport.endDate : null}</span>
             </h3>
-            <h3>
-              <div onClick={
-                function () {
-                  let node = document.getElementsByClassName('report')[0];
-                  // let width = node.scrollWidth * 0.5;
-                  // let height = node.scrollHeight * 0.5;
-                  domtoimage.toBlob(node)
-                    .then(function (blob) {
-                        FileSaver.saveAs(blob, '回测报告.png');
-                      }
-                    );
-                }
-              }>
-                <img src={saveIcon} width={25}/>
-                <span>保存报告</span>
-              </div>
-            </h3>
+            {combinationReport ?
+              <h3>
+                <div onClick={
+                  function () {
+                    let node = document.getElementsByClassName('report')[0];
+                    // let width = node.scrollWidth * 0.5;
+                    // let height = node.scrollHeight * 0.5;
+                    domtoimage.toBlob(node)
+                      .then(function (blob) {
+                          FileSaver.saveAs(blob, '回测报告.png');
+                        }
+                      );
+                  }
+                }>
+                  <img src={saveIcon} width={25}/>
+                  <span>保存报告</span>
+                </div>
+              </h3> : null}
 
             {/*<div className="gutter-example" id={styles.grade_row}>*/}
             {/*<Row gutter={53}>*/}
@@ -212,13 +215,14 @@ class CombinationReport extends Component {
                   <tr>
                     <td>风格分析</td>
                     <td>该组合的风格主要为
-                      <span> {combinationReport.mainFactors.map((factor, index) => {
-                        if (index === combinationReport.mainFactors.length - 1) {
-                          return factorOptions.filter(option => option.value === factor)[0].label;
-                        } else {
-                          return factorOptions.filter(option => option.value === factor)[0].label + "，"
-                        }
-                      })} </span>
+                      <span>
+                        {combinationReport.mainFactors.map((factor, index) => {
+                          if (index === combinationReport.mainFactors.length - 1) {
+                            return factorOptions.filter(option => option.value === factor)[0].label;
+                          } else {
+                            return factorOptions.filter(option => option.value === factor)[0].label + "，"
+                          }
+                        })} </span>
                     </td>
                   </tr>
                   {/*<tr>*/}
@@ -241,7 +245,7 @@ class CombinationReport extends Component {
               <Tabs defaultActiveKey="1">
                 <TabPane tab="累计净值" key="1">
                   {combinationReport ?
-                    <DoubleLineChart chartData={combinationReport.cumulativeNetValueTrend}/> : <Loading/>}
+                    <DoubleYAxisChart chartData={combinationReport.cumulativeNetValueTrend}/> : <Loading/>}
                 </TabPane>
                 <TabPane tab="收益率" key="2">
                   {combinationReport ?

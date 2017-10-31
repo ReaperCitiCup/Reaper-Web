@@ -6,11 +6,11 @@ import ReactEcharts from 'echarts-for-react';
 import React, {Component} from 'react';
 import {connect} from 'dva';
 
-class DoubleLineChart extends Component {
+class DoubleYAxisChart extends Component {
   render() {
 
     const {chartData} = this.props;
-    // console.log(chartData);
+    console.log(chartData);
 
 
     let minDate;
@@ -62,6 +62,7 @@ class DoubleLineChart extends Component {
       name: '基准',
       type: 'line',
       showSymbol: false,
+      yAxisIndex: 1,
       data: chartData.base.map(dataValue => {
         let array = [];
         array.push(dataValue.date, dataValue.value);
@@ -105,11 +106,22 @@ class DoubleLineChart extends Component {
         boundaryGap: false,
         data: dateArray
       },
-      yAxis: {
-        type: 'value',
-        splitLine: {show: false}
-      },
-      series: seriesData,
+      yAxis: [
+        {
+          type: 'value',
+          splitLine: {show: false},
+          name: '基金组合'
+        },
+        {
+          type: 'value',
+          splitLine: {show: false},
+          name: '基准'
+        },
+      ],
+      series: [
+        seriesData[0],
+        seriesData[1],
+      ],
       color: ['#81B6F5', '#E2827E', '#F9D471', '#74D491']
     };
 
@@ -122,4 +134,4 @@ class DoubleLineChart extends Component {
   }
 }
 
-export default DoubleLineChart;
+export default DoubleYAxisChart;

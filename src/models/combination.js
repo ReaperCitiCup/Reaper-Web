@@ -7,14 +7,14 @@ export default {
     combinations: [],
     combinationReport: null,
     showModal: false,
-    currentId: null,
-    currentName: null,
+    currentInfo: null,
   },
   reducers: {
     saveCombinations(state, {payload: combinations}) {
       if (combinations) {
         combinations.forEach(combination => {
           combination.key = combination.id;
+          combination.volatility += '%';
         });
       }
 
@@ -25,9 +25,9 @@ export default {
       return {...state, combinationReport};
     },
 
-    saveShowModalInfo(state, {payload: showModal, currentId, currentName}) {
+    saveShowModalInfo(state, {payload: showModal, currentInfo}) {
       // console.log(showModal);
-      return {...state, showModal, currentId, currentName};
+      return {...state, showModal, currentInfo};
     },
 
     clearCombinationReport(state) {

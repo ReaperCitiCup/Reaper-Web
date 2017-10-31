@@ -48,8 +48,7 @@ class CombinationList extends Component {
       type: 'combination/saveShowModalInfo',
       payload: {
         showModal: true,
-        currentId: record.id,
-        currentName: record.name
+        currentInfo: record,
       }
     })
   };
@@ -74,8 +73,8 @@ class CombinationList extends Component {
       title: '年化收益',
       dataIndex: 'annualProfit',
     }, {
-      title: '相关系数',
-      dataIndex: 'correlationCoefficient',
+      title: '年化波动率',
+      dataIndex: 'volatility',
     }, {
       title: '操作',
       dataIndex: 'operation',

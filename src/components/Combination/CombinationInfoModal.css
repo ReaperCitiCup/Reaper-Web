@@ -16,4 +16,9 @@ html {
 button {
   outline: none; }
 
+.combinationInfoModal :global .ant-modal-body {
+  padding: 20px 40px;
+  height: 500px;
+  overflow: auto; }
+
 /*# sourceMappingURL=CombinationInfoModal.css.map */

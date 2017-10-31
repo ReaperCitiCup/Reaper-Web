@@ -1,3 +1,12 @@
 @import "../../assets/scss/variables";
 @import "../../assets/scss/base";
 
+.combinationInfoModal {
+  :global {
+    .ant-modal-body {
+      padding: 20px 40px;
+      height: 500px;
+      overflow: auto;
+    }
+  }
+}

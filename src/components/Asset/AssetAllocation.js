@@ -273,6 +273,11 @@ class AssetAllocation extends Component {
       averageVisible: false,
     });
   };
+  handleAverageCancel = () => {
+    this.setState({
+      averageVisible: false,
+    });
+  };
   next = () => {
     if (this.state.current === 2) {
       if (this.state.implementationPath === 1) {
@@ -373,7 +378,7 @@ class AssetAllocation extends Component {
       </div>
     )];
 
-    const {assetChoiceList, factorChoiceList, fundList,} = this.props;
+    const {assetChoiceList, factorChoiceList, fundList} = this.props;
     const stepFourContent = [(
       <div>
         <div className={styles.stepTitle}>4.选择基金</div>
@@ -444,7 +449,7 @@ class AssetAllocation extends Component {
               * 以上基金是根据您的偏好为您筛选出各类中综合表现优秀的基金。
             </div>
           </div>
-          : null }
+          : null}
       </div>
     ), (
       <div>
@@ -576,9 +581,9 @@ class AssetAllocation extends Component {
             <Button
               style={{float: 'right'}} disabled={this.state.current === 1 && this.state.implementationPath === null ||
             this.state.current === 2 && ((this.state.implementationPath === 1 && this.state.weightTag === null) ||
-            (this.state.implementationPath === 2 && this.state.factorOptionsVal.length === 0)) ||
+              (this.state.implementationPath === 2 && this.state.factorOptionsVal.length === 0)) ||
             this.state.current === 3 && (this.state.implementationPath === 1 &&
-            fundList.length > 0 && fundList.reduce((pre, cur) => pre + cur.codes.length, 0) === 0)}
+              fundList.length > 0 && fundList.reduce((pre, cur) => pre + cur.codes.length, 0) === 0)}
               onClick={this.next}
             >下一步</Button>
           }
@@ -610,6 +615,7 @@ class AssetAllocation extends Component {
           visible={this.state.averageVisible}
           title="均值方差收益率"
           onOk={this.handleAverageOK}
+          onCancel={this.handleAverageCancel}
           footer={<Button onClick={this.handleAverageOK}>确定</Button>}
         >
           <InputNumber min={0} max={1} step={0.01} value={this.state.profitRate} onChange={this.onChangeProfitRate}/> %

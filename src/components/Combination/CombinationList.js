@@ -126,8 +126,8 @@ class CombinationList extends Component {
           <Table columns={columns}
                  dataSource={data}
                  size="middle"
-                 pagination={false}
                  onRowClick={this.onClickCombination}
+                 pagination={data.length > 5}
           />
         </div>
         <CombinationBacktestModal

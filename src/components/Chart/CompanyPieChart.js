@@ -33,7 +33,7 @@ class CompanyPieChart extends Component {
 
     }
 
-    console.log(data);
+    // console.log(data);
 
     let option = {
       // title : {

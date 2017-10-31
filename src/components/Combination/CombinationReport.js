@@ -53,9 +53,10 @@ class CombinationReport extends Component {
 
   render() {
     const {combinationReport} = this.props;
-    if (combinationReport) {
-      console.log(combinationReport.mainFactors);
-    }
+    // if (combinationReport) {
+    //   console.log(combinationReport.dailyRetracementTrend);
+    //   console.log(combinationReport.profitRateTrend)
+    // }
     const tableData = [];
     if (combinationReport) {
       combinationReport.combination.forEach(c => {

@@ -10,7 +10,7 @@ class DoubleYAxisChart extends Component {
   render() {
 
     const {chartData} = this.props;
-    console.log(chartData);
+    // console.log(chartData);
 
 
     let minDate;
@@ -84,7 +84,7 @@ class DoubleYAxisChart extends Component {
     //   }
     // });
 
-    console.log(seriesData)
+    // console.log(seriesData)
 
     let option = {
       tooltip: {

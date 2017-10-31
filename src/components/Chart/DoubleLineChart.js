@@ -83,7 +83,7 @@ class DoubleLineChart extends Component {
     //   }
     // });
 
-    console.log(seriesData)
+    // console.log(seriesData)
 
     let option = {
       tooltip: {

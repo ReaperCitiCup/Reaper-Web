@@ -52,17 +52,6 @@ const factorOptions = [
 class CombinationReport extends Component {
 
   render() {
-
-    // handleClickSave = () => {
-    //   let node = document.getElementsByClassName('report')[0];
-    //   console.log("!!!!!");
-    //   console.log(node);
-    //   domtoimage.toBlob(node)
-    //     .then(function (blob) {
-    //       FileSaver.saveAs(blob, '回测报告.png');
-    //     });
-    // }
-
     const {combinationReport} = this.props;
     if (combinationReport) {
       console.log(combinationReport.mainFactors);
@@ -321,7 +310,7 @@ class CombinationReport extends Component {
               </div>
             </div>
 
-            {combinationReport && combinationReport.styleAttributionProfit && combinationReport.styleAttributionRisk && combinationReport.styleAttributionRisk.length > 0 ?
+            {combinationReport && combinationReport.styleAttributionProfit && combinationReport.styleAttributionRisk && combinationReport.styleAttributionProfit.length > 0 && combinationReport.styleAttributionRisk.length > 0 ?
               <div className={styles.section_7}>
                 <DivHeader>风格归因</DivHeader>
                 <div className={styles.section}>
@@ -338,7 +327,7 @@ class CombinationReport extends Component {
                 </div>
               </div> : null}
 
-            {combinationReport && combinationReport.industryAttributionProfit && combinationReport.industryAttributionRisk && combinationReport.industryAttributionRisk.length > 0 ?
+            {combinationReport && combinationReport.industryAttributionProfit && combinationReport.industryAttributionRisk && combinationReport.industryAttributionProfit.length > 0 && combinationReport.industryAttributionRisk.length > 0 ?
               <div className={styles.section_8}>
                 <DivHeader>行业归因</DivHeader>
 
@@ -395,29 +384,36 @@ class CombinationReport extends Component {
             <div className={styles.section_11}>
               <DivHeader>相关指标说明</DivHeader>
               <p>
-                <span>区间年化收益</span> 在投资一段时间内的收益，假定一年都是这个水平，折算的年收益率。
+                <span>区间年化收益</span>
+                <br/>在投资一段时间内的收益，假定一年都是这个水平，折算的年收益率。
+                <br/><br/>
               </p>
               <p>
-                <span>Beta</span> 一种风险度量指标(Beta系数)，度量市场的变化对股票或组合收益率变化的影响程度，反映股票或组合对于市场的敏感程度(系统性风险)。
+                <span>Beta</span>
+                <br/>一种风险度量指标(Beta系数)，度量市场的变化对股票或组合收益率变化的影响程度，反映股票或组合对于市场的敏感程度(系统性风险)。
+                <br/><br/>
               </p>
               <p>
                 <span>最大回撤</span>
-                在选定周期内任一历史时点往后推，产品净值走到最低点时的收益率回撤幅度的最大值。最大回撤用来描述在任意时点买入产品后，可能出现的最大亏损幅度。最大回撤是一个重要的风险指标，该指标越小越好。
+                <br/>在选定周期内任一历史时点往后推，产品净值走到最低点时的收益率回撤幅度的最大值。最大回撤用来描述在任意时点买入产品后，可能出现的最大亏损幅度。最大回撤是一个重要的风险指标，该指标越小越好。
+                <br/><br/>
               </p>
               <p>
                 <span>在险价值</span>
-                基于过去交易日的收益序列，找到排序在倒数1%的收益；一般被称为“在险价值”，是指在一定的置信水平下(在本系统中置信水平取99%)，基金或组合在未来一段时间内(在本系统中取10个交易日)的最大可能损失比例。属于风险指标，该值越小越好。
+                <br/>基于过去交易日的收益序列，找到排序在倒数1%的收益；一般被称为“在险价值”，是指在一定的置信水平下(在本系统中置信水平取99%)，基金或组合在未来一段时间内(在本系统中取10个交易日)的最大可能损失比例。属于风险指标，该值越小越好。
+                <br/><br/>
               </p>
               <p>
-                <span>夏普比率</span> Sharpe
-                Ratio=(rp-rf)/σp，超额收益与组合标准差的比值，rp是基金的年化收益，rf为无风险利率，本系统用固定的3%。夏普比率是一个可以同时对收益和风险加以考虑的综合指标，反映每单位风险的超额收益，该指标越大越好。
+                <span>夏普比率</span>
+                <br/>Sharpe Ratio=(rp-rf)/σp，超额收益与组合标准差的比值，rp是基金的年化收益，rf为无风险利率，本系统用固定的3%。夏普比率是一个可以同时对收益和风险加以考虑的综合指标，反映每单位风险的超额收益，该指标越大越好。
               </p>
             </div>
 
             <div className={styles.section_12}>
               <DivHeader>免责申明</DivHeader>
               <p>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;基金组合分析技术由FOF-Navigator系统提供给用户使用。
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                基金组合分析技术由FOF-Navigator系统提供给用户使用。
               </p>
               <p>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

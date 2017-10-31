@@ -161,6 +161,7 @@ button {
 .section_11, .section_12 {
   width: 100%;
   padding-top: 40px;
+  padding-left: 12px;
   text-align: left;
   font-size: 14px;
   color: #3D5673; }

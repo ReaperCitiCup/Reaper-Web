@@ -9,12 +9,23 @@ class StabilityRadarChart extends Component {
 
     let data = chartData;
 
+    let min = data[0].value;
+    let max = data[0].value;
+
+    for (let i = 0; i < data.length; i++) {
+      if (data[i].value > max) {
+        max = data[i].value;
+      }
+      if (data[i].value < min) {
+        min = data[i].value;
+      }
+    }
 
     let indicator = data.map(d => {
       return {
         name: d.field,
-        min: -50,
-        max: 300
+        min: min,
+        max: max
       }
     });
 

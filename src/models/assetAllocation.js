@@ -90,13 +90,12 @@ export default {
       // console.log(body);
       const {data} = yield call(assetAllocationService.createCombination, body);
 
-      // console.log(data)
-
-      if(data && onSuccess) {
-        onSuccess();
+      console.log(data)
+      if (data.result) {
+        if (onSuccess) onSuccess("创建组合成功");
         yield put(routerRedux.push('/combination'));
       } else {
-        onError();
+        if (onError) onError(data.message);
       }
     },
   },

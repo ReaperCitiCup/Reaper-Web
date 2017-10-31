@@ -205,7 +205,7 @@ export default {
       if (data.result) {
         if (onSuccess) onSuccess("创建组合成功");
       } else {
-        if (onError) onError("创建组合失败");
+        if (onError) onError(data.message);
       }
 
       yield put({

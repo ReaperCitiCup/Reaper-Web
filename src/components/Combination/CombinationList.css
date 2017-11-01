@@ -33,4 +33,8 @@ button {
 .listWarning :global .anticon {
   color: #fcdd4e; }
 
+.warning_icon {
+  margin-left: 5px;
+  color: #fcdd4e; }
+
 /*# sourceMappingURL=CombinationList.css.map */

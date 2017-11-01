@@ -66,9 +66,15 @@ class CombinationList extends Component {
     const columns = [{
       title: '组合名称',
       dataIndex: 'name',
-    }, {
-      title: '风险',
-      dataIndex: 'hasRisk',
+      render: (text, record, index) => {
+
+        return(
+        <div>
+          <span>{record.name}</span>
+          {record.hasRisk===null ? <Icon type="exclamation-circle" className={styles.warning_icon}/> : null}
+        </div>
+        )
+      }
     }, {
       title: '最新收益',
       dataIndex: 'newProfit',
@@ -120,13 +126,6 @@ class CombinationList extends Component {
     }];
 
     console.log(data);
-    data.forEach(record => {
-      if (record.hasRisk) {
-        record.hasRisk = <div className={styles.listWarning}>
-          <Icon type="exclamation-circle"/>
-        </div>
-      }
-    });
 
     return (
       <div className="container">

@@ -30,4 +30,7 @@ button {
   background-color: transparent;
   cursor: pointer; }
 
+.listWarning :global .anticon {
+  color: #fcdd4e; }
+
 /*# sourceMappingURL=CombinationList.css.map */

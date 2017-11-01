@@ -21,4 +21,16 @@ button {
   height: 500px;
   overflow: auto; }
 
+.warningWrapper {
+  float: right; }
+  .warningWrapper :global .anticon {
+    color: #fcdd4e;
+    font-size: 18px; }
+  .warningWrapper span {
+    display: inline-block;
+    margin-left: 5px;
+    vertical-align: top;
+    line-height: 18px;
+    font-size: 10px; }
+
 /*# sourceMappingURL=CombinationInfoModal.css.map */

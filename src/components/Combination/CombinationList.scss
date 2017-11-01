@@ -19,3 +19,12 @@
     cursor: pointer;
   }
 }
+
+.listWarning {
+  :global {
+    .anticon {
+      //float: right;
+      color: $warning-color;
+    }
+  }
+}

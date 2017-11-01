@@ -5,7 +5,7 @@ import React, {Component} from 'react';
 import {message} from 'antd';
 import {connect} from 'dva';
 import {routerRedux} from 'dva/router';
-import {Table} from 'antd';
+import {Table, Icon} from 'antd';
 import CombinationBacktestModal from '../Combination/CombinationBacktestModal';
 import CombinationInfoModal from '../Combination/CombinationInfoModal';
 import styles from "./CombinationList.css";
@@ -67,6 +67,9 @@ class CombinationList extends Component {
       title: '组合名称',
       dataIndex: 'name',
     }, {
+      title: '风险',
+      dataIndex: 'hasRisk',
+    }, {
       title: '最新收益',
       dataIndex: 'newProfit',
     }, {
@@ -115,6 +118,15 @@ class CombinationList extends Component {
         );
       }
     }];
+
+    console.log(data);
+    data.forEach(record => {
+      if (record.hasRisk) {
+        record.hasRisk = <div className={styles.listWarning}>
+          <Icon type="exclamation-circle"/>
+        </div>
+      }
+    });
 
     return (
       <div className="container">

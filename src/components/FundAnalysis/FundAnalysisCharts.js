@@ -212,7 +212,9 @@ function FundAnalysisCharts({
       {fundPositionNetwork && fundPositionNetwork.nodes.length > 0 ?
         <div className="card" id="13">
           <DivHeader>基金持仓情况</DivHeader>
-          <NetworkChart chartData={fundPositionNetwork} type={'fund'}/>
+          <div>
+            <NetworkChart chartData={fundPositionNetwork} type={'fund'}/>
+          </div>
         </div> : null}
 
       <div className="card" id="14">

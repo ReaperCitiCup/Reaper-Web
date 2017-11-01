@@ -10,3 +10,23 @@
     }
   }
 }
+
+.warningWrapper {
+  float: right;
+  :global {
+    .anticon {
+      //float: right;
+      color: $warning-color;
+      font-size: 18px;
+    }
+  }
+
+  span {
+    display: inline-block;
+    margin-left: 5px;
+    vertical-align: top;
+    line-height: 18px;
+    font-size: 10px;
+    //spancolor: $main-font-color;
+  }
+}

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'dva';
 import {routerRedux} from 'dva/router';
-import {Button, Modal, Table} from 'antd';
+import {Button, Modal, Table, Icon} from 'antd';
 import CompanyPieChart from '../Chart/CompanyPieChart'
 
 import styles from './CombinationInfoModal.css';
@@ -46,9 +46,9 @@ class CombinationInfoModal extends Component {
   render() {
     const {dispatch, showModal, name} = this.props;
 
-    if (showModal) {
-      console.log(showModal)
-    }
+    // if (showModal) {
+    //   console.log(showModal)
+    // }
 
     const tableData = [];
     if (showModal.currentInfo) {
@@ -63,22 +63,27 @@ class CombinationInfoModal extends Component {
     }
 
     return (
-             <Modal
-              className={styles.combinationInfoModal}
-              title={showModal ? showModal.currentInfo.name : ''}
-              visible={showModal.showModal}
-              onOk={this.handleOk}
-              onCancel={this.handleCancel}
-              footer={null}
-            >
-               {showModal ?
-              <div className={styles.ttt}>
-                {/*<p>{showModal.currentName}</p>*/}
-                <CompanyPieChart chartData={showModal.currentInfo.combination}/>
-                <Table columns={columns} dataSource={tableData} size="middle" pagination={false}/>
-              </div> : null }
+      <Modal
+        className={styles.combinationInfoModal}
+        title={showModal ? showModal.currentInfo.name : ''}
+        visible={showModal.showModal}
+        onOk={this.handleOk}
+        onCancel={this.handleCancel}
+        footer={null}
+      >
+        {showModal ?
+          <div>
+            {/*<p>{showModal.currentName}</p>*/}
+            {showModal.currentInfo.hasRisk ?
+              <div className={styles.warningWrapper}>
+                <Icon type="exclamation-circle"/>
+                <span>此组合存在风险</span>
+              </div> : null}
+            <CompanyPieChart chartData={showModal.currentInfo.combination}/>
+            <Table columns={columns} dataSource={tableData} size="middle" pagination={false}/>
+          </div> : null}
 
-            </Modal>
+      </Modal>
 
     )
   }

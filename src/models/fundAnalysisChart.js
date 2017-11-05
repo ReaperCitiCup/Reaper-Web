@@ -603,29 +603,29 @@ export default {
             type: 'fund/fetchFundBrief',
             payload: id,
             onSuccess: () => {
-              // dispatch({type: 'fundCompany/fetchCompanyBrief', payload: id});
-              // dispatch({type: 'fundChart/fetchCumulativeProfitData', payload: 1});
-              // dispatch({type: 'fundChart/fetchUnitNetValueData', payload: id});
-              // dispatch({type: 'fetchFundVolatility', payload: id});
-              // dispatch({type: 'fetchFundValueAtRisk', payload: id});
-              // dispatch({type: 'fetchFundDownsideVolatility', payload: id});
-              // dispatch({type: 'fetchFundSharpeIndex', payload: id});
-              // dispatch({type: 'fetchFundTreynorIndex', payload: id});
-              // dispatch({type: 'fetchFundJensenIndex', payload: id});
-              // dispatch({type: 'fetchFundStyleAttributionProfit', payload: id});
-              // dispatch({type: 'fetchFundStyleAttributionRisk', payload: id});
-              // dispatch({type: 'fetchFundIndustryAttributionProfit', payload: id});
-              // dispatch({type: 'fetchFundIndustryAttributionRisk', payload: id});
-              // dispatch({type: 'fetchFundStyleStabilityProfit', payload: id});
-              // dispatch({type: 'fetchFundStyleStabilityRisk', payload: id});
-              // dispatch({type: 'fetchFundVarietyAttribution', payload: id});
-              // dispatch({type: 'fetchFundBrisonAttributionStock', payload: id});
-              // dispatch({type: 'fetchFundBrisonAttributionBond', payload: id});
-              // dispatch({type: 'fetchFundChooseTimeStock', payload: id});
-              // dispatch({type: 'fetchFundPerformanceAnalysis', payload: id});
-              // dispatch({type: 'fetchManagerPerformanceAnalysis', payload: id});
-              // dispatch({type: 'fetchFundPublicOpinion', payload: id});
-              // dispatch({type: 'fetchFundPerformanceIndex', payload: id});
+              dispatch({type: 'fundCompany/fetchCompanyBrief', payload: id});
+              dispatch({type: 'fundChart/fetchCumulativeProfitData', payload: 1});
+              dispatch({type: 'fundChart/fetchUnitNetValueData', payload: id});
+              dispatch({type: 'fetchFundVolatility', payload: id});
+              dispatch({type: 'fetchFundValueAtRisk', payload: id});
+              dispatch({type: 'fetchFundDownsideVolatility', payload: id});
+              dispatch({type: 'fetchFundSharpeIndex', payload: id});
+              dispatch({type: 'fetchFundTreynorIndex', payload: id});
+              dispatch({type: 'fetchFundJensenIndex', payload: id});
+              dispatch({type: 'fetchFundStyleAttributionProfit', payload: id});
+              dispatch({type: 'fetchFundStyleAttributionRisk', payload: id});
+              dispatch({type: 'fetchFundIndustryAttributionProfit', payload: id});
+              dispatch({type: 'fetchFundIndustryAttributionRisk', payload: id});
+              dispatch({type: 'fetchFundStyleStabilityProfit', payload: id});
+              dispatch({type: 'fetchFundStyleStabilityRisk', payload: id});
+              dispatch({type: 'fetchFundVarietyAttribution', payload: id});
+              dispatch({type: 'fetchFundBrisonAttributionStock', payload: id});
+              dispatch({type: 'fetchFundBrisonAttributionBond', payload: id});
+              dispatch({type: 'fetchFundChooseTimeStock', payload: id});
+              dispatch({type: 'fetchFundPerformanceAnalysis', payload: id});
+              dispatch({type: 'fetchManagerPerformanceAnalysis', payload: id});
+              dispatch({type: 'fetchFundPublicOpinion', payload: id});
+              dispatch({type: 'fetchFundPerformanceIndex', payload: id});
               dispatch({type: 'fetchFundPositionNetwork', payload: id});
             }
           });

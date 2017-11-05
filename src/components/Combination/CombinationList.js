@@ -126,7 +126,6 @@ class CombinationList extends Component {
     }];
 
     console.log(data);
-
     return (
       <div className="container">
         <div>
@@ -136,7 +135,6 @@ class CombinationList extends Component {
         <div className={styles.list_div}>
           <Table columns={columns}
                  dataSource={data}
-                 size="middle"
                  onRowClick={this.onClickCombination}
                  pagination={data.length > 5}
           />

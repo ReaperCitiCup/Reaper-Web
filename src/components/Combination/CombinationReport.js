@@ -160,11 +160,11 @@ class CombinationReport extends Component {
                   <table>
                     <tbody>
                     <tr className={styles.tr_num}>
-                      <td>{combinationReport.intervalAnnualProfit}%</td>
-                      <td>{combinationReport.cumulativeProfit}%</td>
-                      <td>{combinationReport.finalNetValue}</td>
-                      <td>{combinationReport.maxRetracement}</td>
-                      <td>{combinationReport.sharpeRatio}</td>
+                      <td>{combinationReport.intervalAnnualProfit.toFixed(2)}%</td>
+                      <td>{combinationReport.cumulativeProfit.toFixed(2)}%</td>
+                      <td>{combinationReport.finalNetValue.toFixed(2)}</td>
+                      <td>{combinationReport.maxRetracement.toFixed(2)}</td>
+                      <td>{combinationReport.sharpeRatio.toFixed(2)}</td>
                     </tr>
                     <tr className={styles.tr_name}>
                       <td>区间年化收益</td>
@@ -199,7 +199,7 @@ class CombinationReport extends Component {
                     <td>收益风险分析</td>
                     <td>该基金组合属于
                       <span> {combinationReport.investmentGoal} </span>，风险收益比
-                      <span> {combinationReport.sharpeRatio} </span>
+                      <span> {combinationReport.sharpeRatio.toFixed(2)} </span>
                     </td>
                   </tr>
                   <tr>

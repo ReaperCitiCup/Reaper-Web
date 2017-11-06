@@ -71,7 +71,7 @@ class CombinationList extends Component {
         return(
         <div>
           <span>{record.name}</span>
-          {record.hasRisk===null ? <Icon type="exclamation-circle" className={styles.warning_icon}/> : null}
+          {record.hasRisk ? <Icon type="exclamation-circle" className={styles.warning_icon}/> : null}
         </div>
         )
       }

@@ -16,7 +16,8 @@ class FundAnalysisMenu extends Component {
   render() {
     const {
       fundStyleAttributionProfit, fundStyleAttributionRisk, fundIndustryAttributionProfit,
-      fundIndustryAttributionRisk, fundVarietyAttribution, fundPositionNetwork
+      fundIndustryAttributionRisk, fundVarietyAttribution, fundPositionNetwork,
+      fundBrisonAttributionBond, fundBrisonAttributionStock
     } = this.props;
 
     return (
@@ -39,12 +40,13 @@ class FundAnalysisMenu extends Component {
           <MenuItemGroup key="g1" title="股票投资绩效归因">
             {fundStyleAttributionProfit && fundStyleAttributionRisk ?
               <Menu.Item key="6"><a href="#6">风格归因</a></Menu.Item> : null}
-            <Menu.Item key="7"><a href="#7">行业归因</a></Menu.Item>
             {fundIndustryAttributionProfit && fundIndustryAttributionRisk ?
-              <Menu.Item key="8"><a href="#8">风格稳定性</a></Menu.Item> : null}
+              <Menu.Item key="7"><a href="#7">行业归因</a></Menu.Item> : null}
+            <Menu.Item key="8"><a href="#8">风格稳定性</a></Menu.Item>
           </MenuItemGroup>
           <MenuItemGroup key="g2" title="债券投资绩效归因">
-            <Menu.Item key="9"><a href="#9">Brison 归因</a></Menu.Item>
+            {fundBrisonAttributionBond && fundBrisonAttributionStock ?
+              <Menu.Item key="9"><a href="#9">Brison 归因</a></Menu.Item> : null}
             {fundVarietyAttribution ?
               <Menu.Item key="10"><a href="#10">品种归因</a></Menu.Item> : null}
           </MenuItemGroup>
@@ -71,6 +73,8 @@ function mapStateToProps(state) {
     fundIndustryAttributionRisk: state.fundAnalysisChart.fundIndustryAttributionRisk,
     fundVarietyAttribution: state.fundAnalysisChart.fundVarietyAttribution,
     fundPositionNetwork: state.fundAnalysisChart.fundPositionNetwork,
+    fundBrisonAttributionStock: state.fundAnalysisChart.fundBrisonAttributionStock,
+    fundBrisonAttributionBond: state.fundAnalysisChart.fundBrisonAttributionBond
   }
 }
 

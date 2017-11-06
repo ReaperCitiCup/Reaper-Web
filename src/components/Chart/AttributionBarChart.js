@@ -12,10 +12,16 @@ class AttributionBarChart extends Component {
     const {color, chartData} = this.props;
 
     let data = chartData ? chartData.sort((a, b) => a.value - b.value) : null;
+    data = data.map(d => {
+      return {
+        field: d.field,
+        value: d.value * 100
+      }
+    })
 
     let newColor = color ? color : '#81B6F5';
 
-    // console.log(data);
+    console.log(data);
 
     let option = {
 
@@ -30,9 +36,10 @@ class AttributionBarChart extends Component {
         top: 0,
         bottom: 30,
         left: 100,
-        right: 20,
+        right: 50,
       },
       xAxis: {
+        name: '%',
         type: 'value',
         axisLabel: {formatter: '{value}'}
         // position: 'bottom',
@@ -47,7 +54,7 @@ class AttributionBarChart extends Component {
         {
           // name: '生活费',
           type: 'bar',
-          data: data ? data.map(type => type.value.toFixed(3)) : null,
+          data: data ? data.map(type => type.value.toFixed(2)) : null,
 
         }
       ],
@@ -96,4 +103,5 @@ class AttributionBarChart extends Component {
 
   }
 }
+
 export default AttributionBarChart;

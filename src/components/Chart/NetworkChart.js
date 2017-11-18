@@ -21,7 +21,7 @@ class NetworkChart extends Component {
 
     function handleOnClick(params) {
       if(params.dataType === 'node') {
-        console.log(params.data.name);
+        console.log(params.data);
       }
     }
 
@@ -40,12 +40,12 @@ class NetworkChart extends Component {
         bottom: 20,
         animation: false,
         cursor: 'pointer',
-        label: {
-          normal: {
-            show: true,
-            position: 'top'
-          }
-        },
+        // label: {
+        //   normal: {
+        //     show: true,
+        //     position: 'top'
+        //   }
+        // },
         roam: true,
         draggable: true,
         data: seriesData,

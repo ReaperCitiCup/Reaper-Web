@@ -7,6 +7,8 @@ import FreeScrollBar from 'react-free-scrollbar';
 import {connect} from 'dva';
 import asset from '../../assets/assetAllocation/asset.png';
 import factor from '../../assets/assetAllocation/factor.png';
+import barra from '../../assets/assetAllocation/barra.png';
+import net from '../../assets/assetAllocation/net.png';
 import staticScale from '../../assets/assetAllocation/staticScale.png';
 import meanVariance from '../../assets/assetAllocation/meanVariance.png';
 import minVariance from '../../assets/assetAllocation/minVariance.png';
@@ -42,7 +44,7 @@ const weightOptions = [
   {label: '35% 股票型基金 + 45% 债券型基金 + 20% 混合型基金', value: [35, 45, 20]},
   {label: '20% 股票型基金 + 60% 债券型基金 + 20% 混合型基金', value: [20, 60, 20]},
 ];
-const factorOptions = [
+const styleFactorOptions = [
   {label: 'beta', value: 'beta'},
   {label: '价值', value: 'btop'},
   {label: '盈利能力', value: 'profit'},
@@ -54,6 +56,14 @@ const factorOptions = [
   {label: '波动率', value: 'volatility'},
   {label: '市值', value: 'size'},
 ];
+const factoryFactorOptions = [
+  {label: '行业因子1', value: 'factory1'},
+  {label: '行业因子2', value: 'factory2'},
+  {label: '行业因子3', value: 'factory3'},
+  {label: '行业因子4', value: 'factory4'},
+  {label: '行业因子5', value: 'factory5'},
+  {label: '行业因子6', value: 'factory6'},
+];
 
 class AssetAllocation extends Component {
   constructor(props) {
@@ -64,7 +74,9 @@ class AssetAllocation extends Component {
       implementationPath: null,   // 选择实施路径
       modalVisible: false,
       averageVisible: false,
-      factorOptionsVal: [],     // 因子间分散选择
+      styleFactorOptionsVal: [],     // 因子间分散选择 风格因子
+      factoryFactorOptionsVal: [],
+      barraValue: null,
       weight: [0, 0, 0],
       weightTag: null,
       recommendWeight: null,      // 推荐权重
@@ -85,7 +97,7 @@ class AssetAllocation extends Component {
     });
     if (this.state.implementationPath === 1) {
       this.setState({
-        factorOptionsVal: [],
+        styleFactorOptionsVal: [],
         decentralizedApproach: null,
       });
     } else if (this.state.implementationPath === 2) {
@@ -150,10 +162,16 @@ class AssetAllocation extends Component {
       });
     }
   };
-  onChangeFactorOption = (values) => {
-    // 因子选择
+  onChangeStyleFactorOption = (values) => {
+    // 风格因子选择
     this.setState({
-      factorOptionsVal: values,
+      styleFactorOptionsVal: values,
+    });
+  };
+  onChangeFactoryFactorOption = (values) => {
+    // 行业因子选择
+    this.setState({
+      factoryFactorOptionsVal: values,
     });
   };
   earnRiskChange = (value) => {
@@ -243,7 +261,7 @@ class AssetAllocation extends Component {
         payload: {
           profitRiskTarget: this.state.profitRiskTarget,
           path: this.state.implementationPath,
-          factor: this.state.factorOptionsVal,
+          factor: this.state.styleFactorOptionsVal,
           name: this.state.combinationName,
           method: this.state.decentralizedApproach,
           profitRate: this.state.profitRate
@@ -266,6 +284,11 @@ class AssetAllocation extends Component {
   onChangeProfitRate = (value) => {
     this.setState({
       profitRate: value,
+    });
+  }
+  onChangeBarraValue = (value) => {
+    this.setState({
+      barraValue: value,
     });
   }
   handleAverageOK = () => {
@@ -299,7 +322,7 @@ class AssetAllocation extends Component {
           payload: {
             profitRiskTarget: this.state.profitRiskTarget,
             path: this.state.implementationPath,
-            factor: this.state.factorOptionsVal,
+            factor: this.state.styleFactorOptionsVal,
           }
         })
       }
@@ -370,10 +393,36 @@ class AssetAllocation extends Component {
         <div className={styles.stepTitle}>3.选择因子</div>
         <div className={styles.contentRetract}>
           <CheckboxGroup
-            value={this.state.factorOptionsVal}
-            options={factorOptions}
-            onChange={this.onChangeFactorOption}
+            value={this.state.styleFactorOptionsVal}
+            options={styleFactorOptions}
+            onChange={this.onChangeStyleFactorOption}
           />
+        </div>
+      </div>
+    ), (
+      <div className={styles.strategyClassify}>
+        <div className={styles.stepTitle}>3.选择因子</div>
+        <div className={styles.section}>
+          <span className={styles.classifyLabel}>风格因子</span>
+          <CheckboxGroup
+            value={this.state.styleFactorOptionsVal}
+            options={styleFactorOptions}
+            onChange={this.onChangeStyleFactorOption}
+          />
+        </div>
+        <div className={styles.section}>
+          <span className={styles.classifyLabel}>行业因子</span>
+          <CheckboxGroup
+            value={this.state.factoryFactorOptionsVal}
+            options={factoryFactorOptions}
+            onChange={this.onChangeFactoryFactorOption}
+          />
+        </div>
+        <div className={styles.section}>
+          <span className={styles.classifyLabel}>barra 数值</span>
+          <span>- </span>
+          <InputNumber min={1} max={10} step={0.1} value={this.state.barraValue} onChange={this.onChangeBarraValue}/> %
+          <p>-1% ~ -10%</p>
         </div>
       </div>
     )];
@@ -388,7 +437,7 @@ class AssetAllocation extends Component {
             <div className={styles.fund_list}>
               <div className={styles.fundListTitle}><span>股票型基金</span></div>
               <div className={styles.scroll_wrapper}>
-                <FreeScrollBar>
+                {/*<FreeScrollBar>*/}
                   <div>
                     <CheckboxGroup
                       options={assetChoiceList.filter(v => v.name === 'stock')[0].funds
@@ -402,13 +451,13 @@ class AssetAllocation extends Component {
                       onChange={this.onChangeStockSelect}
                     />
                   </div>
-                </FreeScrollBar>
+                {/*</FreeScrollBar>*/}
               </div>
             </div>
             <div className={styles.fund_list}>
               <div className={styles.fundListTitle}><span>债券型基金</span></div>
               <div className={styles.scroll_wrapper}>
-                <FreeScrollBar>
+                {/*<FreeScrollBar>*/}
                   <div>
                     <CheckboxGroup
                       options={assetChoiceList.filter(v => v.name === 'bond')[0].funds
@@ -422,13 +471,13 @@ class AssetAllocation extends Component {
                       onChange={this.onChangeBondSelect}
                     />
                   </div>
-                </FreeScrollBar>
+                {/*</FreeScrollBar>*/}
               </div>
             </div>
             <div className={styles.fund_list}>
               <div className={styles.fundListTitle}><span>混合型基金</span></div>
               <div className={styles.scroll_wrapper}>
-                <FreeScrollBar>
+                {/*<FreeScrollBar>*/}
                   <div>
                     <CheckboxGroup
                       options={assetChoiceList.filter(v => v.name === 'hybrid')[0].funds
@@ -442,7 +491,7 @@ class AssetAllocation extends Component {
                       onChange={this.onChangeHybridSelect}
                     />
                   </div>
-                </FreeScrollBar>
+                {/*</FreeScrollBar>*/}
               </div>
             </div>
             <div>
@@ -459,10 +508,10 @@ class AssetAllocation extends Component {
             return (
               <div className={styles.fund_list} key={v.name}>
                 <div className={styles.fundListTitle}>
-                  <span>{factorOptions.filter(f => f.value === v.name)[0].label}</span></div>
+                  <span>{styleFactorOptions.filter(f => f.value === v.name)[0].label}</span></div>
 
                 <div className={styles.scroll_wrapper_small}>
-                  <FreeScrollBar>
+                  {/*<FreeScrollBar>*/}
                     <ul>
                       {v.funds.map(x => {
                         return (
@@ -472,7 +521,7 @@ class AssetAllocation extends Component {
                         )
                       })}
                     </ul>
-                  </FreeScrollBar>
+                  {/*</FreeScrollBar>*/}
                 </div>
               </div>
             );
@@ -513,11 +562,21 @@ class AssetAllocation extends Component {
         <div className={styles.routeSelect}>
           <div className={styles.stepTitle}>2.选择实施路径</div>
           <RadioGroup onChange={this.onChangeRouteSelect} value={this.state.implementationPath}>
-            <RadioButton value={1}><img width={100} role="presentation" src={asset}/>
+            <RadioButton value={1}>
+              <img width={100} role="presentation" src={asset}/>
               <div>资产间分散</div>
             </RadioButton>
-            <RadioButton value={2}><img width={100} role="presentation" src={factor}/>
+            <RadioButton value={2}>
+              <img width={100} role="presentation" src={factor}/>
               <div>因子间分散</div>
+            </RadioButton>
+            <RadioButton value={3}>
+              <img width={100} role="presentation" src={barra}/>
+              <div>自定义Barra因子配置</div>
+            </RadioButton>
+            <RadioButton value={4}>
+              <img width={100} role="presentation" src={net}/>
+              <div>社会网络中心度配置</div>
             </RadioButton>
           </RadioGroup>
         </div>
@@ -525,7 +584,7 @@ class AssetAllocation extends Component {
     }, {
       stepNum: '3',
       title: "权重 | 因子",
-      content: this.state.implementationPath === 1 ? stepThreeContent[0] : stepThreeContent[1],
+      content: stepThreeContent[this.state.implementationPath - 1],
     }, {
       stepNum: '4',
       title: "选择基金",
@@ -554,7 +613,7 @@ class AssetAllocation extends Component {
               <div>最大分散化</div>
             </RadioButton>
             <RadioButton value={6}><img width={70} role="presentation" src={riskAssessment}/>
-              <div>风险评价</div>
+              <div>风险平价</div>
             </RadioButton>
           </RadioGroup>
         </div>
@@ -579,10 +638,11 @@ class AssetAllocation extends Component {
             this.state.current < steps.length - 1
             &&
             <Button
-              style={{float: 'right'}} disabled={this.state.current === 1 && this.state.implementationPath === null ||
-            this.state.current === 2 && ((this.state.implementationPath === 1 && this.state.weightTag === null) ||
-              (this.state.implementationPath === 2 && this.state.factorOptionsVal.length === 0)) ||
-            this.state.current === 3 && (this.state.implementationPath === 1 &&
+              style={{float: 'right'}}
+              disabled={this.state.current === 1 && this.state.implementationPath === null ||
+              this.state.current === 2 && ((this.state.implementationPath === 1 && this.state.weightTag === null) ||
+              (this.state.implementationPath === 2 && this.state.styleFactorOptionsVal.length === 0)) ||
+              this.state.current === 3 && (this.state.implementationPath === 1 &&
               fundList.length > 0 && fundList.reduce((pre, cur) => pre + cur.codes.length, 0) === 0)}
               onClick={this.next}
             >下一步</Button>

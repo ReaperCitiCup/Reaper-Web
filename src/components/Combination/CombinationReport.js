@@ -202,14 +202,14 @@ class CombinationReport extends Component {
                   <tr>
                     <td>风格分析</td>
                     <td>该组合的风格主要为
-                      {/*<span>*/}
-                      {/*{combinationReport.mainFactors.map((factor, index) => {*/}
-                      {/*if (index === combinationReport.mainFactors.length - 1) {*/}
-                      {/*return factorOptions.filter(option => option.value === factor)[0].label;*/}
-                      {/*} else {*/}
-                      {/*return factorOptions.filter(option => option.value === factor)[0].label + "，"*/}
-                      {/*}*/}
-                      {/*})} </span>*/}
+                      <span>
+                      {combinationReport.mainFactors.map((factor, index) => {
+                        if (index === combinationReport.mainFactors.length - 1) {
+                          return factorOptions.filter(option => option.value === factor)[0].label;
+                        } else {
+                          return factorOptions.filter(option => option.value === factor)[0].label + "，"
+                        }
+                      })} </span>
                     </td>
                   </tr>
                   {/*<tr>*/}
@@ -310,7 +310,7 @@ class CombinationReport extends Component {
 
 
             <div className={styles.section_5}>
-              <DivHeader>基金热图</DivHeader>
+              <DivHeader>因子暴露</DivHeader>
               {combinationReport ?
                 <FundFactorsHeatChart chartData={combinationReport.fundFactorsHeat}/>
                 : <Loading/>}

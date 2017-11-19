@@ -71,7 +71,7 @@ export default {
         yield put({
           type: 'fetchUser'
         });
-        yield put(routerRedux.push('/account'));
+        yield put(routerRedux.push('/'));
         onSuccess(user.username);
 
       } else {

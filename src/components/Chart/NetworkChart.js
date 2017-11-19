@@ -4,35 +4,57 @@
 import echarts from 'echarts';
 import ReactEcharts from 'echarts-for-react';
 import React, {Component} from 'react';
+import {connect} from 'dva';
+import {routerRedux} from 'dva/router';
 
 // import {data} from './NewData';
 
 class NetworkChart extends Component {
+
+  handleOnClick = (params) => {
+    const {dispatch} = this.props;
+    if (params.dataType === 'node') {
+      dispatch(routerRedux.push(`/fund/${params.data.code}`))
+    }
+  }
+
   render() {
     const {chartData, type} = this.props;
     let seriesData = [];
     chartData.nodes.forEach((node, index) => {
       seriesData.push({
-        category: 0,
+        category: node.category,
         id: index,
+        code: node.code,
         name: node.name,
       });
     });
 
-    function handleOnClick(params) {
-      if(params.dataType === 'node') {
-        console.log(params.data);
+    let categories = seriesData.map(data => {
+      let category = [];
+      if (!category.includes(data.category)) {
+        category.push(data.category)
       }
-    }
+      return category
+    });
+
+    console.log(seriesData)
+
 
     let onEvents = {
-      'click': handleOnClick
+      'click': this.handleOnClick
     };
 
     let option = {
       tooltip: {
         trigger: 'item',
       },
+      // legend: [{
+      //   // selectedMode: 'single',
+      //   data: categories.map(cat => {
+      //     return cat;
+      //   })
+      // }],
       series: [{
         type: 'graph',
         layout: 'force',
@@ -40,6 +62,7 @@ class NetworkChart extends Component {
         bottom: 20,
         animation: false,
         cursor: 'pointer',
+        categories: categories,
         // label: {
         //   normal: {
         //     show: true,
@@ -47,7 +70,7 @@ class NetworkChart extends Component {
         //   }
         // },
         roam: true,
-        draggable: true,
+        draggable: false,
         data: seriesData,
         force: {
           repulsion: 100,
@@ -71,7 +94,8 @@ class NetworkChart extends Component {
             }
           }
         },
-        color: ['#F48984'],
+        color: ['#B6D7B3', '#F48984', '#F9D471', '#A7DAD8',
+          '#92BCC3', '#93A9BD', '#B9CDDC', '#BABBDE', '#928BA9', '#EFCEED', '#FECEDC', '#FAA5B3'],
       }],
     };
 
@@ -86,4 +110,4 @@ class NetworkChart extends Component {
   }
 }
 
-export default NetworkChart;
+export default connect()(NetworkChart);

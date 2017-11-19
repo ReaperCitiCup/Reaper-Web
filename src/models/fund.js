@@ -1,4 +1,5 @@
 import * as fundService from '../services/fund';
+import {routerRedux} from 'dva/router';
 
 export default {
   namespace: 'fund',
@@ -72,7 +73,6 @@ export default {
       });
 
     },
-
 
   },
   subscriptions: {

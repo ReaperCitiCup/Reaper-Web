@@ -14,6 +14,7 @@ import CompanyPieChart from "../Chart/CompanyPieChart";
 import NetValueLineChart from "../Chart/NetValueLineChart";
 import DoubleLineChart from "../Chart/DoubleLineChart";
 import DoubleYAxisChart from "../Chart/DoubleYAxisChart";
+import FundFactorsHeatChart from '../Chart/FundFactorsHeatChart';
 import AttributionBarChart from "../Chart/AttributionBarChart";
 import CorrelationCoefficientTable from "../Chart/CorrelationCoefficientTable";
 import BrisonTable from "../Chart/BrisonTable";
@@ -53,10 +54,6 @@ class CombinationReport extends Component {
 
   render() {
     const {combinationReport} = this.props;
-    // if (combinationReport) {
-    //   console.log(combinationReport.dailyRetracementTrend);
-    //   console.log(combinationReport.profitRateTrend)
-    // }
     const tableData = [];
     if (combinationReport) {
       combinationReport.combination.forEach(c => {
@@ -206,13 +203,13 @@ class CombinationReport extends Component {
                     <td>风格分析</td>
                     <td>该组合的风格主要为
                       <span>
-                        {combinationReport.mainFactors.map((factor, index) => {
-                          if (index === combinationReport.mainFactors.length - 1) {
-                            return factorOptions.filter(option => option.value === factor)[0].label;
-                          } else {
-                            return factorOptions.filter(option => option.value === factor)[0].label + "，"
-                          }
-                        })} </span>
+                      {combinationReport.mainFactors.map((factor, index) => {
+                        if (index === combinationReport.mainFactors.length - 1) {
+                          return factorOptions.filter(option => option.value === factor)[0].label;
+                        } else {
+                          return factorOptions.filter(option => option.value === factor)[0].label + "，"
+                        }
+                      })} </span>
                     </td>
                   </tr>
                   {/*<tr>*/}
@@ -311,6 +308,15 @@ class CombinationReport extends Component {
               </div>
             </div>
 
+
+            <div className={styles.section_5}>
+              <DivHeader>因子暴露</DivHeader>
+              {combinationReport ?
+                <FundFactorsHeatChart chartData={combinationReport.fundFactorsHeat}/>
+                : <Loading/>}
+            </div>
+
+
             {combinationReport && combinationReport.styleAttributionProfit && combinationReport.styleAttributionRisk && combinationReport.styleAttributionProfit.length > 0 && combinationReport.styleAttributionRisk.length > 0 ?
               <div className={styles.section_7}>
                 <DivHeader>风格归因</DivHeader>
@@ -406,7 +412,8 @@ class CombinationReport extends Component {
               </p>
               <p>
                 <span>夏普比率</span>
-                <br/>Sharpe Ratio=(rp-rf)/σp，超额收益与组合标准差的比值，rp是基金的年化收益，rf为无风险利率，本系统用固定的3%。夏普比率是一个可以同时对收益和风险加以考虑的综合指标，反映每单位风险的超额收益，该指标越大越好。
+                <br/>Sharpe
+                Ratio=(rp-rf)/σp，超额收益与组合标准差的比值，rp是基金的年化收益，rf为无风险利率，本系统用固定的3%。夏普比率是一个可以同时对收益和风险加以考虑的综合指标，反映每单位风险的超额收益，该指标越大越好。
               </p>
             </div>
 

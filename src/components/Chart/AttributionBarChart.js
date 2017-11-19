@@ -21,7 +21,7 @@ class AttributionBarChart extends Component {
 
     let newColor = color ? color : '#81B6F5';
 
-    console.log(data);
+    // console.log(data);
 
     let option = {
 

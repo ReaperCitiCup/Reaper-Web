@@ -1,4 +1,5 @@
 import * as fundService from '../services/fund';
+import {routerRedux} from 'dva/router';
 
 export default {
   namespace: 'fund',
@@ -64,7 +65,7 @@ export default {
 
       const {data} = yield call(fundService.fetchFund, code);
 
-      console.log(data);
+      // console.log(data);
 
       yield put({
         type: 'saveFund',
@@ -72,7 +73,6 @@ export default {
       });
 
     },
-
 
   },
   subscriptions: {

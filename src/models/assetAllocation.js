@@ -20,16 +20,19 @@ export default {
     setup({dispatch, history}) {  // eslint-disable-line
       return history.listen(({pathname, query}) => {
         if (pathname === 'asset') {
+          console.log("!!!!!")
+
           dispatch({type: 'fetchAssetChoice', payload: query});
           dispatch({type: 'fetchFactorChoice', payload: query});
           dispatch({type: 'createCombination', payload: query});
+
         }
       });
     },
   },
 
   effects: {
-    *fetchAssetChoice({payload: body}, {call, put}) {
+    * fetchAssetChoice({payload: body}, {call, put}) {
 
       console.log(body);
 
@@ -44,22 +47,22 @@ export default {
         type: 'saveFundList',
         payload: [
           {
-            category:"stock",
+            category: "stock",
             codes: []
           },
           {
-            category:"bond",
+            category: "bond",
             codes: []
           },
           {
-            category:"hybrid",
+            category: "hybrid",
             codes: []
           },
         ],
       });
     },
 
-    *fetchFactorChoice({payload: body}, {call, put}) {
+    * fetchFactorChoice({payload: body}, {call, put}) {
       console.log(body);
 
       const {data} = yield call(assetAllocationService.getDataList, body);
@@ -80,9 +83,9 @@ export default {
         }),
       });
     },
-    *createCombination({payload: body, onSuccess, onError}, {call, put, select}) {
+    * createCombination({payload: body, onSuccess, onError}, {call, put, select}) {
 
-      const {fundList:funds} = yield select(state => state.asset);
+      const {fundList: funds} = yield select(state => state.asset);
 
       // console.log(funds);
       body.funds = funds;
@@ -130,5 +133,6 @@ export default {
       return state;
     }
   },
+
 
 };

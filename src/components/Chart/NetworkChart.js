@@ -38,9 +38,6 @@ class NetworkChart extends Component {
       return category
     });
 
-    console.log(seriesData)
-
-
     let onEvents = {
       'click': this.handleOnClick
     };

@@ -56,6 +56,7 @@ class CombinationReport extends Component {
     const {combinationReport} = this.props;
     const tableData = [];
     if (combinationReport) {
+      console.log(combinationReport.fundFactorsHeat)
       combinationReport.combination.forEach(c => {
         tableData.push({
           key: c.code,

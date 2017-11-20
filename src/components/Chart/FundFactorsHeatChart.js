@@ -11,6 +11,7 @@ class FundFactorsHeatChart extends Component {
     const {chartData} = this.props;
 
     let data = [];
+    let max = 0;
 
     let xData = chartData.funds.map(fund => {
       return fund.length > 6 ?
@@ -28,7 +29,15 @@ class FundFactorsHeatChart extends Component {
       data[c.fundIndex * chartData.factors.length + c.factorIndex] = [c.fundIndex, c.factorIndex, c.value]
     });
 
-    console.log(data)
+    chartData.datas.forEach(data => {
+      if (data.value > max) {
+        max = data.value
+      }
+    })
+
+    console.log(chartData.datas)
+    console.log(max)
+
 
     let option = {
       tooltip: {
@@ -50,14 +59,14 @@ class FundFactorsHeatChart extends Component {
       },
       yAxis: {
         type: 'category',
-        data: chartData.factors,
+        data: chartData ? chartData.factors : null,
         splitArea: {
           show: true
         }
       },
       visualMap: {
         min: 0,
-        max: 10,
+        max: max,
         calculable: true,
         orient: 'horizontal',
         left: 'center',
@@ -85,7 +94,7 @@ class FundFactorsHeatChart extends Component {
 
       <ReactEcharts
         option={option}
-        style={{height:'400px'}}
+        style={{height: '400px'}}
         // notMerge={true}
         // lazyUpdate={true}
         // theme={"theme_name"}

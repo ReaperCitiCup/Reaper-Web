@@ -18,6 +18,7 @@ import riskAssessment from '../../assets/assetAllocation/riskAssessment.png';
 import BLmodel from '../../assets/assetAllocation/BLmodel.png';
 import styles from './AssetAllocation.less';
 import WeightPicChart from './WeightPieChart';
+import InputCheckBox from'./InputCheckBox';
 
 const Step = Steps.Step;
 const RadioGroup = Radio.Group;
@@ -44,7 +45,7 @@ const weightOptions = [
   {label: '35% 股票型基金 + 45% 债券型基金 + 20% 混合型基金', value: [35, 45, 20]},
   {label: '20% 股票型基金 + 60% 债券型基金 + 20% 混合型基金', value: [20, 60, 20]},
 ];
-const styleFactorOptions = [
+const factorOptions = [
   {label: 'beta', value: 'beta'},
   {label: '价值', value: 'btop'},
   {label: '盈利能力', value: 'profit'},
@@ -56,13 +57,46 @@ const styleFactorOptions = [
   {label: '波动率', value: 'volatility'},
   {label: '市值', value: 'size'},
 ];
-const factoryFactorOptions = [
-  {label: '行业因子1', value: 'factory1'},
-  {label: '行业因子2', value: 'factory2'},
-  {label: '行业因子3', value: 'factory3'},
-  {label: '行业因子4', value: 'factory4'},
-  {label: '行业因子5', value: 'factory5'},
-  {label: '行业因子6', value: 'factory6'},
+const barraFactorOptions = [
+  {label: 'beta', value: 'beta'},
+  {label: '价值', value: 'btop'},
+  {label: '盈利能力', value: 'earningsyield'},
+  {label: '成长性', value: 'growth'},
+  {label: '杠杆率', value: 'leverage'},
+  {label: '流动性', value: 'liquidity'},
+  {label: '动量', value: 'momentum'},
+  {label: '非线性市值', value: 'nlsize'},
+  {label: '波动率', value: 'residualvolatility'},
+  {label: '市值', value: 'size'},
+  {label: '机械', value: 'jx'},
+  {label: '银行', value: 'yh'},
+  {label: '房地产', value: 'fdc'},
+  {label: '医药', value: 'yy'},
+  {label: '餐饮旅游', value: 'cyly'},
+  {label: '商贸零售', value: 'smls'},
+  {label: '建材', value: 'jc'},
+  {label: '家电', value: 'jd'},
+  {label: '纺织服装', value: 'fzfz'},
+  {label: '食品饮料', value: 'spyl'},
+  {label: '电子元器件', value: 'dzyqj'},
+  {label: '交通运输', value: 'jtys'},
+  {label: '汽车', value: 'qc'},
+  {label: '轻工制造', value: 'qgzz'},
+  {label: '电力及公用事业', value: 'dljgysy'},
+  {label: '综合', value: 'zh'},
+  {label: '通信', value: 'tx'},
+  {label: '石油石化', value: 'sysh'},
+  {label: '有色金属', value: 'ysjs'},
+  {label: '农林牧渔', value: 'nlmy'},
+  {label: '建筑', value: 'jz'},
+  {label: '计算机', value: 'jsj'},
+  {label: '基础化工', value: 'jchg'},
+  {label: '煤炭', value: 'mt'},
+  {label: '电力设备', value: 'dlsb'},
+  {label: '钢铁', value: 'gt'},
+  {label: '国防军工', value: 'gfjg'},
+  {label: '非银行金融', value: 'fyhjr'},
+  {label: '传媒', value: 'cm'},
 ];
 
 class AssetAllocation extends Component {
@@ -74,9 +108,8 @@ class AssetAllocation extends Component {
       implementationPath: null,   // 选择实施路径
       modalVisible: false,
       averageVisible: false,
-      styleFactorOptionsVal: [],     // 因子间分散选择 风格因子
-      factoryFactorOptionsVal: [],
-      barraValue: null,
+      factorOptionsVal: [],     // 因子间分散选择 风格因子
+      barraFactorOptionsVal: [],
       weight: [0, 0, 0],
       weightTag: null,
       recommendWeight: null,      // 推荐权重
@@ -97,7 +130,7 @@ class AssetAllocation extends Component {
     });
     if (this.state.implementationPath === 1) {
       this.setState({
-        styleFactorOptionsVal: [],
+        factorOptionsVal: [],
         decentralizedApproach: null,
       });
     } else if (this.state.implementationPath === 2) {
@@ -162,18 +195,48 @@ class AssetAllocation extends Component {
       });
     }
   };
-  onChangeStyleFactorOption = (values) => {
+  onChangeFactorOption = (values) => {
     // 风格因子选择
     this.setState({
-      styleFactorOptionsVal: values,
+      factorOptionsVal: values,
     });
   };
-  onChangeFactoryFactorOption = (values) => {
-    // 行业因子选择
+  onChangeBarraCheck = (name, checked) => {
+    let newVal;
+    if (checked) {
+      newVal = [
+        ...this.state.barraFactorOptionsVal,
+        {
+          name: name,
+          value: 1
+        }
+      ]
+
+    } else {
+      newVal = this.state.barraFactorOptionsVal.filter(f => f.name !== name)
+    }
+    console.log(newVal)
     this.setState({
-      factoryFactorOptionsVal: values,
+      barraFactorOptionsVal: newVal
     });
   };
+  onChangeBarraValue = (name, value) => {
+    let array = this.state.barraFactorOptionsVal.filter(f => f.name === name)
+    if (array.length === 1) {
+      let newVal = [
+        ...this.state.barraFactorOptionsVal.filter(f => f.name !== name),
+        {
+          name: name,
+          value: value
+        }
+      ]
+      console.log(newVal)
+      this.setState({
+        barraFactorOptionsVal: newVal
+      });
+    }
+
+  }
   earnRiskChange = (value) => {
     // 收益目标
     console.log(value);
@@ -261,7 +324,7 @@ class AssetAllocation extends Component {
         payload: {
           profitRiskTarget: this.state.profitRiskTarget,
           path: this.state.implementationPath,
-          factor: this.state.styleFactorOptionsVal,
+          factor: this.state.factorOptionsVal,
           name: this.state.combinationName,
           method: this.state.decentralizedApproach,
           profitRate: this.state.profitRate
@@ -284,11 +347,6 @@ class AssetAllocation extends Component {
   onChangeProfitRate = (value) => {
     this.setState({
       profitRate: value,
-    });
-  }
-  onChangeBarraValue = (value) => {
-    this.setState({
-      barraValue: value,
     });
   }
   handleAverageOK = () => {
@@ -322,7 +380,7 @@ class AssetAllocation extends Component {
           payload: {
             profitRiskTarget: this.state.profitRiskTarget,
             path: this.state.implementationPath,
-            factor: this.state.styleFactorOptionsVal,
+            factor: this.state.factorOptionsVal,
           }
         })
       }
@@ -393,9 +451,9 @@ class AssetAllocation extends Component {
         <div className={styles.stepTitle}>3.选择因子</div>
         <div className={styles.contentRetract}>
           <CheckboxGroup
-            value={this.state.styleFactorOptionsVal}
-            options={styleFactorOptions}
-            onChange={this.onChangeStyleFactorOption}
+            value={this.state.factorOptionsVal}
+            options={factorOptions}
+            onChange={this.onChangeFactorOption}
           />
         </div>
       </div>
@@ -403,26 +461,15 @@ class AssetAllocation extends Component {
       <div className={styles.strategyClassify}>
         <div className={styles.stepTitle}>3.选择因子</div>
         <div className={styles.section}>
-          <span className={styles.classifyLabel}>风格因子</span>
-          <CheckboxGroup
-            value={this.state.styleFactorOptionsVal}
-            options={styleFactorOptions}
-            onChange={this.onChangeStyleFactorOption}
-          />
-        </div>
-        <div className={styles.section}>
-          <span className={styles.classifyLabel}>行业因子</span>
-          <CheckboxGroup
-            value={this.state.factoryFactorOptionsVal}
-            options={factoryFactorOptions}
-            onChange={this.onChangeFactoryFactorOption}
-          />
-        </div>
-        <div className={styles.section}>
-          <span className={styles.classifyLabel}>barra 数值</span>
-          <span>- </span>
-          <InputNumber min={1} max={10} step={0.1} value={this.state.barraValue} onChange={this.onChangeBarraValue}/> %
-          <p>-1% ~ -10%</p>
+
+          {barraFactorOptions.map(factor =>
+            <InputCheckBox
+              className={styles.input_checkbox}
+              key={factor.value}
+              onChangeCheck={(checked) => this.onChangeBarraCheck(factor.value, checked)}
+              onChangeValue={(value) => this.onChangeBarraValue(factor.value, value)}
+            >{factor.label}</InputCheckBox>
+          )}
         </div>
       </div>
     )];
@@ -438,19 +485,19 @@ class AssetAllocation extends Component {
               <div className={styles.fundListTitle}><span>股票型基金</span></div>
               <div className={styles.scroll_wrapper}>
                 {/*<FreeScrollBar>*/}
-                  <div>
-                    <CheckboxGroup
-                      options={assetChoiceList.filter(v => v.name === 'stock')[0].funds
-                        .map(fund => {
-                          return {
-                            label: fund.name,
-                            value: fund.code
-                          }
-                        })}
-                      value={fundList.filter(v => v.category === 'stock')[0].codes}
-                      onChange={this.onChangeStockSelect}
-                    />
-                  </div>
+                <div>
+                  <CheckboxGroup
+                    options={assetChoiceList.filter(v => v.name === 'stock')[0].funds
+                      .map(fund => {
+                        return {
+                          label: fund.name,
+                          value: fund.code
+                        }
+                      })}
+                    value={fundList.filter(v => v.category === 'stock')[0].codes}
+                    onChange={this.onChangeStockSelect}
+                  />
+                </div>
                 {/*</FreeScrollBar>*/}
               </div>
             </div>
@@ -458,19 +505,19 @@ class AssetAllocation extends Component {
               <div className={styles.fundListTitle}><span>债券型基金</span></div>
               <div className={styles.scroll_wrapper}>
                 {/*<FreeScrollBar>*/}
-                  <div>
-                    <CheckboxGroup
-                      options={assetChoiceList.filter(v => v.name === 'bond')[0].funds
-                        .map(fund => {
-                          return {
-                            label: fund.name,
-                            value: fund.code
-                          }
-                        })}
-                      value={fundList.filter(v => v.category === 'bond')[0].codes}
-                      onChange={this.onChangeBondSelect}
-                    />
-                  </div>
+                <div>
+                  <CheckboxGroup
+                    options={assetChoiceList.filter(v => v.name === 'bond')[0].funds
+                      .map(fund => {
+                        return {
+                          label: fund.name,
+                          value: fund.code
+                        }
+                      })}
+                    value={fundList.filter(v => v.category === 'bond')[0].codes}
+                    onChange={this.onChangeBondSelect}
+                  />
+                </div>
                 {/*</FreeScrollBar>*/}
               </div>
             </div>
@@ -478,19 +525,19 @@ class AssetAllocation extends Component {
               <div className={styles.fundListTitle}><span>混合型基金</span></div>
               <div className={styles.scroll_wrapper}>
                 {/*<FreeScrollBar>*/}
-                  <div>
-                    <CheckboxGroup
-                      options={assetChoiceList.filter(v => v.name === 'hybrid')[0].funds
-                        .map(fund => {
-                          return {
-                            label: fund.name,
-                            value: fund.code
-                          }
-                        })}
-                      value={fundList.filter(v => v.category === 'hybrid')[0].codes}
-                      onChange={this.onChangeHybridSelect}
-                    />
-                  </div>
+                <div>
+                  <CheckboxGroup
+                    options={assetChoiceList.filter(v => v.name === 'hybrid')[0].funds
+                      .map(fund => {
+                        return {
+                          label: fund.name,
+                          value: fund.code
+                        }
+                      })}
+                    value={fundList.filter(v => v.category === 'hybrid')[0].codes}
+                    onChange={this.onChangeHybridSelect}
+                  />
+                </div>
                 {/*</FreeScrollBar>*/}
               </div>
             </div>
@@ -508,19 +555,19 @@ class AssetAllocation extends Component {
             return (
               <div className={styles.fund_list} key={v.name}>
                 <div className={styles.fundListTitle}>
-                  <span>{styleFactorOptions.filter(f => f.value === v.name)[0].label}</span></div>
+                  <span>{factorOptions.filter(f => f.value === v.name)[0].label}</span></div>
 
                 <div className={styles.scroll_wrapper_small}>
                   {/*<FreeScrollBar>*/}
-                    <ul>
-                      {v.funds.map(x => {
-                        return (
-                          <li
-                            className={styles.fund_item}
-                            key={x.code}>{x.name}</li>
-                        )
-                      })}
-                    </ul>
+                  <ul>
+                    {v.funds.map(x => {
+                      return (
+                        <li
+                          className={styles.fund_item}
+                          key={x.code}>{x.name}</li>
+                      )
+                    })}
+                  </ul>
                   {/*</FreeScrollBar>*/}
                 </div>
               </div>
@@ -641,7 +688,7 @@ class AssetAllocation extends Component {
               style={{float: 'right'}}
               disabled={this.state.current === 1 && this.state.implementationPath === null ||
               this.state.current === 2 && ((this.state.implementationPath === 1 && this.state.weightTag === null) ||
-              (this.state.implementationPath === 2 && this.state.styleFactorOptionsVal.length === 0)) ||
+              (this.state.implementationPath === 2 && this.state.factorOptionsVal.length === 0)) ||
               this.state.current === 3 && (this.state.implementationPath === 1 &&
               fundList.length > 0 && fundList.reduce((pre, cur) => pre + cur.codes.length, 0) === 0)}
               onClick={this.next}

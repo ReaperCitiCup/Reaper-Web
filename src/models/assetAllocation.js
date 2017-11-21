@@ -12,6 +12,7 @@ export default {
   state: {
     assetChoiceList: [],
     factorChoiceList: [],
+    barraChoiceList: [],
     combinationResult: '',
     fundList: []
   },
@@ -83,6 +84,26 @@ export default {
         }),
       });
     },
+    * fetchBarraChoice({payload: body}, {call, put}) {
+      console.log(body);
+      yield put({
+        type: 'saveBarra',
+        payload: [
+          {
+            code: '000001',
+            name: '华夏'
+          },
+          {
+            code: '000002',
+            name: '华夏'
+          },
+          {
+            code: '000003',
+            name: '华夏'
+          }
+        ]
+      });
+    },
     * createCombination({payload: body, onSuccess, onError}, {call, put, select}) {
 
       const {fundList: funds} = yield select(state => state.asset);
@@ -109,6 +130,9 @@ export default {
     },
     saveFactor(state, {payload: factorChoiceList}) {
       return {...state, factorChoiceList};
+    },
+    saveBarra(state, {payload: barraChoiceList}) {
+      return {...state, barraChoiceList};
     },
     saveCreateCombination(state, {payload: combinationResult}) {
       return {...state, combinationResult};

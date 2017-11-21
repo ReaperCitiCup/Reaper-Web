@@ -383,6 +383,20 @@ class AssetAllocation extends Component {
             factor: this.state.factorOptionsVal,
           }
         })
+      } else if (this.state.implementationPath === 3) {
+        this.props.dispatch({
+          type: 'asset/fetchBarraChoice',
+          payload: {
+            profitRiskTarget: this.state.profitRiskTarget,
+            path: this.state.implementationPath,
+            barraFactor: this.state.barraFactorOptionsVal.map(factor => {
+              return {
+                name: factor.name,
+                value: -factor.value / 100
+              }
+            })
+          }
+        })
       }
     }
     const current = this.state.current + 1;
@@ -474,7 +488,7 @@ class AssetAllocation extends Component {
       </div>
     )];
 
-    const {assetChoiceList, factorChoiceList, fundList} = this.props;
+    const {assetChoiceList, factorChoiceList, barraChoiceList, fundList} = this.props;
     const stepFourContent = [(
       <div>
         <div className={styles.stepTitle}>4.选择基金</div>
@@ -557,8 +571,7 @@ class AssetAllocation extends Component {
                 <div className={styles.fundListTitle}>
                   <span>{factorOptions.filter(f => f.value === v.name)[0].label}</span></div>
 
-                <div className={styles.scroll_wrapper_small}>
-                  {/*<FreeScrollBar>*/}
+                <div className={styles.scroll_wrapper}>
                   <ul>
                     {v.funds.map(x => {
                       return (
@@ -568,11 +581,33 @@ class AssetAllocation extends Component {
                       )
                     })}
                   </ul>
-                  {/*</FreeScrollBar>*/}
                 </div>
               </div>
             );
           })}
+        </div>
+        <div>
+          * 以上基金是根据您的偏好为您筛选出各类中综合表现优秀的基金。
+        </div>
+      </div>
+    ), (
+      <div>
+        <div className={styles.stepTitle}>4.选择基金</div>
+        <div className={styles.contentRetract}>
+          <div className={styles.fund_list} >
+            <div className={styles.fundListTitle}>
+
+              <div className={styles.scroll_wrapper}>
+                {this.props.barraChoiceList.map(x => {
+                  return (
+                    <li
+                      className={styles.fund_item}
+                      key={x.code}>{x.name}</li>
+                  )
+                })}
+              </div>
+            </div>
+          </div>
         </div>
         <div>
           * 以上基金是根据您的偏好为您筛选出各类中综合表现优秀的基金。
@@ -635,7 +670,7 @@ class AssetAllocation extends Component {
     }, {
       stepNum: '4',
       title: "选择基金",
-      content: this.state.implementationPath === 1 ? stepFourContent[0] : stepFourContent[1],
+      content: stepFourContent[this.state.implementationPath - 1],
     }, {
       stepNum: '5',
       title: "分散化方法",
@@ -682,23 +717,21 @@ class AssetAllocation extends Component {
         </div>
         <div className="steps-action">
           {
-            this.state.current < steps.length - 1
-            &&
-            <Button
-              style={{float: 'right'}}
-              disabled={this.state.current === 1 && this.state.implementationPath === null ||
-              this.state.current === 2 && ((this.state.implementationPath === 1 && this.state.weightTag === null) ||
-              (this.state.implementationPath === 2 && this.state.factorOptionsVal.length === 0)) ||
-              this.state.current === 3 && (this.state.implementationPath === 1 &&
-              fundList.length > 0 && fundList.reduce((pre, cur) => pre + cur.codes.length, 0) === 0)}
-              onClick={this.next}
-            >下一步</Button>
-          }
-          {
-            this.state.current === steps.length - 1
-            &&
-            <Button type="primary" disabled={this.state.decentralizedApproach === ''} style={{float: 'right'}}
-                    onClick={this.finishChoice}>创建我的组合</Button>
+            (this.state.current === steps.length - 1) ||
+            ((this.state.current === steps.length - 2) && (this.state.implementationPath === 3 || this.state.implementationPath === 4))
+              ?
+              <Button type="primary" disabled={this.state.decentralizedApproach === ''} style={{float: 'right'}}
+                      onClick={this.finishChoice}>创建我的组合</Button>
+              :
+              <Button
+                style={{float: 'right'}}
+                disabled={this.state.current === 1 && this.state.implementationPath === null ||
+                this.state.current === 2 && ((this.state.implementationPath === 1 && this.state.weightTag === null) ||
+                (this.state.implementationPath === 2 && this.state.factorOptionsVal.length === 0)) ||
+                this.state.current === 3 && (this.state.implementationPath === 1 &&
+                fundList.length > 0 && fundList.reduce((pre, cur) => pre + cur.codes.length, 0) === 0)}
+                onClick={this.next}
+              >下一步</Button>
           }
           {
             this.state.current > 0
@@ -735,8 +768,8 @@ class AssetAllocation extends Component {
 }
 
 function mapStateToProps(state) {
-  const {assetChoiceList, factorChoiceList, combinationResult, fundList} = state.asset;
-  return {assetChoiceList, factorChoiceList, combinationResult, fundList};
+  const {assetChoiceList, factorChoiceList, barraChoiceList, combinationResult, fundList} = state.asset;
+  return {assetChoiceList, factorChoiceList, barraChoiceList, combinationResult, fundList};
 }
 
 export default connect(mapStateToProps)(AssetAllocation);

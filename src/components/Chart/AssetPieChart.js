@@ -9,8 +9,8 @@ class AssetPieChart extends Component {
     const {chartData} = this.props;
 
     let data = [];
-    if (chartData != null && chartData != undefined) {
-      data.push({value: chartData.bank, name: '银行'});
+    if (chartData !== null && chartData !== undefined) {
+      // data.push({value: chartData.bank, name: '银行'});
       data.push({value: chartData.stock, name: '股票'});
       data.push({value: chartData.bond, name: '债券'});
       data.push({value: chartData.other, name: '其他'});
@@ -30,7 +30,7 @@ class AssetPieChart extends Component {
       legend: {
         orient: 'vertical',
         bottom: 'bottom',
-        data: ['银行', '股票', '债券', '其他']
+        data: ['股票', '债券', '其他']
       },
       series: [
         {

@@ -91,6 +91,8 @@ export default {
     * backtestCombination(action, {call, put, select}) {
       // const {data} = yield call(combinationService.backtestCombination, backtestInfo.combinationId, backtestInfo.baseIndex, baseIndex.startDate, baseIndex.endDate);
       const {id, startDate, endDate, baseIndex} = yield select(state => state.backTestModal);
+
+      // console.log({id, startDate, endDate, baseIndex});
       yield put(routerRedux.push(`/combination/${id}?startDate=${startDate}&endDate=${endDate}&baseIndex=${baseIndex}`));
 
 

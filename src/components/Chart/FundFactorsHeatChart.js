@@ -11,7 +11,8 @@ class FundFactorsHeatChart extends Component {
     const {chartData} = this.props;
 
     let data = [];
-    let max = 0;
+    let max = -1;
+    let min = 1;
 
     let xData = chartData.funds.map(fund => {
       return fund.length > 6 ?
@@ -33,10 +34,13 @@ class FundFactorsHeatChart extends Component {
       if (data.value > max) {
         max = data.value
       }
+      if (data.value < min) {
+        min = data.value
+      }
     })
 
-    console.log(chartData.datas)
-    console.log(max)
+    // console.log(chartData.datas)
+    // console.log(max)
 
 
     let option = {
@@ -65,8 +69,9 @@ class FundFactorsHeatChart extends Component {
         }
       },
       visualMap: {
-        min: 0,
+        min: min,
         max: max,
+        precision: 5,
         calculable: true,
         orient: 'horizontal',
         left: 'center',

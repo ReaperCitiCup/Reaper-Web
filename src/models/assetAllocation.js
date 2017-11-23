@@ -22,8 +22,6 @@ export default {
     setup({dispatch, history}) {  // eslint-disable-line
       return history.listen(({pathname, query}) => {
         if (pathname === 'asset') {
-          console.log("!!!!!")
-
           dispatch({type: 'fetchAssetChoice', payload: query});
           dispatch({type: 'fetchFactorChoice', payload: query});
           dispatch({type: 'createCombination', payload: query});

@@ -19,6 +19,7 @@ import BLmodel from '../../assets/assetAllocation/BLmodel.png';
 import styles from './AssetAllocation.less';
 import WeightPicChart from './WeightPieChart';
 import InputCheckBox from'./InputCheckBox';
+import Loading from "../Util/Loading";
 
 const Step = Steps.Step;
 const RadioGroup = Radio.Group;
@@ -129,18 +130,18 @@ class AssetAllocation extends Component {
       implementationPath: parseInt(e.target.value),
     });
     // if (this.state.implementationPath === 1) {
-      this.setState({
-        factorOptionsVal: [],
-        decentralizedApproach: null,
-        weight: [0, 0, 0],
-        weightTag: null,
-        recommendWeight: null,
-        customWeight: null,
-        customStockWeight: 40,
-        customFundWeight: 40,
-        customMixWeight: 20,
-        barraFactorOptionsVal: []
-      });
+    this.setState({
+      factorOptionsVal: [],
+      decentralizedApproach: null,
+      weight: [0, 0, 0],
+      weightTag: null,
+      recommendWeight: null,
+      customWeight: null,
+      customStockWeight: 40,
+      customFundWeight: 40,
+      customMixWeight: 20,
+      barraFactorOptionsVal: []
+    });
     // } else if (this.state.implementationPath === 2) {
     //   this.setState({
     //     weight: [0, 0, 0],
@@ -566,161 +567,188 @@ class AssetAllocation extends Component {
       </div>
     )];
 
-    const {assetChoiceList, factorChoiceList, barraChoiceList, netChoiceList, fundList} = this.props;
+    const {
+      assetChoiceList, factorChoiceList, barraChoiceList, netChoiceList, fundList,
+      assetLoading, factorLoading, barraLoading, netLoading,
+    } = this.props;
     const stepFourContent = [(
       <div>
-        <div className={styles.stepTitle}>4.选择基金</div>
+      {
+        assetLoading ?
+          <Loading/> :
+          <div>
+            <div className={styles.stepTitle}>4.选择基金</div>
 
-        {assetChoiceList.length > 0 && fundList.filter(v => v.category === 'stock').length > 0 ?
-          <div className={styles.contentRetract}>
-            <div className={styles.fund_list}>
-              <div className={styles.fundListTitle}><span>股票型基金</span></div>
-              <div className={styles.scroll_wrapper}>
-                {/*<FreeScrollBar>*/}
-                <div>
-                  <CheckboxGroup
-                    options={assetChoiceList.filter(v => v.name === 'stock')[0].funds
-                      .map(fund => {
-                        return {
-                          label: fund.name,
-                          value: fund.code
-                        }
-                      })}
-                    value={fundList.filter(v => v.category === 'stock')[0].codes}
-                    onChange={this.onChangeStockSelect}
-                  />
+            {assetChoiceList.length > 0 && fundList.filter(v => v.category === 'stock').length > 0 ?
+              <div className={styles.contentRetract}>
+                <div className={styles.fund_list}>
+                  <div className={styles.fundListTitle}><span>股票型基金</span></div>
+                  <div className={styles.scroll_wrapper}>
+                    {/*<FreeScrollBar>*/}
+                    <div>
+                      <CheckboxGroup
+                        options={assetChoiceList.filter(v => v.name === 'stock')[0].funds
+                          .map(fund => {
+                            return {
+                              label: fund.name,
+                              value: fund.code
+                            }
+                          })}
+                        value={fundList.filter(v => v.category === 'stock')[0].codes}
+                        onChange={this.onChangeStockSelect}
+                      />
+                    </div>
+                    {/*</FreeScrollBar>*/}
+                  </div>
                 </div>
-                {/*</FreeScrollBar>*/}
-              </div>
-            </div>
-            <div className={styles.fund_list}>
-              <div className={styles.fundListTitle}><span>债券型基金</span></div>
-              <div className={styles.scroll_wrapper}>
-                {/*<FreeScrollBar>*/}
-                <div>
-                  <CheckboxGroup
-                    options={assetChoiceList.filter(v => v.name === 'bond')[0].funds
-                      .map(fund => {
-                        return {
-                          label: fund.name,
-                          value: fund.code
-                        }
-                      })}
-                    value={fundList.filter(v => v.category === 'bond')[0].codes}
-                    onChange={this.onChangeBondSelect}
-                  />
+                <div className={styles.fund_list}>
+                  <div className={styles.fundListTitle}><span>债券型基金</span></div>
+                  <div className={styles.scroll_wrapper}>
+                    {/*<FreeScrollBar>*/}
+                    <div>
+                      <CheckboxGroup
+                        options={assetChoiceList.filter(v => v.name === 'bond')[0].funds
+                          .map(fund => {
+                            return {
+                              label: fund.name,
+                              value: fund.code
+                            }
+                          })}
+                        value={fundList.filter(v => v.category === 'bond')[0].codes}
+                        onChange={this.onChangeBondSelect}
+                      />
+                    </div>
+                    {/*</FreeScrollBar>*/}
+                  </div>
                 </div>
-                {/*</FreeScrollBar>*/}
-              </div>
-            </div>
-            <div className={styles.fund_list}>
-              <div className={styles.fundListTitle}><span>混合型基金</span></div>
-              <div className={styles.scroll_wrapper}>
-                {/*<FreeScrollBar>*/}
-                <div>
-                  <CheckboxGroup
-                    options={assetChoiceList.filter(v => v.name === 'hybrid')[0].funds
-                      .map(fund => {
-                        return {
-                          label: fund.name,
-                          value: fund.code
-                        }
-                      })}
-                    value={fundList.filter(v => v.category === 'hybrid')[0].codes}
-                    onChange={this.onChangeHybridSelect}
-                  />
+                <div className={styles.fund_list}>
+                  <div className={styles.fundListTitle}><span>混合型基金</span></div>
+                  <div className={styles.scroll_wrapper}>
+                    {/*<FreeScrollBar>*/}
+                    <div>
+                      <CheckboxGroup
+                        options={assetChoiceList.filter(v => v.name === 'hybrid')[0].funds
+                          .map(fund => {
+                            return {
+                              label: fund.name,
+                              value: fund.code
+                            }
+                          })}
+                        value={fundList.filter(v => v.category === 'hybrid')[0].codes}
+                        onChange={this.onChangeHybridSelect}
+                      />
+                    </div>
+                    {/*</FreeScrollBar>*/}
+                  </div>
                 </div>
-                {/*</FreeScrollBar>*/}
+                <div>
+                  * 以上基金是根据您的偏好为您筛选出各类中综合表现优秀的基金。
+                </div>
               </div>
-            </div>
-            <div>
-              * 以上基金是根据您的偏好为您筛选出各类中综合表现优秀的基金。
-            </div>
+              : null}
           </div>
-          : null}
+      }
       </div>
     ), (
       <div>
-        <div className={styles.stepTitle}>4.选择基金</div>
-        <div className={styles.contentRetract}>
-          {this.props.factorChoiceList.map((v) => {
-            return (
-              <div className={styles.fund_list} key={v.name}>
-                <div className={styles.fundListTitle}>
-                  <span>{factorOptions.filter(f => f.value === v.name)[0].label}</span></div>
-
-                <div className={styles.scroll_wrapper}>
-                  <ul>
-                    {v.funds.map(x => {
-                      return (
-                        <li
-                          className={styles.fund_item}
-                          key={x.code}>{x.name}</li>
-                      )
-                    })}
-                  </ul>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-        <div>
-          * 以上基金是根据您的偏好为您筛选出各类中综合表现优秀的基金。
-        </div>
-      </div>
-    ), (
-      <div>
-        <div className={styles.stepTitle}>4.选择基金</div>
-        <div className={styles.contentRetract}>
-          <div className={styles.fund_list} >
-            <div className={styles.fundListTitle}>
-              {this.props.barraChoiceList.length > 0 ? null : '无筛选基金'}
-              <div className={styles.scroll_wrapper}>
-                {this.props.barraChoiceList.map(x => {
+        {
+          factorLoading ?
+            <Loading/> :
+            <div>
+              <div className={styles.stepTitle}>4.选择基金</div>
+              <div className={styles.contentRetract}>
+                {factorChoiceList.map((v) => {
                   return (
-                    <li
-                      className={styles.fund_item}
-                      key={x.code}>{x.name}</li>
-                  )
+                    <div className={styles.fund_list} key={v.name}>
+                      <div className={styles.fundListTitle}>
+                        <span>{factorOptions.filter(f => f.value === v.name)[0].label}</span></div>
+
+                      <div className={styles.scroll_wrapper}>
+                        <ul>
+                          {v.funds.map(x => {
+                            return (
+                              <li
+                                className={styles.fund_item}
+                                key={x.code}>{x.name}</li>
+                            )
+                          })}
+                        </ul>
+                      </div>
+                    </div>
+                  );
                 })}
               </div>
+              <div>
+                * 以上基金是根据您的偏好为您筛选出各类中综合表现优秀的基金。
+              </div>
             </div>
-          </div>
-        </div>
-        <div>
-          * 以上基金是根据您的偏好为您筛选出各类中综合表现优秀的基金。
-        </div>
+        }
       </div>
     ), (
       <div>
-        <div className={styles.stepTitle}>4.选择基金</div>
-        <div className={styles.contentRetract}>
-          {this.props.netChoiceList.map((v) => {
-            return (
-              <div className={styles.fund_list} key={v.name}>
-                <div className={styles.fundListTitle}>
-                  <span>{barraFactorOptions.filter(f => f.value === v.name)[0].label}</span></div>
-
-                <div className={styles.scroll_wrapper}>
-                  <CheckboxGroup
-                    options={v.funds
-                      .map(fund => {
-                        return {
-                          label: fund.name,
-                          value: fund.code
-                        }
+        {
+          barraLoading ?
+            <Loading/> :
+            <div>
+              <div className={styles.stepTitle}>4.选择基金</div>
+              <div className={styles.contentRetract}>
+                <div className={styles.fund_list}>
+                  <div className={styles.fundListTitle}>
+                    {barraChoiceList.length > 0 ? null : '无筛选基金'}
+                    <div className={styles.scroll_wrapper}>
+                      {barraChoiceList.map(x => {
+                        return (
+                          <li
+                            className={styles.fund_item}
+                            key={x.code}>{x.name}</li>
+                        )
                       })}
-                    value={fundList.filter(f => f.category === v.name)[0].codes}
-                    onChange={(value) => this.onChangeNetSelect(v.name, value)}
-                  />
+                    </div>
+                  </div>
                 </div>
               </div>
-            );
-          })}
-        </div>
-        <div>
-          * 以上基金是根据您的偏好为您筛选出各类中综合表现优秀的基金。
-        </div>
+              <div>
+                * 以上基金是根据您的偏好为您筛选出各类中综合表现优秀的基金。
+              </div>
+            </div>
+        }
+      </div>
+    ), (
+      <div>
+        {
+          netLoading ?
+            <Loading/> :
+            <div>
+              <div className={styles.stepTitle}>4.选择基金</div>
+              <div className={styles.contentRetract}>
+                {netChoiceList.map((v) => {
+                  return (
+                    <div className={styles.fund_list} key={v.name}>
+                      <div className={styles.fundListTitle}>
+                        <span>{barraFactorOptions.filter(f => f.value === v.name)[0].label}</span></div>
+
+                      <div className={styles.scroll_wrapper}>
+                        <CheckboxGroup
+                          options={v.funds
+                            .map(fund => {
+                              return {
+                                label: fund.name,
+                                value: fund.code
+                              }
+                            })}
+                          value={fundList.filter(f => f.category === v.name)[0].codes}
+                          onChange={(value) => this.onChangeNetSelect(v.name, value)}
+                        />
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+              <div>
+                * 以上基金是根据您的偏好为您筛选出各类中综合表现优秀的基金。
+              </div>
+            </div>
+        }
       </div>
     )];
 
@@ -878,7 +906,13 @@ class AssetAllocation extends Component {
 
 function mapStateToProps(state) {
   const {assetChoiceList, factorChoiceList, barraChoiceList, netChoiceList, combinationResult, fundList} = state.asset;
-  return {assetChoiceList, factorChoiceList, barraChoiceList, netChoiceList, combinationResult, fundList};
+  return {
+    assetChoiceList, factorChoiceList, barraChoiceList, netChoiceList, combinationResult, fundList,
+    assetLoading: state.loading.effects['asset/fetchAssetChoice'],
+    factorLoading: state.loading.effects['asset/fetchFactorChoice'],
+    barraLoading: state.loading.effects['asset/fetchBarraChoice'],
+    netLoading: state.loading.effects['asset/fetchNetChoice']
+  };
 }
 
 export default connect(mapStateToProps)(AssetAllocation);

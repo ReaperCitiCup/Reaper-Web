@@ -79,8 +79,6 @@ export default {
 
         const {data} = yield call(searchService.search, keyword, order, SEARCH_FUND_SIZE, page);
 
-        console.log(data);
-
         yield put({
           type: 'saveResult',
           payload: data.result
@@ -98,9 +96,7 @@ export default {
     setup({dispatch, history}) {
       return history.listen(({pathname, query}) => {
         let path = pathname.split('/');
-        console.log(path);
         if (path.indexOf('funds') === 1) {
-          console.log("!!!!!");
           window.scrollTo(0, 0);
           dispatch({type: 'fetchFundsByKeyword'});
         }

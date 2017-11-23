@@ -167,6 +167,8 @@ button {
   .section_11 span, .section_12 span {
     color: #3D5673;
     font-weight: 400; }
+  .section_11 p, .section_12 p {
+    line-height: 24px; }
 
 .section {
   display: inline-block;

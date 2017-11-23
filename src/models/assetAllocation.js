@@ -86,25 +86,33 @@ export default {
     },
     * fetchBarraChoice({payload: body}, {call, put}) {
       console.log(body);
+
+      const {data} = yield call(assetAllocationService.getDataList, body);
+      console.log(data)
       yield put({
         type: 'saveBarra',
-        payload: [
-          {
-            code: '000001',
-            name: '华夏'
-          },
-          {
-            code: '000002',
-            name: '华夏'
-          },
-          {
-            code: '000003',
-            name: '华夏'
-          }
-        ]
+        payload: data.length > 0 ? data[0].funds : []
       });
+      // yield put({
+      //   type: 'saveBarra',
+      //   payload: [
+      //     {
+      //       code: '000001',
+      //       name: '华夏'
+      //     },
+      //     {
+      //       code: '000002',
+      //       name: '华夏'
+      //     },
+      //     {
+      //       code: '000003',
+      //       name: '华夏'
+      //     }
+      //   ]
+      // });
     },
     * createCombination({payload: body, onSuccess, onError}, {call, put, select}) {
+      console.log(body)
 
       const {fundList: funds} = yield select(state => state.asset);
 

@@ -94,6 +94,15 @@ export default {
         type: 'saveBarra',
         payload: data.length > 0 ? data[0].funds : []
       });
+      yield put({
+        type: 'saveFundList',
+        payload: data.map(factor => {
+          return {
+            category: factor.name,
+            codes: factor.funds.map(fund => fund.code)
+          }
+        }),
+      });
     },
     * fetchNetChoice({payload: body}, {call, put}) {
       console.log(body);
@@ -133,6 +142,7 @@ export default {
         yield put(routerRedux.push('/combination'));
       } else {
         if (onError) onError(data.message);
+        yield put(routerRedux.push('/asset'));
       }
     },
   },

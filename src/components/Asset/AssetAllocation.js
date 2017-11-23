@@ -475,8 +475,6 @@ class AssetAllocation extends Component {
     this.props.fundList.forEach(object => {
       fundCodeList = fundCodeList.concat(object.codes);
     });
-    console.log(fundCodeList)
-
     const customOption = [{
       label: (
         <span className={styles.custom_option}>

@@ -42,7 +42,6 @@ class CombinationList extends Component {
   };
 
   onClickCombination = (record) => {
-    console.log(record)
     const {dispatch} = this.props;
     dispatch({
       type: 'combination/saveShowModalInfo',
@@ -125,7 +124,6 @@ class CombinationList extends Component {
       }
     }];
 
-    console.log(data);
     return (
       <div className="container">
         <div>

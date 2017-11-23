@@ -4,7 +4,7 @@ import {SEARCH_FUND_SIZE} from '../constants';
 export default {
   namespace: 'search',
   state: {
-    keyword: null,
+    keyword: 1,
     order: 'code',
     page: 1,
     totalCount: 0,
@@ -50,7 +50,8 @@ export default {
     },
   },
   effects: {
-    *changeOrder({payload: order}, {put}) {
+
+    * changeOrder({payload: order}, {put}) {
       yield put({
         type: 'saveOrder',
         payload: order
@@ -60,7 +61,7 @@ export default {
         type: 'fetchFundsByKeyword'
       })
     },
-    *changePage({payload: page}, {put}) {
+    * changePage({payload: page}, {put}) {
       yield put({
         type: 'savePage',
         payload: page
@@ -71,14 +72,12 @@ export default {
       })
     },
     fetchFundsByKeyword: [
-      function*(action, {call, put, select}) {
+      function* (action, {call, put, select}) {
 
         const {keyword, order, page} = yield select(state => state.search);
         if (!keyword) return;
 
         const {data} = yield call(searchService.search, keyword, order, SEARCH_FUND_SIZE, page);
-
-        console.log(data);
 
         yield put({
           type: 'saveResult',
@@ -93,5 +92,15 @@ export default {
       {type: 'takeLatest'}
     ],
   },
-  subscriptions: {},
+  subscriptions: {
+    setup({dispatch, history}) {
+      return history.listen(({pathname, query}) => {
+        let path = pathname.split('/');
+        if (path.indexOf('funds') === 1) {
+          window.scrollTo(0, 0);
+          dispatch({type: 'fetchFundsByKeyword'});
+        }
+      });
+    },
+  },
 };

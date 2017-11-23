@@ -36,10 +36,6 @@ function CombinationBacktestModal({dispatch, visible, onOk, onCancel, startDate,
   }
 
   // const today = new Date().toISOString().substring(0, 10);
-
-  console.log(startDate);
-  console.log(endDate);
-
   return (
     <Modal
       title="回测"

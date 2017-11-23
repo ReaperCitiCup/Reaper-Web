@@ -128,13 +128,10 @@ class AssetAllocation extends Component {
     this.setState({
       implementationPath: parseInt(e.target.value),
     });
-    if (this.state.implementationPath === 1) {
+    // if (this.state.implementationPath === 1) {
       this.setState({
         factorOptionsVal: [],
         decentralizedApproach: null,
-      });
-    } else if (this.state.implementationPath === 2) {
-      this.setState({
         weight: [0, 0, 0],
         weightTag: null,
         recommendWeight: null,
@@ -142,9 +139,20 @@ class AssetAllocation extends Component {
         customStockWeight: 40,
         customFundWeight: 40,
         customMixWeight: 20,
-        decentralizedApproach: null,
+        barraFactorOptionsVal: []
       });
-    }
+    // } else if (this.state.implementationPath === 2) {
+    //   this.setState({
+    //     weight: [0, 0, 0],
+    //     weightTag: null,
+    //     recommendWeight: null,
+    //     customWeight: null,
+    //     customStockWeight: 40,
+    //     customFundWeight: 40,
+    //     customMixWeight: 20,
+    //     decentralizedApproach: null,
+    //   });
+    // }
   };
   onChangeRecommendPer = (e) => {
     // 推荐权重选择
@@ -201,6 +209,11 @@ class AssetAllocation extends Component {
       factorOptionsVal: values,
     });
   };
+  onChangeNetFactorOption = (values) => {
+    this.setState({
+      factorOptionsVal: values,
+    });
+  }
   onChangeBarraCheck = (name, checked) => {
     let newVal;
     if (checked) {
@@ -271,6 +284,15 @@ class AssetAllocation extends Component {
       }
     })
   };
+  onChangeNetSelect = (name, value) => {
+    this.props.dispatch({
+      type: 'asset/saveFundToFundList',
+      payload: {
+        name: name,
+        value,
+      }
+    })
+  }
   onChangeDecentralizedApproach = (e) => {
     this.setState({
       decentralizedApproach: e.target.value,
@@ -351,6 +373,20 @@ class AssetAllocation extends Component {
         onSuccess: (m) => message.success(m),
         onError: (m) => message.error(m)
       })
+    } else if (this.state.implementationPath === 4) {
+      this.props.dispatch({
+        type: 'asset/createCombination',
+        payload: {
+          profitRiskTarget: this.state.profitRiskTarget,
+          path: this.state.implementationPath,
+          factor: this.state.factorOptionsVal,
+          name: this.state.combinationName,
+          method: this.state.decentralizedApproach,
+          profitRate: this.state.profitRate
+        },
+        onSuccess: (m) => message.success(m),
+        onError: (m) => message.error(m)
+      })
     }
   };
 
@@ -416,6 +452,15 @@ class AssetAllocation extends Component {
                 value: -factor.value
               }
             })
+          }
+        })
+      } else if (this.state.implementationPath === 4) {
+        this.props.dispatch({
+          type: 'asset/fetchNetChoice',
+          payload: {
+            profitRiskTarget: this.state.profitRiskTarget,
+            path: this.state.implementationPath,
+            factor: this.state.factorOptionsVal,
           }
         })
       }
@@ -507,9 +552,21 @@ class AssetAllocation extends Component {
           )}
         </div>
       </div>
+    ), (
+      <div className={styles.strategyClassify}>
+        <div className={styles.stepTitle}>3.选择因子</div>
+        <div className={styles.contentRetract}>
+          <CheckboxGroup
+            className={styles.checkbox_group}
+            value={this.state.factorOptionsVal}
+            options={barraFactorOptions}
+            onChange={this.onChangeNetFactorOption}
+          />
+        </div>
+      </div>
     )];
 
-    const {assetChoiceList, factorChoiceList, barraChoiceList, fundList} = this.props;
+    const {assetChoiceList, factorChoiceList, barraChoiceList, netChoiceList, fundList} = this.props;
     const stepFourContent = [(
       <div>
         <div className={styles.stepTitle}>4.选择基金</div>
@@ -634,6 +691,37 @@ class AssetAllocation extends Component {
           * 以上基金是根据您的偏好为您筛选出各类中综合表现优秀的基金。
         </div>
       </div>
+    ), (
+      <div>
+        <div className={styles.stepTitle}>4.选择基金</div>
+        <div className={styles.contentRetract}>
+          {this.props.netChoiceList.map((v) => {
+            return (
+              <div className={styles.fund_list} key={v.name}>
+                <div className={styles.fundListTitle}>
+                  <span>{barraFactorOptions.filter(f => f.value === v.name)[0].label}</span></div>
+
+                <div className={styles.scroll_wrapper}>
+                  <CheckboxGroup
+                    options={v.funds
+                      .map(fund => {
+                        return {
+                          label: fund.name,
+                          value: fund.code
+                        }
+                      })}
+                    value={fundList.filter(f => f.category === v.name)[0].codes}
+                    onChange={(value) => this.onChangeNetSelect(v.name, value)}
+                  />
+                </div>
+              </div>
+            );
+          })}
+        </div>
+        <div>
+          * 以上基金是根据您的偏好为您筛选出各类中综合表现优秀的基金。
+        </div>
+      </div>
     )];
 
     const steps = [{
@@ -739,7 +827,7 @@ class AssetAllocation extends Component {
         <div className="steps-action">
           {
             (this.state.current === steps.length - 1) ||
-            ((this.state.current === steps.length - 2) && (this.state.implementationPath === 3 || this.state.implementationPath === 4))
+            (this.state.current === steps.length - 2 && this.state.implementationPath === 3)
               ?
               <Button type="primary" disabled={this.state.decentralizedApproach === ''} style={{float: 'right'}}
                       onClick={this.finishChoice}>创建我的组合</Button>
@@ -789,8 +877,8 @@ class AssetAllocation extends Component {
 }
 
 function mapStateToProps(state) {
-  const {assetChoiceList, factorChoiceList, barraChoiceList, combinationResult, fundList} = state.asset;
-  return {assetChoiceList, factorChoiceList, barraChoiceList, combinationResult, fundList};
+  const {assetChoiceList, factorChoiceList, barraChoiceList, netChoiceList, combinationResult, fundList} = state.asset;
+  return {assetChoiceList, factorChoiceList, barraChoiceList, netChoiceList, combinationResult, fundList};
 }
 
 export default connect(mapStateToProps)(AssetAllocation);

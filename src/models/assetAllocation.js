@@ -13,6 +13,7 @@ export default {
     assetChoiceList: [],
     factorChoiceList: [],
     barraChoiceList: [],
+    netChoiceList: [],
     combinationResult: '',
     fundList: []
   },
@@ -93,23 +94,27 @@ export default {
         type: 'saveBarra',
         payload: data.length > 0 ? data[0].funds : []
       });
-      // yield put({
-      //   type: 'saveBarra',
-      //   payload: [
-      //     {
-      //       code: '000001',
-      //       name: '华夏'
-      //     },
-      //     {
-      //       code: '000002',
-      //       name: '华夏'
-      //     },
-      //     {
-      //       code: '000003',
-      //       name: '华夏'
-      //     }
-      //   ]
-      // });
+    },
+    * fetchNetChoice({payload: body}, {call, put}) {
+      console.log(body);
+
+      const {data} = yield call(assetAllocationService.getDataList, body);
+
+      console.log(data)
+      yield put({
+        type: 'saveNet',
+        payload: data
+      });
+
+      yield put({
+        type: 'saveFundList',
+        payload: data.map(factor => {
+          return {
+            category: factor.name,
+            codes: []
+          }
+        }),
+      });
     },
     * createCombination({payload: body, onSuccess, onError}, {call, put, select}) {
       console.log(body)
@@ -141,6 +146,9 @@ export default {
     },
     saveBarra(state, {payload: barraChoiceList}) {
       return {...state, barraChoiceList};
+    },
+    saveNet(state, {payload: netChoiceList}) {
+      return {...state, netChoiceList};
     },
     saveCreateCombination(state, {payload: combinationResult}) {
       return {...state, combinationResult};

@@ -452,7 +452,7 @@ class CombinationReport extends Component {
             </div>
           </div> :
           <div className={styles.fail}>
-            <p>抱歉，由于系统缺失您组合中的基金数据，<br/>我们无法为您回测。</p>
+            <p>抱歉，由于您组合中的基金在您回测的时间段内存在数据缺失问题，<br/>我们无法为您回测。</p>
           </div>}
       </div>
     )

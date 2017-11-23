@@ -56,13 +56,12 @@ class CombinationReport extends Component {
     const {combinationReport, backtestSuccess} = this.props;
     const tableData = [];
     if (combinationReport) {
-      console.log(combinationReport.fundFactorsHeat)
       combinationReport.combination.forEach(c => {
         tableData.push({
           key: c.code,
           code: c.code,
           name: c.name,
-          weight: c.weight,
+          weight: c.weight + '%',
         })
       })
     }
@@ -104,35 +103,6 @@ class CombinationReport extends Component {
                   </div>
                 </h3> : null}
 
-              {/*<div className="gutter-example" id={styles.grade_row}>*/}
-              {/*<Row gutter={53}>*/}
-              {/*<Col className="gutter-row" span={8}>*/}
-              {/*<div className="gutter-box">综合评价&nbsp;&nbsp;*/}
-              {/*<span className={styles.numberStyle} id={styles.integratedScore}>*/}
-              {/*{combinationReport ? combinationReport.score : null}*/}
-              {/*</span>*/}
-              {/*&nbsp;&nbsp;分*/}
-              {/*</div>*/}
-              {/*</Col>*/}
-              {/*<Col className="gutter-row" span={8}>*/}
-              {/*<div className="gutter-box">超越同级&nbsp;&nbsp;*/}
-              {/*<span className={styles.numberStyle} id={styles.exceedProduct}>*/}
-              {/*{combinationReport ? combinationReport.transcendQuantity : null}*/}
-              {/*</span>*/}
-              {/*&nbsp;&nbsp;个产品*/}
-              {/*</div>*/}
-              {/*</Col>*/}
-              {/*<Col className="gutter-row" span={8}>*/}
-              {/*<div className="gutter-box">位列&nbsp;&nbsp;*/}
-              {/*<span className={styles.numberStyle} id={styles.ranking}>*/}
-              {/*{combinationReport ? combinationReport.rank : null}*/}
-              {/*</span>*/}
-              {/*&nbsp;&nbsp;名*/}
-              {/*</div>*/}
-              {/*</Col>*/}
-              {/*</Row>*/}
-              {/*</div>*/}
-
               <div className={styles.section_1}>
                 <DivHeader>基本组成</DivHeader>
 
@@ -162,7 +132,7 @@ class CombinationReport extends Component {
                         <td>{combinationReport.intervalAnnualProfit.toFixed(2)}%</td>
                         <td>{combinationReport.cumulativeProfit.toFixed(2)}%</td>
                         <td>{combinationReport.finalNetValue.toFixed(2)}</td>
-                        <td>{combinationReport.maxRetracement.toFixed(2)}</td>
+                        <td>{combinationReport.maxRetracement.toFixed(2)}%</td>
                         <td>{combinationReport.sharpeRatio.toFixed(2)}</td>
                       </tr>
                       <tr className={styles.tr_name}>
@@ -191,7 +161,7 @@ class CombinationReport extends Component {
                     <tr>
                       <td>风险表现</td>
                       <td>该基金组合报告区间的最大回撤为
-                        <span> {combinationReport.maxRetracement} </span>，波动率为
+                        <span> {combinationReport.maxRetracement}% </span>，波动率为
                         <span> {combinationReport.volatility}% </span></td>
                     </tr>
                     <tr>
@@ -283,7 +253,7 @@ class CombinationReport extends Component {
                       </tr>
                       <tr>
                         <td>最大单日跌幅</td>
-                        <td>{combinationReport.maxDayDown}</td>
+                        <td>{combinationReport.maxDayDown}%</td>
                       </tr>
                       <tr>
                         <td>最大连跌天数</td>

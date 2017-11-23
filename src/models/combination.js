@@ -16,6 +16,8 @@ export default {
         combinations.forEach(combination => {
           combination.key = combination.id;
           combination.volatility += '%';
+          combination.newProfit += '%';
+          combination.annualProfit += '%';
         });
       }
 

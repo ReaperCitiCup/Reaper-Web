@@ -25,7 +25,7 @@ class ManagerCharts extends Component {
       managerFundPerformance, managerPerformance, managerSocialNetwork
     } = this.props;
 
-    // console.log(managerPerformance);
+    console.log(managerSocialNetwork);
     return (
       <div>
         <div className={styles.fundPerformance}>

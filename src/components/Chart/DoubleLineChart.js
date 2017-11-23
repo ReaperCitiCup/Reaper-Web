@@ -54,7 +54,7 @@ class DoubleLineChart extends Component {
       showSymbol: false,
       data: chartData.fund.map(dataValue => {
         let array = [];
-        array.push(dataValue.date, dataValue.value);
+        array.push(dataValue.date, dataValue.value.toFixed(5));
         return array;
       })
     });
@@ -64,7 +64,7 @@ class DoubleLineChart extends Component {
       showSymbol: false,
       data: chartData.base.map(dataValue => {
         let array = [];
-        array.push(dataValue.date, dataValue.value);
+        array.push(dataValue.date, dataValue.value.toFixed(5));
         return array;
       })
     });
@@ -87,7 +87,8 @@ class DoubleLineChart extends Component {
 
     let option = {
       tooltip: {
-        trigger: 'axis'
+        trigger: 'axis',
+        formatter: '{a0}: {c0}%<br/>{a1}: {c1}%'
       },
       legend: {
         data: ['基金组合', '基准'],
@@ -106,6 +107,7 @@ class DoubleLineChart extends Component {
         data: dateArray
       },
       yAxis: {
+        name: '%',
         type: 'value',
         splitLine: {show: false}
       },

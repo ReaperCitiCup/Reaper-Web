@@ -252,9 +252,9 @@
     font-weight: 400;
   }
 
-   p {
-     line-height: 24px;
-   }
+  p {
+    line-height: 24px;
+  }
 }
 
 .section {
@@ -269,5 +269,15 @@
     color: $blue-grey-color;
     font-size: 12px;
     font-weight: 200;
+  }
+}
+
+.fail {
+  text-align: center;
+  padding-top: 50px;
+
+  p {
+    color: $blue-grey-color;
+    font-size: 24px;
   }
 }

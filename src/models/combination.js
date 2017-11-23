@@ -8,6 +8,7 @@ export default {
     combinationReport: null,
     showModal: false,
     currentInfo: null,
+    backtestSuccess: true
   },
   reducers: {
     saveCombinations(state, {payload: combinations}) {
@@ -30,8 +31,13 @@ export default {
       return {...state, showModal, currentInfo};
     },
 
+    saveBacktestSuccess(state, {payload: backtestSuccess}) {
+      return {...state, backtestSuccess}
+    },
+
     clearCombinationReport(state) {
       state.combinationReport = null;
+      state.backtestSuccess = true;
       return {...state}
     }
 
@@ -96,11 +102,25 @@ export default {
       const {data} = yield call(combinationService.backtestCombination, id, baseIndex, startDate, endDate);
       // console.log(data);
 
-      yield put({
-          type: 'saveCombinationReport',
-          payload: data,
-        }
-      )
+      if (!data.isSuccess) {
+        yield put({
+            type: 'saveBacktestSuccess',
+            payload: false,
+          }
+        )
+      } else {
+        yield put({
+            type: 'saveBacktestSuccess',
+            payload: true,
+          }
+        )
+        yield put({
+            type: 'saveCombinationReport',
+            payload: data,
+          }
+        )
+      }
+
     }
   },
   subscriptions: {

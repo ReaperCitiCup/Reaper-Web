@@ -13,9 +13,12 @@ export default {
   reducers: {
     saveCombinations(state, {payload: combinations}) {
       if (combinations) {
+        console.log(combinations)
         combinations.forEach(combination => {
           combination.key = combination.id;
           combination.volatility += '%';
+          combination.newProfit += '%';
+          combination.annualProfit += '%';
         });
       }
 

@@ -3,8 +3,8 @@ export default {
   state: {
     id: null,
     show: false,
-    startDate: new Date(2016, 6, 1).toISOString().substring(0, 10),
-    endDate: new Date(2016, 8, 1).toISOString().substring(0, 10),
+    startDate: new Date(2017, 6, 1).toISOString().substring(0, 10),
+    endDate: new Date(2017, 8, 1).toISOString().substring(0, 10),
     baseIndex: 'szzs'
   },
   reducers: {

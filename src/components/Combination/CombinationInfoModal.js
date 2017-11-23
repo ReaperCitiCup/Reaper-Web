@@ -57,7 +57,7 @@ class CombinationInfoModal extends Component {
           key: c.code,
           code: c.code,
           name: c.name,
-          weight: c.weight,
+          weight: c.weight + '%',
         })
       })
     }

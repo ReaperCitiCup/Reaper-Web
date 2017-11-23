@@ -301,18 +301,13 @@ class AssetAllocation extends Component {
 
     // console.log(e.target.value)
 
-    if (e.target.value === 2) {
+    if (e.target.value === 6) {
       this.setState({
         averageVisible: true,
       })
     }
   };
 
-  onClickMethod2 = () => {
-    this.setState({
-      averageVisible: true,
-    })
-  }
 
   finishChoice = () => {
     this.setState({
@@ -476,7 +471,10 @@ class AssetAllocation extends Component {
 
   render() {
     const {current} = this.state;
-
+    let fundCodeList = [];
+    this.props.fundList.forEach(object => {
+      fundCodeList = fundCodeList.concat(object.codes);
+    });
     const customOption = [{
       label: (
         <span className={styles.custom_option}>
@@ -729,11 +727,11 @@ class AssetAllocation extends Component {
 
                       <div className={styles.scroll_wrapper}>
                         <CheckboxGroup
-                          options={v.funds
-                            .map(fund => {
+                          options={v.funds.map(fund => {
                               return {
                                 label: fund.name,
-                                value: fund.code
+                                value: fund.code,
+                                disabled: !fundList.filter(f => f.category === v.name)[0].codes.includes(fund.code) && fundCodeList.includes(fund.code)
                               }
                             })}
                           value={fundList.filter(f => f.category === v.name)[0].codes}
@@ -815,24 +813,29 @@ class AssetAllocation extends Component {
         <div className={styles.decentralization}>
           <div className={styles.stepTitle}>5.选择分散化方法</div>
           <RadioGroup onChange={this.onChangeDecentralizedApproach}>
-            <RadioButton value={1}><img width={70} role="presentation" src={staticScale}/>
+            <RadioButton value={1}>
+              <img width={70} role="presentation" src={staticScale}/>
               <div>静态比例配置</div>
             </RadioButton>
-            <RadioButton value={2} onClick={this.onClickMethod2}><img width={70} role="presentation"
-                                                                      src={meanVariance}/>
-              <div>均值方差</div>
-            </RadioButton>
-            <RadioButton value={3}><img width={70} role="presentation" src={minVariance}/>
-              <div>最小方差组合配置</div>
-            </RadioButton>
-            <RadioButton value={4}><img width={70} role="presentation" src={volatility}/>
+            <RadioButton value={2}>
+              <img width={70} role="presentation" src={volatility}/>
               <div>波动率倒数</div>
             </RadioButton>
-            <RadioButton value={5}><img width={70} role="presentation" src={maxDispersion}/>
+            <RadioButton value={3}>
+              <img width={70} role="presentation" src={minVariance}/>
+              <div>最小方差组合配置</div>
+            </RadioButton>
+            <RadioButton value={4}>
+              <img width={70} role="presentation" src={maxDispersion}/>
               <div>最大分散化</div>
             </RadioButton>
-            <RadioButton value={6}><img width={70} role="presentation" src={riskAssessment}/>
+            <RadioButton value={5}>
+              <img width={70} role="presentation" src={riskAssessment}/>
               <div>风险平价</div>
+            </RadioButton>
+            <RadioButton value={6}>
+              <img width={70} role="presentation" src={meanVariance}/>
+              <div>均值方差</div>
             </RadioButton>
           </RadioGroup>
         </div>

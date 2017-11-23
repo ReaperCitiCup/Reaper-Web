@@ -182,4 +182,11 @@ button {
     font-size: 12px;
     font-weight: 200; }
 
+.fail {
+  text-align: center;
+  padding-top: 50px; }
+  .fail p {
+    color: #9FAEC0;
+    font-size: 24px; }
+
 /*# sourceMappingURL=CombinationReport.css.map */

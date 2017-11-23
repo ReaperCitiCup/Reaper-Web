@@ -82,7 +82,7 @@ class FundManagerInfo extends Component {
           scale: managerFunds[i].scope,
           workDate: managerFunds[i].startDate + " - " + managerFunds[i].endDate,
           workTime: managerFunds[i].days,
-          workReturn: managerFunds[i].returns,
+          workReturn: managerFunds[i].returns + '%',
         })
       }
     }
@@ -147,9 +147,9 @@ class FundManagerInfo extends Component {
 
         <div className={styles.fundHistoryDiv}>
           <DivHeader>历史管理基金</DivHeader>
-            <div>
-              <Table columns={columns} dataSource={data} size="middle" pagination={data.length > 5}/>
-            </div>
+          <div>
+            <Table columns={columns} dataSource={data} size="middle" pagination={data.length > 5}/>
+          </div>
 
         </div>
 

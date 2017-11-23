@@ -39,7 +39,7 @@ class InputCheckBox extends Component {
         > {children}
           {checked ?
             <span>
-              : - <InputNumber min={1} max={10} step={0.1} defaultValue={1} onChange={this.onChangeValue}/> %
+              : <InputNumber min={0} max={0.8} step={0.1} defaultValue={0} onChange={this.onChangeValue}/> %
             </span> : null}
         </Checkbox>
     )

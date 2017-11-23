@@ -328,7 +328,28 @@ class AssetAllocation extends Component {
           name: this.state.combinationName,
           method: this.state.decentralizedApproach,
           profitRate: this.state.profitRate
-        }
+        },
+        onSuccess: (m) => message.success(m),
+        onError: (m) => message.error(m)
+      })
+    } else if (this.state.implementationPath === 3) {
+      this.props.dispatch({
+        type: 'asset/createCombination',
+        payload: {
+          profitRiskTarget: this.state.profitRiskTarget,
+          path: this.state.implementationPath,
+          barraFactor: this.state.barraFactorOptionsVal.map(factor => {
+            return {
+              name: factor.name,
+              value: -factor.value
+            }
+          }),
+          name: this.state.combinationName,
+          method: this.state.decentralizedApproach,
+          profitRate: this.state.profitRate
+        },
+        onSuccess: (m) => message.success(m),
+        onError: (m) => message.error(m)
       })
     }
   };
@@ -392,7 +413,7 @@ class AssetAllocation extends Component {
             barraFactor: this.state.barraFactorOptionsVal.map(factor => {
               return {
                 name: factor.name,
-                value: -factor.value / 100
+                value: -factor.value
               }
             })
           }
@@ -596,7 +617,7 @@ class AssetAllocation extends Component {
         <div className={styles.contentRetract}>
           <div className={styles.fund_list} >
             <div className={styles.fundListTitle}>
-
+              {this.props.barraChoiceList.length > 0 ? null : '无筛选基金'}
               <div className={styles.scroll_wrapper}>
                 {this.props.barraChoiceList.map(x => {
                   return (

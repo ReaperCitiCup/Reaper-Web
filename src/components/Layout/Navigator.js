@@ -53,12 +53,12 @@ function Navigator({dispatch, user}) {
           <Link to="/combination">我的组合</Link>
         </Menu.Item>
 
-        { user ?
-          <Menu.Item key="/account">
-            <Link to="/account">个人中心</Link>
-          </Menu.Item>
-          : null
-        }
+        {/*{ user ?*/}
+          {/*<Menu.Item key="/account">*/}
+            {/*<Link to="/account">个人中心</Link>*/}
+          {/*</Menu.Item>*/}
+          {/*: null*/}
+        {/*}*/}
 
         { user ?
           <Menu.Item key="/signout">

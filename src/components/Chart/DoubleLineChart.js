@@ -92,7 +92,6 @@ class DoubleLineChart extends Component {
         trigger: 'axis',
         // formatter: '{a0}: {c0}%<br/>{a1}: {c1}%'
         formatter: function (params, ticket, callback) {
-          console.log(params)
           return params.map(series => {
             return series.seriesName + ': ' + series.data[1] + '%'
           }).join('<br/>')

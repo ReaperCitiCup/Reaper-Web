@@ -69,6 +69,8 @@ class DoubleLineChart extends Component {
       })
     });
 
+    console.log(seriesData)
+
 
     // let seriesData = chartData.map(dataValue => {
     //   let pointArray = [];
@@ -88,7 +90,13 @@ class DoubleLineChart extends Component {
     let option = {
       tooltip: {
         trigger: 'axis',
-        formatter: '{a0}: {c0}%<br/>{a1}: {c1}%'
+        // formatter: '{a0}: {c0}%<br/>{a1}: {c1}%'
+        formatter: function (params, ticket, callback) {
+          console.log(params)
+          return params.map(series => {
+            return series.seriesName + ': ' + series.data[1] + '%'
+          }).join('<br/>')
+        }
       },
       legend: {
         data: ['基金组合', '基准'],

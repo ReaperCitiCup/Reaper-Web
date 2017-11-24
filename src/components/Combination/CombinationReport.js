@@ -249,7 +249,7 @@ class CombinationReport extends Component {
                       </tr>
                       <tr>
                         <td>最大回撤</td>
-                        <td>{combinationReport.maxRetracement}</td>
+                        <td>{combinationReport.maxRetracement}%</td>
                       </tr>
                       <tr>
                         <td>最大单日跌幅</td>

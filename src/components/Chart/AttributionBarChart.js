@@ -15,7 +15,7 @@ class AttributionBarChart extends Component {
     data = data.map(d => {
       return {
         field: d.field,
-        value: d.value * 100
+        value: d.value
       }
     })
 

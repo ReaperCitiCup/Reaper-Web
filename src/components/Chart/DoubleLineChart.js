@@ -54,7 +54,7 @@ class DoubleLineChart extends Component {
       showSymbol: false,
       data: chartData.fund.map(dataValue => {
         let array = [];
-        array.push(dataValue.date, dataValue.value.toFixed(5));
+        array.push(dataValue.date, dataValue.value.toFixed(2));
         return array;
       })
     });
@@ -64,7 +64,7 @@ class DoubleLineChart extends Component {
       showSymbol: false,
       data: chartData.base.map(dataValue => {
         let array = [];
-        array.push(dataValue.date, dataValue.value.toFixed(5));
+        array.push(dataValue.date, dataValue.value.toFixed(2));
         return array;
       })
     });

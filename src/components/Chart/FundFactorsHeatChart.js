@@ -45,7 +45,11 @@ class FundFactorsHeatChart extends Component {
 
     let option = {
       tooltip: {
-        position: 'top'
+        position: 'top',
+        formatter: function (params, ticket, callback) {
+          console.log(params)
+          return params.name + ': ' + params.data[2]
+        }
       },
       animation: false,
       grid: {
